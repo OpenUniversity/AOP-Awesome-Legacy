@@ -1,0 +1,333 @@
+options {
+  STATIC = false;
+  LOOKAHEAD = 1;
+  CHOICE_AMBIGUITY_CHECK = 2;
+  OTHER_AMBIGUITY_CHECK = 1;
+  DEBUG_PARSER = false;
+  DEBUG_LOOKAHEAD = false;
+  DEBUG_TOKEN_MANAGER = false;
+  ERROR_REPORTING = true;
+  JAVA_UNICODE_ESCAPE = false;
+  UNICODE_INPUT = false;
+  IGNORE_CASE = false;
+  USER_TOKEN_MANAGER = false;
+  USER_CHAR_STREAM = false;
+  BUILD_PARSER = true;
+  BUILD_TOKEN_MANAGER = true;
+  SANITY_CHECK = true;
+  FORCE_LA_CHECK = false;
+  MULTI = true;
+}
+
+PARSER_BEGIN(COOLParser)
+
+public class COOLParser {
+
+  public static void main(String args[]) {
+    COOLParser parser;
+    if (args.length == 0) {
+      System.out.println("COOL Parser:  Reading from standard input . . .");
+      parser = new COOLParser(System.in);
+    } else if (args.length == 1) {
+      System.out.println("COOL Parser:  Reading from file " + args[0] + " . . .");
+      try {
+        parser = new COOLParser(new java.io.FileInputStream(args[0]));
+      } catch (java.io.FileNotFoundException e) {
+        System.out.println("COOL Parser:  File " + args[0] + " not found.");
+        return;
+      }
+    } else {
+      System.out.println("COOL Parser:  Usage is one of:");
+      System.out.println("         java COOLParser < inputfile");
+      System.out.println("OR");
+      System.out.println("         java COOLParser inputfile");
+      return;
+    }
+    try {
+      ASTCoordinatorDecl program = parser.CoordinatorDecl();
+      program.dump("");
+//      MacroProcessor processor = new MacroProcessor();
+//      StringBuffer out = processor.process(program);
+//      System.out.println(out.toString());
+      System.out.println("COOL Parser:  COOL program parsed successfully.");
+    } catch (ParseException e) {
+      System.out.println("COOL Parser:  Encountered errors during parse."+e);
+    }
+  }
+
+}
+PARSER_END(COOLParser)
+
+SKIP : /* WHITE SPACE (JAVA) */
+{ " " | "\t" | "\n" | "\r" | "\f" }
+
+SPECIAL_TOKEN : /* COMMENTS (JAVA) */
+{
+  <SINGLE_LINE_COMMENT: "//" (~["\n","\r"])* ("\n"|"\r"|"\r\n")>
+| <FORMAL_COMMENT: "/**" (~["*"])* "*" ("*" | (~["*","/"] (~["*"])* "*"))* "/">
+| <MULTI_LINE_COMMENT: "/*" (~["*"])* "*" ("*" | (~["*","/"] (~["*"])* "*"))* "/">
+}
+
+TOKEN : /* Keywords */
+{
+  <COORDINATOR: "coordinator">
+| <MUTEX: "mutex">
+| <SELFEX: "selfex">
+| <ONENTRY: "on_entry">
+| <ONEXIT: "on_exit">
+| <CONDITION: "condition">
+| <IF : "if" >
+| <DO : "do" >
+| <ELSE : "else">
+| <BREAK : "break" >
+| <CONTINUE : "continue" >
+| <TRUE : "true">
+| <FALSE : "false" >
+| <PER: "per">
+| <CLASS: "class">
+| <OBJECT: "object">
+| <FINAL: "final">
+| <NEW: "new">
+| <BOOLEAN : "boolean">
+| <BYTE : "byte" >
+| <CHAR : "char">
+| <SHORT : "short" >
+| <INT : "int" >
+| <FLOAT : "float" >
+| <LONG : "long" >
+| <DOUBLE : "double" >
+| <REQUIRES : "requires" >
+| <WHILE : "while" >
+| <FOR : "for" >
+| <CASE : "case" >
+| <SWITCH : "switch" >
+| <DEFAULTKW : "default" >
+| <PACKAGE : "package" >
+| <IMPORT : "import" >
+}
+
+
+TOKEN : 
+{
+  <#ALPHA: ["a"-"z","A"-"Z","_"]>
+| <#DIGIT: ["0"-"9"]> 
+| //LOOKAHEAD((<DIGIT>)+ "." <DIGIT>) 
+    <FLOATNUM: ((<DIGIT>)+ "." (<DIGIT>)+)> 
+| <NUMBER: ((<DIGIT>)+)>
+| <NAME : (<ALPHA> (<ALPHA> | <DIGIT>)*) >
+| <STRING :
+      "\""
+      (   (~["\"","\\","\n","\r"])
+        | ("\\"
+            ( ["n","t","b","r","f","\\","'","\""]
+            | ["0"-"7"] ( ["0"-"7"] )?
+            | ["0"-"3"] ["0"-"7"] ["0"-"7"]
+            )
+          )
+      )*
+      "\""
+  >
+}
+
+ASTCoordinatorDecl CoordinatorDecl() #CoordinatorDecl: {}{ 
+  [PackageDecl()]
+  (ImportDecl())*
+  [Granularity()] <COORDINATOR> ClassName() ("," ClassName())* "{" CoordinationSpec() "}" 
+  {return jjtThis;}
+}
+void Granularity() #Granularity: {} {
+  <PER> (<CLASS> {jjtThis.setIsClass(true);} | <OBJECT> {jjtThis.setIsClass(false);})
+}
+
+void CoordinationSpec() #CoordinationSpec:{}{
+    (FieldDecl()
+  | CondFieldDecl()
+  | SelfexDecl()
+  | MutexDecl()
+  | MethodManagerDecl())*
+}
+
+void FieldDecl() #FieldDecl:{}{PrimType() VarsInit() ";"}
+void CondFieldDecl() #CondFieldDecl: {}{<CONDITION> VarsInit() ";"}
+void SelfexDecl() #SelfexDecl:{}{<SELFEX>  "{" MethodSet() "}" ";"}
+void MutexDecl() #MutexDecl: {}{<MUTEX> "{" MethodSet() "}" ";"}
+
+void VarsInit() #void:{}{VarInit() ("," VarInit())*}
+void VarInit() #VarInit:{}{
+    LOOKAHEAD(Name() "[") 
+      Name() ("[" "]" {jjtThis.addDimension();})* ["=" InitArr()]
+  | Name() ["=" Expr()]
+}
+
+void InitArr() #InitArr: {}{"{" [(InitArr() | Expr()) ("," ( InitArr() | Expr()))*] "}"}
+void MethodSet() #void:{}{MethodName() ("," MethodName())*}
+void MethodName() #MethodName: {}{
+   ClassName() ["(" [Type() ("," Type())*] ")"]
+}
+
+void MethodManagerDecl() #MethodManagerDecl: {}{
+ MethodSet() [Requires()] "{" (OnEntry() | OnExit())+ "}"
+}
+void Requires() #Requires:{}{<REQUIRES> "(" ReqExpr() ")"}
+void OnEntry() #OnEntry:{}{<ONENTRY> Stmnt()}
+void OnExit() #OnExit:{}{<ONEXIT> Stmnt()}
+
+void ReqExpr() #void:{} {ReqOrExpr()}
+void ReqOrExpr() #void: {}
+  { (ReqAndExpr() (LOOKAHEAD("||" ReqAndExpr()) "||" ReqAndExpr())*) #ReqOrExpr(>1)}
+void ReqAndExpr() #void : {}
+  {(ReqEqExpr() (LOOKAHEAD("&&" ReqEqExpr()) "&&" ReqEqExpr())*) #ReqAndExpr(>1) }
+void ReqEqExpr() #void: {}{
+ (ReqPrimaryExpr() (LOOKAHEAD(EqOp() ReqPrimaryExpr()) EqOp() ReqPrimaryExpr())*) #ReqEqExpr(>1)}
+void ReqPrimaryExpr() #void : {}
+{
+    ReqConst() 
+  | ReqNegExpr()
+  | ReqBracketExpr()
+  | ReqVarRef()
+}
+void ReqNegExpr() #ReqNegExpr :{}{"!" ReqExpr()}
+void ReqBracketExpr() #ReqBracketExpr :{}{"(" ReqExpr() ")"}
+void ReqVarRef() #ReqVarRef:{}{Name() ("[" Expr() "]")*}
+void ReqConst() #Atom: {Token t;} {(t=<TRUE> | t=<FALSE>) {jjtThis.setValue(t.image);}}
+
+
+/*========================= Java Subset ======================= */
+
+void Type() #void:{} {PrimType() | ClassType()}
+void PrimType() #Type: {}{
+{jjtThis.setPrimitive(true);} PrimTypeName() ("[" "]" {jjtThis.addDimension();})* 
+}
+void ClassType() #Type:{}{
+{jjtThis.setPrimitive(false);}
+  Name() ("." Name())* ("[" "]" {jjtThis.addDimension();})* 
+}
+
+//void TypeName() #void:{} {PrimTypeName() | Name()}
+void PrimTypeName() #Atom:{Token t;} {
+ (t=<BOOLEAN> | t=<BYTE> | t=<CHAR> | t=<SHORT> | t=<INT> | t=<FLOAT> | t=<LONG> | t=<DOUBLE>) {jjtThis.setValue(t.image);}
+}
+
+
+void Expr() #void:{} {CondOrExpr()}
+void CondOrExpr() #void: {}
+  { (CondAndExpr() (LOOKAHEAD("||" CondAndExpr()) "||" CondAndExpr())*) #CondOrExpr(>1)}
+void CondAndExpr() #void : {}
+  {(InclOrExpr() (LOOKAHEAD("&&" InclOrExpr()) "&&" InclOrExpr())*) #CondAndExpr(>1) }
+void InclOrExpr() #void : {}
+ {(ExclOrExpr() (LOOKAHEAD("|" ExclOrExpr()) "|" ExclOrExpr())*) #InclOrExpr(>1)}
+void ExclOrExpr() #void : {}
+ {(AndExpr() (LOOKAHEAD("^" AndExpr()) "^" AndExpr())*) #ExclOrExpr(>1)}
+void AndExpr() #void : {}
+ {(EqExpr() (LOOKAHEAD("&" EqExpr()) "&" EqExpr())*) #AndExpr(>1)}
+void EqExpr() #void: {}{
+ (RelExpr() (LOOKAHEAD(EqOp() RelExpr()) EqOp() RelExpr())*) #EqExpr(>1)}
+void RelExpr() #void: {}{ 
+ (ShiftExpr() (LOOKAHEAD(RelOp() ShiftExpr()) RelOp() ShiftExpr())*) #RelExpr(>1)}
+void ShiftExpr() #void: {}{ 
+ (AddExpr() (LOOKAHEAD(ShiftOp() AddExpr()) ShiftOp() AddExpr())*) #ShiftExpr(>1)}
+void AddExpr() #void: {}{
+ (MultExpr() (LOOKAHEAD(AddOp() MultExpr()) AddOp() MultExpr())*) #AddExpr(>1)}
+void MultExpr() #void : {}{
+ (PrimaryExpr() (LOOKAHEAD(MultOp() PrimaryExpr()) MultOp() PrimaryExpr())*
+ ) #MultExpr(>1)}
+void PrimaryExpr() #void : {}
+{
+    Const() 
+  | UnaryExpr()
+  | BracketExpr()
+  | NewArrExpr()
+  | LOOKAHEAD(AssignOp() | (VarRef() ("=" | AssignOp()))) 
+      AssignExpr()
+  | VarRef()
+}
+
+void AssignExpr() #AssignExpr: {}{
+    AssignOp() VarRef() {jjtThis.setAssignType("prefix");}
+  | LOOKAHEAD(VarRef() AssignOp()) 
+      VarRef() AssignOp() {jjtThis.setAssignType("postfix");}
+  | VarRef() "=" Expr() {jjtThis.setAssignType("normal");}
+}
+
+void UnaryExpr() #UnaryExpr :{}{UnaryOp() Expr()}
+void BracketExpr() #BracketExpr :{}{"(" Expr() ")"}
+//variable access. Also allows to access fields of the coordinated object
+void VarRef() #VarRef:{}{Name() ("[" Expr() "]")* ["." VarRef() {jjtThis.setComplex(true);}]}
+//(primitive) array allocation 
+void NewArrExpr() #NewArrExpr: {}{<NEW> PrimTypeName() ("[" Expr() "]")+}
+void Const() #Atom: {Token t;} {(t=<TRUE> | t=<FALSE> | t=<NUMBER> | t=<FLOATNUM>) {jjtThis.setValue(t.image);}}
+//void Const() #void: {}{LOOKAHEAD(FloatConst()) FloatConst() | TokenConst()}
+//void FloatConst() #Atom: {Token t1,t2;}{t1=<NUMBER> "." t2=<NUMBER> {jjtThis.setValue(t1.image+"."+t2.image);}}
+//void TokenConst() #Atom: {Token t;} {(t=<TRUE> | t=<FALSE> | t=<NUMBER> ) {jjtThis.setValue(t.image);}}
+
+// Operators
+void UnaryOp() #Atom :{Token t;}{(t="-" | t="!" | t="~")  {jjtThis.setValue(t.image);}}
+void AddOp() #Atom :{Token t;}{(t="+" | t="-")  {jjtThis.setValue(t.image);}}
+void MultOp() #Atom :{Token t;}{(t="*" | t="/" | t="%")  {jjtThis.setValue(t.image);}}
+void RelOp() #Atom :{Token t;}{(t="<=" | t=">=" | t="<" | t=">") {jjtThis.setValue(t.image);}}
+void EqOp() #Atom :{Token t;}{(t="!=" | t="==")  {jjtThis.setValue(t.image);}}
+void ShiftOp() #Atom :{Token t;}{(t="<<" | t=">>" | t=">>>")  {jjtThis.setValue(t.image);}}
+void AssignOp() #Atom : {Token t;}{(t="++" | t="--")  {jjtThis.setValue(t.image);}}
+void AndOrOp() #Atom :{Token t;}{(t="&&" | t="||")  {jjtThis.setValue(t.image);}}
+
+void Stmnt() #void : {}{
+   LOOKAHEAD(Name() ":") LabeledStmnt()
+ | BlockStmnt()
+ | IfStmnt()
+ | SwitchStmnt()
+ | WhileStmnt()
+ | DoStmnt()
+ | ForStmnt()
+ | BreakStmnt()
+ | ContinueStmnt()
+ | AssignExpr()
+ | EmptyStmnt()
+}
+
+void BlockStmnt() #BlockStmnt: {}{ "{" (BlockStmntEl())* "}" }
+void BlockStmntEl() #void:{} {Stmnt() | FieldDecl()}
+
+void IfStmnt() #IfStmnt: {}{
+  <IF> "(" Expr() ")" Stmnt() [LOOKAHEAD(1) <ELSE> Stmnt()]
+}
+void WhileStmnt() #WhileStmnt: {}{
+  <WHILE> "(" Expr() ")" Stmnt() 
+}
+void ForStmnt() #ForStmnt: {} {
+  <FOR> "("[ForInit()] ";" [Expr() {jjtThis.setHasConditionExpr(true);}] ";" [AssignExpr() ("," AssignExpr())*] ")" Stmnt() 
+}
+
+void ForInit() #ForInit:{}{
+    ForVarDecl()
+  | ForAssignExpr() ("," ForAssignExpr())* 
+}
+
+void ForAssignExpr() #AssignExpr:{}{ 
+  VarRef() "=" Expr() {jjtThis.setAssignType("normal");}
+}
+void ForVarDecl() #FieldDecl:{}{PrimType() VarsInit()}
+
+
+void DoStmnt() #DoStmnt: {}{<DO> Stmnt() <WHILE> "(" Expr() ")" ";"}
+void BreakStmnt() #BreakStmnt:{}{<BREAK> [Name()] ";"}
+void ContinueStmnt() #ContinueStmnt:{}{<CONTINUE> [Name()] ";"}
+void SwitchStmnt() #SwitchStmnt:{}{
+ <SWITCH> "(" Expr() ")" "{" (CaseBlock())* "}" 
+}
+
+void CaseBlock() #CaseBlock:{}{
+  (<CASE> Expr() ":" {jjtThis.setDefault(false);} 
+    | <DEFAULTKW> ":" {jjtThis.setDefault(true);}) 
+  CaseBlockStmnts()
+}
+void CaseBlockStmnts() #BlockStmnt:{}{(BlockStmntEl())*}
+
+void LabeledStmnt() #LabeledStmnt:{}{Name() ":" Stmnt()}
+void EmptyStmnt() #EmptyStmnt:{}{";"}
+
+
+//aux
+void Name() #Atom: {Token t;}{t=<NAME> {jjtThis.setValue(t.image);}} 
+void ClassName() #ClassName: {}{Name() ("." Name())*}
+void PackageDecl() #PackageDecl: {}{<PACKAGE> Name() ("." Name())* ";"}
+void ImportDecl() #ImportDecl: {}{<IMPORT> Name() (LOOKAHEAD(2) "." Name())* ["." "*" {jjtThis.setTrailingStar(true);}] ";"}
