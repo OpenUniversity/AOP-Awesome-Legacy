@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Java-Bean: True
+Name: pwbuilder/test/peterson/TextWriter.class
+
+Name: pwbuilder/test/peterson/TextResourceManager.class
+Java-Bean: True
+
+Name: pwbuilder/test/peterson/TextResource.class
+Java-Bean: True
+
