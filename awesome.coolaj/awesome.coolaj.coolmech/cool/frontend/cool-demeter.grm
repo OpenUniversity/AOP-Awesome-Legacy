@@ -1,0 +1,407 @@
+package edu.neu.ccs.demeter.tools.cool;
+
+import java.io.*;
+import java.util.*;
+
+public Cool		~ {CoordinatorDeclaration} *EOF* .
+CoordinatorDeclaration	= [Granularity]
+			  "coordinator" CoordClassNames CoordinatorBody .
+Granularity		: *lookahead* (@2@) PerClass
+			| *lookahead* (@2@) PerObject .
+PerClass		= "per" "class" .
+PerObject		= "per" "object" .
+CoordClassNames		~ ClassName {"," ClassName} .
+ClassName		= Ident .
+CoordinatorBody		= "{" <coorspecs> List(CoordinationSpec) "}" .
+CoordinationSpec	: *lookahead* (@["final"] _Type() _Ident()@) VarDeclaration
+			| CondVarDeclaration
+			| SelfexMethodSet
+			| MutexMethodSet
+			| *lookahead* (@_QualifiedMethodNames() ("{"|"requires")@) MethodManager .
+
+VarDeclaration		= LocVarDecl .
+
+CondVarDeclaration	= "condition" SquareBracketses CondVarDecs ";" .
+CondVarDecs		~ CondVarDec {"," CondVarDec} .
+CondVarDec		= <name> VariableDeclaratorId ["=" VariableIniter] .
+
+SelfexMethodSet		= "selfex" <meths> QualifiedMethodNames ";" .
+QualifiedMethodNames	~ QualifiedMethodName {"," QualifiedMethodName } .
+
+QualifiedMethodName	= [*lookahead* (@2@) ClassName "."] MethodName
+			  [<args> MethodArgTypes] .
+
+MethodName		= Ident .
+MethodArgTypes		= "(" [ArgumentTypes] ")" .
+ArgumentTypes		~ Type {"," Type} .
+
+MutexMethodSet		= "mutex" "{" <meths> QualifiedMethodNames "}" .
+
+MethodManager		= <meths> QualifiedMethodNames [Requires]
+			    "{" MethManParts "}" .
+MethManParts		~ {MethManPart} .
+MethManPart		: *lookahead* (@2@) OnEntry
+			| *lookahead* (@2@) OnExit .
+Requires		= "requires" "(" <exp> CondVarExp ")" .
+OnEntry			= "on" "entry" <stmt> Statement .
+OnExit			= "on" "exit" <stmt> Statement .
+
+CondVarExp		: CondVarSimple | CondVarNot | CondVarNested .
+CondVarSimple		= CondVar CondSquareBracks [CondVarRest] .
+CondVar			= Ident .
+CondSquareBracks	~ {CondSquareBrack} .
+CondSquareBrack		= "[" Expression "]" .
+CondVarRest		= CondOp CondVarExp .
+CondOp			: CondAnd | CondOr .
+CondAnd			= "&&" .
+CondOr			= "||" .
+CondVarNot		= "!" CondVarExp .
+CondVarNested		= "(" CondVarExp ")" [CondVarRest] .
+
+AnExpression		= <exp> Expression .
+AStatement		= <stmt> Statement .
+
+/*
+ *	Java Subset
+ */
+
+VariableDeclarators	~ VariableDeclarator {"," VariableDeclarator}.
+VariableDeclarator	= VariableDeclaratorId ["=" VariableIniter] .
+VariableIniter		= VariableInitializer . // concrete wrapper
+
+VariableDeclaratorId	= Ident SquareBracketses .
+SquareBracketses        ~ {*lookahead*(@2@) SquareBrackets} .
+SquareBrackets          = "[" "]" .
+
+VariableInitializer	: ArrayInitializer | Expression .
+
+ArrayInitializer	= "{" [VariableInitializers] [Comma] "}" .
+
+VariableInitializers	~ VariableInitializer
+			  {*lookahead*(@2@) "," VariableInitializer} .
+
+Comma			= "," .
+
+BlockStatements		~ {BlockStatement} .
+
+CPublic			= "public" .
+CProtected		= "protected" .
+CPrivate		= "private" .
+CStatic			= "static" .
+CAbstract		= "abstract" .
+CFinal			= "final" .
+CNative			= "native" .
+CSynchronized		= "synchronized" .
+CTransient		= "transient" .
+CVolatile		= "volatile" .
+
+/*
+ * Type, name and expression syntax follows.
+ */
+
+Type			=  TypeAlt <bracks> SquareBracketses .
+
+TypeAlt			: PrimitiveType	| TName .
+
+TName			= Name .
+PrimitiveType		: boolType | byteType | charType | shortType
+			| intType | floatType | longType | doubleType .
+
+boolType		= "boolean" .
+byteType		= "byte" .
+charType		= "char" .
+shortType		= "short" .
+intType			= "int" .
+floatType		= "float" .
+longType		= "long" .
+doubleType		= "double" .
+
+Name			~ Ident { *lookahead*(@2@) "." Ident } .
+NameList		~ Name {"," Name} .
+SemiColon		= ";" .
+
+/*
+ * Expression syntax follows.
+ */
+
+Expression		:
+	*lookahead*(@ _PrimaryExpression() _AssignmentOperator()@) E_Assignment
+	| ConditionalExpression .
+
+E_Assignment		= Assignment .
+
+Assignment		= PrimaryExpression AssignmentOperator Expression .
+
+AssignmentOperator	: Eq | starEq | divEq | modEq
+			| plEq | minEq | lshiftEq | rshiftEq
+			| rrshiftEq | andEq | xorEq | orEq .
+
+Eq			= "=" .
+starEq			= "*=" .
+divEq			= "/=" .
+modEq			= "%=" .
+plEq			= "+=" .
+minEq			= "-=" .
+lshiftEq		= "<<=" .
+rshiftEq		= ">>=" .
+rrshiftEq		= ">>>=" .
+andEq			= "&=" .
+xorEq			= "^=" .
+orEq			= "|=" .
+
+ 
+ConditionalExpression	= ComboExp [ TernExp ] .
+
+TernExp			= "?" Expression ":" ConditionalExpression .
+
+ComboExp		= EqualityExpression ComboExpRests .
+ComboExpRests		~ {ComboExpRest} .
+ComboExpRest		= Binop EqualityExpression .
+
+Binop		: BarsOp | AndsOp | BarOp | CaretOp | AndOp .
+BarsOp		= "||" .
+AndsOp		= "&&" .
+BarOp		= "|" .
+CaretOp		= "^" .
+AndOp		= "&" .
+
+EqualityExpression	= RelationalExpression RHSEqualityExpression .
+
+RHSEqualityExpression	~ {RInstanceOfExpression} .
+
+RInstanceOfExpression	= EqNotEq RelationalExpression .
+
+EqNotEq			: EqEq | NotEq .
+EqEq			= "==" .
+NotEq			= "!=" .
+
+RelationalExpression	= ShiftExpression RHSRelationalExpression .
+
+CompExp			: Le | Ge | LeEq | GeEq .
+Le			= "<" .
+Ge			= ">" .
+LeEq			= "<=" .
+GeEq			= ">=" .
+
+RHSRelationalExpression	~ {RShiftExpression} .
+
+RShiftExpression	= CompExp ShiftExpression .
+
+ShiftExpression		=  AdditiveExpression RHSShiftExpression .
+
+RHSShiftExpression	~ {RAdditiveExpression} .
+
+RAdditiveExpression	= ShiftExp AdditiveExpression .
+
+ShiftExp		: SEright | SEleft | SEunright .
+SEright			= "<<" .
+SEleft			= ">>" .
+SEunright		= ">>>" .
+
+AdditiveExpression	= MultiplicativeExpression RHSAdditiveExpression .
+
+RHSAdditiveExpression	~ {RMultiplicativeExpression} .
+
+RMultiplicativeExpression	= AddExp MultiplicativeExpression .
+
+AddExp			: Plus | Minus .
+Plus			= "+" .
+Minus			= "-" .
+
+MultiplicativeExpression	= UnaryExpression RHSMultiplicativeExpression .
+
+RHSMultiplicativeExpression	~ {RUnaryExpression} .
+
+RUnaryExpression		= MulExp UnaryExpression .
+
+MulExp			: Mul | Div | Mod .
+Mul			= "*" .
+Div			= "/" .
+Mod			= "%" .
+
+UnaryExpression		: PlusMinusUnaryExpression
+			| U_PreIncrementExpression
+			| U_PreDecrementExpression
+			| UnaryExpressionNotPlusMinus .
+
+U_PreIncrementExpression	= PreIncrementExpression .
+U_PreDecrementExpression	= PreDecrementExpression .
+PlusMinusUnaryExpression	= AddExp UnaryExpression .
+
+PreIncrementExpression	= "++" PrimaryExpression .
+PreDecrementExpression	= "--" PrimaryExpression .
+
+UnaryExpressionNotPlusMinus	:
+	NUnaryExpression
+	| *lookahead*(@ "(" (_PrimitiveType() | _Name()) ("[""]")* ")"@)
+	    CastExpression
+	| UN_PostfixExpression .
+			
+UN_PostfixExpression	= PostfixExpression .
+
+NUnaryExpression	= NotPlusMinus UnaryExpression .
+
+NotPlusMinus		: Not | Tilde .
+Not			= "!" .
+Tilde			= "~" .
+
+
+PostfixExpression	= PrimaryExpression [ PAddExp ] .
+
+PAddExp			: PPlus | PMinus .
+PPlus			= "++" .
+PMinus			= "--" .
+
+CastExpression		: *lookahead*(@"(" _PrimitiveType()@)
+			  CastExpSimple
+			| *lookahead*(@"(" _Name()@)
+			  CastExpCmplx .
+CastExpSimple		= "(" Type ")" UnaryExpression .
+CastExpCmplx		= "(" Type ")" UnaryExpressionNotPlusMinus .
+
+PrimaryExpression	= PrimaryPrefix PrimarySuffixes .
+
+PrimarySuffixes		~ { *lookahead* (@_PrimarySuffix()@) PrimarySuffix } . 
+
+PrimaryPrefix		: Literal | PName | This | SuperPP
+			| ParenExp | AllocationExpression .
+PName                   = Name.
+This			= "this" .
+SuperPP			= "super" "." Ident .
+ParenExp		= "(" Expression ")" .
+AllocationExpression	= "new" TypeAlt ArrAlloc .
+
+PrimarySuffix		: *lookahead*(@2@) dotThis
+			| *lookahead*(@2@) dotClass  
+			| dotParam
+			| dotIdent
+			| Arguments . // I give in
+
+dotThis			= "." "this" .
+dotClass		= "." "class" .
+dotParam		= "[" Expression "]" .
+dotIdent		= "." Ident .
+
+Arguments               =  "(" [ArgumentList] ")" .
+ArgumentList            ~  Expression { "," Expression} .
+
+Literal			: *lookahead*(@2@) Integer_literal
+			| Floating_point_literal
+			| Character_literal
+			| *lookahead*(@1@) NullLiteral
+			| BooleanLiteral
+			| String_literal .
+
+Integer_literal		= Integer .
+Floating_point_literal	= <f>Float .
+Character_literal	= Character .
+String_literal		= String .
+BooleanLiteral		= <b> Boolean .
+NullLiteral		= "null" .
+
+ArrAlloc		= ArrayDimensions [ArrayInitializer] .
+ArrayDimensions		= ArrayDimension SquareBracketses .
+ArrayDimension		~ DimExp {*lookahead*(@2@) DimExp} .
+DimExp			= "[" Expression "]" .
+
+/*
+ * Statement syntax follows.
+ */
+
+Statement		: *lookahead*(@2@) LabeledStatement
+			| SBlock
+			| EmptyStatement
+			| StatementExpressionSe
+			| SwitchStatement
+			| IfStatement
+			| WhileStatement
+			| DoStatement
+			| ForStatement
+			| BreakStatement
+			| ContinueStatement .
+
+StatementExpressionSe	= *l StatementExpression ";" .
+
+LabeledStatement	= *l Ident ":" Statement .
+
+SBlock			= Block .
+
+Block			=  *l "{" + BlockStatements - *l "}" .
+
+BlockStatement		: *lookahead*(@[ "final" ] _Type() _Ident()@) LocVarDecl
+			| BStatement .
+
+BStatement		= Statement .
+
+LocVarDecl		= *l LocalVariableDeclaration ";" .
+
+LocalVariableDeclaration	= [CFinal] Type VariableDeclarators .
+
+EmptyStatement		= SemiColon .
+
+
+StatementExpression	: SE_PreIncrementExpression
+			| SE_PreDecrementExpression
+			| *lookahead*(@_PrimaryExpression() _AssignmentOperator()@) SE_Assignment
+			| SE_PostfixExpression .
+
+SE_PreIncrementExpression	= PreIncrementExpression .
+
+SE_PreDecrementExpression	= PreDecrementExpression .
+
+SE_Assignment			= Assignment .
+
+SE_PostfixExpression		= PostfixExpression .
+
+SwitchStatement		= "switch" "(" Expression ")" "{" CaseBlocks "}" .
+
+CaseBlocks		~ {CaseBlock} .
+
+CaseBlock		= SwitchLabel BlockStatements .
+
+SwitchLabel		: CaseExp | DefExp .
+
+CaseExp			= "case" Expression ":" .
+
+DefExp			= "default" ":" .
+
+IfStatement		= *l "if" "(" Expression ")" + Statement -
+			[*lookahead*(@1@) *l "else" + <elseStmt>Statement -] .
+
+
+WhileStatement		= *l "while" "(" Expression ")" + Statement - .
+
+DoStatement		= *l "do" Statement *l "while" "(" Expression ")" ";" .
+ForStatement		= *l "for" "(" ForInitOpt ForEvalExp [ForUpdate] ")" + Statement - .
+
+ForInitOpt		= [ForInit] ";" .
+
+ForEvalExp		= [Expression]";" .
+
+ForInit			: *lookahead*(@ [ "final" ] _Type() _Ident() @)
+			    LocalVariableDeclaration
+			| StatementExpressionList .
+StatementExpressionList	~ StatementExpression { "," StatementExpression} .
+
+ForUpdate		= StatementExpressionList .
+
+BreakStatement		= *l "break" [ Ident ] ";" .
+
+ContinueStatement	= *l "continue" [ Ident ] ";" .
+
+
+
+List(S)			~ {S} .
+NonEmptyList(S)		~ S {S} .
+CommaList(S)		~ S {"," S} .
+DotList(S)		~ S {"." S} .
+
+*noparse*
+Main		= .
+XVectorClass	= .
+LockClass	= .
+OutputVisitor 	= .
+VarDecVisitor	= .
+MethodExclusion	= .
+Err		= .
+*parse*
