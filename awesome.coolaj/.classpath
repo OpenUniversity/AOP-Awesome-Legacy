@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="awesome.coolaj.coolmech"/>
-	<classpathentry kind="src" path="awesome.coolaj.platform"/>
+	<classpathentry kind="src" path="awesome.platform"/>
 	<classpathentry kind="src" path="awesome.coolaj.ajmech"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.ajdt.core.ASPECTJRT_CONTAINER"/>
