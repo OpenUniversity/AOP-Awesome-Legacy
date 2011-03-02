@@ -1,6 +1,6 @@
 <project name="awesome.coolaj">
 	<property name="classes.dir" value="bin"/>
-	<property name="jar.dir" value="${ant.project.name}.jar"/>
+	<property name="jar.dir" value="${ant.project.name}.out"/>
 	
 	<target name="clean">
 		<delete dir="${jar.dir}"/>
