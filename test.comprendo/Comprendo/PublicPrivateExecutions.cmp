@@ -1,0 +1,9 @@
+/*
+ * This is an example Comprendo program
+ */
+Comprendo PublicPrivateExecutions {
+	scope = { "test.comprendo.types.*" };
+	
+	public-executions : summary;
+	private-executions;
+}
