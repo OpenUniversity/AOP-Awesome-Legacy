@@ -1,6 +1,10 @@
 package test.comprendo.types;
 
+import comprendo.gen.*;
+
 public class B {
+	private Comprendo_PublicPrivateExecutions _comprendo = new Comprendo_PublicPrivateExecutions();
+	
 	public void bPublic1(){
 		System.out.println("bPublic1");
 		bPrivate1();
