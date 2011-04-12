@@ -1,6 +1,8 @@
 package awesome.comprendo;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class Comprendo {
@@ -17,22 +19,52 @@ public class Comprendo {
 		String name = className + "." + methodName;
 		privateExecutions.add(name);
 	}
+	
 	public void logPublicExecution(String className, String methodName){
 		System.out.println("logPublicExecution called");
 		String name = className + "." + methodName;
 		publicExecutions.add(name);
 	}
-	public void printPrivateExecutions(){
+	
+	public void printPrivateExecutions(boolean summary){
 		System.out.println("*** Comprendo Report -- Private Method Executions");
-		printExecutions(privateExecutions);	
+		
+		if(summary) 
+			printSummarizedExecutions(privateExecutions);
+		else 
+			printAllExecutions(privateExecutions);
+		
 		System.out.println("*** End of Comprendo Report -- Private Method Executions");
 	}
-	public void printPublicExecutions(){
+	private void printSummarizedExecutions(List<String> methods) {
+		Collections.sort(methods);
+		
+		int count = 0;
+		String previousMethod = methods.get(0);
+		for(String method : methods) {
+			if(!method.equals(previousMethod)) {
+				System.out.println(previousMethod + " (" + count + ")");
+				previousMethod = method;
+				count = 1;
+				continue;
+			}
+			count++;
+		}
+		System.out.println(previousMethod + " (" + count + ")");
+	}
+	
+	public void printPublicExecutions(boolean summary){
 		System.out.println("*** Comprendo Report -- Public Method Executions");
-		printExecutions(publicExecutions);
+		
+		if(summary) 
+			printSummarizedExecutions(publicExecutions);
+		else 
+			printAllExecutions(publicExecutions);
+		
 		System.out.println("*** End of Comprendo Report -- Public Method Executions");
 	}
-	private void printExecutions(List<String> methods) {
+	
+	private void printAllExecutions(List<String> methods) {
 		for(String method : methods){
 			System.out.println(method);
 		}

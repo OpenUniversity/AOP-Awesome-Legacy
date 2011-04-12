@@ -4,32 +4,25 @@ import org.aspectj.apache.bcel.generic.InstructionFactory;
 import org.aspectj.apache.bcel.generic.InstructionList;
 import org.aspectj.weaver.Shadow;
 import org.aspectj.weaver.bcel.BcelShadow;
-import org.aspectj.weaver.bcel.LazyClassGen;
 import org.aspectj.weaver.bcel.LazyMethodGen;
-import org.aspectj.weaver.bcel.Range;
 import org.aspectj.weaver.bcel.Utility;
+import awesome.platform.AwesomeEffect;
 
-import awesome.platform.IEffect;
-
-public class ComprendoEffect implements IEffect {
-	// this is the aspect type which contains the method which we want
-	// to invoke in the advice.
-	private LazyClassGen aspect;
+public class ComprendoEffect extends AwesomeEffect {
+	// this is the the method which we want to invoke in the advice.
 	private LazyMethodGen method;
 	
-	public ComprendoEffect(LazyClassGen aspect, LazyMethodGen method) {
-		this.aspect = aspect;
+	public ComprendoEffect(LazyMethodGen method) {
 		this.method = method;
 	}
 
 	@Override
 	public void transform(BcelShadow shadow) {
-		//shadow.getRange().insert(getAdviceInstructions(shadow), Range.InsideBefore);
-		shadow.getRange().insert(getAdviceInstructions(shadow), Range.InsideBefore);
+		weaveBefore(shadow);
 	}
 
 	
-	private InstructionList getAdviceInstructions(BcelShadow shadow) {
+	public InstructionList getAdviceInstructions(BcelShadow shadow) {
 		InstructionList il = new InstructionList();
 		InstructionFactory fact = shadow.getFactory();
 		

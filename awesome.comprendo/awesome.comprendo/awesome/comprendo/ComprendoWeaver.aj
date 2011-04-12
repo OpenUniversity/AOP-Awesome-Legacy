@@ -7,9 +7,6 @@ import java.util.List;
 
 import org.aspectj.apache.bcel.classfile.annotation.AnnotationGen;
 import org.aspectj.apache.bcel.classfile.annotation.ElementNameValuePairGen;
-import org.aspectj.apache.bcel.generic.InstructionFactory;
-import org.aspectj.apache.bcel.generic.InstructionList;
-import org.aspectj.apache.bcel.generic.ReferenceType;
 import org.aspectj.weaver.IClassFileProvider;
 import org.aspectj.weaver.Shadow;
 import org.aspectj.weaver.bcel.BcelMethod;
@@ -18,25 +15,21 @@ import org.aspectj.weaver.bcel.BcelShadow;
 import org.aspectj.weaver.bcel.BcelWorld;
 import org.aspectj.weaver.bcel.LazyClassGen;
 import org.aspectj.weaver.bcel.LazyMethodGen;
-import org.aspectj.weaver.bcel.Range;
 import org.aspectj.weaver.bcel.UnwovenClassFile;
-import org.aspectj.weaver.bcel.Utility;
 
 import awesome.platform.AbstractWeaver;
 import awesome.platform.IEffect;
 
 public aspect ComprendoWeaver extends AbstractWeaver {
 	/**
-	 * variables that keep the info extracted from the annotations.
-	 * the info indicate the user request, i.e., which monitoring reports
-	 * to generate
+	 * variables that keep the user request, i.e., which monitoring reports
+	 * to generate. Extracted from the annotations. 
 	 */
-	private String _scope = null;
-	private boolean _publicExecutions = false;
-	private boolean _publicExecutionsSummary = false;
-	private boolean _privateExecutions = false;
-	private boolean _privateExecutionsSummary = false;
-	
+	private String scope = null;
+	private boolean publicExecutions = false;
+	private boolean publicExecutionsSummary = false;
+	private boolean privateExecutions = false;
+	private boolean privateExecutionsSummary = false;
 	
 	/**
 	 * This variable indicates whether more than one Comprendo type
@@ -47,7 +40,7 @@ public aspect ComprendoWeaver extends AbstractWeaver {
 	
 	/**
 	 * setInputFiles init this field to hold the class found.
-	 * It is used in match to extract the advice defined there.
+	 * It is used in match() to extract the advice methods defined there.
 	 */
 	private LazyClassGen comprendoClass;
 	
@@ -60,19 +53,20 @@ public aspect ComprendoWeaver extends AbstractWeaver {
 			BcelMethod method = shadow.getEnclosingMethod().getMemberView();
 			int modifiers = method.getModifiers();
 			
-			// create an effect after "main". assume there is one such main.
+			// create an effect after "main". We assume there is one such main.
 			if(method.getName().equals("main")) {
 				System.out.println("Comprendo: shadow " + shadow.getSignature() + " match");
 				System.out.println("Comprendo: creating effect for shadow...");
 				
 				IEffect effect = createMainEffect();
 				if(effect != null){
-					System.out.println("Comprendo: added effect for shadow...");
+					System.out.println("Comprendo: added effect to shadow...");
 					result.add(effect);
 					return result;
 				}
 			}
 			
+			// create an effect before each method execution shadow that belongs to scope
 			if( isShadowBelongToScope(packageName, modifiers) ){
 				System.out.println("Comprendo: shadow " + shadow.getSignature() + " match");
 				System.out.println("Comprendo: creating effect for shadow...");
@@ -80,29 +74,28 @@ public aspect ComprendoWeaver extends AbstractWeaver {
 				IEffect effect = createComprendoEffect(modifiers);
 				if(effect != null){
 					result.add(effect);
-					System.out.println("Comprendo: added effect for shadow...");
+					System.out.println("Comprendo: added effect to shadow...");
 					return result;
 				}
-			} else {
-				System.out.println("Comprendo: shadow " + shadow.getSignature() + " doesn't match");
-				return null;
-			}	
+			} 	
 		}
+		
+		System.out.println("Comprendo: shadow " + shadow.getSignature() + " doesn't match");
 		return null;
 	}
 
 	@Override
 	public List<IEffect> order(BcelShadow shadow, List<IEffect> effects) {
-		//System.out.println("ComprendoWeaver.order called!");
 		return effects;
 	}
 	
 	@Override
 	public void setInputFiles(IClassFileProvider inputClasses) {
-		System.out.println("Comprendo: setInputFiles called. Input Classes:");
 		super.setInputFiles(inputClasses);
 		
-		// iterate all classes, skip all non-comprendo files:
+		System.out.println("Comprendo: setInputFiles called. Input Classes:");
+		
+		// iterate all classes, skip all non comprendo files:
 		for (Iterator i = inputClasses.getClassFileIterator(); i.hasNext();) {
 			UnwovenClassFile classFile = (UnwovenClassFile) i.next();
 			System.out.println(classFile.getClassName());
@@ -112,33 +105,26 @@ public aspect ComprendoWeaver extends AbstractWeaver {
 			
 			// report & skip if already found a comprendo type:
 			if(comprendoFound){
-				System.out.println("Comprendo: Found an additional Comprendo type: " +
-						name + ". Type is skipped.");
+				System.out.println("Comprendo: Found an additional Comprendo type: " + name + ". Type is skipped.");
 				continue;
 			} else {
 				comprendoFound = true;
 			}
 				
-			System.out.println("Comprendo: type " + name + " found. Looking " +
-					"for annotations...");
-			
+			System.out.println("Comprendo: type " + name + " found. Extracting annotations...");
 			AnnotationGen[] annotations = classFile.getJavaClass().getAnnotations();
-			initDataStructures(annotations);
-			printDataStructures();
-			
+			initUserRequestFields(annotations);
+			printUserRequestFields();
+
 			comprendoClass = getLazyClassGen(classFile.getClassName());
-			// print info about comprendoClass
-			List<LazyMethodGen> methods = comprendoClass.getMethodGens();
-			System.out.println("Comprendo: " + methods.size() + " methods found in comprendoClass");
-			for(LazyMethodGen method: methods)
-				System.out.println("Comprendo: LazyMethodGen " + method.getName());
-			
 		}
 	}
+	
 	private LazyClassGen getLazyClassGen(String className) {
 		BcelObjectType bcelType = BcelWorld.getBcelObjectType(world.resolve(className));
 		return bcelType.getLazyClassGen();
 	}
+	
 	private LazyMethodGen getLazyMethodGen(LazyClassGen clazz, String methodName) {
 		List<LazyMethodGen> methods = clazz.getMethodGens();
 		for(LazyMethodGen m : methods){
@@ -147,6 +133,7 @@ public aspect ComprendoWeaver extends AbstractWeaver {
 		}
 		return null;
 	}
+	
 	/**
 	 * Gets, e.g., "org.eclipse.MyClass", and returns "MyClass"
 	 * @param fullName
@@ -156,34 +143,42 @@ public aspect ComprendoWeaver extends AbstractWeaver {
 		String[] splited = fullName.split("\\.");
 		return splited[splited.length-1];
 	}
-	private void initDataStructures(AnnotationGen[] annotations){
+	
+	private void initUserRequestFields(AnnotationGen[] annotations){
 		for(AnnotationGen annot : annotations) {
 			if(annot.getTypeName().equals(Comprendo.ComprendoScope)){
 				ElementNameValuePairGen elem = (ElementNameValuePairGen) annot.getValues().get(0);
-				_scope = elem.getValue().stringifyValue();
-			} else if(annot.getTypeName().equals(Comprendo.ComprendoPublicExecutions)){	
-				_publicExecutions = true;
+				scope = elem.getValue().stringifyValue();
+				continue;
+			} 
+			
+			if(annot.getTypeName().equals(Comprendo.ComprendoPublicExecutions)){	
+				publicExecutions = true;
 				ElementNameValuePairGen elem = (ElementNameValuePairGen) annot.getValues().get(0);
 				String summary = elem.getValue().stringifyValue();
 				if(summary.equals("true"))
-					_publicExecutionsSummary = true;	
-			} else if(annot.getTypeName().equals(Comprendo.ComprendoPrivateExecutions)){
-				_privateExecutions = true;
+					publicExecutionsSummary = true;
+				continue;
+			}
+			
+			if(annot.getTypeName().equals(Comprendo.ComprendoPrivateExecutions)){
+				privateExecutions = true;
 				ElementNameValuePairGen elem = (ElementNameValuePairGen) annot.getValues().get(0);
 				String summary = elem.getValue().stringifyValue();
 				if(summary.equals("true"))
-					_privateExecutionsSummary = true;
+					privateExecutionsSummary = true;
 			}
 		}
 	}
-	private void printDataStructures(){
-		System.out.println("Comprendo: scope = " + _scope);
-		System.out.println("Comprendo: public executions = " + _publicExecutions + " summary = " + _publicExecutionsSummary);
-		System.out.println("Comprendo: private executions = " + _privateExecutions + " summary = " + _privateExecutionsSummary);
+	
+	private void printUserRequestFields(){
+		System.out.println("Comprendo: scope = " + scope);
+		System.out.println("Comprendo: public executions = " + publicExecutions + " summary = " + publicExecutionsSummary);
+		System.out.println("Comprendo: private executions = " + privateExecutions + " summary = " + privateExecutionsSummary);
 	}
 	/**
 	 * Returns whether the shadow, characterized by the given arguments, should
-	 * be monitored. The criteria for monitoring is: 1) package name belongs to the
+	 * be monitored. The criteria for monitoring is: 1) its package belongs to the
 	 * requested scope 2) the modifier is requested to be monitored.
 	 * @param packageName
 	 * @param modifiers
@@ -191,13 +186,13 @@ public aspect ComprendoWeaver extends AbstractWeaver {
 	 */
 	private boolean isShadowBelongToScope(String packageName, int modifiers) {		
 		// currently, scope is simply a name of a package.
-		if(!packageName.equals(_scope)) {
+		if(!packageName.equals(scope)) {
 			return false;
 		}
-		if (Modifier.isPrivate(modifiers) && _privateExecutions) {
+		if (Modifier.isPrivate(modifiers) && privateExecutions) {
 			return true;
 		}
-		if (Modifier.isPublic(modifiers) && _publicExecutions) {
+		if (Modifier.isPublic(modifiers) && publicExecutions) {
 			return true;
 		}
 		
@@ -211,26 +206,20 @@ public aspect ComprendoWeaver extends AbstractWeaver {
 		if(method == null)
 			return null;
 		else
-			return new ComprendoEffect(comprendoClass, method);
+			return new ComprendoEffect(method);
 	}
 	
 	private IEffect createMainEffect() {
-		return new IEffect() {
-			
-			@Override
-			public void transform(BcelShadow shadow) {
-				InstructionList il = new InstructionList();
-				InstructionFactory factory = shadow.getFactory();
-				LazyMethodGen method = getLazyMethodGen(comprendoClass, "_printPrivateExecutions");
-				
-				il.append(Utility.createInvoke(factory, method));
-				shadow.getRange().insert(il, Range.InsideBefore);
-				//shadow.getRange().append(Utility.createInvoke(factory, method));
-			}
-			
-			@Override
-			public void specializeOn(Shadow shadow) {
-			}
-		};
+		LazyMethodGen printPrivateMethod = null;
+		LazyMethodGen printPublicMethod = null;
+		
+		if (privateExecutions) {
+			printPrivateMethod = getLazyMethodGen(comprendoClass, "_printPrivateExecutions");
+		}
+		if (publicExecutions) {
+			printPublicMethod = getLazyMethodGen(comprendoClass, "_printPublicExecutions");
+		}
+		
+		return new MainEffect(printPrivateMethod, privateExecutionsSummary, printPublicMethod, publicExecutionsSummary);
 	}
 }
