@@ -5,5 +5,5 @@ Comprendo PublicPrivateExecutions {
 	scope = { "test.comprendo.types" };
 	
 	public-executions : summary;
-	private-executions;
+	private-executions : summary;
 }
