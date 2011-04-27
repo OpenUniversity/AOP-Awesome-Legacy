@@ -17,10 +17,12 @@ import org.aspectj.weaver.bcel.LazyClassGen;
 import org.aspectj.weaver.bcel.LazyMethodGen;
 import org.aspectj.weaver.bcel.UnwovenClassFile;
 
-import awesome.comprendo.MethodParameter.Type;
 import awesome.platform.AbstractWeaver;
 import awesome.platform.AwesomeEffect;
 import awesome.platform.IEffect;
+import awesome.platform.InvokeMethodsEffect;
+import awesome.platform.MethodParameter;
+import awesome.platform.MethodParameter.Type;
 
 public aspect ComprendoWeaver extends AbstractWeaver {
 	/**
