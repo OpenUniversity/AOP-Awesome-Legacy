@@ -17,7 +17,9 @@ import org.aspectj.weaver.bcel.LazyClassGen;
 import org.aspectj.weaver.bcel.LazyMethodGen;
 import org.aspectj.weaver.bcel.UnwovenClassFile;
 
+import awesome.comprendo.MethodParameter.Type;
 import awesome.platform.AbstractWeaver;
+import awesome.platform.AwesomeEffect;
 import awesome.platform.IEffect;
 
 public aspect ComprendoWeaver extends AbstractWeaver {
@@ -48,40 +50,42 @@ public aspect ComprendoWeaver extends AbstractWeaver {
 	public List<IEffect> match(BcelShadow shadow) {
 		List<IEffect> result = new ArrayList<IEffect>();
 		
-		if (shadow.getKind() == Shadow.MethodExecution) {
-			String packageName = shadow.getEnclosingClass().getPackageName();
-			BcelMethod method = shadow.getEnclosingMethod().getMemberView();
-			int modifiers = method.getModifiers();
+		if (isShadowMainMethodExecution(shadow)) {
+			System.out.println("Awesome: shadow " + shadow.getSignature() + " match");
+			System.out.println("Awesome: creating effect for shadow...");
 			
-			// create an effect after "main". We assume there is one such main.
-			if(method.getName().equals("main")) {
-				System.out.println("Comprendo: shadow " + shadow.getSignature() + " match");
-				System.out.println("Comprendo: creating effect for shadow...");
-				
-				IEffect effect = createMainEffect();
-				if(effect != null){
-					System.out.println("Comprendo: added effect to shadow...");
-					result.add(effect);
-					return result;
-				}
+			IEffect effect = createPrintReportsEffect();
+			if(effect != null){
+				System.out.println("Awesome: added effect to shadow...");
+				result.add(effect);
+				return result;
 			}
-			
-			// create an effect before each method execution shadow that belongs to scope
-			if( isShadowBelongToScope(packageName, modifiers) ){
-				System.out.println("Comprendo: shadow " + shadow.getSignature() + " match");
-				System.out.println("Comprendo: creating effect for shadow...");
-				
-				IEffect effect = createComprendoEffect(modifiers);
-				if(effect != null){
-					result.add(effect);
-					System.out.println("Comprendo: added effect to shadow...");
-					return result;
-				}
-			} 	
 		}
 		
-		System.out.println("Comprendo: shadow " + shadow.getSignature() + " doesn't match");
+		if (isShadowMethodExecutionAndInScope(shadow)) {
+			System.out.println("Awesome: shadow " + shadow.getSignature() + " match");
+			System.out.println("Awesome: creating effect for shadow...");
+			
+			BcelMethod method = shadow.getEnclosingMethod().getMemberView();
+			int modifiers = method.getModifiers();
+			IEffect effect = createLogShadowEffect(modifiers);
+			if(effect != null){
+				result.add(effect);
+				System.out.println("Awesome: added effect to shadow...");
+				return result;
+			}
+		}
+		
+		System.out.println("Awesome: shadow " + shadow.getSignature() + " doesn't match");
 		return null;
+	}
+	
+	private boolean isShadowMainMethodExecution(BcelShadow shadow) {
+		BcelMethod method = shadow.getEnclosingMethod().getMemberView();
+		if (shadow.getKind() == Shadow.MethodExecution && method.getName().equals("main"))
+			return true;
+		
+		return false;
 	}
 
 	@Override
@@ -184,7 +188,15 @@ public aspect ComprendoWeaver extends AbstractWeaver {
 	 * @param modifiers
 	 * @return
 	 */
-	private boolean isShadowBelongToScope(String packageName, int modifiers) {		
+	private boolean isShadowMethodExecutionAndInScope(BcelShadow shadow) {
+		if( shadow.getKind() != Shadow.MethodExecution ) {
+			return false;
+		}
+		
+		String packageName = shadow.getEnclosingClass().getPackageName();
+		BcelMethod method = shadow.getEnclosingMethod().getMemberView();
+		int modifiers = method.getModifiers();
+		
 		// currently, scope is simply a name of a package.
 		if(!packageName.equals(scope)) {
 			return false;
@@ -199,17 +211,18 @@ public aspect ComprendoWeaver extends AbstractWeaver {
 		return false;
 	}
 
-	private IEffect createComprendoEffect(int modifiers) {
+	private IEffect createLogShadowEffect(int modifiers) {
 		String methodName = Modifier.isPrivate(modifiers)? "_logPrivateExecution" : "_logPublicExecution";
 		LazyMethodGen method = getLazyMethodGen(comprendoClass, methodName);
 		
 		if(method == null)
 			return null;
-		else
-			return new ComprendoEffect(method);
+		
+		MethodParameter[] parameters = new MethodParameter[] {new MethodParameter(Type.EnclosingClassName), new MethodParameter(Type.EnclosingMethodName)};
+		return new InvokeMethodsEffect(AwesomeEffect.Kind.Before, method, parameters);
 	}
 	
-	private IEffect createMainEffect() {
+	private IEffect createPrintReportsEffect() {
 		LazyMethodGen printPrivateMethod = null;
 		LazyMethodGen printPublicMethod = null;
 		
@@ -220,6 +233,11 @@ public aspect ComprendoWeaver extends AbstractWeaver {
 			printPublicMethod = getLazyMethodGen(comprendoClass, "_printPublicExecutions");
 		}
 		
-		return new MainEffect(printPrivateMethod, privateExecutionsSummary, printPublicMethod, publicExecutionsSummary);
+		InvokeMethodsEffect effect = new InvokeMethodsEffect(AwesomeEffect.Kind.After);
+		effect.addMethodInvocation(printPrivateMethod, new MethodParameter[]{new MethodParameter(privateExecutionsSummary)});
+		effect.addMethodInvocation(printPublicMethod, new MethodParameter[]{new MethodParameter(publicExecutionsSummary)});
+		
+		return effect;
+		//return new MainEffect(printPrivateMethod, privateExecutionsSummary, printPublicMethod, publicExecutionsSummary);
 	}
 }
