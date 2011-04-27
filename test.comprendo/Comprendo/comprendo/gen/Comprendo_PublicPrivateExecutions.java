@@ -8,7 +8,7 @@ import awesome.comprendo.Comprendo;
 
 @Aspect
 @ComprendoScope (scope = "test.comprendo.types")
-@ComprendoPublicExecutions (summary = true)
+@ComprendoPublicExecutions (summary = false)
 @ComprendoPrivateExecutions (summary = true)
 public class Comprendo_PublicPrivateExecutions {
 	private static Comprendo comprendo = new Comprendo();
