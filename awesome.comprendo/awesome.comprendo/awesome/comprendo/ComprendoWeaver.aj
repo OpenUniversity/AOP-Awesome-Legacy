@@ -30,6 +30,7 @@ public aspect ComprendoWeaver extends AbstractWeaver {
 	 * to generate. Extracted from the annotations. 
 	 */
 	private String scope = null;
+	private String outdir = null;
 	private boolean publicExecutions = false;
 	private boolean publicExecutionsSummary = false;
 	private boolean privateExecutions = false;
@@ -156,7 +157,13 @@ public aspect ComprendoWeaver extends AbstractWeaver {
 				ElementNameValuePairGen elem = (ElementNameValuePairGen) annot.getValues().get(0);
 				scope = elem.getValue().stringifyValue();
 				continue;
-			} 
+			}
+			
+			if(annot.getTypeName().equals(Comprendo.ComprendoOutdir)){
+				ElementNameValuePairGen elem = (ElementNameValuePairGen) annot.getValues().get(0);
+				outdir = elem.getValue().stringifyValue();
+				continue;
+			}
 			
 			if(annot.getTypeName().equals(Comprendo.ComprendoPublicExecutions)){	
 				publicExecutions = true;
@@ -236,10 +243,9 @@ public aspect ComprendoWeaver extends AbstractWeaver {
 		}
 		
 		InvokeMethodsEffect effect = new InvokeMethodsEffect(AwesomeEffect.Kind.After);
-		effect.addMethodInvocation(printPrivateMethod, new MethodParameter[]{new MethodParameter(privateExecutionsSummary)});
-		effect.addMethodInvocation(printPublicMethod, new MethodParameter[]{new MethodParameter(publicExecutionsSummary)});
+		effect.addMethodInvocation(printPrivateMethod, new MethodParameter[]{new MethodParameter(outdir), new MethodParameter(privateExecutionsSummary)});
+		effect.addMethodInvocation(printPublicMethod, new MethodParameter[]{new MethodParameter(outdir), new MethodParameter(publicExecutionsSummary)});
 		
 		return effect;
-		//return new MainEffect(printPrivateMethod, privateExecutionsSummary, printPublicMethod, publicExecutionsSummary);
 	}
 }

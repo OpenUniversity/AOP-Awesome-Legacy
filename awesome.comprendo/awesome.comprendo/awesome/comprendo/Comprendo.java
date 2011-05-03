@@ -7,6 +7,7 @@ import java.util.List;
 public class Comprendo {
 	
 	public static final String ComprendoScope = "awesome.comprendo.ComprendoScope";
+	public static final String ComprendoOutdir = "awesome.comprendo.ComprendoOutdir";
 	public static final String ComprendoPublicExecutions = "awesome.comprendo.ComprendoPublicExecutions";
 	public static final String ComprendoPrivateExecutions = "awesome.comprendo.ComprendoPrivateExecutions";
 	
@@ -25,8 +26,9 @@ public class Comprendo {
 		publicExecutions.add(name);
 	}
 	
-	public void printPrivateExecutions(boolean summary){
+	public void printPrivateExecutions(String outdir, boolean summary){
 		System.out.println("*** Comprendo Report -- Private Method Executions");
+		System.out.println("Outdir = " + outdir);
 		
 		if(summary) 
 			printSummarizedExecutions(privateExecutions);
@@ -52,8 +54,9 @@ public class Comprendo {
 		System.out.println(previousMethod + " (" + count + ")");
 	}
 	
-	public void printPublicExecutions(boolean summary){
+	public void printPublicExecutions(String outdir, boolean summary){
 		System.out.println("*** Comprendo Report -- Public Method Executions");
+		System.out.println("Outdir = " + outdir);
 		
 		if(summary) 
 			printSummarizedExecutions(publicExecutions);
