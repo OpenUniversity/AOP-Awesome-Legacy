@@ -2,7 +2,8 @@
  * This is an example Comprendo program
  */
 Comprendo PublicPrivateExecutions {
-	scope = { "test.comprendo.types" };
+	scope = "test.comprendo.types";
+	outdir = "c:/comprendo/test.comprendo";
 	
 	public-executions;
 	private-executions : summary;

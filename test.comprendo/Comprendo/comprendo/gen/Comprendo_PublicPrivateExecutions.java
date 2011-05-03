@@ -2,12 +2,14 @@ package comprendo.gen;
 
 import org.aspectj.lang.annotation.Aspect;
 import awesome.comprendo.ComprendoScope;
+import awesome.comprendo.ComprendoOutdir;
 import awesome.comprendo.ComprendoPrivateExecutions;
 import awesome.comprendo.ComprendoPublicExecutions;
 import awesome.comprendo.Comprendo;
 
 @Aspect
 @ComprendoScope (scope = "test.comprendo.types")
+@ComprendoOutdir (outdir = "c:/comprendo/test.comprendo")
 @ComprendoPublicExecutions (summary = false)
 @ComprendoPrivateExecutions (summary = true)
 public class Comprendo_PublicPrivateExecutions {
@@ -19,10 +21,10 @@ public class Comprendo_PublicPrivateExecutions {
 	public static void _logPublicExecution(String className, String methodName) {
 		comprendo.logPublicExecution(className, methodName);
 	}
-	public static void _printPrivateExecutions(boolean summary) {
-		comprendo.printPrivateExecutions(summary);
+	public static void _printPrivateExecutions(String outdir, boolean summary) {
+		comprendo.printPrivateExecutions(outdir, summary);
 	}
-	public static void _printPublicExecutions(boolean summary) {
-		comprendo.printPublicExecutions(summary);
+	public static void _printPublicExecutions(String outdir, boolean summary) {
+		comprendo.printPublicExecutions(outdir, summary);
 	}
 }
