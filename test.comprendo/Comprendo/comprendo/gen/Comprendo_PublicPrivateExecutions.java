@@ -1,5 +1,7 @@
 package comprendo.gen;
 
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import awesome.comprendo.ComprendoScope;
 import awesome.comprendo.ComprendoOutdir;
@@ -9,22 +11,26 @@ import awesome.comprendo.Comprendo;
 
 @Aspect
 @ComprendoScope (scope = "test.comprendo.types")
-@ComprendoOutdir (outdir = "c:/comprendo/test.comprendo")
+@ComprendoOutdir (outdir = "")
 @ComprendoPublicExecutions (summary = false)
 @ComprendoPrivateExecutions (summary = true)
 public class Comprendo_PublicPrivateExecutions {
 	private static Comprendo comprendo = new Comprendo();
 	
-	public static void _logPrivateExecution(String className, String methodName) {
-		comprendo.logPrivateExecution(className, methodName);
+	@After("execution(private * test.comprendo.types.*.*(..))")
+	public /*static*/ void _logPrivateExecution(/*String className, String methodName*/JoinPoint jp) {
+		comprendo.logPrivateExecution(/*className, methodName*/jp.getSignature().toString());
 	}
-	public static void _logPublicExecution(String className, String methodName) {
-		comprendo.logPublicExecution(className, methodName);
+	@After("execution(public * test.comprendo.types.*.*(..))")
+	public /*static*/ void _logPublicExecution(/*String className, String methodName*/JoinPoint jp) {
+		comprendo.logPublicExecution(/*className, methodName*/jp.getSignature().toString());
 	}
-	public static void _printPrivateExecutions(String outdir, boolean summary) {
-		comprendo.printPrivateExecutions(outdir, summary);
+	@After("execution(* test.comprendo.main.Main.main(..))")
+	public /*static*/ void _printPrivateExecutions(/*String outdir, boolean summary*/) {
+		comprendo.printPrivateExecutions(/*outdir, summary*/"", true);
 	}
-	public static void _printPublicExecutions(String outdir, boolean summary) {
-		comprendo.printPublicExecutions(outdir, summary);
+	@After("execution(* test.comprendo.main.Main.main(..))")
+	public /*static*/ void _printPublicExecutions(/*String outdir, boolean summary*/) {
+		comprendo.printPublicExecutions(/*outdir, summary*/"", false);
 	}
 }

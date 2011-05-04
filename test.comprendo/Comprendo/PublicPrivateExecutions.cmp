@@ -3,7 +3,7 @@
  */
 Comprendo PublicPrivateExecutions {
 	scope = "test.comprendo.types";
-	outdir = "c:/comprendo/test.comprendo";
+	outdir = "";
 	
 	public-executions;
 	private-executions : summary;

@@ -53,7 +53,7 @@ public aspect ComprendoWeaver extends AbstractWeaver {
 	public List<IEffect> match(BcelShadow shadow) {
 		List<IEffect> result = new ArrayList<IEffect>();
 		
-		if (isShadowMainMethodExecution(shadow)) {
+		/*if (isShadowMainMethodExecution(shadow)) {
 			System.out.println("Awesome: shadow " + shadow.getSignature() + " match");
 			System.out.println("Awesome: creating effect for shadow...");
 			
@@ -63,9 +63,9 @@ public aspect ComprendoWeaver extends AbstractWeaver {
 				result.add(effect);
 				return result;
 			}
-		}
+		}*/
 		
-		if (isShadowMethodExecutionAndInScope(shadow)) {
+		/*if (isShadowMethodExecutionAndInScope(shadow)) {
 			System.out.println("Awesome: shadow " + shadow.getSignature() + " match");
 			System.out.println("Awesome: creating effect for shadow...");
 			
@@ -77,9 +77,9 @@ public aspect ComprendoWeaver extends AbstractWeaver {
 				System.out.println("Awesome: added effect to shadow...");
 				return result;
 			}
-		}
+		}*/
 		
-		System.out.println("Awesome: shadow " + shadow.getSignature() + " doesn't match");
+		//System.out.println("Awesome: shadow " + shadow.getSignature() + " doesn't match");
 		return null;
 	}
 	
