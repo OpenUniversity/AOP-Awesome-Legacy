@@ -1,0 +1,33 @@
+grammar xtext.comprendo.Comprendo with org.eclipse.xtext.common.Terminals
+
+generate comprendo "http://www.comprendo.xtext/Comprendo"
+
+	ComprendoDSAL : (comprendo=Comprendo);
+
+	Comprendo :
+		'Comprendo' name=ID '{'
+			scope=Scope
+			(outdir=Outdir)?
+			(commands+=Command)*
+		'}';
+	
+	Scope : 
+		'scope' '=' value=STRING ';';
+	
+	Command :
+		id=('public-executions' | 'private-executions') (':' summary?='summary')? ';';
+		
+	Outdir :
+		'outdir' '=' value=STRING ';';
+
+	
+
+
+/*
+Comprendo MyLogger {
+	scope = { "myproj.mypackage.*" };
+	
+	public-executions : summary;
+	private-executions;
+}
+*/

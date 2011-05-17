@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.comprendo.xtext/Comprendo" 
+       class = "xtext.comprendo.comprendo.ComprendoPackage"
+       genModel = "xtext/comprendo/Comprendo.genmodel" /> 
+	
+  </extension>
+
+
+
+
+
+</plugin>
