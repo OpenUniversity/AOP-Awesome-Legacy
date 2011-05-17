@@ -1,0 +1,23 @@
+<%@ jet package="awesome.ide.gen" imports="awesome.ide.wizards.*" class="AspectMechanismGen" %>
+<%String packageName = ((NewAwesomeProjectWizard.AspectMechanismDescriptor) argument).getPackageName();%>
+<%String aspectName = ((NewAwesomeProjectWizard.AspectMechanismDescriptor) argument).getAspectName();%>
+package <%=packageName%>;
+
+import java.util.List;
+import org.aspectj.weaver.bcel.BcelShadow;
+import awesome.platform.AbstractWeaver;
+import awesome.platform.IEffect;
+
+public aspect <%=aspectName%> extends AbstractWeaver {
+	@Override
+	public List<IEffect> match(BcelShadow arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<IEffect> order(BcelShadow arg0, List<IEffect> arg1) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}
