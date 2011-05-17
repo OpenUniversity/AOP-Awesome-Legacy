@@ -46,4 +46,5 @@ public abstract aspect AbstractWeaver implements IMechanism {
 	public void setInputFiles(IClassFileProvider inputClasses) {
 		this.inputClasses=inputClasses;
 	}
+	public abstract String getAspectMechanismId();
 }

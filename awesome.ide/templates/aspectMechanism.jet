@@ -1,6 +1,7 @@
 <%@ jet package="awesome.ide.gen" imports="awesome.ide.wizards.*" class="AspectMechanismGen" %>
 <%String packageName = ((NewAwesomeProjectWizard.AspectMechanismDescriptor) argument).getPackageName();%>
 <%String aspectName = ((NewAwesomeProjectWizard.AspectMechanismDescriptor) argument).getAspectName();%>
+<%String id = ((NewAwesomeProjectWizard.AspectMechanismDescriptor) argument).getId();%>
 package <%=packageName%>;
 
 import java.util.List;
@@ -9,6 +10,8 @@ import awesome.platform.AbstractWeaver;
 import awesome.platform.IEffect;
 
 public aspect <%=aspectName%> extends AbstractWeaver {
+	private static final String ID = "<%=id%>";
+	
 	@Override
 	public List<IEffect> match(BcelShadow arg0) {
 		// TODO Auto-generated method stub
@@ -19,5 +22,10 @@ public aspect <%=aspectName%> extends AbstractWeaver {
 	public List<IEffect> order(BcelShadow arg0, List<IEffect> arg1) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public String getAspectMechanismId() {
+		return ID;
 	}
 }

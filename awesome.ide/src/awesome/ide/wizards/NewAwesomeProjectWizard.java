@@ -53,7 +53,14 @@ public class NewAwesomeProjectWizard extends Wizard implements INewWizard {
 	public class AspectMechanismDescriptor {
 		private String packageName;
 		private String aspectName;
+		private String id;
 		
+		public String getId() {
+			return id;
+		}
+		public void setId(String id) {
+			this.id = id;
+		}
 		public String getPackageName() {
 			return packageName;
 		}
@@ -203,6 +210,7 @@ public class NewAwesomeProjectWizard extends Wizard implements INewWizard {
 		AspectMechanismDescriptor desc = new AspectMechanismDescriptor();
 		desc.setPackageName(AJ_FOLDER);
 		desc.setAspectName("AJMechanism");
+		desc.setId("Aspectj");
 		StringBuffer buffer = new StringBuffer();
 		buffer.append(new AspectMechanismGen().generate(desc));
 		pack.createCompilationUnit("AJMechanism.aj", buffer.toString(), false, null);
@@ -216,6 +224,7 @@ public class NewAwesomeProjectWizard extends Wizard implements INewWizard {
 			
 			desc.setPackageName("awesome." + dsalName.toLowerCase());
 			desc.setAspectName(dsalName + "Mechanism");
+			desc.setId(dsalName);
 			buffer = new StringBuffer();
 			buffer.append(new AspectMechanismGen().generate(desc));
 			pack.createCompilationUnit(dsalName + "Mechanism.aj", buffer.toString(), false, null);

@@ -3,17 +3,6 @@
 <plugin>
 
    <extension
-         point="org.eclipse.ui.editors">
-      <editor
-            name="Sample Multi-page Editor"
-            extensions="mpe"
-            icon="icons/sample.gif"
-            contributorClass="awesome.ide.editors.MultiPageEditorContributor"
-            class="awesome.ide.editors.MultiPageEditor"
-            id="awesome.ide.editors.MultiPageEditor">
-      </editor>
-   </extension>
-   <extension
          point="org.eclipse.ui.newWizards">
       <category
             name="Awesome"
