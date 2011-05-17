@@ -1,0 +1,43 @@
+«IMPORT xtext::comprendo::comprendo»
+
+«EXTENSION templates::Extensions»
+
+«DEFINE main FOR Comprendo-»
+«FILE "Comprendo_" + name + ".java"-»
+package comprendo.gen;
+
+import org.aspectj.lang.annotation.Aspect;
+import awesome.comprendo.ComprendoScope;
+import awesome.comprendo.ComprendoOutdir;
+import awesome.comprendo.ComprendoPrivateExecutions;
+import awesome.comprendo.ComprendoPublicExecutions;
+import awesome.comprendo.Comprendo;
+
+@Aspect
+@ComprendoScope (scope = "«scope.value»")
+@ComprendoOutdir (outdir = "«outdir.value»")«EXPAND genCommandAnnotation FOREACH commands»
+public class Comprendo_«name» {
+	private static Comprendo comprendo = new Comprendo();
+	
+	public static void _logPrivateExecution(String className, String methodName) {
+		comprendo.logPrivateExecution(className, methodName);
+	}
+	public static void _logPublicExecution(String className, String methodName) {
+		comprendo.logPublicExecution(className, methodName);
+	}
+	public static void _printPrivateExecutions(String outdir, boolean summary) {
+		comprendo.printPrivateExecutions(outdir, summary);
+	}
+	public static void _printPublicExecutions(String outdir, boolean summary) {
+		comprendo.printPublicExecutions(outdir, summary);
+	}
+}
+«ENDFILE-»
+«ENDDEFINE»
+
+«DEFINE genCommandAnnotation FOR Command»
+«IF id == "public-executions"-»
+@ComprendoPublicExecutions (summary = «summary»)«ENDIF-»
+«IF id == "private-executions"-»
+@ComprendoPrivateExecutions (summary = «summary»)«ENDIF-»
+«ENDDEFINE»
