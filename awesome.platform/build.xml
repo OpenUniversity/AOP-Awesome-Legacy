@@ -1,0 +1,5 @@
+<project name="awesome.platform">	
+	<target name="jar">
+		<jar destfile="awesome.platform.jar" basedir="bin"></jar>
+	</target>
+</project>
