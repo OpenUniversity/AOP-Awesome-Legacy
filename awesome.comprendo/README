@@ -1,0 +1,3 @@
+Folder extmodules is not synchronized (since we overwrite awesome.platform.jar
+all the time and it causes problems. For backup purposes the folder is
+kept under Postdoc/material.
