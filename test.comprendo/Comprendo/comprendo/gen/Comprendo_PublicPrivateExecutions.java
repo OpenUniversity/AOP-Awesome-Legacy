@@ -3,6 +3,7 @@ package comprendo.gen;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
+import awesome.platform.annotations.AwAspectMechanism;
 import awesome.comprendo.ComprendoScope;
 import awesome.comprendo.ComprendoOutdir;
 import awesome.comprendo.ComprendoPrivateExecutions;
@@ -10,10 +11,11 @@ import awesome.comprendo.ComprendoPublicExecutions;
 import awesome.comprendo.Comprendo;
 
 @Aspect
-@ComprendoScope (scope = "test.comprendo.types")
-@ComprendoOutdir (outdir = "")
-@ComprendoPublicExecutions (summary = false)
-@ComprendoPrivateExecutions (summary = true)
+@AwAspectMechanism(id = "Comprendo")
+@ComprendoScope(scope = "test.comprendo.types")
+@ComprendoOutdir(outdir = "")
+@ComprendoPublicExecutions(summary = false)
+@ComprendoPrivateExecutions(summary = true)
 public class Comprendo_PublicPrivateExecutions {
 	private static Comprendo comprendo = new Comprendo();
 	

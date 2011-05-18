@@ -2,8 +2,8 @@ module workflow.ComprendoGenerator
 
 import org.eclipse.emf.mwe.utils.*
 
-var modelPath = "C:\\Programs\\Eclipse3.6.1EE\\eclipse\\workspaces\\awesome\\test.comprendo\\Comprendo"
-var targetDir = "C:\\Programs\\Eclipse3.6.1EE\\eclipse\\workspaces\\awesome\\test.comprendo\\Comprendo\\comprendo\\gen"
+var modelPath = "C:\\Programs\\Eclipse-3.6.2-SDK\\eclipse\\workspaces\\awesome\\test.comprendo\\Comprendo"
+var targetDir = "C:\\Programs\\Eclipse-3.6.2-SDK\\eclipse\\workspaces\\awesome\\test.comprendo\\Comprendo\\comprendo\\gen"
 var fileEncoding = "Cp1252"
 
 Workflow {

@@ -15,7 +15,7 @@ public class AspectMechanismGen
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = "package ";
-  protected final String TEXT_2 = ";" + NL + "" + NL + "import java.util.List;" + NL + "import org.aspectj.weaver.bcel.BcelShadow;" + NL + "import awesome.platform.AbstractWeaver;" + NL + "import awesome.platform.IEffect;" + NL + "" + NL + "public aspect ";
+  protected final String TEXT_2 = ";" + NL + "" + NL + "import java.util.List;" + NL + "import org.aspectj.weaver.bcel.BcelShadow;" + NL + "import awesome.platform.*;" + NL + "" + NL + "public aspect ";
   protected final String TEXT_3 = " extends AbstractWeaver {" + NL + "\tprivate static final String ID = \"";
   protected final String TEXT_4 = "\";" + NL + "\t" + NL + "\t@Override" + NL + "\tpublic List<IEffect> match(BcelShadow arg0) {" + NL + "\t\t// TODO Auto-generated method stub" + NL + "\t\treturn null;" + NL + "\t}" + NL + "" + NL + "\t@Override" + NL + "\tpublic List<IEffect> order(BcelShadow arg0, List<IEffect> arg1) {" + NL + "\t\t// TODO Auto-generated method stub" + NL + "\t\treturn null;" + NL + "\t}" + NL + "\t" + NL + "\t@Override" + NL + "\tpublic String getAspectMechanismId() {" + NL + "\t\treturn ID;" + NL + "\t}" + NL + "}";
 

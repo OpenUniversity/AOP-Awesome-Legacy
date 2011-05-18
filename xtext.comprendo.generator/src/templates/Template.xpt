@@ -7,6 +7,7 @@
 package comprendo.gen;
 
 import org.aspectj.lang.annotation.Aspect;
+import awesome.platform.annotations.AwAspectMechanism;
 import awesome.comprendo.ComprendoScope;
 import awesome.comprendo.ComprendoOutdir;
 import awesome.comprendo.ComprendoPrivateExecutions;
@@ -14,8 +15,9 @@ import awesome.comprendo.ComprendoPublicExecutions;
 import awesome.comprendo.Comprendo;
 
 @Aspect
-@ComprendoScope (scope = "«scope.value»")
-@ComprendoOutdir (outdir = "«outdir.value»")«EXPAND genCommandAnnotation FOREACH commands»
+@AwAspectMechanism(id = "Comprendo")
+@ComprendoScope(scope = "«scope.value»")
+@ComprendoOutdir(outdir = "«outdir.value»")«EXPAND genCommandAnnotation FOREACH commands»
 public class Comprendo_«name» {
 	private static Comprendo comprendo = new Comprendo();
 	
@@ -37,7 +39,7 @@ public class Comprendo_«name» {
 
 «DEFINE genCommandAnnotation FOR Command»
 «IF id == "public-executions"-»
-@ComprendoPublicExecutions (summary = «summary»)«ENDIF-»
+@ComprendoPublicExecutions(summary = «summary»)«ENDIF-»
 «IF id == "private-executions"-»
-@ComprendoPrivateExecutions (summary = «summary»)«ENDIF-»
+@ComprendoPrivateExecutions(summary = «summary»)«ENDIF-»
 «ENDDEFINE»

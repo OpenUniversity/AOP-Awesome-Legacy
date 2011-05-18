@@ -6,8 +6,7 @@ package <%=packageName%>;
 
 import java.util.List;
 import org.aspectj.weaver.bcel.BcelShadow;
-import awesome.platform.AbstractWeaver;
-import awesome.platform.IEffect;
+import awesome.platform.*;
 
 public aspect <%=aspectName%> extends AbstractWeaver {
 	private static final String ID = "<%=id%>";

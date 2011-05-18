@@ -1643,4 +1643,10 @@ public static void transformSynchronizedMethod(
 		Utility.deleteInstruction(call, recipient);
 	}
 
+	@Override
+	public String getAspectMechanismId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

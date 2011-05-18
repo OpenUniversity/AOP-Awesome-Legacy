@@ -17,11 +17,7 @@ import org.aspectj.weaver.bcel.LazyClassGen;
 import org.aspectj.weaver.bcel.LazyMethodGen;
 import org.aspectj.weaver.bcel.UnwovenClassFile;
 
-import awesome.platform.AbstractWeaver;
-import awesome.platform.AwesomeEffect;
-import awesome.platform.IEffect;
-import awesome.platform.InvokeMethodsEffect;
-import awesome.platform.MethodParameter;
+import awesome.platform.*;
 import awesome.platform.MethodParameter.Type;
 
 public aspect ComprendoWeaver extends AbstractWeaver {
@@ -29,12 +25,12 @@ public aspect ComprendoWeaver extends AbstractWeaver {
 	 * variables that keep the user request, i.e., which monitoring reports
 	 * to generate. Extracted from the annotations. 
 	 */
-	private String scope = null;
-	private String outdir = null;
-	private boolean publicExecutions = false;
-	private boolean publicExecutionsSummary = false;
-	private boolean privateExecutions = false;
-	private boolean privateExecutionsSummary = false;
+	//private String scope = null;
+	//private String outdir = null;
+	//private boolean publicExecutions = false;
+	//private boolean publicExecutionsSummary = false;
+	//private boolean privateExecutions = false;
+	//private boolean privateExecutionsSummary = false;
 	
 	/**
 	 * This variable indicates whether more than one Comprendo type
@@ -48,6 +44,7 @@ public aspect ComprendoWeaver extends AbstractWeaver {
 	 * It is used in match() to extract the advice methods defined there.
 	 */
 	private LazyClassGen comprendoClass;
+	private List<AspectClassFile> aspectClassFiles;
 	
 	@Override
 	public List<IEffect> match(BcelShadow shadow) {
@@ -101,6 +98,21 @@ public aspect ComprendoWeaver extends AbstractWeaver {
 		super.setInputFiles(inputClasses);
 		
 		System.out.println("Comprendo: setInputFiles called. Input Classes:");
+		for (Iterator i = inputClasses.getClassFileIterator(); i.hasNext();) {
+			UnwovenClassFile classFile = (UnwovenClassFile) i.next();
+			 	
+			if(! AwesomeCore.hasAspectAnnotation(classFile) || ! AwesomeCore.belongsToAspectMechanism(classFile, getAspectMechanismId())) {
+				continue;
+			}
+			System.out.println("Comprendo: Found a Comprendo aspect class: " + classFile.getClassName() + ".");
+			
+			//AspectClassFile aspectClassFile = AwesomeCore.create(classFile);
+			
+			//aspectClassFiles.add(aspectClassFile);
+		}
+		
+		
+/*		System.out.println("Comprendo: setInputFiles called. Input Classes:");
 		
 		// iterate all classes, skip all non comprendo files:
 		for (Iterator i = inputClasses.getClassFileIterator(); i.hasNext();) {
@@ -124,7 +136,11 @@ public aspect ComprendoWeaver extends AbstractWeaver {
 			printUserRequestFields();
 
 			comprendoClass = getLazyClassGen(classFile.getClassName());
-		}
+		}*/
+	}
+	
+	public String getAspectMechanismId() {
+		return "Comprendo";
 	}
 	
 	private LazyClassGen getLazyClassGen(String className) {
@@ -151,7 +167,7 @@ public aspect ComprendoWeaver extends AbstractWeaver {
 		return splited[splited.length-1];
 	}
 	
-	private void initUserRequestFields(AnnotationGen[] annotations){
+/*	private void initUserRequestFields(AnnotationGen[] annotations){
 		for(AnnotationGen annot : annotations) {
 			if(annot.getTypeName().equals(Comprendo.ComprendoScope)){
 				ElementNameValuePairGen elem = (ElementNameValuePairGen) annot.getValues().get(0);
@@ -182,13 +198,13 @@ public aspect ComprendoWeaver extends AbstractWeaver {
 					privateExecutionsSummary = true;
 			}
 		}
-	}
+	}*/
 	
-	private void printUserRequestFields(){
+/*	private void printUserRequestFields(){
 		System.out.println("Comprendo: scope = " + scope);
 		System.out.println("Comprendo: public executions = " + publicExecutions + " summary = " + publicExecutionsSummary);
 		System.out.println("Comprendo: private executions = " + privateExecutions + " summary = " + privateExecutionsSummary);
-	}
+	}*/
 	/**
 	 * Returns whether the shadow, characterized by the given arguments, should
 	 * be monitored. The criteria for monitoring is: 1) its package belongs to the
@@ -197,7 +213,7 @@ public aspect ComprendoWeaver extends AbstractWeaver {
 	 * @param modifiers
 	 * @return
 	 */
-	private boolean isShadowMethodExecutionAndInScope(BcelShadow shadow) {
+/*	private boolean isShadowMethodExecutionAndInScope(BcelShadow shadow) {
 		if( shadow.getKind() != Shadow.MethodExecution ) {
 			return false;
 		}
@@ -219,7 +235,7 @@ public aspect ComprendoWeaver extends AbstractWeaver {
 		
 		return false;
 	}
-
+*/
 	private IEffect createLogShadowEffect(int modifiers) {
 		String methodName = Modifier.isPrivate(modifiers)? "_logPrivateExecution" : "_logPublicExecution";
 		LazyMethodGen method = getLazyMethodGen(comprendoClass, methodName);
@@ -231,7 +247,7 @@ public aspect ComprendoWeaver extends AbstractWeaver {
 		return new InvokeMethodsEffect(AwesomeEffect.Kind.Before, method, parameters);
 	}
 	
-	private IEffect createPrintReportsEffect() {
+/*	private IEffect createPrintReportsEffect() {
 		LazyMethodGen printPrivateMethod = null;
 		LazyMethodGen printPublicMethod = null;
 		
@@ -247,5 +263,5 @@ public aspect ComprendoWeaver extends AbstractWeaver {
 		effect.addMethodInvocation(printPublicMethod, new MethodParameter[]{new MethodParameter(outdir), new MethodParameter(publicExecutionsSummary)});
 		
 		return effect;
-	}
+	}*/
 }
