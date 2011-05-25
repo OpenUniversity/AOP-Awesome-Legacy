@@ -14,15 +14,15 @@ public class Comprendo {
 	private List<String> privateExecutions = new ArrayList<String>();
 	private List<String> publicExecutions = new ArrayList<String>();
 	
-	public void logPrivateExecution(/*String className, String methodName*/String name){
+	public void logPrivateExecution(String className, String methodName){
 		//System.out.println("logPrivateExecution called");
-		//String name = className + "." + methodName;
+		String name = className + "." + methodName;
 		privateExecutions.add(name);
 	}
 	
-	public void logPublicExecution(/*String className, String methodName*/String name){
+	public void logPublicExecution(String className, String methodName){
 		//System.out.println("logPublicExecution called");
-		//String name = className + "." + methodName;
+		String name = className + "." + methodName;
 		publicExecutions.add(name);
 	}
 	

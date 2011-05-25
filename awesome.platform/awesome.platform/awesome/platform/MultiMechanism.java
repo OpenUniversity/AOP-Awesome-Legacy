@@ -45,6 +45,10 @@ public class MultiMechanism {
 		List<LazyMethodGen> methods = new ArrayList(clazz.getMethodGens());
 		List<BcelShadow> result = new ArrayList<BcelShadow>();
 		for (LazyMethodGen mg : methods) {
+			// continue if method has @AwSuppressReify annotation:
+			if(AwesomeCore.hasAnnotation(mg, "awesome.platform.annotations.AwSuppressReify"))
+				continue;
+			
 			List<BcelShadow> methShadows = null;
 			methShadows = reify(mg);
 			if (methShadows != null) {
@@ -71,10 +75,18 @@ public class MultiMechanism {
 		} else if (mg.getName().equals("<clinit>")) {
 			enclosingShadow = BcelShadow.makeStaticInitialization(world, mg);
 			// System.err.println(enclosingShadow);
+		} else if(AwesomeCore.hasAnnotation(mg, "awesome.platform.annotations.AwAdviceExecution")){
+			// if has @AwAdviceExecution then make it advice-execution shadow
+			enclosingShadow = BcelShadow.makeAdviceExecution(world, mg);
 		} else {
 			enclosingShadow = BcelShadow.makeMethodExecution(world, mg, false);
 		}
-		List<BcelShadow> result = reify(mg.getBody(), mg, enclosingShadow);
+		List<BcelShadow> result = new ArrayList<BcelShadow>();
+		
+		// skip internal shadowing if annotation @AwSuppressInternalReify exists:
+		if( ! AwesomeCore.hasAnnotation(mg, "awesome.platform.annotations.AwSuppressInternalReify"))
+			result = reify(mg.getBody(), mg, enclosingShadow);
+		
 		enclosingShadow.init();
 		result.add(enclosingShadow);
 		return result;

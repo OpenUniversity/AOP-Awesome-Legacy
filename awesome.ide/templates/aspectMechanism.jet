@@ -5,26 +5,56 @@
 package <%=packageName%>;
 
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Iterator;
 import org.aspectj.weaver.bcel.BcelShadow;
+import org.aspectj.weaver.bcel.UnwovenClassFile;
+import org.aspectj.weaver.IClassFileProvider;
 import awesome.platform.*;
 
 public aspect <%=aspectName%> extends AbstractWeaver {
 	private static final String ID = "<%=id%>";
+	private List<AspectClass> aspectClasses = new ArrayList<AspectClass>();
 	
 	@Override
-	public List<IEffect> match(BcelShadow arg0) {
+	public List<IEffect> match(BcelShadow shadow) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<IEffect> order(BcelShadow arg0, List<IEffect> arg1) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<IEffect> order(BcelShadow shadow, List<IEffect> effects) {
+		return effects;
 	}
 	
 	@Override
 	public String getAspectMechanismId() {
 		return ID;
+	}
+	
+	@Override
+	public void setInputFiles(IClassFileProvider inputClasses) {
+		super.setInputFiles(inputClasses);
+		
+		System.out.println(getAspectMechanismId() + ".setInputFiles...");
+		for (Iterator i = inputClasses.getClassFileIterator(); i.hasNext();) {
+			UnwovenClassFile classFile = (UnwovenClassFile) i.next();
+			 	
+			if(!AwesomeCore.hasAspectAnnotation(classFile) || 
+				!AwesomeCore.belongsToAspectMechanism(classFile, getAspectMechanismId())) {
+				continue;
+			}
+			System.out.println("Found " + getAspectMechanismId() + " aspect class: " + classFile.getClassName() + ".");
+			
+			AspectClass ac = AwesomeCore.create(classFile);
+			
+			aspectClasses.add(ac);
+		}
+		 
+		initializeUserFields();
+	}
+	
+	private void initializeUserFields() {
+		// TODO Add initialization code for user defined fields
 	}
 }

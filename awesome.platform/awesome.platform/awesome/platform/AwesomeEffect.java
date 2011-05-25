@@ -29,7 +29,7 @@ import awesome.platform.IEffect;
  *
  */
 public abstract class AwesomeEffect implements IEffect {
-	public enum Kind {
+	public enum AdviceType {
 		Before,
 		After
 	}

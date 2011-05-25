@@ -7,5 +7,6 @@
 	<classpathentry kind="lib" path="extmodules/asm-3.1.jar"/>
 	<classpathentry kind="lib" path="extmodules/commons.jar"/>
 	<classpathentry kind="lib" path="extmodules/jrockit.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -97,7 +97,7 @@ public class CountingMessageHandler implements IMessageHandler {
      *         considered greater by the ordering of 
      *         IMessage.Kind.COMPARATOR
      * @return number of messages of this kind (optionally or greater)
-     * @see IMessage.Kind.COMPARATOR
+     * @see IMessage.AdviceType.COMPARATOR
      */
     public int numMessages(IMessage.Kind kind, boolean orGreater) {
         if (null != proxy) {

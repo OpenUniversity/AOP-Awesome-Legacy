@@ -119,7 +119,7 @@ public class MessageHandler implements IMessageHolder {
     /**
      * @return true if this kind has been flagged to be ignored.
      * @see #ignore(IMessage.Kind)
-	 * @see org.aspectj.bridge.IMessageHandler#isIgnoring(Kind)
+	 * @see org.aspectj.bridge.IMessageHandler#isIgnoring(AdviceType)
 	 */
 	public boolean isIgnoring(IMessage.Kind kind) {
 		return ((null != kind) && (ignoring.contains(kind)));
@@ -147,7 +147,7 @@ public class MessageHandler implements IMessageHolder {
     }
 
     /**
-	 * @see org.aspectj.bridge.IMessageHolder#hasAnyMessage(Kind, boolean)
+	 * @see org.aspectj.bridge.IMessageHolder#hasAnyMessage(AdviceType, boolean)
 	 */
 	public boolean hasAnyMessage(final IMessage.Kind kind, final boolean orGreater) {
         if (null == kind) {

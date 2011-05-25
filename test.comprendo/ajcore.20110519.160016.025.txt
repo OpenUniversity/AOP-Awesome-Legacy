@@ -1,0 +1,155 @@
+---- AspectJ Properties ---
+AspectJ Compiler 1.6.5 built on Thursday Jun 18, 2009 at 03:42:32 GMT
+---- Dump Properties ---
+Dump file: ajcore.20110519.160016.025.txt
+Dump reason: java.lang.NullPointerException
+Dump on exception: true
+Dump at exit condition: abort
+---- Exception Information ---
+java.lang.NullPointerException
+	at awesome.comprendo.ComprendoWeaver.setInputFiles(ComprendoWeaver.aj:113)
+	at awesome.platform.MultiMechanism.setInputFiles(MultiMechanism.java:36)
+	at org.aspectj.weaver.bcel.BcelWeaver.weave(BcelWeaver.java:1248)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.weaveQueuedEntries(AjPipeliningCompilerAdapter.java:435)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.queueForWeaving(AjPipeliningCompilerAdapter.java:371)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.afterProcessing(AjPipeliningCompilerAdapter.java:358)
+	at org.aspectj.ajdt.internal.compiler.CompilerAdapter.ajc$after$org_aspectj_ajdt_internal_compiler_CompilerAdapter$5$6b855184(CompilerAdapter.aj:98)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.process(Compiler.java:652)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:392)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performCompilation(AjBuildManager.java:1003)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performBuild(AjBuildManager.java:267)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.batchBuild(AjBuildManager.java:181)
+	at org.aspectj.ajdt.ajc.AjdtCommand.doCommand(AjdtCommand.java:112)
+	at org.aspectj.ajdt.ajc.AjdtCommand.runCommand(AjdtCommand.java:60)
+	at org.aspectj.tools.ajc.Main.run(Main.java:355)
+	at org.aspectj.tools.ajc.Main.runMain(Main.java:234)
+	at org.aspectj.tools.ajc.Main.main(Main.java:84)
+---- System Properties ---
+java.runtime.name=Java(TM) SE Runtime Environment
+sun.boot.library.path=C:\Program Files\Java\jre6\bin
+java.vm.version=19.0-b09
+java.vm.vendor=Sun Microsystems Inc.
+java.vendor.url=http://java.sun.com/
+path.separator=;
+java.vm.name=Java HotSpot(TM) 64-Bit Server VM
+file.encoding.pkg=sun.io
+sun.java.launcher=SUN_STANDARD
+user.country=US
+sun.os.patch.level=
+java.vm.specification.name=Java Virtual Machine Specification
+user.dir=C:\Programs\Eclipse-3.6.2-SDK\eclipse\workspaces\awesome\test.comprendo
+java.runtime.version=1.6.0_23-b05
+java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment
+java.endorsed.dirs=C:\Program Files\Java\jre6\lib\endorsed
+os.arch=amd64
+java.io.tmpdir=C:\Users\Oren\AppData\Local\Temp\
+line.separator=
+
+java.vm.specification.vendor=Sun Microsystems Inc.
+user.variant=
+os.name=Windows 7
+sun.jnu.encoding=Cp1255
+java.library.path=C:\Program Files\Java\jre6\bin;.;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\MiKTeX 2.9\miktex\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\WIDCOMM\Bluetooth Software\;C:\Program Files\WIDCOMM\Bluetooth Software\syswow64;C:\PROGRA~2\cvsnt;C:\Program Files\Java\jdk1.6.0_23\bin;C:\Programs\apache-ant-1.8.2\bin;C:\Program Files\SlikSvn\bin\;C:\Program Files\TortoiseSVN\bin
+java.specification.name=Java Platform API Specification
+java.class.version=50.0
+sun.management.compiler=HotSpot 64-Bit Server Compiler
+os.version=6.1
+user.home=C:\Users\Oren
+user.timezone=Asia/Jerusalem
+java.awt.printerjob=sun.awt.windows.WPrinterJob
+file.encoding=Cp1252
+java.specification.version=1.6
+java.class.path=C:\Programs\Eclipse-3.6.2-SDK\eclipse\workspaces\awesome\awesome.comprendo\awesome.comprendo.out\ajcomp.jar;C:\aop\aspect-1.6.5-src\lib\aspectjrt.jar;C:\aop\aspect-1.6.5-src\lib\aspectjtools.jar;C:\Programs\Eclipse-3.6.2-SDK\eclipse\workspaces\awesome\test.comprendo\comprendo.jar
+user.name=Oren
+java.vm.specification.version=1.0
+java.home=C:\Program Files\Java\jre6
+sun.arch.data.model=64
+user.language=en
+java.specification.vendor=Sun Microsystems Inc.
+awt.toolkit=sun.awt.windows.WToolkit
+java.vm.info=mixed mode
+java.version=1.6.0_23
+java.ext.dirs=C:\Program Files\Java\jre6\lib\ext;C:\Windows\Sun\Java\lib\ext
+sun.boot.class.path=C:\Program Files\Java\jre6\lib\resources.jar;C:\Program Files\Java\jre6\lib\rt.jar;C:\Program Files\Java\jre6\lib\sunrsasign.jar;C:\Program Files\Java\jre6\lib\jsse.jar;C:\Program Files\Java\jre6\lib\jce.jar;C:\Program Files\Java\jre6\lib\charsets.jar;C:\Program Files\Java\jre6\lib\modules\jdk.boot.jar;C:\Program Files\Java\jre6\classes
+java.vendor=Sun Microsystems Inc.
+file.separator=\
+java.vendor.url.bug=http://java.sun.com/cgi-bin/bugreport.cgi
+sun.io.unicode.encoding=UnicodeLittle
+sun.cpu.endian=little
+sun.desktop=windows
+sun.cpu.isalist=amd64
+---- Command Line ---
+-1.5
+-outjar
+comprendo.jar
+src/test/comprendo/main/Main.java
+src/test/comprendo/types/A.java
+src/test/comprendo/types/B.java
+src/test/comprendo/types/Aspect.aj
+Comprendo/comprendo/gen/Comprendo_PublicPrivateExecutions.java
+---- Full Classpath ---
+C:\Program Files\Java\jre6\lib\resources.jar(1133382 bytes)
+C:\Program Files\Java\jre6\lib\rt.jar(44704363 bytes)
+C:\Program Files\Java\jre6\lib\sunrsasign.jar(missing)
+C:\Program Files\Java\jre6\lib\jsse.jar(569269 bytes)
+C:\Program Files\Java\jre6\lib\jce.jar(88256 bytes)
+C:\Program Files\Java\jre6\lib\charsets.jar(6695540 bytes)
+C:\Program Files\Java\jre6\lib\modules\jdk.boot.jar(missing)
+C:\Program Files\Java\jre6\classes(missing)
+C:\Program Files\Java\jre6\lib\ext\dnsns.jar(8239 bytes)
+C:\Program Files\Java\jre6\lib\ext\localedata.jar(833261 bytes)
+C:\Program Files\Java\jre6\lib\ext\sunjce_provider.jar(170239 bytes)
+C:\Programs\Eclipse-3.6.2-SDK\eclipse\workspaces\awesome\awesome.comprendo\awesome.comprendo.out\ajcomp.jar(1811955 bytes)
+C:\aop\aspect-1.6.5-src\lib\aspectjrt.jar(116039 bytes)
+C:\Programs\Eclipse-3.6.2-SDK\eclipse\workspaces\awesome\test.comprendo\comprendo.jar(219 bytes)
+---- Compiler Messages ---
+error at (no source information available)
+C:\Programs\Eclipse-3.6.2-SDK\eclipse\workspaces\awesome\test.comprendo\Comprendo\comprendo\gen\Comprendo_PublicPrivateExecutions.java:0::0 Internal compiler error
+java.lang.NullPointerException
+	at awesome.comprendo.ComprendoWeaver.setInputFiles(ComprendoWeaver.aj:113)
+	at awesome.platform.MultiMechanism.setInputFiles(MultiMechanism.java:36)
+	at org.aspectj.weaver.bcel.BcelWeaver.weave(BcelWeaver.java:1248)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.weaveQueuedEntries(AjPipeliningCompilerAdapter.java:435)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.queueForWeaving(AjPipeliningCompilerAdapter.java:371)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.afterProcessing(AjPipeliningCompilerAdapter.java:358)
+	at org.aspectj.ajdt.internal.compiler.CompilerAdapter.ajc$after$org_aspectj_ajdt_internal_compiler_CompilerAdapter$5$6b855184(CompilerAdapter.aj:98)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.process(Compiler.java:652)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:392)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performCompilation(AjBuildManager.java:1003)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performBuild(AjBuildManager.java:267)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.batchBuild(AjBuildManager.java:181)
+	at org.aspectj.ajdt.ajc.AjdtCommand.doCommand(AjdtCommand.java:112)
+	at org.aspectj.ajdt.ajc.AjdtCommand.runCommand(AjdtCommand.java:60)
+	at org.aspectj.tools.ajc.Main.run(Main.java:355)
+	at org.aspectj.tools.ajc.Main.runMain(Main.java:234)
+	at org.aspectj.tools.ajc.Main.main(Main.java:84)
+
+abort ABORT -- (NullPointerException) null
+null
+java.lang.NullPointerException
+	at awesome.comprendo.ComprendoWeaver.setInputFiles(ComprendoWeaver.aj:113)
+	at awesome.platform.MultiMechanism.setInputFiles(MultiMechanism.java:36)
+	at org.aspectj.weaver.bcel.BcelWeaver.weave(BcelWeaver.java:1248)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.weaveQueuedEntries(AjPipeliningCompilerAdapter.java:435)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.queueForWeaving(AjPipeliningCompilerAdapter.java:371)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.afterProcessing(AjPipeliningCompilerAdapter.java:358)
+	at org.aspectj.ajdt.internal.compiler.CompilerAdapter.ajc$after$org_aspectj_ajdt_internal_compiler_CompilerAdapter$5$6b855184(CompilerAdapter.aj:98)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.process(Compiler.java:652)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:392)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performCompilation(AjBuildManager.java:1003)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performBuild(AjBuildManager.java:267)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.batchBuild(AjBuildManager.java:181)
+	at org.aspectj.ajdt.ajc.AjdtCommand.doCommand(AjdtCommand.java:112)
+	at org.aspectj.ajdt.ajc.AjdtCommand.runCommand(AjdtCommand.java:60)
+	at org.aspectj.tools.ajc.Main.run(Main.java:355)
+	at org.aspectj.tools.ajc.Main.runMain(Main.java:234)
+	at org.aspectj.tools.ajc.Main.main(Main.java:84)
+
+---- org.aspectj.weaver.bcel.BcelWorld@3d434234 ----
+Shadow mungers:
+(before: ((within(test.comprendo.types.*) && execution(public * *(..))) && persingleton(test.comprendo.types.Aspect))->void test.comprendo.types.Aspect.ajc$before$test_comprendo_types_Aspect$1$c1bf63a5())
+Type mungers:
+(BcelTypeMunger null)
+(BcelTypeMunger null)
+Late Type mungers:
+Empty

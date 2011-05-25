@@ -1,10 +1,8 @@
 package awesome.platform;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.aspectj.apache.bcel.classfile.annotation.AnnotationGen;
 import org.aspectj.apache.bcel.classfile.annotation.ElementNameValuePairGen;
+import org.aspectj.weaver.bcel.LazyMethodGen;
 import org.aspectj.weaver.bcel.UnwovenClassFile;
 
 public class AwesomeCore {
@@ -47,22 +45,17 @@ public class AwesomeCore {
 		
 		return false;
 	}
-	public static AspectClassFile create(UnwovenClassFile classFile) {
-		AspectClassFile result = new AspectClassFile(classFile);
+	public static AspectClass create(UnwovenClassFile classFile) {
+		AspectClass result = new AspectClass(classFile);
 		return result;
 	}
-	/*public static List<Annotation> getAnnotations(UnwovenClassFile classFile) {
-		AnnotationGen[] annotations = classFile.getJavaClass().getAnnotations();
-		List<Annotation> result = new ArrayList<Annotation>();
-		int index = 0;
-		
-		for(AnnotationGen annot: annotations) {
-			Annotation res = new Annotation();
-			String typeName = annot.getTypeName();
-			String[] typeNameSplited = typeName.split("\\.");
-			res.setName(typeNameSplited[typeNameSplited.length-1]);
-		}
-		
-		return null;
-	}*/
+
+	public static boolean hasAnnotation(LazyMethodGen mg, String annotName) {
+		AnnotationGen[] annotations = mg.getMethod().getAnnotations();
+		for(AnnotationGen annot : annotations){
+			if(annot.getTypeName().equals(annotName))
+				return true;
+		}	
+		return false;
+	}
 }

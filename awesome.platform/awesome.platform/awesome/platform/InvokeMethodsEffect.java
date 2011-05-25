@@ -7,7 +7,10 @@ import java.util.List;
 import org.aspectj.apache.bcel.generic.InstructionFactory;
 import org.aspectj.apache.bcel.generic.InstructionList;
 import org.aspectj.weaver.Shadow;
+import org.aspectj.weaver.bcel.BcelObjectType;
 import org.aspectj.weaver.bcel.BcelShadow;
+import org.aspectj.weaver.bcel.BcelWorld;
+import org.aspectj.weaver.bcel.LazyClassGen;
 import org.aspectj.weaver.bcel.LazyMethodGen;
 import org.aspectj.weaver.bcel.Utility;
 
@@ -16,19 +19,32 @@ import awesome.platform.MethodParameter.Type;
 public class InvokeMethodsEffect extends AwesomeEffect {
 	private List<LazyMethodGen> methods = new ArrayList<LazyMethodGen>();
 	private List<List<MethodParameter>> allParameters = new ArrayList<List<MethodParameter>>();
-	private Kind kind;
+	private AdviceType type;
+	private AspectClass ac;
+	private BcelWorld world;
 	
-	
-	public InvokeMethodsEffect(AwesomeEffect.Kind kind) {
-		this.kind = kind;
+	/**
+	 * @param ac the Aspect Class whose method we like to invoke.
+	 */
+	public InvokeMethodsEffect(BcelWorld world, AspectClass ac) {
+		this.world = world;
+		this.ac = ac;
+		this.type = AdviceType.Before;
 	}
-	public InvokeMethodsEffect(AwesomeEffect.Kind kind, LazyMethodGen method, MethodParameter[] parameters) {
-		this.kind = kind;
+	/**
+	 * If not explicitly set, then advice type is <i>Before</i>.
+	 */
+	public void setAdviceType(AdviceType type) {
+		this.type = type;
+	}
+/*	public InvokeMethodsEffect(AwesomeEffect.AdviceType kind, LazyMethodGen method, MethodParameter[] parameters) {
+		this.type = kind;
 		this.methods.add(method);
 		this.allParameters.add(Arrays.asList(parameters));
-	}
-	public void addMethodInvocation(LazyMethodGen method, MethodParameter[] parameters) {
-		this.methods.add(method);
+	}*/
+	public void addMethodInvocation(String methodName, MethodParameter[] parameters) {
+		LazyClassGen clazz = getLazyClassGen(ac.getClassFile().getClassName());
+		this.methods.add(getLazyMethodGen(clazz, methodName));
 		
 		if (parameters == null)
 			this.allParameters.add(new ArrayList<MethodParameter>());
@@ -38,9 +54,9 @@ public class InvokeMethodsEffect extends AwesomeEffect {
 	
 	@Override
 	public void transform(BcelShadow shadow) {
-		if (kind == Kind.Before)
+		if (type == AdviceType.Before)
 			weaveBefore(shadow);
-		if (kind == Kind.After)
+		if (type == AdviceType.After)
 			weaveAfterReturning(shadow);
 	}
 
@@ -73,6 +89,19 @@ public class InvokeMethodsEffect extends AwesomeEffect {
 		}
 		
 		return il;
+	}
+	
+	private LazyMethodGen getLazyMethodGen(LazyClassGen clazz, String methodName) {
+		List<LazyMethodGen> methods = clazz.getMethodGens();
+		for(LazyMethodGen m : methods){
+			if(m.getName().equals(methodName))
+				return m;
+		}
+		return null;
+	}
+	private LazyClassGen getLazyClassGen(String className) {
+		BcelObjectType bcelType = BcelWorld.getBcelObjectType(world.resolve(className));
+		return bcelType.getLazyClassGen();
 	}
 
 }
