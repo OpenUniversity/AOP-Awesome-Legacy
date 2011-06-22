@@ -35,6 +35,8 @@ import awesome.platform.MultiMechanism;
 
 import com.sun.org.apache.bcel.internal.Constants;
 
+import cool.runtime.COOLLock;
+
 public privileged aspect COOLWeaver extends AbstractWeaver {
 
 	// aspects to target classes
@@ -58,11 +60,11 @@ public privileged aspect COOLWeaver extends AbstractWeaver {
 			//System.out.println("around transform: type  " + cgUType);
 			UnresolvedType targetType = aspects.get(cg.getType());
 			UnresolvedType aspectType = targets.get(cgUType);
-			if (targetType != null) {
+			if (targetType != null) { // cg is an aspect class
 				//System.out.println("around transform: targetType " + targetType);
 				typeMunger.transformAspectClass(cg, targetType);
 				result = true;
-			} else if (aspectType != null) {
+			} else if (aspectType != null) { // cg is a target class
 				//System.out.println("around transform: aspectType " + aspectType);
 				typeMunger.transformTargetClass(cg, aspectType);
 				result = true;
@@ -362,18 +364,31 @@ public privileged aspect COOLWeaver extends AbstractWeaver {
 		}
 	}
 
+/**
+ * Adds content to the map fields <b>lockMapping</b> and <b>unlockMapping</b>.
+ * Iterates all methods in the aspect class. If the method has a lock annotation,
+ * a target method is created based on the annotation values, and a corresponding lock effect is created.
+ * Then, <b>lockMapping</b> is added the key-value pair (target-method, lock-effect). Similarly,
+ * a method with a unlock annotation is handled.
+ * 
+ * @param clazz
+ * @param targetType
+ */
 private void mapAdvice(ResolvedType clazz, UnresolvedType targetType) {
 		ResolvedMember[] methods = clazz.getDeclaredMethods();
+		// iterate all methods in aspect class
 		for (ResolvedMember mg : methods) {
 			AnnotationGen ann = Utils.getCOOLAnnotation(mg);
 			if (ann == null)
 				continue;
 			String typeName = ann.getTypeName();
+			// if method has lock annotation...
 			if (typeName.equals(Utils.COOL_Lock_ANNOTATION.getName())) {
 				Member target = buildTargetMember(ann, targetType);
 				IEffect lockEffect = new COOLLockEffect(clazz.getName(),
 						mg.getName(), target, typeMunger.getCoordFieldName(targetType));
 				lockMapping.put(target, lockEffect);
+			// if method has unlock annotation...
 			} else if (typeName.equals(Utils.COOL_Unlock_ANNOTATION.getName())) {
 				Member target = buildTargetMember(ann, targetType);
 				IEffect unlockEffect = new COOLUnlockEffect(clazz
@@ -381,8 +396,20 @@ private void mapAdvice(ResolvedType clazz, UnresolvedType targetType) {
 				unlockMapping.put(target, unlockEffect);
 			}
 		}
-	}	/** Builds a target member of a COOL's advice */
-	private Member buildTargetMember(AnnotationGen ann, UnresolvedType targetType) {
+	}
+	
+/**
+ * Creates and returns a Member method that corresponds to the method in the 
+ * target class that is coordinated. The method is created based on the values presented in
+ * the provided lock/unlock annotation. For instance, for the annotation
+ * @COOLLock(methodName="push", className="", parameterTypes={"java.lang.Object"}),
+ * a member method is created with the name <b>push</b>, parameters <b>Object</b>,
+ * return type <b>Object</b> (uniform), and declaring type <b>targetType</b>. 
+ * @param ann
+ * @param targetType
+ * @return
+ */
+private Member buildTargetMember(AnnotationGen ann, UnresolvedType targetType) {
 		ElementValueGen methodNameVal = Utils.getAnnotationElementValue(ann,
 				"methodName");
 		ElementValueGen paramTypesVal = Utils.getAnnotationElementValue(ann,

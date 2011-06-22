@@ -1,5 +1,6 @@
 package coolplugin;
 
+
 import org.aspectj.weaver.*;
 import org.aspectj.weaver.bcel.*;
 import java.util.*;
@@ -8,13 +9,13 @@ import java.lang.reflect.Modifier;
 import org.aspectj.apache.bcel.generic.InstructionFactory;
 import org.aspectj.apache.bcel.generic.InstructionList;
 import org.aspectj.apache.bcel.generic.InstructionHandle;
-//import org.aspectj.apache.bcel.generic.TargetLostException;
 import org.aspectj.apache.bcel.generic.Type;
 import org.aspectj.apache.bcel.generic.FieldGen;
 import org.aspectj.apache.bcel.generic.InvokeInstruction;
 import org.aspectj.apache.bcel.generic.Instruction;
 import org.aspectj.apache.bcel.classfile.ConstantPool;
 import org.aspectj.apache.bcel.classfile.annotation.*;
+
 
 public class COOLTypeMunger {
 
@@ -26,18 +27,23 @@ public class COOLTypeMunger {
 	// (2) how to introduce external references into the aspect class
 	private final Map<UnresolvedType, Map<String, Member>> getterMethods = new HashMap<UnresolvedType, Map<String, Member>>();
 
-	// maps an aspect type
-	// to extRef method name to extRef expression string
-	// to be used for extRef munging
+	/**
+	 * maps aspect types to their external references as indicated by @COOLExternalRef.
+	 * E.g., for a method _ref0 annotated with @COOLExternalRef(expr="buffer.length") this entry is added:</br> 
+	 * ( BoundedStackCoord --> ( "_ref0" --> "buffer.length" ) )
+	 */
 	private final Map<UnresolvedType, Map<String, String>> extRefs = new HashMap<UnresolvedType, Map<String, String>>();
 
-	// maps an aspect type
-	// to extRef method name to return type of this method (type of expression)
-	// to be used for extRef munging
+	/**
+	 * maps aspect types to their external references <b>types</b> as indicated by @COOLExternalRef.
+	 * E.g., for a method _ref0 that returns <b>double</b> annotated with @COOLExternalRef(expr="buffer.length") this entry is added:</br> 
+	 * ( BoundedStackCoord --> ( "_ref0" --> double ) )
+	 */
 	private final Map<UnresolvedType, Map<String, ResolvedType>> extRefTypes = new HashMap<UnresolvedType, Map<String, ResolvedType>>();
 
-	// maps a target class type
-	// to the name of the coordinator field.
+	/**
+	 * Maps between target classes and the name of their coordinator field
+	 */
 	private final Map<UnresolvedType, String> coordFields = new HashMap<UnresolvedType, String>();
 
 	public COOLTypeMunger(BcelWorld world) {
@@ -99,6 +105,32 @@ public class COOLTypeMunger {
 	}
 
 	// sets up the mappings that are used at munging stage
+	/**
+	 * The method looks for methods in the <i>aspectType</i> having the annotation @COOLExternalRef.
+	 * For each method found, local fields (maps) are updated.</br>
+	 * Suppose the aspect type <i>BoundedStackCoord</i> has the following method:</br>
+	 * <pre>
+	 * 	\@COOLExternalRef(expr="buffer.length")
+	 * 	private double _ref0(base.BoundedStack thiz) {
+	 * 	return 0;
+	 * }
+	 * </pre>
+	 * <ul>
+	 * <li>The map <i>extRefs</i>(&ltUnresolvedType, Map&ltString, String&gt&gt) is added the value ("ref0" --> "buffer.length") 
+	 * to the key BoundedStackCoord.</li>
+	 * <li>The map <i>extRefTypes</i> (&ltUnresolvedType, Map&ltString, ResolvedType&gt&gt)is added the value ("ref0" --> double) 
+	 * the key BoundedStackCoord.</li>
+	 * </ul>
+	 * 
+	 * For each annotation value, e.g., "buffer.length", the name of the field, e.g., "buffer", is locally saved. Then,
+	 * this list of names is iterated and the map <i>getterMethods</i> is updated:
+	 * an appropriate getter method for the field is created and the map (fieldName, method) is
+	 * added to the target class key. Eventually, the name of the aspect field, e.g., _coord, is added to the field <i>coordFields</i>:
+	 * coordFields.put(tgtUType, aspectFieldName);
+	 * @param aspectType
+	 * @param tgtType
+	 * @throws Exception
+	 */
 	public void prepare(ResolvedType aspectType, ResolvedType tgtType)
 			throws Exception {
 		// clear();
@@ -249,6 +281,15 @@ public class COOLTypeMunger {
 		}
 	}
 
+	/**
+	 * Adds to target class a coordinator field, and getter methods.
+	 * A getter method is added for each private field that is accessed
+	 * by the coordinator (as marked by @COOLExternalRef)
+	 * @param tgtClass
+	 * @param aspectUType
+	 * @return
+	 * @throws Exception
+	 */
 	public FieldGen transformTargetClass(LazyClassGen tgtClass,
 			UnresolvedType aspectUType) throws Exception {
 		FieldGen coordField = addCoordinatorField(tgtClass, aspectUType);// aspectClass.getType());
@@ -266,16 +307,25 @@ public class COOLTypeMunger {
 		return coordField;
 	}
 
+	/**
+	 * Adds a coordinator field (of type <b>aspectType</b>) to the target class. The name
+	 * of the field is retrieved from the map <b>coordFields</b>.
+	 * @param tgtClass
+	 * @param aspectType
+	 * @return
+	 */
 	private FieldGen addCoordinatorField(LazyClassGen tgtClass,
 			UnresolvedType aspectType) {
+		// the name of the aspect field to be added is retrieved from coordFields
 		String aspectFieldName = coordFields.get(Utils
 				.getUnresolvedType(tgtClass));
 
+		// an appropriate field is created (of type FieldGen)
 		FieldGen field = new FieldGen(Modifier.PRIVATE, BcelWorld
 				.makeBcelType(aspectType), aspectFieldName, tgtClass
 				.getConstantPool());
-		//System.out.println("About to add field " + field.getSignature() + "  "
-		//		+ field.getName() + " into class " + tgtClass.getClassName());
+		
+		// the field is added to the target class
 		tgtClass.addField(field, null);
 		return field;
 	}
@@ -337,119 +387,6 @@ public class COOLTypeMunger {
 		return (nextDot < 0) ? extRef = "" : extRef.substring(nextDot + 1);
 	}
 
-	/**
-	 * <code>
-	 public void transformClasses(LazyMethodGen aspectMeth, String extRefExpr,
-	 LazyClassGen tgtClass) throws Exception {
-	 Type aspectType = BcelWorld.makeBcelType(aspectMeth.getMemberView()
-	 .getDeclaringType());
-	 LazyMethodGen getterMeth = addMethod(tgtClass, aspectType, extRefExpr);
-
-	 syntheticMethods.add(getterMeth);
-	 // TODO: check the return type of the getterMethod
-	 // against return type of the aspectMeth
-	 // The return type of the aspectMeth should be wider (or equal)
-	 // to the getterMethod. Otherwise, report an error.
-	 transformAspectMethod(aspectMeth, getterMeth);
-	 }
-
-	 private void transformAspectMethod(LazyMethodGen aspectMeth,
-	 LazyMethodGen tgtMeth) throws Exception {
-	 System.out.println("transforming an external reference method "
-	 + aspectMeth.getName() + " to call " + tgtMeth.getName());
-	 InstructionFactory fact = aspectMeth.getEnclosingClass().getFactory();
-	 InstructionList il = new InstructionList();
-	 il.append(InstructionFactory.ALOAD_1);
-	 il.append(InstructionFactory.ALOAD_0);
-	 il.append(Utility.createInvoke(fact, tgtMeth));
-	 // Type tgtMethRetType = tgtMeth.getReturnType();
-	 Type aspMethRetType = aspectMeth.getReturnType();
-	 // il.append(Utility.createConversion(fact, tgtMethRetType,
-	 // aspMethRetType);
-	 il.append(InstructionFactory.createReturn(aspMethRetType));
-
-	 InstructionList body = aspectMeth.getBody();
-	 InstructionHandle start = body.getStart();
-	 InstructionHandle newStart = body.append(il);
-	 while (start != newStart) {
-	 InstructionHandle next = start.getNext();
-	 Utility.deleteInstruction(start, newStart, aspectMeth);
-	 start = next;
-	 }
-	 } 
-
-	 private LazyMethodGen addMethod(LazyClassGen tgtClass, Type aspectType,
-	 String fieldRef) throws Exception {
-	 InstructionFactory fact = tgtClass.getFactory();
-	 InstructionList il = new InstructionList();
-	 int nextDot = fieldRef.indexOf(".");
-	 String fieldName;
-	 if (nextDot < 1) {
-	 fieldName = fieldRef;
-	 fieldRef = "";
-	 } else {
-	 fieldName = fieldRef.substring(0, nextDot);
-	 fieldRef = fieldRef.substring(nextDot + 1);
-	 }
-	 // TODO: ensure that new method does not override
-	 // existing method in the target class (or any of its subclasses)
-	 String methodName = "_" + fieldName;
-
-	 Member field = getField(tgtClass.getType(), fieldName);
-	 if (field == null)
-	 throw new Exception(" field " + fieldName + " in class "
-	 + tgtClass.getType().getName() + " is not found!");
-
-	 if (field.isStatic())
-	 throw new Exception(
-	 "COOL error: Field "
-	 + field.getSignature()
-	 + " that is accessed in the external reference expression is static. Must be instance variable. ");
-	 il.append(InstructionFactory.ALOAD_0);
-	 il.append(Utility.createGet(fact, field));
-
-	 UnresolvedType returnType = field.getType();
-	 while (fieldRef.length() > 0) {
-	 nextDot = fieldRef.indexOf(".");
-	 if (nextDot < 1) {
-	 fieldName = fieldRef;
-	 fieldRef = "";
-	 } else {
-	 fieldName = fieldRef.substring(0, nextDot);
-	 fieldRef = fieldRef.substring(nextDot + 1);
-	 }
-
-	 UnresolvedType declType = field.getType();
-	 if (declType.isArray()) {
-	 if (fieldName.equals("length")) {
-	 il.append(InstructionFactory.ARRAYLENGTH);
-	 returnType = ResolvedType.INT;
-	 } else
-	 throw new Exception("Unknown array field: " + fieldName);
-	 } else {
-	 field = getField(world.resolve(declType), fieldName);
-	 returnType = field.getType();
-	 if (field == null)
-	 throw new Exception(" field " + fieldName + " in class "
-	 + declType.getName() + " is not found!");
-	 il.append(Utility.createGet(fact, field));
-	 }
-	 }
-	 il.append(InstructionFactory.createReturn(BcelWorld
-	 .makeBcelType(returnType)));
-	 // il.append()
-
-	 LazyMethodGen result = new LazyMethodGen(Modifier.PUBLIC, BcelWorld
-	 .makeBcelType(returnType), methodName,
-	 new Type[] { aspectType }, new String[0], tgtClass);
-	 result.getBody().append(il);
-	 tgtClass.addMethodGen(result);
-	 System.out.println("adding a method " + result.getSignature()
-	 + " to target class " + tgtClass.getClassName());
-	 return result;
-	 }
-	 </code>
-	 */
 	private ResolvedMember getField(ResolvedType tgtClass, String fieldName)
 			throws Exception {
 		// BcelObjectType clazz = tgtClass.getBcelObjectType();
