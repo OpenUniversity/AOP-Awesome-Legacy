@@ -1,0 +1,1 @@
+jjtree -OUTPUT_DIRECTORY:"ast" -NODE_PACKAGE:"cool.frontend.ast" grammar.jjt
