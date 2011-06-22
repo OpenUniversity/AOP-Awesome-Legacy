@@ -1,13 +1,14 @@
 package awesome.config;
-import java.util.*;
-import org.aspectj.weaver.bcel.*;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.aspectj.weaver.Advice;
 import org.aspectj.weaver.AdviceKind;
+import org.aspectj.weaver.bcel.BcelShadow;
 
-import coolplugin.*;
-import ajplugin.AJWeaver;
 import awesome.platform.IEffect;
 import awesome.platform.MultiMechanism;
+import coolplugin.COOLWeaver;
 
 public aspect AdviceFilter {
 
@@ -26,7 +27,7 @@ public aspect AdviceFilter {
 		    	 int afSize = effects.size();
 				   if (bfSize>afSize) {
 					   int rmvd = bfSize-afSize;
-					   System.out.println("Around advice does not apply at "+shadow);
+					   System.out.println("Around advice cannot apply at "+shadow + " (" + rmvd + " advice removed)");
 				   }
 		     } 
 		   }
@@ -34,16 +35,16 @@ public aspect AdviceFilter {
 	   }
 	   
 	   private void filterAdvice(List<IEffect> effects) {
-		   List<IEffect> filteredAdv = new ArrayList<IEffect>();
+		   List<IEffect> filteredAdvice = new ArrayList<IEffect>();
 		   for(IEffect eff:effects)
 			   if (eff!=null && (eff instanceof Advice)) {
 				   Advice adv = (Advice)eff;
 				   if (adv.getKind()== AdviceKind.Around)  {
 					   //System.out.println(" removing an around advice ");
-					   filteredAdv.add(eff);
+					   filteredAdvice.add(eff);
 				   }
 			   }
-		   effects.removeAll(filteredAdv);
+		   effects.removeAll(filteredAdvice);
 	   }
 
 	

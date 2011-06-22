@@ -9,15 +9,13 @@ import awesome.platform.MultiMechanism;
 import org.aspectj.weaver.AdviceKind;
 
 
-public aspect MultiOrderConfig {
-	private static Class COOLWeaverClass = COOLWeaver.class; 
-	private static Class AJWeaverClass = AJWeaver.class; 
+public aspect MultiOrderConfig { 
 
 	   List around(MultiMechanism mm, List multiEffects, BcelShadow shadow): 
 		   execution(List MultiMechanism.multiOrder(List, BcelShadow)) 
 		   && this(mm) && args(multiEffects, shadow) {
-		   int coolPos = mm.getMechanismPos(COOLWeaverClass);
-		   int ajPos = mm.getMechanismPos(AJWeaverClass);
+		   int coolPos = mm.getMechanismPos(COOLWeaver.class);
+		   int ajPos = mm.getMechanismPos(AJWeaver.class);
 		   //System.out.println("Running multi-order config on "+shadow+" ajmech num:"+ajPos+" , coolmech num:"+coolPos);
 		   List<IEffect> result = new ArrayList<IEffect>();
 		   if (coolPos>=0 && ajPos>=0) {

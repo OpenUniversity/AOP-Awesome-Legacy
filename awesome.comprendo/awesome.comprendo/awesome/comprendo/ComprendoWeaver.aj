@@ -8,10 +8,7 @@ import java.util.List;
 import org.aspectj.weaver.IClassFileProvider;
 import org.aspectj.weaver.Shadow;
 import org.aspectj.weaver.bcel.BcelMethod;
-import org.aspectj.weaver.bcel.BcelObjectType;
 import org.aspectj.weaver.bcel.BcelShadow;
-import org.aspectj.weaver.bcel.BcelWorld;
-import org.aspectj.weaver.bcel.LazyClassGen;
 import org.aspectj.weaver.bcel.UnwovenClassFile;
 
 import awesome.platform.AbstractWeaver;
@@ -25,17 +22,6 @@ import awesome.platform.MethodParameter.Type;
 
 public aspect ComprendoWeaver extends AbstractWeaver {
 	
-	/**
-	 * User defined fields
-	 */
-	private String scope = null;
-	private String outdir = null;
-	private boolean publicExecutions = false;
-	private boolean publicExecutionsSummary = false;
-	private boolean privateExecutions = false;
-	private boolean privateExecutionsSummary = false;
-		
-	private AspectClass ac;
 	private List<AspectClass> aspectClasses = new ArrayList<AspectClass>();
 	
 	@Override
@@ -109,49 +95,28 @@ public aspect ComprendoWeaver extends AbstractWeaver {
 	public String getAspectMechanismId() {
 		return "Comprendo";
 	}
-	
-	private LazyClassGen getLazyClassGen(String className) {
-		BcelObjectType bcelType = BcelWorld.getBcelObjectType(world.resolve(className));
-		return bcelType.getLazyClassGen();
-	}
-	
-	
-	
+		
 	private void initializeUserFields(){
-		ac = aspectClasses.get(0);
-		scope = ac.getAnnotationValue(Comprendo.ComprendoScope, "scope");
-		privateExecutions = ac.hasAnnotation(Comprendo.ComprendoPrivateExecutions)? true : false;
-		publicExecutions = ac.hasAnnotation(Comprendo.ComprendoPublicExecutions)? true : false;
-		outdir = ac.getAnnotationValue(Comprendo.ComprendoOutdir, "outdir");
-		
-		if(publicExecutions)
-			publicExecutionsSummary = ac.getAnnotationValue(Comprendo.ComprendoPublicExecutions, "summary").equals("true") ? true : false;
-		else
-			publicExecutionsSummary = false;
-		
-		if(privateExecutions)
-			privateExecutionsSummary = ac.getAnnotationValue(Comprendo.ComprendoPrivateExecutions, "summary").equals("true") ? true : false;
-		else
-			privateExecutionsSummary = false;
 	}
 	
 	private boolean isShadowMethodExecutionAndInScope(BcelShadow shadow) {
 		if( shadow.getKind() != Shadow.MethodExecution ) {
 			return false;
 		}
-	
+		
+		AspectClass ac = aspectClasses.get(0);
 		String packageName = shadow.getEnclosingClass().getPackageName();
 		BcelMethod method = shadow.getEnclosingMethod().getMemberView();
 		int modifiers = method.getModifiers();
 		
 		// currently, scope is simply a name of a package.
-		if(!packageName.equals(scope)) {
+		if(!packageName.equals(ac.getAnnotationValue(Comprendo.ComprendoScope, "scope"))) {
 			return false;
 		}
-		if (Modifier.isPrivate(modifiers) && privateExecutions) {
+		if (Modifier.isPrivate(modifiers) && ac.hasAnnotation(Comprendo.ComprendoPrivateExecutions)) {
 			return true;
 		}
-		if (Modifier.isPublic(modifiers) && publicExecutions) {
+		if (Modifier.isPublic(modifiers) && ac.hasAnnotation(Comprendo.ComprendoPublicExecutions)) {
 			return true;
 		}
 		
@@ -159,6 +124,7 @@ public aspect ComprendoWeaver extends AbstractWeaver {
 	}
 
 	private IEffect createLogShadowEffect(int modifiers) {
+		AspectClass ac = aspectClasses.get(0);
 		String methodName = Modifier.isPrivate(modifiers)? "_logPrivateExecution" : "_logPublicExecution";
 		
 		InvokeMethodsEffect effect = new InvokeMethodsEffect(world, ac);
@@ -169,8 +135,25 @@ public aspect ComprendoWeaver extends AbstractWeaver {
 	}
 	
 	private IEffect createPrintReportsEffect() {
+		AspectClass ac = aspectClasses.get(0);
+		boolean privateExecutions = ac.hasAnnotation(Comprendo.ComprendoPrivateExecutions)? true : false;
+		boolean publicExecutions = ac.hasAnnotation(Comprendo.ComprendoPublicExecutions)? true : false;
+		boolean publicExecutionsSummary,privateExecutionsSummary;
+		String outdir = ac.getAnnotationValue(Comprendo.ComprendoOutdir, "outdir");
+		if(publicExecutions)
+			publicExecutionsSummary = ac.getAnnotationValue(Comprendo.ComprendoPublicExecutions, "summary").equals("true") ? true : false;
+		else
+			publicExecutionsSummary = false;
+		
+		if(privateExecutions)
+			privateExecutionsSummary = ac.getAnnotationValue(Comprendo.ComprendoPrivateExecutions, "summary").equals("true") ? true : false;
+		else
+			privateExecutionsSummary = false;
+		
+		
 		InvokeMethodsEffect effect = new InvokeMethodsEffect(world, ac);
 		effect.setAdviceType(AdviceType.After);
+		
 	
 		if (privateExecutions) {
 			effect.addMethodInvocation("_printPrivateExecutions", new MethodParameter[]{new MethodParameter(outdir), new MethodParameter(privateExecutionsSummary)});
