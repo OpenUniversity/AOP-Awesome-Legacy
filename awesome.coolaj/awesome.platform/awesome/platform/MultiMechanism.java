@@ -44,6 +44,10 @@ public class MultiMechanism {
 		List<LazyMethodGen> methods = new ArrayList(clazz.getMethodGens());
 		List<BcelShadow> result = new ArrayList<BcelShadow>();
 		for (LazyMethodGen mg : methods) {
+			// continue if method has @AwSuppressReify annotation:
+			if(AwesomeCore.hasAnnotation(mg, "awesome.platform.annotations.AwSuppressReify"))
+				continue;
+			
 			List<BcelShadow> methShadows = null;
 			methShadows = reify(mg);
 			if (methShadows != null) {
