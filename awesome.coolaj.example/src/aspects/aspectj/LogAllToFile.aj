@@ -54,6 +54,9 @@ public aspect LogAllToFile {
 	after() : everythingAfter() && scopeAfter() {
 		log("after", thisJoinPoint);
 	}
+	/*before(): execution(* base.BoundedStack.getBuffer()) {
+		log("before", thisJoinPoint);
+	}*/
 
 	
 	protected void log(String advType, JoinPoint jp) {

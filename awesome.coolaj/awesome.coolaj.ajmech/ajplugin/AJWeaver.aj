@@ -1,4 +1,3 @@
-//this is a test comment
 package ajplugin;
 
 import java.lang.reflect.Modifier;
@@ -12,7 +11,6 @@ import java.util.Set;
 
 import org.aspectj.apache.bcel.Constants;
 import org.aspectj.apache.bcel.classfile.ConstantPool;
-import org.aspectj.apache.bcel.classfile.Field;
 import org.aspectj.apache.bcel.generic.Instruction;
 import org.aspectj.apache.bcel.generic.FieldInstruction;
 

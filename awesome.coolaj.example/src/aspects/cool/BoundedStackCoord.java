@@ -1,13 +1,28 @@
 package aspects.cool;
 
 import org.aspectj.lang.annotation.Aspect;
-
+import base.BoundedStack;
 import cool.runtime.*;
+import awesome.platform.annotations.*;
 
 
 @COOLAspect(className="base.BoundedStack")
 @Aspect
 public class BoundedStackCoord {
+	// code added by Oren
+	privileged public static aspect MyAspect {
+		//private int BoundedStack.foo;
+		//private BoundedStackCoord BoundedStack._mycoord;
+		//@AwSuppressReify
+		public Object[] BoundedStack.getBuffer() {
+			return buffer;
+		}
+	}
+	/*public void printBufferLength() {
+		System.out.println(target.getBuffer().length);
+	}*/
+	
+	// end of code added
 private @COOLCoordinatorField int top = 0;
 private @COOLConditionField boolean full = false;
 private @COOLConditionField boolean empty = true;
@@ -71,11 +86,14 @@ private @COOLConditionField boolean empty = true;
     if (top == 0)
       empty = true;
   }
+    //@AwSuppressReify
     @COOLOnExit(methodName="push", className="", parameterTypes={"java.lang.Object"})
   private void on_exit_push_15789782_0(base.BoundedStack thiz) { 
     empty = false;
-    if (top ==  _ref0(thiz))
-      full = true;
+/*    if (top ==  _ref0(thiz))
+      full = true;*/
+    if (top ==  thiz.getBuffer().length)
+        full = true;
   }
     @COOLExternalRef(expr="buffer.length")
   private double _ref0(base.BoundedStack thiz) {

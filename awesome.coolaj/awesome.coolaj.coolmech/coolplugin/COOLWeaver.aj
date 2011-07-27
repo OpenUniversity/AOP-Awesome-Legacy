@@ -78,6 +78,14 @@ public privileged aspect COOLWeaver extends AbstractWeaver {
 		}
 	}
 
+	/**
+	 * If cg is a COOL aspect class, then its reify process is done internally by the COOL 
+	 * aspect mechanism (instead of MM.reify(..)). See the documentation of the internal
+	 * reify method for details.
+	 * @param mm
+	 * @param cg
+	 * @return
+	 */
 	List<BcelShadow> around(MultiMechanism mm, LazyClassGen cg) :
 		reifyClass(mm, cg) {
 		UnresolvedType classUType = Utils.getUnresolvedType(cg);
@@ -86,14 +94,19 @@ public privileged aspect COOLWeaver extends AbstractWeaver {
 		return (targetType == null) ? proceed(mm, cg) : reify(mm, cg);
 	}
 
-	// TODO: Currently, it identifies shadows within the
-	// synthetic field-getter methods. In the future, these
-	// methods must be skipped.
+	
+	/**
+	 * This advice advises MM.reify(LazyMethodGen mg). If mg is a synthetic method,
+	 * it is not reified. Synthetic method = a getter method added to a target class (in the
+	 * first advice).
+	 * @param mm
+	 * @param mg
+	 * @return
+	 */
 	List<BcelShadow> around(MultiMechanism mm, LazyMethodGen mg) :
 	  reifyMethod(mm, mg) {
 		if (typeMunger.isSynthetic(mg))
 			return null;
-		// return mm.reify(mg.getBody(), mg, null);
 		else
 			return proceed(mm, mg);
 	}
@@ -222,6 +235,29 @@ public privileged aspect COOLWeaver extends AbstractWeaver {
 		return effects;
 	}
 
+	/**
+	 * clazz is an aspect class. For such a type, COOL mechanism takes control
+	 * over the reify process and this method handles that process.
+	 * <p>The methods of the aspect class are retrieved and iterated:
+	 * <ul>
+	 * <li>If the method doesn't have a COOL annotation it is skipped, i.e., not reified.</li>
+	 * <li>If the method has LOCK or UNLOCK annotation, it is added to <b>result</b>
+	 * (List&ltBcelShadow&gt) as an <b>advice-execution</b> shadow. The process of creating this
+	 * shadow involves some lines of code, see inside.</li>
+	 * <li>If the method is a constructor ("&ltinit&gt"), its body is reified using the relevant
+	 * MM.reify(..) method, and the shadows added to <b>result</b>. Why? because the c'tor implicitly 
+	 * holds the initialization
+	 * of the private fields of the coordinator which we would like to get reified too (i.e., set-field,
+	 * get-field). Note that the c'tor may not be defined by the user (as in BoundedStackCoord).</li>
+	 * <li>If the method has annotation of kind REQUIRES, ON_EXIT, or ON_ENTRY, its body is reified as before.
+	 * However, note that here the enclosing shadow of the internal reified shadows is set to be LOCK or
+	 * UNLOCK shadow. For that, the LOCK/UNLOCK shadows were previously saved
+	 * in local fields.</li>
+	 * </ul></p>
+	 * @param mm
+	 * @param clazz an aspect class
+	 * @return
+	 */
 	private List<BcelShadow> reify(MultiMechanism mm, LazyClassGen clazz) {
 		// System.out.println("Identifying shadows for a class " + clazz);
 		List<LazyMethodGen> methods = new ArrayList(clazz.getMethodGens());
@@ -288,6 +324,9 @@ public privileged aspect COOLWeaver extends AbstractWeaver {
 		return result;
 	}
 
+	/**
+	 * Initialized in setInputFiles. Every class that arrives is added to the set.
+	 */
 	Set<UnresolvedType> allClasses = new HashSet<UnresolvedType>();
 	
 	/**
@@ -301,55 +340,26 @@ public privileged aspect COOLWeaver extends AbstractWeaver {
 	 * field.
 	 */
 	public void setInputFiles(IClassFileProvider input) {
-		System.err.println("setInputFiles " + input);
+		System.out.println("Begin setInputFiles...");
 		
 		super.setInputFiles(input);
 		if (typeMunger == null)
 			typeMunger = new COOLTypeMunger(world);
 		else
+			// this seems to be inefficient since we do the munging
+			// process again for all the aspects.
 			typeMunger.clear();
-		//aspects.clear();
-		//targets.clear();
-		//lockMapping.clear();
-		//unlockMapping.clear();
-		// more stuff here!
-		//$$YA
-		//Set<UnresolvedType> allClasses = new HashSet<UnresolvedType>();
+
 		for (Iterator i = input.getClassFileIterator(); i.hasNext();) {
 			UnwovenClassFile classFile = (UnwovenClassFile) i.next();
 			UnresolvedType clazz = Utils.getUnresolvedType(classFile);
 			allClasses.add(clazz);
-			System.err.println("class file " + classFile + "; class '" + clazz + "'");
+			System.out.println("class file " + clazz + " added to allClasses");
 		}
 		
-	
 		for (UnresolvedType classType : allClasses) {			
 			UnresolvedType targetType = getTargetType(classType);
-				// System.out.print(clazz.getName() + " a COOL Coordinator class:
-			// ");
-			// if (targetType == null)
-			// System.out.println("NO");
-			// else
-			// System.out.println("YES");
 			if (targetType != null) {
-				// $$$ YA
-				System.err.println("Looking for '" + targetType + "'");
-				/*if (!(allClasses.contains(targetType))) {
-					System.err
-							.println("COOL warning: target class "
-									+ targetType.getPackageName()
-									+ "."
-									+ targetType.getClassName()
-									+ " of the coordinator aspect "
-									+ classType.getPackageName()
-									+ "."
-									+ classType.getClassName()
-									+ " is not in the list of input classes. The coordinator aspect "
-									+ " will not apply! ");
-				} else {*/
-					// introducing coord field,
-					// field-getter methods,
-					// and munging in external reference expressions
 					try {
 						typeMunger.prepare(world.resolve(classType), world
 								.resolve(targetType));
@@ -358,7 +368,6 @@ public privileged aspect COOLWeaver extends AbstractWeaver {
 						System.err.println(e.getMessage());
 						throw new RuntimeException(e.getMessage());
 					}
-				//}
 				mapAdvice(world.resolve(classType), targetType);
 			}
 		}
@@ -464,7 +473,10 @@ private Member buildTargetMember(AnnotationGen ann, UnresolvedType targetType) {
 	}
 
 	/**
-	 * Returns a COOL annotation on a class, or null if none is present.
+	 * If classUType is an aspect class, its corresponding target class is returned 
+	 * (from the 'aspects' map). NULL is returned otherwise. If the aspect class
+	 * is seen for the first time, its target class is retrieved from elsewhere 
+	 * and 'aspects' and 'targets' are added the pair.
 	 * 
 	 * @param mg
 	 * @return
@@ -484,8 +496,8 @@ private UnresolvedType getTargetType(UnresolvedType classUType) {
 						result = UnresolvedType.forName(targetTypeName);
 						aspects.put(classUType, result);
 						targets.put(result, classUType);
-						System.out.println("adding target " + result + ", " + classUType);
-						System.out.println("## of targets "+ targets.size());
+						System.out.println("adding to 'aspects' (" + classUType + ", " + result + ")");
+						System.out.println("adding to 'targets' (" + result + ", " + classUType + ")");
 						break;
 					}
 				}

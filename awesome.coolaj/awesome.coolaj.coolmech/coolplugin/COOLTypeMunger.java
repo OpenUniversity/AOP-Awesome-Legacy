@@ -81,6 +81,11 @@ public class COOLTypeMunger {
 		return null;
 	}
 
+	/**
+	 * If mg is a synthetic getter method in a target class, true is returned. 
+	 * @param mg
+	 * @return
+	 */
 	public boolean isSynthetic(LazyMethodGen mg) {
 		UnresolvedType clType = Utils.getUnresolvedType(mg.getEnclosingClass());
 		Map<String, Member> tgtGetterMethods = getterMethods.get(clType);
@@ -118,8 +123,8 @@ public class COOLTypeMunger {
 	 * <ul>
 	 * <li>The map <i>extRefs</i>(&ltUnresolvedType, Map&ltString, String&gt&gt) is added the value ("ref0" --> "buffer.length") 
 	 * to the key BoundedStackCoord.</li>
-	 * <li>The map <i>extRefTypes</i> (&ltUnresolvedType, Map&ltString, ResolvedType&gt&gt)is added the value ("ref0" --> double) 
-	 * the key BoundedStackCoord.</li>
+	 * <li>The map <i>extRefTypes</i> (&ltUnresolvedType, Map&ltString, ResolvedType&gt&gt) is added the value ("ref0" --> double) 
+	 * to the key BoundedStackCoord.</li>
 	 * </ul>
 	 * 
 	 * For each annotation value, e.g., "buffer.length", the name of the field, e.g., "buffer", is locally saved. Then,
