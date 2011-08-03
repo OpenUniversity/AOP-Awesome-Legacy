@@ -4,6 +4,7 @@ import java.lang.reflect.Modifier;
 
 import org.aspectj.apache.bcel.generic.InstructionFactory;
 import org.aspectj.apache.bcel.generic.InstructionList;
+import org.aspectj.bridge.ISourceLocation;
 import org.aspectj.weaver.Member;
 import org.aspectj.weaver.MemberImpl;
 import org.aspectj.weaver.ResolvedType;
@@ -18,12 +19,52 @@ public abstract class COOLCoordEffect extends COOLEffect {
 	protected String aspectClassName, adviceMethodName;
 	protected Member targetMember;
 	protected String fieldName;
-	public COOLCoordEffect(String aspectClassName, String adviceMethodName, Member targetMember, String fieldName) {
+	
+	private Member adviceMethod;
+	private ISourceLocation sourceLocation;
+	private ResolvedType aspectType;
+	
+	public Member getSignature()
+	{
+		return adviceMethod;
+	}
+	
+	public String getPointcutString()
+	{
+		return "methodexecution(" + targetMember.getName() + ")";		
+	}
+	
+	public ISourceLocation getSourceLocation()
+	{
+		return sourceLocation;
+	}
+	
+	public ResolvedType getDeclaringType() 
+	{
+		return aspectType;
+	}
+	
+	public UnresolvedType getDeclaringAspect()
+	{
+		return aspectType;
+	}
+	
+	public COOLCoordEffect(String aspectClassName, 
+			               String adviceMethodName, 
+			               Member targetMember, 
+			               String fieldName,
+			               Member adviceMethod,
+			               ISourceLocation loc,
+			               ResolvedType aspectType) 
+	{
 		//System.err.println("Buildying a COOL advice:"+aspectClassName+"."+adviceMethodName);
 		this.aspectClassName = aspectClassName;
 		this.adviceMethodName = adviceMethodName;
 		this.targetMember = targetMember;
 		this.fieldName = (fieldName!=null) ? fieldName : "_coord";
+		this.adviceMethod = adviceMethod;
+		this.sourceLocation = loc;
+		this.aspectType = aspectType;
 	}
 			
 	protected InstructionList getAdviceInstructions(BcelShadow shadow) {

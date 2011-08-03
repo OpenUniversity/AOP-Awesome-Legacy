@@ -7,6 +7,7 @@ import org.aspectj.weaver.bcel.BcelShadow;
 import org.aspectj.weaver.bcel.Utility;
 import org.aspectj.apache.bcel.Constants;
 import org.aspectj.apache.bcel.generic.*;
+import org.aspectj.bridge.ISourceLocation;
 /**
  * Associates coordinator and coordinated classes
  * by weaving into the coordinated's class constructor
@@ -16,7 +17,8 @@ import org.aspectj.apache.bcel.generic.*;
  * @author Sergei
  *
  */
-public class COOLAssociateEffect extends COOLEffect {
+public class COOLAssociateEffect extends COOLEffect 
+{
 	private UnresolvedType aspectType;
 	private Member aspectField;
 	private UnresolvedType targetType;
@@ -29,6 +31,27 @@ public class COOLAssociateEffect extends COOLEffect {
 		init(aspectClassName, targetClassName, null);
 	}
 
+	@Override
+	public UnresolvedType getDeclaringType() 
+	{
+		return aspectType;
+	}
+	
+	public AdviceKind getKind()
+	{
+		return AdviceKind.After;
+	}
+	
+	public String getPointcutString()
+	{
+		return "methodexecution(init)";		
+	}
+	
+	public ISourceLocation getSourceLocation()
+	{
+		return null;
+	}
+	
 	public COOLAssociateEffect(String aspectClassName, String targetClassName, Member aspectField) {
 		this.targetType = UnresolvedType.forName(targetClassName);
 		this.aspectType = UnresolvedType.forName(aspectClassName);
@@ -70,5 +93,12 @@ public class COOLAssociateEffect extends COOLEffect {
         il.append(Utility.createSet(fact, aspectField));		
 		return il;
 	}
+
+	@Override
+	public UnresolvedType getDeclaringAspect() 
+	{
+		return aspectType;
+	}
+
 	
 }

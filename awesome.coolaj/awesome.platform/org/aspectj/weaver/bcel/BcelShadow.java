@@ -135,6 +135,16 @@ public class BcelShadow extends Shadow {
 	// Some instructions have a target type that will vary
 	// from the signature (pr109728) (1.4 declaring type issue)
 	private String actualInstructionTargetType;
+	
+	private LazyMethodGen computationMethod;
+	
+	private static int lastShadowId = 1;
+	private int shadowId;
+	
+	public int getID()
+	{
+		return shadowId;
+	}
 
 	/**
 	 * This generates an unassociated shadow, rooted in a particular method but not rooted to any particular point in the code. It
@@ -144,6 +154,10 @@ public class BcelShadow extends Shadow {
 		super(kind, signature, enclosingShadow);
 		this.world = world;
 		this.enclosingMethod = enclosingMethod;
+		
+		shadowId = lastShadowId;
+		lastShadowId++;
+		
 	}
 
 	// ---- copies all state, including Shadow's mungers...
@@ -3567,5 +3581,13 @@ public class BcelShadow extends Shadow {
 
 	public String getActualTargetType() {
 		return actualInstructionTargetType;
+	}
+
+	public void setComputationMethod(LazyMethodGen computationMethod) {
+		this.computationMethod = computationMethod;
+	}
+
+	public LazyMethodGen getComputationMethod() {
+		return computationMethod;
 	}
 }

@@ -42,7 +42,10 @@ public class ProceedComputation {
 	public ProceedComputation(BcelShadow shadow, IntMap proceedMap) {
 		this.shadow = shadow;
 		this.world = shadow.getWorld();
+		
 		computationMethod = extractMethod();
+		shadow.setComputationMethod(computationMethod);
+		
 		String closureClassName =     		
 			NameMangler.makeClosureClassName(
     			shadow.getEnclosingClass().getType(),

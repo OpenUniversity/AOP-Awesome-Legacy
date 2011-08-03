@@ -1,9 +1,11 @@
 package coolplugin;
 
 import java.lang.reflect.Modifier;
+import awesome.platform.AbstractWeaver;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -20,22 +22,18 @@ import org.aspectj.apache.bcel.classfile.annotation.*;
 import org.aspectj.weaver.AnnotationAJ;
 import org.aspectj.weaver.bcel.BcelMethod;
 import org.aspectj.weaver.bcel.BcelShadow;
+import awesome.platform.IEffect;
 import org.aspectj.weaver.bcel.LazyClassGen;
 import org.aspectj.weaver.bcel.LazyMethodGen;
+import awesome.platform.MultiMechanism;
 import org.aspectj.weaver.IClassFileProvider;
 import org.aspectj.weaver.bcel.UnwovenClassFile;
 import org.aspectj.weaver.bcel.BcelWorld;
-import org.aspectj.weaver.bcel.BcelObjectType;
 import org.aspectj.apache.bcel.generic.*;
 import org.aspectj.apache.bcel.classfile.ConstantPool;
 
-import awesome.platform.AbstractWeaver;
-import awesome.platform.IEffect;
-import awesome.platform.MultiMechanism;
-
+import org.aspectj.bridge.ISourceLocation;
 import com.sun.org.apache.bcel.internal.Constants;
-
-import cool.runtime.COOLLock;
 
 public privileged aspect COOLWeaver extends AbstractWeaver {
 
@@ -52,6 +50,19 @@ public privileged aspect COOLWeaver extends AbstractWeaver {
 	// private Map<ResolvedMember, Member> targetMethods = null;
 	private COOLTypeMunger typeMunger;
 
+	Map<String, List<IEffect>> classToEffects = new HashMap<String,  List<IEffect>>();
+	
+	public List<IEffect> getEffects(LazyClassGen aspectClazz)
+	{
+		List<IEffect> effects = classToEffects.get(aspectClazz.getName());		
+		return effects;
+	}
+	
+	public boolean handledByMe(LazyClassGen aspectClazz)
+	{
+		return isCOOLAspect(aspectClazz.getType());
+	}
+	
 	boolean around(MultiMechanism mm, LazyClassGen cg) :
 		transformClass(mm, cg) {
 		try {			
@@ -165,8 +176,8 @@ public privileged aspect COOLWeaver extends AbstractWeaver {
 		UnresolvedType aspectClass = targets.get(enclType);
 		//UnresolvedType aspectClass = getTargetType(enclType);
 		
-		System.out.println("Matching a class "+ enclClass + " " +
-				" aspect = " + aspectClass);
+		//System.out.println("Matching a class "+ enclClass + " " +
+		//		" aspect = " + aspectClass);
 		/*
 		System.out.println("baseName "+ enclClass.getName());
 		System.out.println("targets :"+ targets.entrySet());
@@ -383,26 +394,38 @@ public privileged aspect COOLWeaver extends AbstractWeaver {
  * @param clazz
  * @param targetType
  */
-private void mapAdvice(ResolvedType clazz, UnresolvedType targetType) {
+private void mapAdvice(ResolvedType clazz, UnresolvedType targetType) 
+{
+		List<IEffect> effects = new LinkedList<IEffect>();
+		classToEffects.put(clazz.getName(), effects);
 		ResolvedMember[] methods = clazz.getDeclaredMethods();
 		// iterate all methods in aspect class
 		for (ResolvedMember mg : methods) {
 			AnnotationGen ann = Utils.getCOOLAnnotation(mg);
 			if (ann == null)
 				continue;
+			
+			ISourceLocation loc = mg.getSourceLocation();
+			
 			String typeName = ann.getTypeName();
 			// if method has lock annotation...
 			if (typeName.equals(Utils.COOL_Lock_ANNOTATION.getName())) {
 				Member target = buildTargetMember(ann, targetType);
 				IEffect lockEffect = new COOLLockEffect(clazz.getName(),
-						mg.getName(), target, typeMunger.getCoordFieldName(targetType));
+						mg.getName(), target, typeMunger.getCoordFieldName(targetType),
+						mg, loc, clazz);
+				
 				lockMapping.put(target, lockEffect);
+				effects.add(lockEffect);
 			// if method has unlock annotation...
 			} else if (typeName.equals(Utils.COOL_Unlock_ANNOTATION.getName())) {
 				Member target = buildTargetMember(ann, targetType);
-				IEffect unlockEffect = new COOLUnlockEffect(clazz
-						.getName(), mg.getName(), target, typeMunger.getCoordFieldName(targetType));
+				IEffect unlockEffect = new COOLUnlockEffect(
+						clazz.getName(), mg.getName(), target, 
+						typeMunger.getCoordFieldName(targetType),
+						mg, loc, clazz);
 				unlockMapping.put(target, unlockEffect);
+				effects.add(unlockEffect);
 			}
 		}
 	}

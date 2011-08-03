@@ -328,9 +328,9 @@ public final class LazyClassGen {
 		return false;
 	}
 
-	// public void addAttribute(Attribute i) {
-	// myGen.addAttribute(i);
-	// }
+	 public void addAttribute(Attribute i) {
+	 myGen.addAttribute(i);
+	 }
 
 	// ----
 

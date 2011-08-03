@@ -1,9 +1,14 @@
 package awesome.platform;
+import org.aspectj.apache.bcel.generic.InstructionHandle;
 import org.aspectj.apache.bcel.generic.InstructionList;
 import org.aspectj.apache.bcel.generic.InstructionHandle;
 import org.aspectj.weaver.IClassFileProvider;
+import org.aspectj.weaver.bcel.BcelShadow;
+import org.aspectj.weaver.bcel.BcelWorld;
 import org.aspectj.weaver.bcel.LazyClassGen;
 import org.aspectj.weaver.bcel.LazyMethodGen;
+import org.aspectj.weaver.patterns.PerClause;
+import org.aspectj.weaver.patterns.PerClause.Kind;
 import org.aspectj.weaver.bcel.BcelWorld;
 import org.aspectj.weaver.bcel.BcelShadow;
 
@@ -46,4 +51,12 @@ public abstract aspect AbstractWeaver implements IMechanism {
 	public void setInputFiles(IClassFileProvider inputClasses) {
 		this.inputClasses=inputClasses;
 	}
+	
+	public PerClause.Kind getPerClause(LazyClassGen aspectClazz)
+	{
+		return PerClause.PEROBJECT;
+	}
+	
+	
+	
 }

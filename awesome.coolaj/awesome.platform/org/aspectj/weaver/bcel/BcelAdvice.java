@@ -88,6 +88,17 @@ public class BcelAdvice extends Advice implements IEffect {
 		this.concreteAspect = concreteAspect;
 	}
 
+	public Test getPointCutTest()
+	{
+		return pointcutTest;
+	}
+	
+	//YA
+	public String getPointcutString()
+	{
+		return getPointcut().toString();		
+	}
+	
 	/**
 	 * We don't always need to represent the signature with a heavyweight BcelMethod object - only if its around advice and inlining
 	 * is active

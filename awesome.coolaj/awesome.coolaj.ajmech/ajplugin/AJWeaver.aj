@@ -52,6 +52,7 @@ import org.aspectj.weaver.WeaverMessages;
 import org.aspectj.weaver.bcel.BcelClassWeaver.IfaceInitList;
 import org.aspectj.weaver.bcel.*;
 
+import org.aspectj.weaver.patterns.PerClause;
 import awesome.platform.*;
 
 import com.sun.org.apache.bcel.internal.generic.IndexedInstruction;
@@ -67,6 +68,34 @@ public aspect AJWeaver extends AbstractWeaver {
 
 	BcelClassWeaver itdWeaver;
 
+	public boolean handledByMe(LazyClassGen aspectClazz)
+	{
+		return aspectClazz.getType().isAspect();
+	}
+	
+	public PerClause.Kind getPerClause(LazyClassGen aspectClazz)
+	{
+		return aspectClazz.getType().getPerClause().getKind();
+	}
+	
+	public List<IEffect> getEffects(LazyClassGen aspectClazz)
+	{
+		List<IEffect> effects = new ArrayList<IEffect>();
+		List<ShadowMunger> shadowMungers = 
+			aspectClazz.getWorld().getCrosscuttingMembersSet().getShadowMungers();
+		
+		for(ShadowMunger m : shadowMungers)
+		{
+			if((m instanceof BcelAdvice) && 
+					(m.getDeclaringType() == aspectClazz.getType()))
+			{
+				effects.add((BcelAdvice) m);				
+			}
+		}
+		
+		return effects;
+	}
+	
 	boolean around(MultiMechanism mm, LazyClassGen clazz):
 		transformClass(mm, clazz) {
 		itdWeaver = new BcelClassWeaver(world, clazz);

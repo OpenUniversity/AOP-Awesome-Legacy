@@ -1,26 +1,25 @@
 package coolplugin;
 
-import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import org.aspectj.weaver.*;
+import org.aspectj.weaver.ast.Test;
 import org.aspectj.weaver.bcel.BcelShadow;
 import org.aspectj.weaver.bcel.BcelVar;
 import org.aspectj.weaver.bcel.BcelWorld;
 import org.aspectj.weaver.bcel.Range;
 import org.aspectj.weaver.bcel.ShadowRange;
 
+import awesome.platform.IEffect;
 import org.aspectj.weaver.bcel.Utility;
 import org.aspectj.apache.bcel.Constants;
 import org.aspectj.apache.bcel.generic.*;
 
-import awesome.platform.IEffect;
 
-
-public abstract class COOLEffect implements IEffect {	
-	
+public abstract class COOLEffect implements IEffect 
+{	
 	protected abstract InstructionList 
 	  getAdviceInstructions(BcelShadow shadow);
 	
@@ -28,6 +27,16 @@ public abstract class COOLEffect implements IEffect {
 	    shadow.getRange().insert(
 		        getAdviceInstructions(shadow), 
 		        Range.InsideBefore);
+	}
+	
+	public Member getSignature()
+	{
+		return null;
+	}
+	
+	public Test getPointCutTest()
+	{
+		return null;
 	}
 	
 	protected void weaveAfterReturning(BcelShadow shadow) {
