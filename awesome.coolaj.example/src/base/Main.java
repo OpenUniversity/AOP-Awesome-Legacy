@@ -135,6 +135,7 @@ public class Main {
 	 * @return
 	 */
 	static long[] runMultipleThreads(Stack buff, int threadsNum, int ops) {
+		System.out.println("runMultipleThreads " + threadsNum);
 		long[] result = new long[threadsNum];
 		WriterReaderThread[] threads = new WriterReaderThread[threadsNum];
 		for (int i = 0; i < threadsNum; i++)

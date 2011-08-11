@@ -7,24 +7,27 @@ public aspect LogAllToFile {
 	private PrintStream out = null;
 	private boolean caughtException = false;
 	protected String indent="";
-
+	
 	pointcut scope(): !within(LogAllToFile) && !cflow(within(LogAllToFile));
-	pointcut scopeBefore(): scope();
+	pointcut scopeBefore(): scope() && if(useAspect);
 	pointcut scopeAround(): scope();
 	pointcut scopeAfter(): scope();
 
 	public pointcut everything() :
-		(call(* *.*(..)) ||
+		( (call(* *.*(..)) ||
 		 execution(* *.*(..)) ||
-		 get(* *.*) ||
-		 set(* *.*) ||
-		 call(*.new(..)) ||
-		 execution(*.new(..)) ||
-		 initialization(*.new(..)) ||
-		 preinitialization(*.new(..)) ||
-		 staticinitialization(*) ||
+		 //get(* *.*) ||
+		 //set(* *.*) ||
+		 //call(*.new(..)) ||
+		 //execution(*.new(..)) ||
+		 //initialization(*.new(..)) ||
+		 //preinitialization(*.new(..)) ||
+		 //staticinitialization(*) ||
 		 adviceexecution() ||
-		 handler(*));
+		 handler(*) ) &&
+		 (!initialization(*.new(..)) &&
+			!preinitialization(*.new(..)) &&
+			!staticinitialization(*) ) );
 
 	public pointcut everythingAround() : 
 		everything() &&
@@ -37,7 +40,9 @@ public aspect LogAllToFile {
 		everything() &&
 		!handler(*);
 	
-	before() : everything() && scopeBefore() {
+	static boolean useAspect = false;
+	
+	before() : everything() && scopeBefore()  {
 		log("before", thisJoinPoint);
 	}
 

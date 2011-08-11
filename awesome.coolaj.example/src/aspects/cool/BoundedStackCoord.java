@@ -10,14 +10,14 @@ import awesome.platform.annotations.*;
 @Aspect
 public class BoundedStackCoord {
 	// code added by Oren
-	privileged public static aspect MyAspect {
+//	privileged public static aspect MyAspect {
 		//private int BoundedStack.foo;
 		//private BoundedStackCoord BoundedStack._mycoord;
 		//@AwSuppressReify
-		public Object[] BoundedStack.getBuffer() {
-			return buffer;
-		}
-	}
+//		public Object[] BoundedStack.getBuffer() {
+			//return buffer;
+//		}
+//	}
 	/*public void printBufferLength() {
 		System.out.println(target.getBuffer().length);
 	}*/
@@ -90,10 +90,10 @@ private @COOLConditionField boolean empty = true;
     @COOLOnExit(methodName="push", className="", parameterTypes={"java.lang.Object"})
   private void on_exit_push_15789782_0(base.BoundedStack thiz) { 
     empty = false;
-/*    if (top ==  _ref0(thiz))
-      full = true;*/
-    if (top ==  thiz.getBuffer().length)
-        full = true;
+    if (top ==  _ref0(thiz))
+      full = true;
+ //   if (top ==  thiz.getBuffer().length)
+ //       full = true;
   }
     @COOLExternalRef(expr="buffer.length")
   private double _ref0(base.BoundedStack thiz) {

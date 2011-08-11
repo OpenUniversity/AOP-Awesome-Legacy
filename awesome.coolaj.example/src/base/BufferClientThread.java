@@ -60,7 +60,8 @@ public abstract class BufferClientThread extends Thread {
 	protected abstract void accessBuffer();
 
 	public void run() {
-		started = false;
+			
+		started = false; 
 		finished = false;
 		// this allows multiple threads to wait for each other
 		if (waitBeforeRun) {
@@ -115,6 +116,7 @@ public abstract class BufferClientThread extends Thread {
 	static void startThreads(BufferClientThread[] threads) throws Exception {
 		if (threads.length == 0)
 			return;
+		
 		// obtaining the shared buffer object
 		Object buffer = threads[0].shared;
 		// verifying the pre-condition
@@ -122,6 +124,7 @@ public abstract class BufferClientThread extends Thread {
 			if (threads[i].shared != buffer)
 				throw new Exception("Threads must share the same buffer!");
 		// starting the threads, and instructing them to wait on the buffer
+		
 		for (int i = 0; i < threads.length; i++) {
 			threads[i].setWaitBeforeRun();
 			threads[i].start();
