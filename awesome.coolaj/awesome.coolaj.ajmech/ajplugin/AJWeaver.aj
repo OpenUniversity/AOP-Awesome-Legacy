@@ -68,6 +68,11 @@ public aspect AJWeaver extends AbstractWeaver {
 
 	BcelClassWeaver itdWeaver;
 
+	public String getName()
+	{
+		return "AspectJ";
+	}
+	
 	public boolean handledByMe(LazyClassGen aspectClazz)
 	{
 		return aspectClazz.getType().isAspect();

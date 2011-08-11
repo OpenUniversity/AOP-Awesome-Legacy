@@ -169,6 +169,9 @@ public class MultiMechanism {
 			} else {
 				BcelShadow bs = BcelShadow.makeFieldGet(world, mg, ih,
 						enclosingShadow);
+				
+				//bs.setOriginalPositions();
+				
 				String cname = fi.getClassName(cpg);
 				// TODO: was different. Check if semantics is preserved.
 				// !resolvedField.getDeclaringType().getName().equals(cname))
@@ -346,7 +349,9 @@ public class MultiMechanism {
 					generateShadowTags(clazz, xctAttr, c);
 				}				
 			}
-					
+			
+			Attribute[] as = m.getMethod().getCode().getAttributes();
+							
 			//changedMethods.add(m);
 			
 			//MethodGen mGen = m.pack();			
@@ -420,19 +425,24 @@ public class MultiMechanism {
 	
 	
 	
-	public boolean transform(LazyClassGen clazz) {
+	public boolean transform(LazyClassGen clazz) 
+	{
+		awesome.platform.adb.util.log.logger.logLn("transform " + clazz);
+		
 		boolean isChanged = false;
 		
 		generateAspectTag(clazz);		
 
 		 // need to prepare a list of effects for each method
-		methodNameToEffect = new HashMap<String, List<EffectApplication>>();		
+		methodNameToEffect = new HashMap<String, List<EffectApplication>>();	
 		
         List<BcelShadow> shadows = reify(clazz);
         for (BcelShadow shadow:shadows)
-        {        	        	
+        {        	        
+        	//shadow.setOriginalPositions();
+        	
         	if (transform(shadow)) 
-        		isChanged=true;
+        		isChanged=true;     	
         }
                
         // call after the transformation
@@ -447,6 +457,11 @@ public class MultiMechanism {
 	{
 		//System.out.println("Transforming a shadow:"+shadow+", "+shadow.getSourceLocation());
 		
+		if(shadow.getKind() == BcelShadow.FieldGet || shadow.getKind() == BcelShadow.FieldSet)
+		{
+			int x = 1;
+		}
+    
 		boolean isChanged = false;
 		ContextToken tok = CompilationAndWeavingContext.enteringPhase(
 				CompilationAndWeavingContext.IMPLEMENTING_ON_SHADOW, shadow);
@@ -468,11 +483,13 @@ public class MultiMechanism {
     		//if(e instanceof BcelAdvice)    			
     		effectList.add(new EffectApplication(e, shadow));
     	}
-			
+		
+ 
 		if (effects != null && effects.size() > 0) {
 			isChanged = true;
 			mix(effects, shadow);
 		}
+				
 		CompilationAndWeavingContext.leavingPhase(tok);
 		return isChanged;
 	}

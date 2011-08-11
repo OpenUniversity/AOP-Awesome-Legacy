@@ -26,5 +26,10 @@ public class COOLLockEffect extends COOLCoordEffect {
 	{
 		return AdviceKind.Before;
 	}
+	
+	public String getType()
+	{
+		return "COOLLockEffect";
+	}
 
 }

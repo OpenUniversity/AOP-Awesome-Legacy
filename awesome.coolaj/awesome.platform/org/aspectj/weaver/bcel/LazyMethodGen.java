@@ -1243,14 +1243,33 @@ public final class LazyMethodGen implements Traceable {
 		// bcel we should be able to do without it if we're paranoid enough
 		// through the rest of the compiler.
 
+		InstructionHandle methodStart = gen.getInstructionList().getStart();
+		InstructionHandle methodEnd = gen.getInstructionList().getEnd();
+		
+		// Determine how many 'slots' are used by parameters to the method.
+		// Then below we can determine if a local variable is a parameter variable, if it is
+		// we force its range to from the method start (as it may have been shuffled down
+		// due to insertion of advice like cflow entry)
+		int paramSlots = gen.isStatic() ? 0 : 1;
+		Type[] argTypes = gen.getArgumentTypes();
+		for (int i = 0; i < argTypes.length; i++) {
+				if (argTypes[i].getSize() == 2) {
+					paramSlots += 2;
+				} else {
+					paramSlots += 1;
+				}
+		}
+		
 		Map duplicatedLocalMap = new HashMap();
 		for (Iterator iter = localVariables.keySet().iterator(); iter.hasNext();) {
 			LocalVariableTag tag = (LocalVariableTag) iter.next();
 			// have we already added one with the same slot number and start
 			// location?
 			// if so, just continue.
-			LVPosition lvpos = (LVPosition) localVariables.get(tag);
-			InstructionHandle start = lvpos.start;
+			LVPosition lvpos = (LVPosition) localVariables.get(tag);			
+			InstructionHandle start = (tag.getSlot() < paramSlots ? methodStart : lvpos.start);
+			InstructionHandle end = (tag.getSlot() < paramSlots ? methodEnd : lvpos.end);
+			
 			Set slots = (Set) duplicatedLocalMap.get(start);
 			if (slots == null) {
 				slots = new HashSet();
@@ -1264,7 +1283,8 @@ public final class LazyMethodGen implements Traceable {
 			if (t == null) {
 				t = BcelWorld.makeBcelType(UnresolvedType.forSignature(tag.getType()));
 			}
-			gen.addLocalVariable(tag.getName(), t, tag.getSlot(), start, lvpos.end);
+			
+			gen.addLocalVariable(tag.getName(), t, tag.getSlot(), start, end);
 		}
 	}
 

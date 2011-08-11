@@ -88,6 +88,7 @@ public class BcelAdvice extends Advice implements IEffect {
 		this.concreteAspect = concreteAspect;
 	}
 
+	
 	public Test getPointCutTest()
 	{
 		return pointcutTest;
@@ -97,6 +98,11 @@ public class BcelAdvice extends Advice implements IEffect {
 	public String getPointcutString()
 	{
 		return getPointcut().toString();		
+	}
+	
+	public String getType()
+	{
+		return "AJAdvice";
 	}
 	
 	/**
@@ -1307,6 +1313,8 @@ public class BcelAdvice extends Advice implements IEffect {
   			range.append(callback);
   			//SK: return the result.
   			range.append(postCallback);
+  			
+  			//shadow.setOriginalPositions();
   		}
   	}
   	

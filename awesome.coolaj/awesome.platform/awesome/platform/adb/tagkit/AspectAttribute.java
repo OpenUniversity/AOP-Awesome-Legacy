@@ -21,7 +21,6 @@ public class AspectAttribute extends SourceLineContainingTag {
 
 	private PerClause.Kind per;
 
-	//private List<BcelAdvice> advices = new ArrayList<BcelAdvice>();
 	private List<awesome.platform.IEffect> advices;
 
 	private String fileName;
@@ -30,35 +29,24 @@ public class AspectAttribute extends SourceLineContainingTag {
 
 	private int startLine, endLine = 0;
 	
-	private BcelWorld world;
+	private String mechName = null;
 	
 	public int getPer()
 	{
 		if (per == PerClause.SINGLETON)
 			return 1;
 		
-		if (per == PerClause.PERCFLOW)
-			return 2;
-		
 		if (per == PerClause.PEROBJECT)
-			return 3;
-		
-		if (per == PerClause.FROMSUPER)
-			return 4;
-		
-		if (per == PerClause.PERTYPEWITHIN)
-			return 5;
-		
+			return 2;
+			
 		return 0;
 	}
 	
-	private IMechanism mech;
+	public String instanceFieldName = "";
 	
 	public AspectAttribute(BcelWorld world, IMechanism mech, LazyClassGen aspectClazz)
 	{
 		super(true);
-		
-		this.world = world;
 		
 		//per = aspectClazz.getType().getPerClause();
 		per = mech.getPerClause(aspectClazz);
@@ -71,21 +59,9 @@ public class AspectAttribute extends SourceLineContainingTag {
 		fileName = aspectClazz.getFileName();					
 		filePath = aspectClazz.getName().replace(".", "\\");
 		
+		mechName = mech.getName();
+		
 		advices = mech.getEffects(aspectClazz);
-		
-		/*
-		List<ShadowMunger> shadowMungers = 
-			aspectClazz.getWorld().getCrosscuttingMembersSet().getShadowMungers();
-		
-		for(ShadowMunger m : shadowMungers)
-		{
-			if((m instanceof BcelAdvice) && 
-					(m.getDeclaringType() == aspectClazz.getType()))
-			{
-				advices.add((BcelAdvice) m);				
-			}
-		}		
-		*/
 	}
 	
 	protected String getValue()  
@@ -97,7 +73,14 @@ public class AspectAttribute extends SourceLineContainingTag {
 		out.append(getLinePart(fileName, filePath,startLine));
 		out.append(" ");
 		out.append(getLinePart(fileName, filePath,endLine));
+		out.append(" ");
+		
+		out.append(mechName);
+		
 		out.append("\n");
+		
+		
+		
 		for (Iterator<IEffect> it = advices.iterator(); it.hasNext();) {
 			IEffect adv = it.next();
 			out.append(getAdviceFormatString(adv) + "\n");
@@ -141,10 +124,12 @@ public class AspectAttribute extends SourceLineContainingTag {
 //		List/*<Formal>*/ formals = msig.getFormals();
 		
 		String pcString = adv.getPointcutString().replace(" ", "");
+		
 		StringBuffer out = new StringBuffer(type + " " + 
 				getLinePart(fileName,filePath,slnr) +" " + 
 				getLinePart(fileName,filePath,elnr) + " "+ name + " " + sig +" " + 
-				pcString);
+				pcString + " " + adv.getType());
+		
 		for(int i = 0;i<nargs;i++){
 			out.append(" ");
 			out.append(formals[i].getName());

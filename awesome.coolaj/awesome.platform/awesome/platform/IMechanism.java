@@ -15,4 +15,8 @@ public interface IMechanism
 	public List<IEffect> getEffects(LazyClassGen aspectClazz);
 	
 	public PerClause.Kind getPerClause(LazyClassGen aspectClazz);
+	
+	public String getName();
+	
+	//public String getInstanceFieldName();
 }

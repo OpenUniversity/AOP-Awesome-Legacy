@@ -25,4 +25,9 @@ public class COOLUnlockEffect extends COOLCoordEffect {
 	{
 		return AdviceKind.After;
 	}
+	
+	public String getType()
+	{
+		return "COOLUnlockEffect";
+	}
 }

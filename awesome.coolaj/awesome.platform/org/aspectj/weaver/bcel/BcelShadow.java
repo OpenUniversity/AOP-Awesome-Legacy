@@ -136,6 +136,8 @@ public class BcelShadow extends Shadow {
 	// from the signature (pr109728) (1.4 declaring type issue)
 	private String actualInstructionTargetType;
 	
+	
+	// added for awdb START
 	private LazyMethodGen computationMethod;
 	
 	private static int lastShadowId = 1;
@@ -145,6 +147,33 @@ public class BcelShadow extends Shadow {
 	{
 		return shadowId;
 	}
+	
+	private int originalStart = -1;
+	private int originalEnd = -1;
+	
+	public void setOriginalPositions()
+	{
+		getRange().getBody().setPositions();
+    	originalStart = getRange().getStart().getPosition();
+		originalEnd = getRange().getEnd().getPosition();	
+		
+		awesome.platform.adb.util.log.logger.logLn("setOriginalPositions id " + 
+				shadowId + " originalStart " + originalStart + 
+				" endPosShadow " + originalEnd);
+
+	}
+	
+	public int getOriginalStart()
+	{
+		return originalStart;		
+	}
+	
+	public int getOriginalEnd()
+	{
+		return originalEnd;
+	}
+	
+	// added for awdb END
 
 	/**
 	 * This generates an unassociated shadow, rooted in a particular method but not rooted to any particular point in the code. It
@@ -156,8 +185,7 @@ public class BcelShadow extends Shadow {
 		this.enclosingMethod = enclosingMethod;
 		
 		shadowId = lastShadowId;
-		lastShadowId++;
-		
+		lastShadowId++;		
 	}
 
 	// ---- copies all state, including Shadow's mungers...

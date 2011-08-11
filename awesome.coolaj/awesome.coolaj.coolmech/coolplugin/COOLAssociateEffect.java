@@ -23,6 +23,11 @@ public class COOLAssociateEffect extends COOLEffect
 	private Member aspectField;
 	private UnresolvedType targetType;
 	
+	public String getType()
+	{
+		return "COOLAssociate";
+	}
+	
 	public COOLAssociateEffect(String aspectClassName, String targetClassName, String aspectFieldName) {		
 		init(aspectClassName, targetClassName, aspectFieldName);
 	}

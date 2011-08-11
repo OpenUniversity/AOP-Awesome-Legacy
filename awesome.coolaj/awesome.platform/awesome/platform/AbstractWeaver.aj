@@ -54,7 +54,7 @@ public abstract aspect AbstractWeaver implements IMechanism {
 	
 	public PerClause.Kind getPerClause(LazyClassGen aspectClazz)
 	{
-		return PerClause.PEROBJECT;
+		return PerClause.SINGLETON; //TBD
 	}
 	
 	

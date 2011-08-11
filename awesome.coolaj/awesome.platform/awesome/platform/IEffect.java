@@ -21,5 +21,7 @@ public interface IEffect {
 	
 	public UnresolvedType getDeclaringAspect();
 	
+	public String getType();
+	
 	
 }

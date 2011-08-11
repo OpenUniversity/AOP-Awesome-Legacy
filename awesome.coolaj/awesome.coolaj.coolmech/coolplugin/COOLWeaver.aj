@@ -52,6 +52,11 @@ public privileged aspect COOLWeaver extends AbstractWeaver {
 
 	Map<String, List<IEffect>> classToEffects = new HashMap<String,  List<IEffect>>();
 	
+	public String getName()
+	{
+		return "COOLWeaver";
+	}
+	
 	public List<IEffect> getEffects(LazyClassGen aspectClazz)
 	{
 		List<IEffect> effects = classToEffects.get(aspectClazz.getName());		
