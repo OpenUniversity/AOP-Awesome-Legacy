@@ -1,0 +1,6 @@
+Advice signatures normalization V1.0 (zonder PC;1 type after)
+
+AdviceSpec := 
+B(Formals)	//BEFORE
+A(Formals)	//AFTER
+R(Formals)	//AROUND
