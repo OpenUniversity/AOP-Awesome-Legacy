@@ -7,7 +7,10 @@ import java.util.List;
 
 import org.aspectj.apache.bcel.classfile.LineNumberTable;
 import org.aspectj.apache.bcel.classfile.Method;
+import org.aspectj.apache.bcel.generic.InstructionHandle;
+import org.aspectj.apache.bcel.generic.MethodGen;
 import org.aspectj.weaver.AjAttribute;
+import org.aspectj.apache.bcel.Constants;
 import org.aspectj.weaver.Member;
 import org.aspectj.weaver.Shadow;
 import org.aspectj.weaver.ast.Test;
@@ -47,8 +50,53 @@ public class CrossCuttingAttribute extends AjAttribute
 				return jpd;
 		}
 			
+		shadow.getRange().getBody().setPositions();
+		
 		int startPosShadow = shadow.getRange().getStart().getPosition();
 		int endPosShadow  = shadow.getRange().getEnd().getPosition();
+		
+		if(type == JoinPointDescriptor.TYPE_STATEMENT)
+		{
+			MethodGen mg = shadow.getEnclosingMethod().pack();
+			mg.getInstructionList().setPositions();
+			
+			boolean fixedStart = false;
+			
+			InstructionHandle ih = mg.getInstructionList().getStart();
+			while(ih != null)
+			{
+				
+				if(!fixedStart && ih.getPosition() >= startPosShadow)
+				{
+					startPosShadow = ih.getPosition();
+					fixedStart = true;
+				}
+				
+				if(shadow.getKind() == Shadow.FieldGet)
+				{
+					if(ih.getInstruction().opcode == Constants.GETFIELD)
+					{
+						if(ih.getNext() != null)
+							endPosShadow = ih.getNext().getPosition();
+						else
+							endPosShadow = ih.getPosition();
+					}						
+				}
+				
+				if(shadow.getKind() == Shadow.FieldSet)
+				{
+					if(ih.getInstruction().opcode == Constants.PUTFIELD)
+					{
+						if(ih.getNext() != null)
+							endPosShadow = ih.getNext().getPosition();
+						else
+							endPosShadow = ih.getPosition();
+					}						
+				}
+				
+				ih = ih.getNext();
+			}		
+		}		
 		
 		LazyMethodGen rangeMethod = shadow.getEnclosingMethod();
 
@@ -66,6 +114,8 @@ public class CrossCuttingAttribute extends AjAttribute
 		{
 			shadowMethod = rangeMethod;
 		}
+		
+		
 		
 		awesome.platform.adb.util.log.logger.logLn("shadow " + shadow + " startPosShadow " + startPosShadow + 
 				" endPosShadow " + endPosShadow + " startRange " + startRange + " endRange " + endRange);
@@ -114,22 +164,46 @@ public class CrossCuttingAttribute extends AjAttribute
 		BcelShadow shadow =  effect.getShadow();
 		// need to use the line number table?
 		//int startPos = shadow.getRange().getStart().getPosition();
+	/*	
+		int startPosShadow = shadow.getRange().getStart().getPosition();
+		int endPosShadow  = shadow.getRange().getEnd().getPosition();
 		
-		//int startPosShadow = shadow.getRange().getStart().getPosition();
-		//int endPosShadow  = shadow.getRange().getEnd().getPosition();
-		
-		int startPosShadow = shadow.getOriginalStart();
-		int endPosShadow = shadow.getOriginalEnd();
-	
+		//int startPosShadow = shadow.getOriginalStart();
+		//int endPosShadow = shadow.getOriginalEnd();
+		awesome.platform.adb.util.log.logger.logLn("makeAapl before shadow " + shadow + " startPosShadow " + startPosShadow + 
+				" endPosShadow " + endPosShadow);
+
 		shadow.getRange().getBody().setPositions();
+		
 		
 		startPosShadow = shadow.getRange().getStart().getPosition();
 		endPosShadow  = shadow.getRange().getEnd().getPosition();
 		awesome.platform.adb.util.log.logger.logLn("makeAapl after shadow " + shadow + " startPosShadow " + startPosShadow + 
 				" endPosShadow " + endPosShadow);
 
+		MethodGen mg = shadow.getEnclosingMethod().pack();
+		mg.getInstructionList().setPositions();
 		
+		InstructionHandle ih = shadow.getRange().getRealStart();
+		while(ih != null)
+		{
+			awesome.platform.adb.util.log.logger.logLn(ih.toString());
+			ih = ih.getNext();
+		}
+		
+		awesome.platform.adb.util.log.logger.logLn("method: ");
+		
+		
+		ih = mg.getInstructionList().getStart();
+		//ih = shadow.getEnclosingMethod().getBodyForPrint().getStart();
+		while(ih != null)
+		{
+			awesome.platform.adb.util.log.logger.logLn(ih.toString());
+			ih = ih.getNext();
+		}
+	*/	
 		int endPos  = shadow.getRange().getRealEnd().getPosition();
+	
 		
 		int endLineNo, startLineNo;
 		
@@ -179,9 +253,7 @@ public class CrossCuttingAttribute extends AjAttribute
 	{
 		awesome.platform.adb.util.log.logger.logLn("Making application for " + 
 				application);
-		
-		
-		
+				
 		JoinPointDescriptor jpd = getJPD(type, slnr, elnr, shadow);
 
 		jpd.addAdvice(new AdviceApplicationDescriptor(application));

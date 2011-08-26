@@ -7,7 +7,7 @@
 <listEntry value="4"/>
 </listAttribute>
 <mapAttribute key="org.eclipse.debug.core.environmentVariables">
-<mapEntry key="NDEBUG_ON" value="1"/>
+<mapEntry key="DEBUG_ON" value="1"/>
 </mapAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.aspectj.tools.ajc.Main"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-1.5 -outjar woven.jar&#13;&#10;src/base/Stack.java src/base/BoundedStack.java src/aspects/aspectj/LogAllToFile.aj src/aspects/cool/BoundedStackCoord.java"/>

@@ -29,6 +29,14 @@ public aspect LogAllToFile {
 			!preinitialization(*.new(..)) &&
 			!staticinitialization(*) ) );
 
+	public pointcut everythingBefore() : 
+		(everything() || get(* *.*) || set(* *.*)) &&
+		!initialization(*.new(..)) &&
+		!preinitialization(*.new(..)) &&
+		!staticinitialization(*) &&
+		!handler(*);
+		//everything();
+		
 	public pointcut everythingAround() : 
 		everything() &&
 		!initialization(*.new(..)) &&
@@ -40,13 +48,13 @@ public aspect LogAllToFile {
 		everything() &&
 		!handler(*);
 	
-	static boolean useAspect = false;
+	static boolean useAspect = true;
 	
-	before() : everything() && scopeBefore()  {
+	before() : everythingBefore() && scopeBefore()  {
 		log("before", thisJoinPoint);
 	}
 
-	Object around() : everythingAround() && scopeAround() {
+/*	Object around() : everythingAround() && scopeAround() {
 		log("around", thisJoinPoint);
 		indent = indent + "  ";
 		try{
@@ -55,7 +63,7 @@ public aspect LogAllToFile {
 			indent = indent.substring(2);
 		}
 	}
-
+*/
 	after() : everythingAfter() && scopeAfter() {
 		log("after", thisJoinPoint);
 	}

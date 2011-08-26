@@ -1,0 +1,26 @@
+classpath C:\aop\awesome_svn\workspace\awesome.coolaj.example\woven.jar
+attach 127.0.0.1:4000
+break base.BoundedStack.pop
+break base.BoundedStack.push
+cont
+
+classpath C:\aop\awesome_svn\workspace\awesome.coolaj.example\woven.jar
+attach 127.0.0.1:4000
+breakat base.BoundedStack:16
+---------------------------------------------------
+Advice: aspects.aspectj.LogAllToFile B(Lorg/aspectj/lang/JoinPoint;)V
+base.BoundedStack.<clinit>
+base.Main.main
+---------------------------------------------------
+
+
+Thread-2[1] where
+  [1] base.BoundedStack.pop_aroundBody0 (BoundedStack.java:16)
+  [2] base.BoundedStack$AjcClosure1.run (BoundedStack.java:1)
+  [3] aspects.aspectj.LogAllToFile.ajc$around$aspects_aspectj_LogAllToFile$2$ec6
+0c2f0proceed (LogAllToFile.aj:1)
+  [4] aspects.aspectj.LogAllToFile.ajc$around$aspects_aspectj_LogAllToFile$2$ec6
+0c2f0 (LogAllToFile.aj:51)
+  [5] base.BoundedStack.pop (BoundedStack.java:14)
+  [6] base.WriterReaderThread.accessBuffer (WriterReaderThread.java:14)
+  [7] base.BufferClientThread.run (BufferClientThread.java:83)

@@ -1,0 +1,1287 @@
+---- AspectJ Properties ---
+AspectJ Compiler 1.6.5 built on Thursday Jun 18, 2009 at 03:42:32 GMT
+---- Dump Properties ---
+Dump file: ajcore.20110825.204829.748.txt
+Dump reason: abort
+Dump on exception: true
+Dump at exit condition: abort
+---- System Properties ---
+java.runtime.name=Java(TM) SE Runtime Environment
+sun.boot.library.path=C:\Program Files\Java\jre6\bin
+java.vm.version=19.1-b02
+java.vm.vendor=Sun Microsystems Inc.
+java.vendor.url=http://java.sun.com/
+path.separator=;
+java.vm.name=Java HotSpot(TM) Client VM
+file.encoding.pkg=sun.io
+sun.java.launcher=SUN_STANDARD
+user.country=GB
+sun.os.patch.level=Service Pack 1
+java.vm.specification.name=Java Virtual Machine Specification
+user.dir=C:\aop\awesome_svn\workspace\awesome.coolaj.example
+java.runtime.version=1.6.0_24-b07
+java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment
+java.endorsed.dirs=C:\Program Files\Java\jre6\lib\endorsed
+os.arch=x86
+java.io.tmpdir=C:\Users\yoav\AppData\Local\Temp\
+line.separator=
+
+java.vm.specification.vendor=Sun Microsystems Inc.
+user.variant=
+os.name=Windows 7
+sun.jnu.encoding=Cp1255
+java.library.path=C:\Program Files\Java\jre6\bin;.;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jre6/bin/client;C:/Program Files/Java/jre6/bin;C:/Program Files/Java/jre6/lib/i386;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files\MiKTeX 2.8\miktex\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\MKVtoolnix;C:\Program Files\Windows Live\Shared;C:\Program Files\ThinkPad\Bluetooth Software\;C:\Program Files\CVSNT\;C:\eclipse;
+java.specification.name=Java Platform API Specification
+java.class.version=50.0
+sun.management.compiler=HotSpot Client Compiler
+os.version=6.1
+user.home=C:\Users\yoav
+user.timezone=Asia/Jerusalem
+java.awt.printerjob=sun.awt.windows.WPrinterJob
+file.encoding=Cp1252
+java.specification.version=1.6
+java.class.path=C:\aop\aspect-1.6.5-src\lib\aspectjrt.jar;C:\aop\awesome_svn\workspace\awesome.coolaj\bin;C:\eclipse\plugins\org.aspectj.runtime_1.6.12.20110711134700\aspectjrt.jar;C:\aop\awesome_svn\workspace\awesome.coolaj\extmodules\asm-3.1.jar;C:\aop\awesome_svn\workspace\awesome.coolaj\extmodules\commons.jar;C:\aop\awesome_svn\workspace\awesome.coolaj\extmodules\jrockit.jar;C:\aop\awesome_svn\workspace\awesome.coolaj\extmodules\aspectjtools.jar;C:\aop\aspect-1.6.5-src\lib\aspectjtools.jar
+user.name=yoav
+java.vm.specification.version=1.0
+java.home=C:\Program Files\Java\jre6
+sun.arch.data.model=32
+user.language=en
+java.specification.vendor=Sun Microsystems Inc.
+awt.toolkit=sun.awt.windows.WToolkit
+java.vm.info=mixed mode, sharing
+java.version=1.6.0_24
+java.ext.dirs=C:\Program Files\Java\jre6\lib\ext;C:\Windows\Sun\Java\lib\ext
+sun.boot.class.path=C:\Program Files\Java\jre6\lib\resources.jar;C:\Program Files\Java\jre6\lib\rt.jar;C:\Program Files\Java\jre6\lib\sunrsasign.jar;C:\Program Files\Java\jre6\lib\jsse.jar;C:\Program Files\Java\jre6\lib\jce.jar;C:\Program Files\Java\jre6\lib\charsets.jar;C:\Program Files\Java\jre6\lib\modules\jdk.boot.jar;C:\Program Files\Java\jre6\classes
+java.vendor=Sun Microsystems Inc.
+file.separator=\
+java.vendor.url.bug=http://java.sun.com/cgi-bin/bugreport.cgi
+sun.io.unicode.encoding=UnicodeLittle
+sun.cpu.endian=little
+sun.desktop=windows
+sun.cpu.isalist=pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86
+---- Command Line ---
+-1.5
+-outjar
+woven.jar
+src/base/Stack.java
+src/base/BoundedStack.java
+src/aspects/aspectj/LogAllToFile.aj
+src/aspects/cool/BoundedStackCoord.java
+---- Full Classpath ---
+C:\Program Files\Java\jre6\lib\resources.jar(1133382 bytes)
+C:\Program Files\Java\jre6\lib\rt.jar(44724671 bytes)
+C:\Program Files\Java\jre6\lib\sunrsasign.jar(missing)
+C:\Program Files\Java\jre6\lib\jsse.jar(569269 bytes)
+C:\Program Files\Java\jre6\lib\jce.jar(88256 bytes)
+C:\Program Files\Java\jre6\lib\charsets.jar(6695540 bytes)
+C:\Program Files\Java\jre6\lib\modules\jdk.boot.jar(missing)
+C:\Program Files\Java\jre6\classes(missing)
+C:\Program Files\Java\jre6\lib\ext\dnsns.jar(8239 bytes)
+C:\Program Files\Java\jre6\lib\ext\localedata.jar(833261 bytes)
+C:\Program Files\Java\jre6\lib\ext\sunjce_provider.jar(170239 bytes)
+C:\Program Files\Java\jre6\lib\ext\sunmscapi.jar(33668 bytes)
+C:\Program Files\Java\jre6\lib\ext\sunpkcs11.jar(231749 bytes)
+C:\aop\aspect-1.6.5-src\lib\aspectjrt.jar(116039 bytes)
+C:\aop\awesome_svn\workspace\awesome.coolaj\bin(8 entries)
+C:\eclipse\plugins\org.aspectj.runtime_1.6.12.20110711134700\aspectjrt.jar(116222 bytes)
+C:\aop\awesome_svn\workspace\awesome.coolaj\extmodules\asm-3.1.jar(43035 bytes)
+C:\aop\awesome_svn\workspace\awesome.coolaj\extmodules\commons.jar(286777 bytes)
+C:\aop\awesome_svn\workspace\awesome.coolaj\extmodules\jrockit.jar(1969 bytes)
+---- Compiler Messages ---
+abort trouble in: 
+public class aspects.cool.BoundedStackCoord extends java.lang.Object:
+  private int top [RuntimeInvisibleAnnotations]
+  private boolean full [RuntimeInvisibleAnnotations]
+  private boolean empty [RuntimeInvisibleAnnotations]
+  private cool.runtime.MethodState meth_pop_0
+  private cool.runtime.MethodState meth_push_1
+  public void <init>():
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 11)
+                    INVOKESPECIAL java.lang.Object.<init> ()V
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 26)
+                    ICONST_0
+                    PUTFIELD aspects.cool.BoundedStackCoord.top I
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 27)
+                    ICONST_0
+                    PUTFIELD aspects.cool.BoundedStackCoord.full Z
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 28)
+                    ICONST_1
+                    PUTFIELD aspects.cool.BoundedStackCoord.empty Z
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 30)
+                    NEW cool.runtime.MethodState
+                    DUP
+                    INVOKESPECIAL cool.runtime.MethodState.<init> ()V
+                    PUTFIELD aspects.cool.BoundedStackCoord.meth_pop_0 Lcool/runtime/MethodState;
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 31)
+                    NEW cool.runtime.MethodState
+                    DUP
+                    INVOKESPECIAL cool.runtime.MethodState.<init> ()V
+                    PUTFIELD aspects.cool.BoundedStackCoord.meth_push_1 Lcool/runtime/MethodState;
+                    RETURN   (line 11)
+  end public void <init>()
+
+  public synchronized void meth_pop_0_lock(base.BoundedStack)    org.aspectj.weaver.MethodDeclarationLineNumber: 34:987
+:
+                    ALOAD_1
+                    ASTORE_3
+                    ACONST_NULL
+                    ASTORE_2
+    adviceexecution(void aspects.cool.BoundedStackCoord.meth_pop_0_lock(base.BoundedStack))
+    | catch java.lang.Throwable -> E1
+    | |             INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$if$14b ()Z
+    | |             IFEQ L1
+    | |             GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    | |             INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    | |             IFNE L1
+    | |             INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    | |             ALOAD_2
+    | |             IFNONNULL L0
+    | |             GETSTATIC aspects.cool.BoundedStackCoord.ajc$tjp_0 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    | |             ALOAD_0
+    | |             ALOAD_0
+    | |             ALOAD_3
+    | |             INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    | |             ASTORE_2
+    | |         L0: ALOAD_2
+    | |             INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0 (Lorg/aspectj/lang/JoinPoint;)V
+    | |         L1: GOTO L3   (line 35)
+    | | catch java.lang.InterruptedException -> E0
+    | | |       L2: ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 39)
+    | | |           INVOKEVIRTUAL java.lang.Object.wait ()V
+    | | catch java.lang.InterruptedException -> E0
+    | |             GOTO L3
+    | |         E0: POP
+    | |         L3: ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 36)
+    | |             GETFIELD aspects.cool.BoundedStackCoord.meth_pop_0 Lcool/runtime/MethodState;
+    | |             INVOKEVIRTUAL cool.runtime.MethodState.isBusyByOtherThread ()Z
+    | |             IFNE L2
+    | |             ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 37)
+    | |             GETFIELD aspects.cool.BoundedStackCoord.meth_push_1 Lcool/runtime/MethodState;
+    | |             INVOKEVIRTUAL cool.runtime.MethodState.isBusyByOtherThread ()Z
+    | |             IFNE L2
+    | |             ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 38)
+    | |             INVOKESPECIAL aspects.cool.BoundedStackCoord.requires_pop_33109165_0 ()Z
+    | |             IFEQ L2   (line 35)
+    | |             ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 40)
+    | |             ALOAD_1     // Lbase/BoundedStack; thiz
+    | |             INVOKESPECIAL aspects.cool.BoundedStackCoord.on_entry_pop_33109165_0 (Lbase/BoundedStack;)V
+    | |             ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 41)
+    | |             GETFIELD aspects.cool.BoundedStackCoord.meth_pop_0 Lcool/runtime/MethodState;
+    | |             INVOKEVIRTUAL cool.runtime.MethodState.in ()V
+    | |             GOTO L6   (line 42)
+    | catch java.lang.Throwable -> E1
+    |           E1: ASTORE 4
+    |               GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    |               INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    |               IFNE L5
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    |               ALOAD_2
+    |               IFNONNULL L4
+    |               GETSTATIC aspects.cool.BoundedStackCoord.ajc$tjp_0 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    |               ALOAD_0
+    |               ALOAD_0
+    |               ALOAD_3
+    |               INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    |               ASTORE_2
+    |           L4: ALOAD_2
+    |               INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$after$aspects_aspectj_LogAllToFile$2$44227cde (Lorg/aspectj/lang/JoinPoint;)V
+    |           L5: ALOAD 4
+    |               ATHROW
+    |           L6: GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    |               INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    |               IFNE L8
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    |               ALOAD_2
+    |               IFNONNULL L7
+    |               GETSTATIC aspects.cool.BoundedStackCoord.ajc$tjp_0 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    |               ALOAD_0
+    |               ALOAD_0
+    |               ALOAD_3
+    |               INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    |               ASTORE_2
+    |           L7: ALOAD_2
+    |               INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$after$aspects_aspectj_LogAllToFile$2$44227cde (Lorg/aspectj/lang/JoinPoint;)V
+    |           L8: RETURN
+    |               RETURN
+    adviceexecution(void aspects.cool.BoundedStackCoord.meth_pop_0_lock(base.BoundedStack))
+  end public synchronized void meth_pop_0_lock(base.BoundedStack)
+
+  public synchronized void meth_pop_0_unlock(base.BoundedStack)    org.aspectj.weaver.MethodDeclarationLineNumber: 45:1387
+:
+                    ALOAD_1
+                    ASTORE_3
+                    ACONST_NULL
+                    ASTORE_2
+    adviceexecution(void aspects.cool.BoundedStackCoord.meth_pop_0_unlock(base.BoundedStack))
+    | catch java.lang.Throwable -> E0
+    | |             INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$if$14b ()Z
+    | |             IFEQ L1
+    | |             GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    | |             INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    | |             IFNE L1
+    | |             INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    | |             ALOAD_2
+    | |             IFNONNULL L0
+    | |             GETSTATIC aspects.cool.BoundedStackCoord.ajc$tjp_1 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    | |             ALOAD_0
+    | |             ALOAD_0
+    | |             ALOAD_3
+    | |             INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    | |             ASTORE_2
+    | |         L0: ALOAD_2
+    | |             INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0 (Lorg/aspectj/lang/JoinPoint;)V
+    | |         L1: ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 46)
+    | |             GETFIELD aspects.cool.BoundedStackCoord.meth_pop_0 Lcool/runtime/MethodState;
+    | |             INVOKEVIRTUAL cool.runtime.MethodState.out ()V
+    | |             ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 47)
+    | |             ALOAD_1     // Lbase/BoundedStack; thiz
+    | |             INVOKESPECIAL aspects.cool.BoundedStackCoord.on_exit_pop_33109165_0 (Lbase/BoundedStack;)V
+    | |             ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 48)
+    | |             INVOKEVIRTUAL java.lang.Object.notifyAll ()V
+    | |             GOTO L4   (line 49)
+    | catch java.lang.Throwable -> E0
+    |           E0: ASTORE 4
+    |               GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    |               INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    |               IFNE L3
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    |               ALOAD_2
+    |               IFNONNULL L2
+    |               GETSTATIC aspects.cool.BoundedStackCoord.ajc$tjp_1 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    |               ALOAD_0
+    |               ALOAD_0
+    |               ALOAD_3
+    |               INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    |               ASTORE_2
+    |           L2: ALOAD_2
+    |               INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$after$aspects_aspectj_LogAllToFile$2$44227cde (Lorg/aspectj/lang/JoinPoint;)V
+    |           L3: ALOAD 4
+    |               ATHROW
+    |           L4: GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    |               INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    |               IFNE L6
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    |               ALOAD_2
+    |               IFNONNULL L5
+    |               GETSTATIC aspects.cool.BoundedStackCoord.ajc$tjp_1 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    |               ALOAD_0
+    |               ALOAD_0
+    |               ALOAD_3
+    |               INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    |               ASTORE_2
+    |           L5: ALOAD_2
+    |               INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$after$aspects_aspectj_LogAllToFile$2$44227cde (Lorg/aspectj/lang/JoinPoint;)V
+    |           L6: RETURN
+    |               RETURN
+    adviceexecution(void aspects.cool.BoundedStackCoord.meth_pop_0_unlock(base.BoundedStack))
+  end public synchronized void meth_pop_0_unlock(base.BoundedStack)
+
+  public synchronized void meth_push_1_lock(base.BoundedStack)    org.aspectj.weaver.MethodDeclarationLineNumber: 51:1623
+:
+                    ALOAD_1
+                    ASTORE_3
+                    ACONST_NULL
+                    ASTORE_2
+    adviceexecution(void aspects.cool.BoundedStackCoord.meth_push_1_lock(base.BoundedStack))
+    | catch java.lang.Throwable -> E1
+    | |             INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$if$14b ()Z
+    | |             IFEQ L1
+    | |             GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    | |             INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    | |             IFNE L1
+    | |             INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    | |             ALOAD_2
+    | |             IFNONNULL L0
+    | |             GETSTATIC aspects.cool.BoundedStackCoord.ajc$tjp_2 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    | |             ALOAD_0
+    | |             ALOAD_0
+    | |             ALOAD_3
+    | |             INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    | |             ASTORE_2
+    | |         L0: ALOAD_2
+    | |             INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0 (Lorg/aspectj/lang/JoinPoint;)V
+    | |         L1: GOTO L3   (line 52)
+    | | catch java.lang.InterruptedException -> E0
+    | | |       L2: ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 56)
+    | | |           INVOKEVIRTUAL java.lang.Object.wait ()V
+    | | catch java.lang.InterruptedException -> E0
+    | |             GOTO L3
+    | |         E0: POP
+    | |         L3: ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 53)
+    | |             GETFIELD aspects.cool.BoundedStackCoord.meth_push_1 Lcool/runtime/MethodState;
+    | |             INVOKEVIRTUAL cool.runtime.MethodState.isBusyByOtherThread ()Z
+    | |             IFNE L2
+    | |             ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 54)
+    | |             GETFIELD aspects.cool.BoundedStackCoord.meth_pop_0 Lcool/runtime/MethodState;
+    | |             INVOKEVIRTUAL cool.runtime.MethodState.isBusyByOtherThread ()Z
+    | |             IFNE L2
+    | |             ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 55)
+    | |             INVOKESPECIAL aspects.cool.BoundedStackCoord.requires_push_15789782_0 ()Z
+    | |             IFEQ L2   (line 52)
+    | |             ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 57)
+    | |             ALOAD_1     // Lbase/BoundedStack; thiz
+    | |             INVOKESPECIAL aspects.cool.BoundedStackCoord.on_entry_push_15789782_0 (Lbase/BoundedStack;)V
+    | |             ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 58)
+    | |             GETFIELD aspects.cool.BoundedStackCoord.meth_push_1 Lcool/runtime/MethodState;
+    | |             INVOKEVIRTUAL cool.runtime.MethodState.in ()V
+    | |             GOTO L6   (line 59)
+    | catch java.lang.Throwable -> E1
+    |           E1: ASTORE 4
+    |               GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    |               INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    |               IFNE L5
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    |               ALOAD_2
+    |               IFNONNULL L4
+    |               GETSTATIC aspects.cool.BoundedStackCoord.ajc$tjp_2 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    |               ALOAD_0
+    |               ALOAD_0
+    |               ALOAD_3
+    |               INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    |               ASTORE_2
+    |           L4: ALOAD_2
+    |               INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$after$aspects_aspectj_LogAllToFile$2$44227cde (Lorg/aspectj/lang/JoinPoint;)V
+    |           L5: ALOAD 4
+    |               ATHROW
+    |           L6: GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    |               INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    |               IFNE L8
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    |               ALOAD_2
+    |               IFNONNULL L7
+    |               GETSTATIC aspects.cool.BoundedStackCoord.ajc$tjp_2 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    |               ALOAD_0
+    |               ALOAD_0
+    |               ALOAD_3
+    |               INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    |               ASTORE_2
+    |           L7: ALOAD_2
+    |               INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$after$aspects_aspectj_LogAllToFile$2$44227cde (Lorg/aspectj/lang/JoinPoint;)V
+    |           L8: RETURN
+    |               RETURN
+    adviceexecution(void aspects.cool.BoundedStackCoord.meth_push_1_lock(base.BoundedStack))
+  end public synchronized void meth_push_1_lock(base.BoundedStack)
+
+  public synchronized void meth_push_1_unlock(base.BoundedStack)    org.aspectj.weaver.MethodDeclarationLineNumber: 62:2046
+:
+                    ALOAD_1
+                    ASTORE_3
+                    ACONST_NULL
+                    ASTORE_2
+    adviceexecution(void aspects.cool.BoundedStackCoord.meth_push_1_unlock(base.BoundedStack))
+    | catch java.lang.Throwable -> E0
+    | |             INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$if$14b ()Z
+    | |             IFEQ L1
+    | |             GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    | |             INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    | |             IFNE L1
+    | |             INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    | |             ALOAD_2
+    | |             IFNONNULL L0
+    | |             GETSTATIC aspects.cool.BoundedStackCoord.ajc$tjp_3 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    | |             ALOAD_0
+    | |             ALOAD_0
+    | |             ALOAD_3
+    | |             INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    | |             ASTORE_2
+    | |         L0: ALOAD_2
+    | |             INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0 (Lorg/aspectj/lang/JoinPoint;)V
+    | |         L1: ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 63)
+    | |             GETFIELD aspects.cool.BoundedStackCoord.meth_push_1 Lcool/runtime/MethodState;
+    | |             INVOKEVIRTUAL cool.runtime.MethodState.out ()V
+    | |             ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 64)
+    | |             ALOAD_1     // Lbase/BoundedStack; thiz
+    | |             INVOKESPECIAL aspects.cool.BoundedStackCoord.on_exit_push_15789782_0 (Lbase/BoundedStack;)V
+    | |             ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 65)
+    | |             INVOKEVIRTUAL java.lang.Object.notifyAll ()V
+    | |             GOTO L4   (line 66)
+    | catch java.lang.Throwable -> E0
+    |           E0: ASTORE 4
+    |               GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    |               INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    |               IFNE L3
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    |               ALOAD_2
+    |               IFNONNULL L2
+    |               GETSTATIC aspects.cool.BoundedStackCoord.ajc$tjp_3 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    |               ALOAD_0
+    |               ALOAD_0
+    |               ALOAD_3
+    |               INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    |               ASTORE_2
+    |           L2: ALOAD_2
+    |               INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$after$aspects_aspectj_LogAllToFile$2$44227cde (Lorg/aspectj/lang/JoinPoint;)V
+    |           L3: ALOAD 4
+    |               ATHROW
+    |           L4: GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    |               INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    |               IFNE L6
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    |               ALOAD_2
+    |               IFNONNULL L5
+    |               GETSTATIC aspects.cool.BoundedStackCoord.ajc$tjp_3 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    |               ALOAD_0
+    |               ALOAD_0
+    |               ALOAD_3
+    |               INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    |               ASTORE_2
+    |           L5: ALOAD_2
+    |               INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$after$aspects_aspectj_LogAllToFile$2$44227cde (Lorg/aspectj/lang/JoinPoint;)V
+    |           L6: RETURN
+    |               RETURN
+    adviceexecution(void aspects.cool.BoundedStackCoord.meth_push_1_unlock(base.BoundedStack))
+  end public synchronized void meth_push_1_unlock(base.BoundedStack)
+
+  private boolean requires_pop_33109165_0()    org.aspectj.weaver.MethodDeclarationLineNumber: 68:2261
+:
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 69)
+                    ASTORE_2
+    field-get(boolean aspects.cool.BoundedStackCoord.empty)
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$if$14b ()Z
+    |               IFEQ L0
+    |               GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    |               INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    |               IFNE L0
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    |               GETSTATIC aspects.cool.BoundedStackCoord.ajc$tjp_4 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    |               ALOAD_0
+    |               ALOAD_2
+    |               INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    |               INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0 (Lorg/aspectj/lang/JoinPoint;)V
+    |           L0: ALOAD_2
+    |               GETFIELD aspects.cool.BoundedStackCoord.empty Z
+    field-get(boolean aspects.cool.BoundedStackCoord.empty)
+                    IFEQ L1
+                    ICONST_0
+                    GOTO L2
+                L1: ICONST_1
+                L2: IRETURN
+  end private boolean requires_pop_33109165_0()
+
+  private boolean requires_push_15789782_0()    org.aspectj.weaver.MethodDeclarationLineNumber: 72:2420
+:
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 73)
+                    ASTORE_2
+    field-get(boolean aspects.cool.BoundedStackCoord.full)
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$if$14b ()Z
+    |               IFEQ L0
+    |               GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    |               INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    |               IFNE L0
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    |               GETSTATIC aspects.cool.BoundedStackCoord.ajc$tjp_5 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    |               ALOAD_0
+    |               ALOAD_2
+    |               INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    |               INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0 (Lorg/aspectj/lang/JoinPoint;)V
+    |           L0: ALOAD_2
+    |               GETFIELD aspects.cool.BoundedStackCoord.full Z
+    field-get(boolean aspects.cool.BoundedStackCoord.full)
+                    IFEQ L1
+                    ICONST_0
+                    GOTO L2
+                L1: ICONST_1
+                L2: IRETURN
+  end private boolean requires_push_15789782_0()
+
+  private void on_entry_pop_33109165_0(base.BoundedStack)    org.aspectj.weaver.MethodDeclarationLineNumber: 76:2556
+:
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 77)
+                    DUP
+                    ASTORE_3
+    field-get(int aspects.cool.BoundedStackCoord.top)
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$if$14b ()Z
+    |               IFEQ L0
+    |               GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    |               INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    |               IFNE L0
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    |               GETSTATIC aspects.cool.BoundedStackCoord.ajc$tjp_6 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    |               ALOAD_0
+    |               ALOAD_3
+    |               INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    |               INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0 (Lorg/aspectj/lang/JoinPoint;)V
+    |           L0: ALOAD_3
+    |               GETFIELD aspects.cool.BoundedStackCoord.top I
+    field-get(int aspects.cool.BoundedStackCoord.top)
+                    ICONST_1
+                    ISUB
+                    ISTORE 5
+                    ASTORE 6
+    field-set(int aspects.cool.BoundedStackCoord.top)
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$if$14b ()Z
+    |               IFEQ L1
+    |               GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    |               INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    |               IFNE L1
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    |               GETSTATIC aspects.cool.BoundedStackCoord.ajc$tjp_7 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    |               ALOAD_0
+    |               ALOAD 6
+    |               ILOAD 5
+    |               INVOKESTATIC org.aspectj.runtime.internal.Conversions.intObject (I)Ljava/lang/Object;
+    |               INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    |               INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0 (Lorg/aspectj/lang/JoinPoint;)V
+    |           L1: ALOAD 6
+    |               ILOAD 5
+    |               PUTFIELD aspects.cool.BoundedStackCoord.top I
+    field-set(int aspects.cool.BoundedStackCoord.top)
+                    RETURN   (line 78)
+  end private void on_entry_pop_33109165_0(base.BoundedStack)
+
+  private void on_entry_push_15789782_0(base.BoundedStack)    org.aspectj.weaver.MethodDeclarationLineNumber: 80:2736
+:
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 81)
+                    DUP
+                    ASTORE_3
+    field-get(int aspects.cool.BoundedStackCoord.top)
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$if$14b ()Z
+    |               IFEQ L0
+    |               GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    |               INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    |               IFNE L0
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    |               GETSTATIC aspects.cool.BoundedStackCoord.ajc$tjp_8 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    |               ALOAD_0
+    |               ALOAD_3
+    |               INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    |               INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0 (Lorg/aspectj/lang/JoinPoint;)V
+    |           L0: ALOAD_3
+    |               GETFIELD aspects.cool.BoundedStackCoord.top I
+    field-get(int aspects.cool.BoundedStackCoord.top)
+                    ICONST_1
+                    IADD
+                    ISTORE 5
+                    ASTORE 6
+    field-set(int aspects.cool.BoundedStackCoord.top)
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$if$14b ()Z
+    |               IFEQ L1
+    |               GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    |               INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    |               IFNE L1
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    |               GETSTATIC aspects.cool.BoundedStackCoord.ajc$tjp_9 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    |               ALOAD_0
+    |               ALOAD 6
+    |               ILOAD 5
+    |               INVOKESTATIC org.aspectj.runtime.internal.Conversions.intObject (I)Ljava/lang/Object;
+    |               INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    |               INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0 (Lorg/aspectj/lang/JoinPoint;)V
+    |           L1: ALOAD 6
+    |               ILOAD 5
+    |               PUTFIELD aspects.cool.BoundedStackCoord.top I
+    field-set(int aspects.cool.BoundedStackCoord.top)
+                    RETURN   (line 82)
+  end private void on_entry_push_15789782_0(base.BoundedStack)
+
+  private void on_exit_pop_33109165_0(base.BoundedStack)    org.aspectj.weaver.MethodDeclarationLineNumber: 84:2897
+:
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 85)
+                    ICONST_0
+                    ISTORE_3
+                    ASTORE 4
+    field-set(boolean aspects.cool.BoundedStackCoord.full)
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$if$14b ()Z
+    |               IFEQ L0
+    |               GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    |               INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    |               IFNE L0
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    |               GETSTATIC aspects.cool.BoundedStackCoord.ajc$tjp_10 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    |               ALOAD_0
+    |               ALOAD 4
+    |               ILOAD_3
+    |               INVOKESTATIC org.aspectj.runtime.internal.Conversions.booleanObject (Z)Ljava/lang/Object;
+    |               INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    |               INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0 (Lorg/aspectj/lang/JoinPoint;)V
+    |           L0: ALOAD 4
+    |               ILOAD_3
+    |               PUTFIELD aspects.cool.BoundedStackCoord.full Z
+    field-set(boolean aspects.cool.BoundedStackCoord.full)
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 86)
+                    ASTORE 6
+    field-get(int aspects.cool.BoundedStackCoord.top)
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$if$14b ()Z
+    |               IFEQ L1
+    |               GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    |               INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    |               IFNE L1
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    |               GETSTATIC aspects.cool.BoundedStackCoord.ajc$tjp_11 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    |               ALOAD_0
+    |               ALOAD 6
+    |               INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    |               INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0 (Lorg/aspectj/lang/JoinPoint;)V
+    |           L1: ALOAD 6
+    |               GETFIELD aspects.cool.BoundedStackCoord.top I
+    field-get(int aspects.cool.BoundedStackCoord.top)
+                    IFNE L3
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 87)
+                    ICONST_1
+                    ISTORE 8
+                    ASTORE 9
+    field-set(boolean aspects.cool.BoundedStackCoord.empty)
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$if$14b ()Z
+    |               IFEQ L2
+    |               GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    |               INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    |               IFNE L2
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    |               GETSTATIC aspects.cool.BoundedStackCoord.ajc$tjp_12 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    |               ALOAD_0
+    |               ALOAD 9
+    |               ILOAD 8
+    |               INVOKESTATIC org.aspectj.runtime.internal.Conversions.booleanObject (Z)Ljava/lang/Object;
+    |               INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    |               INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0 (Lorg/aspectj/lang/JoinPoint;)V
+    |           L2: ALOAD 9
+    |               ILOAD 8
+    |               PUTFIELD aspects.cool.BoundedStackCoord.empty Z
+    field-set(boolean aspects.cool.BoundedStackCoord.empty)
+                L3: RETURN   (line 88)
+  end private void on_exit_pop_33109165_0(base.BoundedStack)
+
+  private void on_exit_push_15789782_0(base.BoundedStack)    org.aspectj.weaver.MethodDeclarationLineNumber: 91:3138
+:
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 92)
+                    ICONST_0
+                    ISTORE_3
+                    ASTORE 4
+    field-set(boolean aspects.cool.BoundedStackCoord.empty)
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$if$14b ()Z
+    |               IFEQ L0
+    |               GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    |               INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    |               IFNE L0
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    |               GETSTATIC aspects.cool.BoundedStackCoord.ajc$tjp_13 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    |               ALOAD_0
+    |               ALOAD 4
+    |               ILOAD_3
+    |               INVOKESTATIC org.aspectj.runtime.internal.Conversions.booleanObject (Z)Ljava/lang/Object;
+    |               INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    |               INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0 (Lorg/aspectj/lang/JoinPoint;)V
+    |           L0: ALOAD 4
+    |               ILOAD_3
+    |               PUTFIELD aspects.cool.BoundedStackCoord.empty Z
+    field-set(boolean aspects.cool.BoundedStackCoord.empty)
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 93)
+                    ASTORE 6
+    field-get(int aspects.cool.BoundedStackCoord.top)
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$if$14b ()Z
+    |               IFEQ L1
+    |               GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    |               INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    |               IFNE L1
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    |               GETSTATIC aspects.cool.BoundedStackCoord.ajc$tjp_14 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    |               ALOAD_0
+    |               ALOAD 6
+    |               INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    |               INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0 (Lorg/aspectj/lang/JoinPoint;)V
+    |           L1: ALOAD 6
+    |               GETFIELD aspects.cool.BoundedStackCoord.top I
+    field-get(int aspects.cool.BoundedStackCoord.top)
+                    I2D
+                    ALOAD_1     // Lbase/BoundedStack; thiz
+                    ASTORE 8
+    field-get(java.lang.Object[] base.BoundedStack.buffer)
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$if$14b ()Z
+    |               IFEQ L2
+    |               GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    |               INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    |               IFNE L2
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    |               GETSTATIC aspects.cool.BoundedStackCoord.ajc$tjp_15 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    |               ALOAD_0
+    |               ALOAD 8
+    |               INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    |               INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0 (Lorg/aspectj/lang/JoinPoint;)V
+    |           L2: ALOAD 8
+    |               INVOKEVIRTUAL base.BoundedStack._getBuffer ()[Ljava/lang/Object;
+    field-get(java.lang.Object[] base.BoundedStack.buffer)
+                    ARRAYLENGTH
+                    I2D
+                    DCMPL
+                    IFNE L4
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 94)
+                    ICONST_1
+                    ISTORE 10
+                    ASTORE 11
+    field-set(boolean aspects.cool.BoundedStackCoord.full)
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$if$14b ()Z
+    |               IFEQ L3
+    |               GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    |               INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    |               IFNE L3
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    |               GETSTATIC aspects.cool.BoundedStackCoord.ajc$tjp_16 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    |               ALOAD_0
+    |               ALOAD 11
+    |               ILOAD 10
+    |               INVOKESTATIC org.aspectj.runtime.internal.Conversions.booleanObject (Z)Ljava/lang/Object;
+    |               INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    |               INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0 (Lorg/aspectj/lang/JoinPoint;)V
+    |           L3: ALOAD 11
+    |               ILOAD 10
+    |               PUTFIELD aspects.cool.BoundedStackCoord.full Z
+    field-set(boolean aspects.cool.BoundedStackCoord.full)
+                L4: RETURN   (line 97)
+  end private void on_exit_push_15789782_0(base.BoundedStack)
+
+  private double _ref0(base.BoundedStack)    org.aspectj.weaver.MethodDeclarationLineNumber: 99:3394
+:
+                    DCONST_0   (line 100)
+                    DRETURN
+  end private double _ref0(base.BoundedStack)
+
+  public static aspects.cool.BoundedStackCoord aspectOf()    org.aspectj.weaver.AjAttribute$AjSynthetic@1fcf790
+:
+                    GETSTATIC aspects.cool.BoundedStackCoord.ajc$perSingletonInstance Laspects/cool/BoundedStackCoord;
+                    IFNONNULL L0
+                    NEW org.aspectj.lang.NoAspectBoundException
+                    DUP
+                    LDC "aspects.cool.BoundedStackCoord"
+                    GETSTATIC aspects.cool.BoundedStackCoord.ajc$initFailureCause Ljava/lang/Throwable;
+                    INVOKESPECIAL org.aspectj.lang.NoAspectBoundException.<init> (Ljava/lang/String;Ljava/lang/Throwable;)V
+                    ATHROW
+                L0: GETSTATIC aspects.cool.BoundedStackCoord.ajc$perSingletonInstance Laspects/cool/BoundedStackCoord;
+                    ARETURN
+  end public static aspects.cool.BoundedStackCoord aspectOf()
+
+  public static boolean hasAspect()    org.aspectj.weaver.AjAttribute$AjSynthetic@e14d81
+:
+                    GETSTATIC aspects.cool.BoundedStackCoord.ajc$perSingletonInstance Laspects/cool/BoundedStackCoord;
+                    IFNULL L0
+                    ICONST_1
+                    IRETURN
+                L0: ICONST_0
+                    IRETURN
+  end public static boolean hasAspect()
+
+  private static void ajc$postClinit()    org.aspectj.weaver.AjAttribute$AjSynthetic@1a7789c
+:
+                    NEW aspects.cool.BoundedStackCoord
+                    DUP
+                    INVOKESPECIAL aspects.cool.BoundedStackCoord.<init> ()V
+                    PUTSTATIC aspects.cool.BoundedStackCoord.ajc$perSingletonInstance Laspects/cool/BoundedStackCoord;
+                    RETURN
+  end private static void ajc$postClinit()
+
+  static void <clinit>():
+                    NOP
+    catch java.lang.Throwable -> E0
+    |               INVOKESTATIC aspects.cool.BoundedStackCoord.ajc$postClinit ()V
+    |               GOTO L0
+    catch java.lang.Throwable -> E0
+                E0: ASTORE_0
+                    ALOAD_0
+                    PUTSTATIC aspects.cool.BoundedStackCoord.ajc$initFailureCause Ljava/lang/Throwable;
+                L0: RETURN
+  end static void <clinit>()
+end public class aspects.cool.BoundedStackCoord
+ -- (RuntimeException) java.lang.NullPointerException
+java.lang.NullPointerException
+java.lang.RuntimeException: java.lang.NullPointerException
+	at awesome.platform.MultiMechanism.transform_aroundBody15$advice(MultiMechanism.java:93)
+	at awesome.platform.MultiMechanism.transform(MultiMechanism.java:1)
+	at org.aspectj.weaver.bcel.BcelWeaver.weave(BcelWeaver.java:1771)
+	at org.aspectj.weaver.bcel.BcelWeaver.weaveWithoutDump(BcelWeaver.java:1729)
+	at org.aspectj.weaver.bcel.BcelWeaver.weaveAndNotify(BcelWeaver.java:1491)
+	at org.aspectj.weaver.bcel.BcelWeaver.weave(BcelWeaver.java:1277)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.weaveQueuedEntries(AjPipeliningCompilerAdapter.java:435)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.queueForWeaving(AjPipeliningCompilerAdapter.java:371)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.afterProcessing(AjPipeliningCompilerAdapter.java:358)
+	at org.aspectj.ajdt.internal.compiler.CompilerAdapter.ajc$after$org_aspectj_ajdt_internal_compiler_CompilerAdapter$5$6b855184(CompilerAdapter.aj:98)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.process(Compiler.java:652)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:392)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performCompilation(AjBuildManager.java:1003)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performBuild(AjBuildManager.java:267)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.batchBuild(AjBuildManager.java:181)
+	at org.aspectj.ajdt.ajc.AjdtCommand.doCommand(AjdtCommand.java:112)
+	at org.aspectj.ajdt.ajc.AjdtCommand.runCommand(AjdtCommand.java:60)
+	at org.aspectj.tools.ajc.Main.run(Main.java:355)
+	at org.aspectj.tools.ajc.Main.runMain(Main.java:234)
+	at org.aspectj.tools.ajc.Main.main(Main.java:84)
+Caused by: java.lang.NullPointerException
+	at awesome.platform.adb.tagkit.CrossCuttingAttribute.getJPD(CrossCuttingAttribute.java:94)
+	at awesome.platform.adb.tagkit.CrossCuttingAttribute.makeApplication(CrossCuttingAttribute.java:248)
+	at awesome.platform.adb.tagkit.CrossCuttingAttribute.makeAapl(CrossCuttingAttribute.java:238)
+	at awesome.platform.adb.tagkit.CrossCuttingAttribute.<init>(CrossCuttingAttribute.java:36)
+	at awesome.platform.MultiMechanism.generateCrossCuttingTag(MultiMechanism.java:332)
+	at awesome.platform.MultiMechanism.transform_aroundBody12(MultiMechanism.java:449)
+	at awesome.platform.MultiMechanism.transform_aroundBody13$advice(MultiMechanism.java:111)
+	at awesome.platform.MultiMechanism.transform_aroundBody14(MultiMechanism.java:1)
+	at awesome.platform.MultiMechanism.transform_aroundBody15$advice(MultiMechanism.java:89)
+	... 19 more
+
+abort trouble in: 
+public class base.BoundedStack extends java.lang.Object implements base.Stack:
+  protected Object[] buffer
+  private int usedSlots
+  public void <init>(int)    org.aspectj.weaver.MethodDeclarationLineNumber: 9:135
+:
+                    ALOAD_0     // Lbase/BoundedStack; this   (line 9)
+                    INVOKESPECIAL java.lang.Object.<init> ()V
+    initialization(void base.Stack.<init>())
+    |               NOP
+    initialization(void base.Stack.<init>())
+    constructor-execution(void base.BoundedStack.<init>(int))
+    |               ALOAD_0     // Lbase/BoundedStack; this   (line 7)
+    |               ICONST_0
+    |               ISTORE_3
+    |               ASTORE 4
+    | field-set(int base.BoundedStack.usedSlots)
+    | |             INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$if$14b ()Z
+    | |             IFEQ L0
+    | |             GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    | |             INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    | |             IFNE L0
+    | |             INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    | |             GETSTATIC base.BoundedStack.ajc$tjp_0 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    | |             ALOAD_0
+    | |             ALOAD 4
+    | |             ILOAD_3
+    | |             INVOKESTATIC org.aspectj.runtime.internal.Conversions.intObject (I)Ljava/lang/Object;
+    | |             INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    | |             INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0 (Lorg/aspectj/lang/JoinPoint;)V
+    | |         L0: ALOAD 4
+    | |             ILOAD_3
+    | |             PUTFIELD base.BoundedStack.usedSlots I
+    | field-set(int base.BoundedStack.usedSlots)
+    |               ALOAD_0     // Lbase/BoundedStack; this   (line 10)
+    |               ILOAD_1     // I capacity
+    |               ANEWARRAY java.lang.Object
+    |               ASTORE 6
+    |               ASTORE 7
+    | field-set(java.lang.Object[] base.BoundedStack.buffer)
+    | |             INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$if$14b ()Z
+    | |             IFEQ L1
+    | |             GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    | |             INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    | |             IFNE L1
+    | |             INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    | |             GETSTATIC base.BoundedStack.ajc$tjp_1 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    | |             ALOAD_0
+    | |             ALOAD 7
+    | |             ALOAD 6
+    | |             INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    | |             INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0 (Lorg/aspectj/lang/JoinPoint;)V
+    | |         L1: ALOAD 7
+    | |             ALOAD 6
+    | |             PUTFIELD base.BoundedStack.buffer [Ljava/lang/Object;
+    | field-set(java.lang.Object[] base.BoundedStack.buffer)
+    |               NOP   (line 11)
+    |               ALOAD_0
+    |               NEW aspects.cool.BoundedStackCoord
+    |               DUP
+    |               INVOKESPECIAL aspects.cool.BoundedStackCoord.<init> ()V
+    |               PUTFIELD base.BoundedStack._coord Laspects/cool/BoundedStackCoord;
+    |               RETURN
+    |               RETURN
+    constructor-execution(void base.BoundedStack.<init>(int))
+  end public void <init>(int)
+
+  public Object pop()    org.aspectj.weaver.MethodDeclarationLineNumber: 13:225
+:
+                    ACONST_NULL
+                    ASTORE 15
+    method-execution(java.lang.Object base.BoundedStack.pop())
+    | catch java.lang.Throwable -> E1
+    | |             ALOAD_0
+    | |             GETFIELD base.BoundedStack._coord Laspects/cool/BoundedStackCoord;
+    | |             ALOAD_0
+    | |             INVOKEVIRTUAL aspects.cool.BoundedStackCoord.meth_pop_0_lock (Lbase/BoundedStack;)V
+    | | catch java.lang.Throwable -> E0
+    | | |           INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$if$14b ()Z   (line 14)
+    | | |           IFEQ L1
+    | | |           GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    | | |           INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    | | |           IFNE L1
+    | | |           INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    | | |           ALOAD 15
+    | | |           IFNONNULL L0
+    | | |           GETSTATIC base.BoundedStack.ajc$tjp_8 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    | | |           ALOAD_0
+    | | |           ALOAD_0
+    | | |           INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    | | |           ASTORE 15
+    | | |       L0: ALOAD 15
+    | | |           INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0 (Lorg/aspectj/lang/JoinPoint;)V
+    | | |       L1: ALOAD_0     // Lbase/BoundedStack; this
+    | | |           ASTORE_3
+    | | | field-get(java.lang.Object[] base.BoundedStack.buffer)
+    | | | |         INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$if$14b ()Z
+    | | | |         IFEQ L2
+    | | | |         GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    | | | |         INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    | | | |         IFNE L2
+    | | | |         INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    | | | |         GETSTATIC base.BoundedStack.ajc$tjp_2 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    | | | |         ALOAD_0
+    | | | |         ALOAD_3
+    | | | |         INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    | | | |         INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0 (Lorg/aspectj/lang/JoinPoint;)V
+    | | | |     L2: ALOAD_3
+    | | | |         GETFIELD base.BoundedStack.buffer [Ljava/lang/Object;
+    | | | field-get(java.lang.Object[] base.BoundedStack.buffer)
+    | | |           ALOAD_0     // Lbase/BoundedStack; this
+    | | |           ASTORE 5
+    | | | field-get(int base.BoundedStack.usedSlots)
+    | | | |         INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$if$14b ()Z
+    | | | |         IFEQ L3
+    | | | |         GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    | | | |         INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    | | | |         IFNE L3
+    | | | |         INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    | | | |         GETSTATIC base.BoundedStack.ajc$tjp_3 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    | | | |         ALOAD_0
+    | | | |         ALOAD 5
+    | | | |         INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    | | | |         INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0 (Lorg/aspectj/lang/JoinPoint;)V
+    | | | |     L3: ALOAD 5
+    | | | |         GETFIELD base.BoundedStack.usedSlots I
+    | | | field-get(int base.BoundedStack.usedSlots)
+    | | |           ICONST_1
+    | | |           ISUB
+    | | |           AALOAD
+    | | |           ASTORE_1
+    | | |           ALOAD_0     // Lbase/BoundedStack; this   (line 15)
+    | | |           DUP
+    | | |           ASTORE 7
+    | | | field-get(int base.BoundedStack.usedSlots)
+    | | | |         INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$if$14b ()Z
+    | | | |         IFEQ L4
+    | | | |         GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    | | | |         INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    | | | |         IFNE L4
+    | | | |         INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    | | | |         GETSTATIC base.BoundedStack.ajc$tjp_4 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    | | | |         ALOAD_0
+    | | | |         ALOAD 7
+    | | | |         INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    | | | |         INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0 (Lorg/aspectj/lang/JoinPoint;)V
+    | | | |     L4: ALOAD 7
+    | | | |         GETFIELD base.BoundedStack.usedSlots I
+    | | | field-get(int base.BoundedStack.usedSlots)
+    | | |           ICONST_1
+    | | |           ISUB
+    | | |           ISTORE 9
+    | | |           ASTORE 10
+    | | | field-set(int base.BoundedStack.usedSlots)
+    | | | |         INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$if$14b ()Z
+    | | | |         IFEQ L5
+    | | | |         GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    | | | |         INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    | | | |         IFNE L5
+    | | | |         INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    | | | |         GETSTATIC base.BoundedStack.ajc$tjp_5 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    | | | |         ALOAD_0
+    | | | |         ALOAD 10
+    | | | |         ILOAD 9
+    | | | |         INVOKESTATIC org.aspectj.runtime.internal.Conversions.intObject (I)Ljava/lang/Object;
+    | | | |         INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    | | | |         INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0 (Lorg/aspectj/lang/JoinPoint;)V
+    | | | |     L5: ALOAD 10
+    | | | |         ILOAD 9
+    | | | |         PUTFIELD base.BoundedStack.usedSlots I
+    | | | field-set(int base.BoundedStack.usedSlots)
+    | | |           ALOAD_0     // Lbase/BoundedStack; this   (line 16)
+    | | |           ASTORE 12
+    | | | field-get(java.lang.Object[] base.BoundedStack.buffer)
+    | | | |         INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$if$14b ()Z
+    | | | |         IFEQ L6
+    | | | |         GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    | | | |         INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    | | | |         IFNE L6
+    | | | |         INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    | | | |         GETSTATIC base.BoundedStack.ajc$tjp_6 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    | | | |         ALOAD_0
+    | | | |         ALOAD 12
+    | | | |         INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    | | | |         INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0 (Lorg/aspectj/lang/JoinPoint;)V
+    | | | |     L6: ALOAD 12
+    | | | |         GETFIELD base.BoundedStack.buffer [Ljava/lang/Object;
+    | | | field-get(java.lang.Object[] base.BoundedStack.buffer)
+    | | |           ALOAD_0     // Lbase/BoundedStack; this
+    | | |           ASTORE 14
+    | | | field-get(int base.BoundedStack.usedSlots)
+    | | | |         INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$if$14b ()Z
+    | | | |         IFEQ L7
+    | | | |         GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    | | | |         INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    | | | |         IFNE L7
+    | | | |         INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    | | | |         GETSTATIC base.BoundedStack.ajc$tjp_7 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    | | | |         ALOAD_0
+    | | | |         ALOAD 14
+    | | | |         INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    | | | |         INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0 (Lorg/aspectj/lang/JoinPoint;)V
+    | | | |     L7: ALOAD 14
+    | | | |         GETFIELD base.BoundedStack.usedSlots I
+    | | | field-get(int base.BoundedStack.usedSlots)
+    | | |           ACONST_NULL
+    | | |           AASTORE
+    | | |           ALOAD_1     // Ljava/lang/Object; result   (line 17)
+    | | |           ASTORE 17
+    | | |           GOTO L10
+    | | catch java.lang.Throwable -> E0
+    | |         E0: ASTORE 16
+    | |             GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    | |             INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    | |             IFNE L9
+    | |             INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    | |             ALOAD 15
+    | |             IFNONNULL L8
+    | |             GETSTATIC base.BoundedStack.ajc$tjp_8 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    | |             ALOAD_0
+    | |             ALOAD_0
+    | |             INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    | |             ASTORE 15
+    | |         L8: ALOAD 15
+    | |             INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$after$aspects_aspectj_LogAllToFile$2$44227cde (Lorg/aspectj/lang/JoinPoint;)V
+    | |         L9: ALOAD 16
+    | |             ATHROW
+    | |        L10: GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    | |             INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    | |             IFNE L12
+    | |             INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    | |             ALOAD 15
+    | |             IFNONNULL L11
+    | |             GETSTATIC base.BoundedStack.ajc$tjp_8 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    | |             ALOAD_0
+    | |             ALOAD_0
+    | |             INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    | |             ASTORE 15
+    | |        L11: ALOAD 15
+    | |             INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$after$aspects_aspectj_LogAllToFile$2$44227cde (Lorg/aspectj/lang/JoinPoint;)V
+    | |        L12: ALOAD 17
+    | |             ASTORE 19
+    | |             GOTO L13
+    | catch java.lang.Throwable -> E1
+    |           E1: ASTORE 18
+    |               ALOAD_0
+    |               GETFIELD base.BoundedStack._coord Laspects/cool/BoundedStackCoord;
+    |               ALOAD_0
+    |               INVOKEVIRTUAL aspects.cool.BoundedStackCoord.meth_pop_0_unlock (Lbase/BoundedStack;)V
+    |               ALOAD 18
+    |               ATHROW
+    |          L13: ALOAD_0
+    |               GETFIELD base.BoundedStack._coord Laspects/cool/BoundedStackCoord;
+    |               ALOAD_0
+    |               INVOKEVIRTUAL aspects.cool.BoundedStackCoord.meth_pop_0_unlock (Lbase/BoundedStack;)V
+    |               ALOAD 19
+    |               ARETURN
+    method-execution(java.lang.Object base.BoundedStack.pop())
+  end public Object pop()
+
+  public void push(Object)    org.aspectj.weaver.MethodDeclarationLineNumber: 20:358
+:
+                    ALOAD_1
+                    ASTORE 12
+                    ACONST_NULL
+                    ASTORE 11
+    method-execution(void base.BoundedStack.push(java.lang.Object))
+    | catch java.lang.Throwable -> E1
+    | |             ALOAD_0
+    | |             GETFIELD base.BoundedStack._coord Laspects/cool/BoundedStackCoord;
+    | |             ALOAD_0
+    | |             INVOKEVIRTUAL aspects.cool.BoundedStackCoord.meth_push_1_lock (Lbase/BoundedStack;)V
+    | | catch java.lang.Throwable -> E0
+    | | |           INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$if$14b ()Z   (line 21)
+    | | |           IFEQ L1
+    | | |           GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    | | |           INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    | | |           IFNE L1
+    | | |           INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    | | |           ALOAD 11
+    | | |           IFNONNULL L0
+    | | |           GETSTATIC base.BoundedStack.ajc$tjp_13 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    | | |           ALOAD_0
+    | | |           ALOAD_0
+    | | |           ALOAD 12
+    | | |           INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    | | |           ASTORE 11
+    | | |       L0: ALOAD 11
+    | | |           INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0 (Lorg/aspectj/lang/JoinPoint;)V
+    | | |       L1: ALOAD_0     // Lbase/BoundedStack; this
+    | | |           ASTORE_3
+    | | | field-get(java.lang.Object[] base.BoundedStack.buffer)
+    | | | |         INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$if$14b ()Z
+    | | | |         IFEQ L2
+    | | | |         GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    | | | |         INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    | | | |         IFNE L2
+    | | | |         INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    | | | |         GETSTATIC base.BoundedStack.ajc$tjp_9 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    | | | |         ALOAD_0
+    | | | |         ALOAD_3
+    | | | |         INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    | | | |         INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0 (Lorg/aspectj/lang/JoinPoint;)V
+    | | | |     L2: ALOAD_3
+    | | | |         GETFIELD base.BoundedStack.buffer [Ljava/lang/Object;
+    | | | field-get(java.lang.Object[] base.BoundedStack.buffer)
+    | | |           ALOAD_0     // Lbase/BoundedStack; this
+    | | |           ASTORE 5
+    | | | field-get(int base.BoundedStack.usedSlots)
+    | | | |         INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$if$14b ()Z
+    | | | |         IFEQ L3
+    | | | |         GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    | | | |         INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    | | | |         IFNE L3
+    | | | |         INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    | | | |         GETSTATIC base.BoundedStack.ajc$tjp_10 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    | | | |         ALOAD_0
+    | | | |         ALOAD 5
+    | | | |         INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    | | | |         INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0 (Lorg/aspectj/lang/JoinPoint;)V
+    | | | |     L3: ALOAD 5
+    | | | |         GETFIELD base.BoundedStack.usedSlots I
+    | | | field-get(int base.BoundedStack.usedSlots)
+    | | |           ALOAD_1     // Ljava/lang/Object; obj
+    | | |           AASTORE
+    | | |           ALOAD_0     // Lbase/BoundedStack; this   (line 22)
+    | | |           DUP
+    | | |           ASTORE 7
+    | | | field-get(int base.BoundedStack.usedSlots)
+    | | | |         INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$if$14b ()Z
+    | | | |         IFEQ L4
+    | | | |         GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    | | | |         INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    | | | |         IFNE L4
+    | | | |         INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    | | | |         GETSTATIC base.BoundedStack.ajc$tjp_11 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    | | | |         ALOAD_0
+    | | | |         ALOAD 7
+    | | | |         INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    | | | |         INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0 (Lorg/aspectj/lang/JoinPoint;)V
+    | | | |     L4: ALOAD 7
+    | | | |         GETFIELD base.BoundedStack.usedSlots I
+    | | | field-get(int base.BoundedStack.usedSlots)
+    | | |           ICONST_1
+    | | |           IADD
+    | | |           ISTORE 9
+    | | |           ASTORE 10
+    | | | field-set(int base.BoundedStack.usedSlots)
+    | | | |         INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$if$14b ()Z
+    | | | |         IFEQ L5
+    | | | |         GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    | | | |         INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    | | | |         IFNE L5
+    | | | |         INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    | | | |         GETSTATIC base.BoundedStack.ajc$tjp_12 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    | | | |         ALOAD_0
+    | | | |         ALOAD 10
+    | | | |         ILOAD 9
+    | | | |         INVOKESTATIC org.aspectj.runtime.internal.Conversions.intObject (I)Ljava/lang/Object;
+    | | | |         INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    | | | |         INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0 (Lorg/aspectj/lang/JoinPoint;)V
+    | | | |     L5: ALOAD 10
+    | | | |         ILOAD 9
+    | | | |         PUTFIELD base.BoundedStack.usedSlots I
+    | | | field-set(int base.BoundedStack.usedSlots)
+    | | |           GOTO L8   (line 23)
+    | | catch java.lang.Throwable -> E0
+    | |         E0: ASTORE 13
+    | |             GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    | |             INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    | |             IFNE L7
+    | |             INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    | |             ALOAD 11
+    | |             IFNONNULL L6
+    | |             GETSTATIC base.BoundedStack.ajc$tjp_13 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    | |             ALOAD_0
+    | |             ALOAD_0
+    | |             ALOAD 12
+    | |             INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    | |             ASTORE 11
+    | |         L6: ALOAD 11
+    | |             INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$after$aspects_aspectj_LogAllToFile$2$44227cde (Lorg/aspectj/lang/JoinPoint;)V
+    | |         L7: ALOAD 13
+    | |             ATHROW
+    | |         L8: GETSTATIC aspects.aspectj.LogAllToFile.ajc$cflowCounter$0 Lorg/aspectj/runtime/internal/CFlowCounter;
+    | |             INVOKEVIRTUAL org.aspectj.runtime.internal.CFlowCounter.isValid ()Z
+    | |             IFNE L10
+    | |             INVOKESTATIC aspects.aspectj.LogAllToFile.aspectOf ()Laspects/aspectj/LogAllToFile;
+    | |             ALOAD 11
+    | |             IFNONNULL L9
+    | |             GETSTATIC base.BoundedStack.ajc$tjp_13 Lorg/aspectj/lang/JoinPoint$StaticPart;
+    | |             ALOAD_0
+    | |             ALOAD_0
+    | |             ALOAD 12
+    | |             INVOKESTATIC org.aspectj.runtime.reflect.Factory.makeJP (Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+    | |             ASTORE 11
+    | |         L9: ALOAD 11
+    | |             INVOKEVIRTUAL aspects.aspectj.LogAllToFile.ajc$after$aspects_aspectj_LogAllToFile$2$44227cde (Lorg/aspectj/lang/JoinPoint;)V
+    | |        L10: GOTO L11
+    | |             GOTO L11
+    | catch java.lang.Throwable -> E1
+    |           E1: ASTORE 14
+    |               ALOAD_0
+    |               GETFIELD base.BoundedStack._coord Laspects/cool/BoundedStackCoord;
+    |               ALOAD_0
+    |               INVOKEVIRTUAL aspects.cool.BoundedStackCoord.meth_push_1_unlock (Lbase/BoundedStack;)V
+    |               ALOAD 14
+    |               ATHROW
+    |          L11: ALOAD_0
+    |               GETFIELD base.BoundedStack._coord Laspects/cool/BoundedStackCoord;
+    |               ALOAD_0
+    |               INVOKEVIRTUAL aspects.cool.BoundedStackCoord.meth_push_1_unlock (Lbase/BoundedStack;)V
+    |               RETURN
+    |               RETURN
+    method-execution(void base.BoundedStack.push(java.lang.Object))
+  end public void push(Object)
+
+  public Object[] _getBuffer():
+                    ALOAD_0
+                    GETFIELD base.BoundedStack.buffer [Ljava/lang/Object;
+                    ARETURN
+  end public Object[] _getBuffer()
+
+end public class base.BoundedStack
+ -- (RuntimeException) java.lang.NullPointerException
+java.lang.NullPointerException
+java.lang.RuntimeException: java.lang.NullPointerException
+	at awesome.platform.MultiMechanism.transform_aroundBody15$advice(MultiMechanism.java:93)
+	at awesome.platform.MultiMechanism.transform(MultiMechanism.java:1)
+	at org.aspectj.weaver.bcel.BcelWeaver.weave(BcelWeaver.java:1771)
+	at org.aspectj.weaver.bcel.BcelWeaver.weaveWithoutDump(BcelWeaver.java:1729)
+	at org.aspectj.weaver.bcel.BcelWeaver.weaveAndNotify(BcelWeaver.java:1491)
+	at org.aspectj.weaver.bcel.BcelWeaver.weave(BcelWeaver.java:1305)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.weaveQueuedEntries(AjPipeliningCompilerAdapter.java:435)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.queueForWeaving(AjPipeliningCompilerAdapter.java:371)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.afterProcessing(AjPipeliningCompilerAdapter.java:358)
+	at org.aspectj.ajdt.internal.compiler.CompilerAdapter.ajc$after$org_aspectj_ajdt_internal_compiler_CompilerAdapter$5$6b855184(CompilerAdapter.aj:98)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.process(Compiler.java:652)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:392)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performCompilation(AjBuildManager.java:1003)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performBuild(AjBuildManager.java:267)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.batchBuild(AjBuildManager.java:181)
+	at org.aspectj.ajdt.ajc.AjdtCommand.doCommand(AjdtCommand.java:112)
+	at org.aspectj.ajdt.ajc.AjdtCommand.runCommand(AjdtCommand.java:60)
+	at org.aspectj.tools.ajc.Main.run(Main.java:355)
+	at org.aspectj.tools.ajc.Main.runMain(Main.java:234)
+	at org.aspectj.tools.ajc.Main.main(Main.java:84)
+Caused by: java.lang.NullPointerException
+	at awesome.platform.adb.tagkit.CrossCuttingAttribute.getJPD(CrossCuttingAttribute.java:102)
+	at awesome.platform.adb.tagkit.CrossCuttingAttribute.makeApplication(CrossCuttingAttribute.java:248)
+	at awesome.platform.adb.tagkit.CrossCuttingAttribute.makeAapl(CrossCuttingAttribute.java:238)
+	at awesome.platform.adb.tagkit.CrossCuttingAttribute.<init>(CrossCuttingAttribute.java:36)
+	at awesome.platform.MultiMechanism.generateCrossCuttingTag(MultiMechanism.java:332)
+	at awesome.platform.MultiMechanism.transform_aroundBody12(MultiMechanism.java:449)
+	at awesome.platform.MultiMechanism.transform_aroundBody13$advice(MultiMechanism.java:111)
+	at awesome.platform.MultiMechanism.transform_aroundBody14(MultiMechanism.java:1)
+	at awesome.platform.MultiMechanism.transform_aroundBody15$advice(MultiMechanism.java:89)
+	... 19 more
+
+---- org.aspectj.weaver.bcel.BcelWorld@181afa3 ----
+Shadow mungers:
+(after(extraFlags: 2): (((((((((!within(aspects.aspectj.LogAllToFile) && !staticinitialization(*.<clinit>())) && !handler(*)) && !initialization(new(..))) && !preinitialization(new(..))) && call(* *(..))) && persingleton(aspects.aspectj.LogAllToFile)) && !concretecflow(org.aspectj.runtime.internal.CFlowCounter aspects.aspectj.LogAllToFile.ajc$cflowCounter$0)) || (((((((!within(aspects.aspectj.LogAllToFile) && !staticinitialization(*.<clinit>())) && !handler(*)) && !initialization(new(..))) && !preinitialization(new(..))) && execution(* *(..))) && persingleton(aspects.aspectj.LogAllToFile)) && !concretecflow(org.aspectj.runtime.internal.CFlowCounter aspects.aspectj.LogAllToFile.ajc$cflowCounter$0))) || (((((((!within(aspects.aspectj.LogAllToFile) && !staticinitialization(*.<clinit>())) && adviceexecution(* *)) && !handler(*)) && !initialization(new(..))) && !preinitialization(new(..))) && persingleton(aspects.aspectj.LogAllToFile)) && !concretecflow(org.aspectj.runtime.internal.CFlowCounter aspects.aspectj.LogAllToFile.ajc$cflowCounter$0)))->void aspects.aspectj.LogAllToFile.ajc$after$aspects_aspectj_LogAllToFile$2$44227cde(org.aspectj.lang.JoinPoint))
+(before(extraFlags: 2): (((((((((!within(aspects.aspectj.LogAllToFile) && set(* *)) && if(boolean aspects.aspectj.LogAllToFile.ajc$if$14b())) && persingleton(aspects.aspectj.LogAllToFile)) && !concretecflow(org.aspectj.runtime.internal.CFlowCounter aspects.aspectj.LogAllToFile.ajc$cflowCounter$0)) || ((((!within(aspects.aspectj.LogAllToFile) && get(* *)) && if(boolean aspects.aspectj.LogAllToFile.ajc$if$14b())) && persingleton(aspects.aspectj.LogAllToFile)) && !concretecflow(org.aspectj.runtime.internal.CFlowCounter aspects.aspectj.LogAllToFile.ajc$cflowCounter$0))) || (((((((!within(aspects.aspectj.LogAllToFile) && !staticinitialization(*.<clinit>())) && !initialization(new(..))) && !preinitialization(new(..))) && call(* *(..))) && if(boolean aspects.aspectj.LogAllToFile.ajc$if$14b())) && persingleton(aspects.aspectj.LogAllToFile)) && !concretecflow(org.aspectj.runtime.internal.CFlowCounter aspects.aspectj.LogAllToFile.ajc$cflowCounter$0))) || (((((((!within(aspects.aspectj.LogAllToFile) && !staticinitialization(*.<clinit>())) && handler(*)) && !initialization(new(..))) && !preinitialization(new(..))) && if(boolean aspects.aspectj.LogAllToFile.ajc$if$14b())) && persingleton(aspects.aspectj.LogAllToFile)) && !concretecflow(org.aspectj.runtime.internal.CFlowCounter aspects.aspectj.LogAllToFile.ajc$cflowCounter$0))) || (((((((!within(aspects.aspectj.LogAllToFile) && !staticinitialization(*.<clinit>())) && adviceexecution(* *)) && !initialization(new(..))) && !preinitialization(new(..))) && if(boolean aspects.aspectj.LogAllToFile.ajc$if$14b())) && persingleton(aspects.aspectj.LogAllToFile)) && !concretecflow(org.aspectj.runtime.internal.CFlowCounter aspects.aspectj.LogAllToFile.ajc$cflowCounter$0))) || (((((((!within(aspects.aspectj.LogAllToFile) && !staticinitialization(*.<clinit>())) && !initialization(new(..))) && !preinitialization(new(..))) && execution(* *(..))) && if(boolean aspects.aspectj.LogAllToFile.ajc$if$14b())) && persingleton(aspects.aspectj.LogAllToFile)) && !concretecflow(org.aspectj.runtime.internal.CFlowCounter aspects.aspectj.LogAllToFile.ajc$cflowCounter$0)))->void aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0(org.aspectj.lang.JoinPoint))
+(cflowEntry: within(aspects.aspectj.LogAllToFile)->org.aspectj.runtime.internal.CFlowCounter aspects.aspectj.LogAllToFile.ajc$cflowCounter$0)
+Type mungers:
+(BcelTypeMunger: CflowField aspects.aspectj.LogAllToFile ajc$cflowCounter$0)
+(BcelTypeMunger null)
+(BcelTypeMunger null)
+Late Type mungers:
+Empty

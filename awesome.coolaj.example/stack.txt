@@ -1,0 +1,565 @@
+Compiled from "BoundedStack.java"
+public class base.BoundedStack extends java.lang.Object implements base.Stack{
+protected java.lang.Object[] buffer;
+
+public base.BoundedStack(int);
+  Code:
+   0:	aload_0
+   1:	invokespecial	#15; //Method java/lang/Object."<init>":()V
+   4:	nop
+   5:	aload_0
+   6:	iconst_0
+   7:	istore_3
+   8:	astore	4
+   10:	invokestatic	#80; //Method aspects/aspectj/LogAllToFile.ajc$if$14b:()Z
+   13:	ifeq	44
+   16:	getstatic	#71; //Field aspects/aspectj/LogAllToFile.ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   19:	invokevirtual	#77; //Method org/aspectj/runtime/internal/CFlowCounter.isValid:()Z
+   22:	ifne	44
+   25:	invokestatic	#63; //Method aspects/aspectj/LogAllToFile.aspectOf:()Laspects/aspectj/LogAllToFile;
+   28:	getstatic	#45; //Field ajc$tjp_0:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   31:	aload_0
+   32:	aload	4
+   34:	iload_3
+   35:	invokestatic	#51; //Method org/aspectj/runtime/internal/Conversions.intObject:(I)Ljava/lang/Object;
+   38:	invokestatic	#57; //Method org/aspectj/runtime/reflect/Factory.makeJP:(Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+   41:	invokevirtual	#67; //Method aspects/aspectj/LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0:(Lorg/aspectj/lang/JoinPoint;)V
+   44:	aload	4
+   46:	iload_3
+   47:	putfield	#18; //Field usedSlots:I
+   50:	aload_0
+   51:	iload_1
+   52:	anewarray	#3; //class java/lang/Object
+   55:	astore	6
+   57:	astore	7
+   59:	invokestatic	#80; //Method aspects/aspectj/LogAllToFile.ajc$if$14b:()Z
+   62:	ifeq	91
+   65:	getstatic	#71; //Field aspects/aspectj/LogAllToFile.ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   68:	invokevirtual	#77; //Method org/aspectj/runtime/internal/CFlowCounter.isValid:()Z
+   71:	ifne	91
+   74:	invokestatic	#63; //Method aspects/aspectj/LogAllToFile.aspectOf:()Laspects/aspectj/LogAllToFile;
+   77:	getstatic	#83; //Field ajc$tjp_1:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   80:	aload_0
+   81:	aload	7
+   83:	aload	6
+   85:	invokestatic	#57; //Method org/aspectj/runtime/reflect/Factory.makeJP:(Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+   88:	invokevirtual	#67; //Method aspects/aspectj/LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0:(Lorg/aspectj/lang/JoinPoint;)V
+   91:	aload	7
+   93:	aload	6
+   95:	putfield	#20; //Field buffer:[Ljava/lang/Object;
+   98:	nop
+   99:	aload_0
+   100:	new	#85; //class aspects/cool/BoundedStackCoord
+   103:	dup
+   104:	invokespecial	#86; //Method aspects/cool/BoundedStackCoord."<init>":()V
+   107:	putfield	#88; //Field _coord:Laspects/cool/BoundedStackCoord;
+   110:	return
+   111:	return
+
+public java.lang.Object pop();
+  Code:
+   0:	aconst_null
+   1:	astore	15
+   3:	aload_0
+   4:	getfield	#88; //Field _coord:Laspects/cool/BoundedStackCoord;
+   7:	aload_0
+   8:	invokevirtual	#119; //Method aspects/cool/BoundedStackCoord.meth_pop_0_lock:(Lbase/BoundedStack;)V
+   11:	invokestatic	#80; //Method aspects/aspectj/LogAllToFile.ajc$if$14b:()Z
+   14:	ifeq	49
+   17:	getstatic	#71; //Field aspects/aspectj/LogAllToFile.ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   20:	invokevirtual	#77; //Method org/aspectj/runtime/internal/CFlowCounter.isValid:()Z
+   23:	ifne	49
+   26:	invokestatic	#63; //Method aspects/aspectj/LogAllToFile.aspectOf:()Laspects/aspectj/LogAllToFile;
+   29:	aload	15
+   31:	ifnonnull	44
+   34:	getstatic	#112; //Field ajc$tjp_8:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   37:	aload_0
+   38:	aload_0
+   39:	invokestatic	#94; //Method org/aspectj/runtime/reflect/Factory.makeJP:(Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+   42:	astore	15
+   44:	aload	15
+   46:	invokevirtual	#67; //Method aspects/aspectj/LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0:(Lorg/aspectj/lang/JoinPoint;)V
+   49:	aload_0
+   50:	astore_3
+   51:	invokestatic	#80; //Method aspects/aspectj/LogAllToFile.ajc$if$14b:()Z
+   54:	ifeq	80
+   57:	getstatic	#71; //Field aspects/aspectj/LogAllToFile.ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   60:	invokevirtual	#77; //Method org/aspectj/runtime/internal/CFlowCounter.isValid:()Z
+   63:	ifne	80
+   66:	invokestatic	#63; //Method aspects/aspectj/LogAllToFile.aspectOf:()Laspects/aspectj/LogAllToFile;
+   69:	getstatic	#91; //Field ajc$tjp_2:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   72:	aload_0
+   73:	aload_3
+   74:	invokestatic	#94; //Method org/aspectj/runtime/reflect/Factory.makeJP:(Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+   77:	invokevirtual	#67; //Method aspects/aspectj/LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0:(Lorg/aspectj/lang/JoinPoint;)V
+   80:	aload_3
+   81:	getfield	#20; //Field buffer:[Ljava/lang/Object;
+   84:	aload_0
+   85:	astore	5
+   87:	invokestatic	#80; //Method aspects/aspectj/LogAllToFile.ajc$if$14b:()Z
+   90:	ifeq	117
+   93:	getstatic	#71; //Field aspects/aspectj/LogAllToFile.ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   96:	invokevirtual	#77; //Method org/aspectj/runtime/internal/CFlowCounter.isValid:()Z
+   99:	ifne	117
+   102:	invokestatic	#63; //Method aspects/aspectj/LogAllToFile.aspectOf:()Laspects/aspectj/LogAllToFile;
+   105:	getstatic	#97; //Field ajc$tjp_3:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   108:	aload_0
+   109:	aload	5
+   111:	invokestatic	#94; //Method org/aspectj/runtime/reflect/Factory.makeJP:(Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+   114:	invokevirtual	#67; //Method aspects/aspectj/LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0:(Lorg/aspectj/lang/JoinPoint;)V
+   117:	aload	5
+   119:	getfield	#18; //Field usedSlots:I
+   122:	iconst_1
+   123:	isub
+   124:	aaload
+   125:	astore_1
+   126:	aload_0
+   127:	dup
+   128:	astore	7
+   130:	invokestatic	#80; //Method aspects/aspectj/LogAllToFile.ajc$if$14b:()Z
+   133:	ifeq	160
+   136:	getstatic	#71; //Field aspects/aspectj/LogAllToFile.ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   139:	invokevirtual	#77; //Method org/aspectj/runtime/internal/CFlowCounter.isValid:()Z
+   142:	ifne	160
+   145:	invokestatic	#63; //Method aspects/aspectj/LogAllToFile.aspectOf:()Laspects/aspectj/LogAllToFile;
+   148:	getstatic	#100; //Field ajc$tjp_4:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   151:	aload_0
+   152:	aload	7
+   154:	invokestatic	#94; //Method org/aspectj/runtime/reflect/Factory.makeJP:(Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+   157:	invokevirtual	#67; //Method aspects/aspectj/LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0:(Lorg/aspectj/lang/JoinPoint;)V
+   160:	aload	7
+   162:	getfield	#18; //Field usedSlots:I
+   165:	iconst_1
+   166:	isub
+   167:	istore	9
+   169:	astore	10
+   171:	invokestatic	#80; //Method aspects/aspectj/LogAllToFile.ajc$if$14b:()Z
+   174:	ifeq	206
+   177:	getstatic	#71; //Field aspects/aspectj/LogAllToFile.ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   180:	invokevirtual	#77; //Method org/aspectj/runtime/internal/CFlowCounter.isValid:()Z
+   183:	ifne	206
+   186:	invokestatic	#63; //Method aspects/aspectj/LogAllToFile.aspectOf:()Laspects/aspectj/LogAllToFile;
+   189:	getstatic	#103; //Field ajc$tjp_5:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   192:	aload_0
+   193:	aload	10
+   195:	iload	9
+   197:	invokestatic	#51; //Method org/aspectj/runtime/internal/Conversions.intObject:(I)Ljava/lang/Object;
+   200:	invokestatic	#57; //Method org/aspectj/runtime/reflect/Factory.makeJP:(Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+   203:	invokevirtual	#67; //Method aspects/aspectj/LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0:(Lorg/aspectj/lang/JoinPoint;)V
+   206:	aload	10
+   208:	iload	9
+   210:	putfield	#18; //Field usedSlots:I
+   213:	aload_0
+   214:	astore	12
+   216:	invokestatic	#80; //Method aspects/aspectj/LogAllToFile.ajc$if$14b:()Z
+   219:	ifeq	246
+   222:	getstatic	#71; //Field aspects/aspectj/LogAllToFile.ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   225:	invokevirtual	#77; //Method org/aspectj/runtime/internal/CFlowCounter.isValid:()Z
+   228:	ifne	246
+   231:	invokestatic	#63; //Method aspects/aspectj/LogAllToFile.aspectOf:()Laspects/aspectj/LogAllToFile;
+   234:	getstatic	#106; //Field ajc$tjp_6:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   237:	aload_0
+   238:	aload	12
+   240:	invokestatic	#94; //Method org/aspectj/runtime/reflect/Factory.makeJP:(Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+   243:	invokevirtual	#67; //Method aspects/aspectj/LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0:(Lorg/aspectj/lang/JoinPoint;)V
+   246:	aload	12
+   248:	getfield	#20; //Field buffer:[Ljava/lang/Object;
+   251:	aload_0
+   252:	astore	14
+   254:	invokestatic	#80; //Method aspects/aspectj/LogAllToFile.ajc$if$14b:()Z
+   257:	ifeq	284
+   260:	getstatic	#71; //Field aspects/aspectj/LogAllToFile.ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   263:	invokevirtual	#77; //Method org/aspectj/runtime/internal/CFlowCounter.isValid:()Z
+   266:	ifne	284
+   269:	invokestatic	#63; //Method aspects/aspectj/LogAllToFile.aspectOf:()Laspects/aspectj/LogAllToFile;
+   272:	getstatic	#109; //Field ajc$tjp_7:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   275:	aload_0
+   276:	aload	14
+   278:	invokestatic	#94; //Method org/aspectj/runtime/reflect/Factory.makeJP:(Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+   281:	invokevirtual	#67; //Method aspects/aspectj/LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0:(Lorg/aspectj/lang/JoinPoint;)V
+   284:	aload	14
+   286:	getfield	#18; //Field usedSlots:I
+   289:	aconst_null
+   290:	aastore
+   291:	aload_1
+   292:	astore	17
+   294:	goto	334
+   297:	astore	16
+   299:	getstatic	#71; //Field aspects/aspectj/LogAllToFile.ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   302:	invokevirtual	#77; //Method org/aspectj/runtime/internal/CFlowCounter.isValid:()Z
+   305:	ifne	331
+   308:	invokestatic	#63; //Method aspects/aspectj/LogAllToFile.aspectOf:()Laspects/aspectj/LogAllToFile;
+   311:	aload	15
+   313:	ifnonnull	326
+   316:	getstatic	#112; //Field ajc$tjp_8:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   319:	aload_0
+   320:	aload_0
+   321:	invokestatic	#94; //Method org/aspectj/runtime/reflect/Factory.makeJP:(Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+   324:	astore	15
+   326:	aload	15
+   328:	invokevirtual	#115; //Method aspects/aspectj/LogAllToFile.ajc$after$aspects_aspectj_LogAllToFile$2$44227cde:(Lorg/aspectj/lang/JoinPoint;)V
+   331:	aload	16
+   333:	athrow
+   334:	getstatic	#71; //Field aspects/aspectj/LogAllToFile.ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   337:	invokevirtual	#77; //Method org/aspectj/runtime/internal/CFlowCounter.isValid:()Z
+   340:	ifne	366
+   343:	invokestatic	#63; //Method aspects/aspectj/LogAllToFile.aspectOf:()Laspects/aspectj/LogAllToFile;
+   346:	aload	15
+   348:	ifnonnull	361
+   351:	getstatic	#112; //Field ajc$tjp_8:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   354:	aload_0
+   355:	aload_0
+   356:	invokestatic	#94; //Method org/aspectj/runtime/reflect/Factory.makeJP:(Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+   359:	astore	15
+   361:	aload	15
+   363:	invokevirtual	#115; //Method aspects/aspectj/LogAllToFile.ajc$after$aspects_aspectj_LogAllToFile$2$44227cde:(Lorg/aspectj/lang/JoinPoint;)V
+   366:	aload	17
+   368:	astore	19
+   370:	goto	386
+   373:	astore	18
+   375:	aload_0
+   376:	getfield	#88; //Field _coord:Laspects/cool/BoundedStackCoord;
+   379:	aload_0
+   380:	invokevirtual	#122; //Method aspects/cool/BoundedStackCoord.meth_pop_0_unlock:(Lbase/BoundedStack;)V
+   383:	aload	18
+   385:	athrow
+   386:	aload_0
+   387:	getfield	#88; //Field _coord:Laspects/cool/BoundedStackCoord;
+   390:	aload_0
+   391:	invokevirtual	#122; //Method aspects/cool/BoundedStackCoord.meth_pop_0_unlock:(Lbase/BoundedStack;)V
+   394:	aload	19
+   396:	areturn
+  Exception table:
+   from   to  target type
+    11   297   297   Class java/lang/Throwable
+
+     3   373   373   Class java/lang/Throwable
+
+
+public void push(java.lang.Object);
+  Code:
+   0:	aload_1
+   1:	astore	12
+   3:	aconst_null
+   4:	astore	11
+   6:	aload_0
+   7:	getfield	#88; //Field _coord:Laspects/cool/BoundedStackCoord;
+   10:	aload_0
+   11:	invokevirtual	#140; //Method aspects/cool/BoundedStackCoord.meth_push_1_lock:(Lbase/BoundedStack;)V
+   14:	invokestatic	#80; //Method aspects/aspectj/LogAllToFile.ajc$if$14b:()Z
+   17:	ifeq	54
+   20:	getstatic	#71; //Field aspects/aspectj/LogAllToFile.ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   23:	invokevirtual	#77; //Method org/aspectj/runtime/internal/CFlowCounter.isValid:()Z
+   26:	ifne	54
+   29:	invokestatic	#63; //Method aspects/aspectj/LogAllToFile.aspectOf:()Laspects/aspectj/LogAllToFile;
+   32:	aload	11
+   34:	ifnonnull	49
+   37:	getstatic	#137; //Field ajc$tjp_13:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   40:	aload_0
+   41:	aload_0
+   42:	aload	12
+   44:	invokestatic	#57; //Method org/aspectj/runtime/reflect/Factory.makeJP:(Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+   47:	astore	11
+   49:	aload	11
+   51:	invokevirtual	#67; //Method aspects/aspectj/LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0:(Lorg/aspectj/lang/JoinPoint;)V
+   54:	aload_0
+   55:	astore_3
+   56:	invokestatic	#80; //Method aspects/aspectj/LogAllToFile.ajc$if$14b:()Z
+   59:	ifeq	85
+   62:	getstatic	#71; //Field aspects/aspectj/LogAllToFile.ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   65:	invokevirtual	#77; //Method org/aspectj/runtime/internal/CFlowCounter.isValid:()Z
+   68:	ifne	85
+   71:	invokestatic	#63; //Method aspects/aspectj/LogAllToFile.aspectOf:()Laspects/aspectj/LogAllToFile;
+   74:	getstatic	#125; //Field ajc$tjp_9:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   77:	aload_0
+   78:	aload_3
+   79:	invokestatic	#94; //Method org/aspectj/runtime/reflect/Factory.makeJP:(Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+   82:	invokevirtual	#67; //Method aspects/aspectj/LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0:(Lorg/aspectj/lang/JoinPoint;)V
+   85:	aload_3
+   86:	getfield	#20; //Field buffer:[Ljava/lang/Object;
+   89:	aload_0
+   90:	astore	5
+   92:	invokestatic	#80; //Method aspects/aspectj/LogAllToFile.ajc$if$14b:()Z
+   95:	ifeq	122
+   98:	getstatic	#71; //Field aspects/aspectj/LogAllToFile.ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   101:	invokevirtual	#77; //Method org/aspectj/runtime/internal/CFlowCounter.isValid:()Z
+   104:	ifne	122
+   107:	invokestatic	#63; //Method aspects/aspectj/LogAllToFile.aspectOf:()Laspects/aspectj/LogAllToFile;
+   110:	getstatic	#128; //Field ajc$tjp_10:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   113:	aload_0
+   114:	aload	5
+   116:	invokestatic	#94; //Method org/aspectj/runtime/reflect/Factory.makeJP:(Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+   119:	invokevirtual	#67; //Method aspects/aspectj/LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0:(Lorg/aspectj/lang/JoinPoint;)V
+   122:	aload	5
+   124:	getfield	#18; //Field usedSlots:I
+   127:	aload_1
+   128:	aastore
+   129:	aload_0
+   130:	dup
+   131:	astore	7
+   133:	invokestatic	#80; //Method aspects/aspectj/LogAllToFile.ajc$if$14b:()Z
+   136:	ifeq	163
+   139:	getstatic	#71; //Field aspects/aspectj/LogAllToFile.ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   142:	invokevirtual	#77; //Method org/aspectj/runtime/internal/CFlowCounter.isValid:()Z
+   145:	ifne	163
+   148:	invokestatic	#63; //Method aspects/aspectj/LogAllToFile.aspectOf:()Laspects/aspectj/LogAllToFile;
+   151:	getstatic	#131; //Field ajc$tjp_11:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   154:	aload_0
+   155:	aload	7
+   157:	invokestatic	#94; //Method org/aspectj/runtime/reflect/Factory.makeJP:(Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+   160:	invokevirtual	#67; //Method aspects/aspectj/LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0:(Lorg/aspectj/lang/JoinPoint;)V
+   163:	aload	7
+   165:	getfield	#18; //Field usedSlots:I
+   168:	iconst_1
+   169:	iadd
+   170:	istore	9
+   172:	astore	10
+   174:	invokestatic	#80; //Method aspects/aspectj/LogAllToFile.ajc$if$14b:()Z
+   177:	ifeq	209
+   180:	getstatic	#71; //Field aspects/aspectj/LogAllToFile.ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   183:	invokevirtual	#77; //Method org/aspectj/runtime/internal/CFlowCounter.isValid:()Z
+   186:	ifne	209
+   189:	invokestatic	#63; //Method aspects/aspectj/LogAllToFile.aspectOf:()Laspects/aspectj/LogAllToFile;
+   192:	getstatic	#134; //Field ajc$tjp_12:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   195:	aload_0
+   196:	aload	10
+   198:	iload	9
+   200:	invokestatic	#51; //Method org/aspectj/runtime/internal/Conversions.intObject:(I)Ljava/lang/Object;
+   203:	invokestatic	#57; //Method org/aspectj/runtime/reflect/Factory.makeJP:(Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+   206:	invokevirtual	#67; //Method aspects/aspectj/LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0:(Lorg/aspectj/lang/JoinPoint;)V
+   209:	aload	10
+   211:	iload	9
+   213:	putfield	#18; //Field usedSlots:I
+   216:	goto	258
+   219:	astore	13
+   221:	getstatic	#71; //Field aspects/aspectj/LogAllToFile.ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   224:	invokevirtual	#77; //Method org/aspectj/runtime/internal/CFlowCounter.isValid:()Z
+   227:	ifne	255
+   230:	invokestatic	#63; //Method aspects/aspectj/LogAllToFile.aspectOf:()Laspects/aspectj/LogAllToFile;
+   233:	aload	11
+   235:	ifnonnull	250
+   238:	getstatic	#137; //Field ajc$tjp_13:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   241:	aload_0
+   242:	aload_0
+   243:	aload	12
+   245:	invokestatic	#57; //Method org/aspectj/runtime/reflect/Factory.makeJP:(Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+   248:	astore	11
+   250:	aload	11
+   252:	invokevirtual	#115; //Method aspects/aspectj/LogAllToFile.ajc$after$aspects_aspectj_LogAllToFile$2$44227cde:(Lorg/aspectj/lang/JoinPoint;)V
+   255:	aload	13
+   257:	athrow
+   258:	getstatic	#71; //Field aspects/aspectj/LogAllToFile.ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   261:	invokevirtual	#77; //Method org/aspectj/runtime/internal/CFlowCounter.isValid:()Z
+   264:	ifne	292
+   267:	invokestatic	#63; //Method aspects/aspectj/LogAllToFile.aspectOf:()Laspects/aspectj/LogAllToFile;
+   270:	aload	11
+   272:	ifnonnull	287
+   275:	getstatic	#137; //Field ajc$tjp_13:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   278:	aload_0
+   279:	aload_0
+   280:	aload	12
+   282:	invokestatic	#57; //Method org/aspectj/runtime/reflect/Factory.makeJP:(Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+   285:	astore	11
+   287:	aload	11
+   289:	invokevirtual	#115; //Method aspects/aspectj/LogAllToFile.ajc$after$aspects_aspectj_LogAllToFile$2$44227cde:(Lorg/aspectj/lang/JoinPoint;)V
+   292:	goto	311
+   295:	goto	311
+   298:	astore	14
+   300:	aload_0
+   301:	getfield	#88; //Field _coord:Laspects/cool/BoundedStackCoord;
+   304:	aload_0
+   305:	invokevirtual	#143; //Method aspects/cool/BoundedStackCoord.meth_push_1_unlock:(Lbase/BoundedStack;)V
+   308:	aload	14
+   310:	athrow
+   311:	aload_0
+   312:	getfield	#88; //Field _coord:Laspects/cool/BoundedStackCoord;
+   315:	aload_0
+   316:	invokevirtual	#143; //Method aspects/cool/BoundedStackCoord.meth_push_1_unlock:(Lbase/BoundedStack;)V
+   319:	return
+   320:	return
+  Exception table:
+   from   to  target type
+    14   219   219   Class java/lang/Throwable
+
+     6   298   298   Class java/lang/Throwable
+
+
+public java.lang.Object[] _getBuffer();
+  Code:
+   0:	aload_0
+   1:	getfield	#20; //Field buffer:[Ljava/lang/Object;
+   4:	areturn
+
+static {};
+  Code:
+   0:	new	#56; //class org/aspectj/runtime/reflect/Factory
+   3:	dup
+   4:	ldc	#151; //String BoundedStack.java
+   6:	ldc	#153; //String base.BoundedStack
+   8:	invokestatic	#159; //Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+   11:	invokespecial	#162; //Method org/aspectj/runtime/reflect/Factory."<init>":(Ljava/lang/String;Ljava/lang/Class;)V
+   14:	astore_0
+   15:	aload_0
+   16:	ldc	#164; //String field-set
+   18:	aload_0
+   19:	ldc	#166; //String 2
+   21:	ldc	#167; //String usedSlots
+   23:	ldc	#153; //String base.BoundedStack
+   25:	ldc	#169; //String int
+   27:	invokevirtual	#173; //Method org/aspectj/runtime/reflect/Factory.makeFieldSig:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/aspectj/lang/reflect/FieldSignature;
+   30:	bipush	7
+   32:	invokevirtual	#177; //Method org/aspectj/runtime/reflect/Factory.makeSJP:(Ljava/lang/String;Lorg/aspectj/lang/Signature;I)Lorg/aspectj/lang/JoinPoint$StaticPart;
+   35:	putstatic	#45; //Field ajc$tjp_0:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   38:	aload_0
+   39:	ldc	#164; //String field-set
+   41:	aload_0
+   42:	ldc	#179; //String 4
+   44:	ldc	#180; //String buffer
+   46:	ldc	#153; //String base.BoundedStack
+   48:	ldc	#182; //String [Ljava.lang.Object;
+   50:	invokevirtual	#173; //Method org/aspectj/runtime/reflect/Factory.makeFieldSig:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/aspectj/lang/reflect/FieldSignature;
+   53:	bipush	10
+   55:	invokevirtual	#177; //Method org/aspectj/runtime/reflect/Factory.makeSJP:(Ljava/lang/String;Lorg/aspectj/lang/Signature;I)Lorg/aspectj/lang/JoinPoint$StaticPart;
+   58:	putstatic	#83; //Field ajc$tjp_1:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   61:	aload_0
+   62:	ldc	#184; //String field-get
+   64:	aload_0
+   65:	ldc	#166; //String 2
+   67:	ldc	#167; //String usedSlots
+   69:	ldc	#153; //String base.BoundedStack
+   71:	ldc	#169; //String int
+   73:	invokevirtual	#173; //Method org/aspectj/runtime/reflect/Factory.makeFieldSig:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/aspectj/lang/reflect/FieldSignature;
+   76:	bipush	21
+   78:	invokevirtual	#177; //Method org/aspectj/runtime/reflect/Factory.makeSJP:(Ljava/lang/String;Lorg/aspectj/lang/Signature;I)Lorg/aspectj/lang/JoinPoint$StaticPart;
+   81:	putstatic	#128; //Field ajc$tjp_10:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   84:	aload_0
+   85:	ldc	#184; //String field-get
+   87:	aload_0
+   88:	ldc	#166; //String 2
+   90:	ldc	#167; //String usedSlots
+   92:	ldc	#153; //String base.BoundedStack
+   94:	ldc	#169; //String int
+   96:	invokevirtual	#173; //Method org/aspectj/runtime/reflect/Factory.makeFieldSig:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/aspectj/lang/reflect/FieldSignature;
+   99:	bipush	22
+   101:	invokevirtual	#177; //Method org/aspectj/runtime/reflect/Factory.makeSJP:(Ljava/lang/String;Lorg/aspectj/lang/Signature;I)Lorg/aspectj/lang/JoinPoint$StaticPart;
+   104:	putstatic	#131; //Field ajc$tjp_11:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   107:	aload_0
+   108:	ldc	#164; //String field-set
+   110:	aload_0
+   111:	ldc	#166; //String 2
+   113:	ldc	#167; //String usedSlots
+   115:	ldc	#153; //String base.BoundedStack
+   117:	ldc	#169; //String int
+   119:	invokevirtual	#173; //Method org/aspectj/runtime/reflect/Factory.makeFieldSig:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/aspectj/lang/reflect/FieldSignature;
+   122:	bipush	22
+   124:	invokevirtual	#177; //Method org/aspectj/runtime/reflect/Factory.makeSJP:(Ljava/lang/String;Lorg/aspectj/lang/Signature;I)Lorg/aspectj/lang/JoinPoint$StaticPart;
+   127:	putstatic	#134; //Field ajc$tjp_12:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   130:	aload_0
+   131:	ldc	#186; //String method-execution
+   133:	aload_0
+   134:	ldc	#188; //String 1
+   136:	ldc	#189; //String push
+   138:	ldc	#153; //String base.BoundedStack
+   140:	ldc	#191; //String java.lang.Object:
+   142:	ldc	#193; //String obj:
+   144:	ldc	#195; //String 
+   146:	ldc	#197; //String void
+   148:	invokevirtual	#201; //Method org/aspectj/runtime/reflect/Factory.makeMethodSig:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/aspectj/lang/reflect/MethodSignature;
+   151:	bipush	20
+   153:	invokevirtual	#177; //Method org/aspectj/runtime/reflect/Factory.makeSJP:(Ljava/lang/String;Lorg/aspectj/lang/Signature;I)Lorg/aspectj/lang/JoinPoint$StaticPart;
+   156:	putstatic	#137; //Field ajc$tjp_13:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   159:	aload_0
+   160:	ldc	#184; //String field-get
+   162:	aload_0
+   163:	ldc	#179; //String 4
+   165:	ldc	#180; //String buffer
+   167:	ldc	#153; //String base.BoundedStack
+   169:	ldc	#182; //String [Ljava.lang.Object;
+   171:	invokevirtual	#173; //Method org/aspectj/runtime/reflect/Factory.makeFieldSig:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/aspectj/lang/reflect/FieldSignature;
+   174:	bipush	14
+   176:	invokevirtual	#177; //Method org/aspectj/runtime/reflect/Factory.makeSJP:(Ljava/lang/String;Lorg/aspectj/lang/Signature;I)Lorg/aspectj/lang/JoinPoint$StaticPart;
+   179:	putstatic	#91; //Field ajc$tjp_2:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   182:	aload_0
+   183:	ldc	#184; //String field-get
+   185:	aload_0
+   186:	ldc	#166; //String 2
+   188:	ldc	#167; //String usedSlots
+   190:	ldc	#153; //String base.BoundedStack
+   192:	ldc	#169; //String int
+   194:	invokevirtual	#173; //Method org/aspectj/runtime/reflect/Factory.makeFieldSig:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/aspectj/lang/reflect/FieldSignature;
+   197:	bipush	14
+   199:	invokevirtual	#177; //Method org/aspectj/runtime/reflect/Factory.makeSJP:(Ljava/lang/String;Lorg/aspectj/lang/Signature;I)Lorg/aspectj/lang/JoinPoint$StaticPart;
+   202:	putstatic	#97; //Field ajc$tjp_3:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   205:	aload_0
+   206:	ldc	#184; //String field-get
+   208:	aload_0
+   209:	ldc	#166; //String 2
+   211:	ldc	#167; //String usedSlots
+   213:	ldc	#153; //String base.BoundedStack
+   215:	ldc	#169; //String int
+   217:	invokevirtual	#173; //Method org/aspectj/runtime/reflect/Factory.makeFieldSig:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/aspectj/lang/reflect/FieldSignature;
+   220:	bipush	15
+   222:	invokevirtual	#177; //Method org/aspectj/runtime/reflect/Factory.makeSJP:(Ljava/lang/String;Lorg/aspectj/lang/Signature;I)Lorg/aspectj/lang/JoinPoint$StaticPart;
+   225:	putstatic	#100; //Field ajc$tjp_4:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   228:	aload_0
+   229:	ldc	#164; //String field-set
+   231:	aload_0
+   232:	ldc	#166; //String 2
+   234:	ldc	#167; //String usedSlots
+   236:	ldc	#153; //String base.BoundedStack
+   238:	ldc	#169; //String int
+   240:	invokevirtual	#173; //Method org/aspectj/runtime/reflect/Factory.makeFieldSig:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/aspectj/lang/reflect/FieldSignature;
+   243:	bipush	15
+   245:	invokevirtual	#177; //Method org/aspectj/runtime/reflect/Factory.makeSJP:(Ljava/lang/String;Lorg/aspectj/lang/Signature;I)Lorg/aspectj/lang/JoinPoint$StaticPart;
+   248:	putstatic	#103; //Field ajc$tjp_5:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   251:	aload_0
+   252:	ldc	#184; //String field-get
+   254:	aload_0
+   255:	ldc	#179; //String 4
+   257:	ldc	#180; //String buffer
+   259:	ldc	#153; //String base.BoundedStack
+   261:	ldc	#182; //String [Ljava.lang.Object;
+   263:	invokevirtual	#173; //Method org/aspectj/runtime/reflect/Factory.makeFieldSig:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/aspectj/lang/reflect/FieldSignature;
+   266:	bipush	16
+   268:	invokevirtual	#177; //Method org/aspectj/runtime/reflect/Factory.makeSJP:(Ljava/lang/String;Lorg/aspectj/lang/Signature;I)Lorg/aspectj/lang/JoinPoint$StaticPart;
+   271:	putstatic	#106; //Field ajc$tjp_6:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   274:	aload_0
+   275:	ldc	#184; //String field-get
+   277:	aload_0
+   278:	ldc	#166; //String 2
+   280:	ldc	#167; //String usedSlots
+   282:	ldc	#153; //String base.BoundedStack
+   284:	ldc	#169; //String int
+   286:	invokevirtual	#173; //Method org/aspectj/runtime/reflect/Factory.makeFieldSig:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/aspectj/lang/reflect/FieldSignature;
+   289:	bipush	16
+   291:	invokevirtual	#177; //Method org/aspectj/runtime/reflect/Factory.makeSJP:(Ljava/lang/String;Lorg/aspectj/lang/Signature;I)Lorg/aspectj/lang/JoinPoint$StaticPart;
+   294:	putstatic	#109; //Field ajc$tjp_7:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   297:	aload_0
+   298:	ldc	#186; //String method-execution
+   300:	aload_0
+   301:	ldc	#188; //String 1
+   303:	ldc	#202; //String pop
+   305:	ldc	#153; //String base.BoundedStack
+   307:	ldc	#195; //String 
+   309:	ldc	#195; //String 
+   311:	ldc	#195; //String 
+   313:	ldc	#204; //String java.lang.Object
+   315:	invokevirtual	#201; //Method org/aspectj/runtime/reflect/Factory.makeMethodSig:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/aspectj/lang/reflect/MethodSignature;
+   318:	bipush	13
+   320:	invokevirtual	#177; //Method org/aspectj/runtime/reflect/Factory.makeSJP:(Ljava/lang/String;Lorg/aspectj/lang/Signature;I)Lorg/aspectj/lang/JoinPoint$StaticPart;
+   323:	putstatic	#112; //Field ajc$tjp_8:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   326:	aload_0
+   327:	ldc	#184; //String field-get
+   329:	aload_0
+   330:	ldc	#179; //String 4
+   332:	ldc	#180; //String buffer
+   334:	ldc	#153; //String base.BoundedStack
+   336:	ldc	#182; //String [Ljava.lang.Object;
+   338:	invokevirtual	#173; //Method org/aspectj/runtime/reflect/Factory.makeFieldSig:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/aspectj/lang/reflect/FieldSignature;
+   341:	bipush	21
+   343:	invokevirtual	#177; //Method org/aspectj/runtime/reflect/Factory.makeSJP:(Ljava/lang/String;Lorg/aspectj/lang/Signature;I)Lorg/aspectj/lang/JoinPoint$StaticPart;
+   346:	putstatic	#125; //Field ajc$tjp_9:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   349:	return
+
+}
+

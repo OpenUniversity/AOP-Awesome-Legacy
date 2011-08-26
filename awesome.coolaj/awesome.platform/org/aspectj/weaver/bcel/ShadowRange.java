@@ -49,7 +49,7 @@ public final class ShadowRange extends Range {
 		this.end = end;
 		start.addTargeter(this);
 		end.addTargeter(this);
-		shadow.setOriginalPositions();
+		//shadow.setOriginalPositions();
 	}
 
 	public void associateWithShadow(BcelShadow shadow) {

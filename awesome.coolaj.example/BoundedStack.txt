@@ -1,0 +1,637 @@
+Compiled from "BoundedStack.java"
+public class base.BoundedStack extends java.lang.Object implements base.Stack
+  SourceFile: "BoundedStack.java"
+  FieldLineNumber: length = 0x38
+   2A 46 0A 2B 20 30 20 62 61 73 65 0A 42 6F 75 6E
+   64 65 64 53 74 61 63 6B 2E 6A 61 76 61 0A 2A 42
+   0A 62 75 66 66 65 72 20 30 3A 30 0A 75 73 65 64
+   53 6C 6F 74 73 20 30 0A 
+  org.aspectj.weaver.WeaverVersion: length = 0xC
+   00 06 00 00 00 00 01 21 FFFFFFF1 75 68 40 
+  org.aspectj.weaver.WeaverState: length = 0x3
+   03 00 00 
+  minor version: 0
+  major version: 49
+  Constant pool:
+const #1 = class	#2;	//  base/BoundedStack
+const #2 = Asciz	base/BoundedStack;
+const #3 = class	#4;	//  java/lang/Object
+const #4 = Asciz	java/lang/Object;
+const #5 = class	#6;	//  base/Stack
+const #6 = Asciz	base/Stack;
+const #7 = Asciz	buffer;
+const #8 = Asciz	[Ljava/lang/Object;;
+const #9 = Asciz	usedSlots;
+const #10 = Asciz	I;
+const #11 = Asciz	<init>;
+const #12 = Asciz	(I)V;
+const #13 = Asciz	org.aspectj.weaver.MethodDeclarationLineNumber;
+const #14 = Asciz	Code;
+const #15 = Method	#3.#16;	//  java/lang/Object."<init>":()V
+const #16 = NameAndType	#11:#17;//  "<init>":()V
+const #17 = Asciz	()V;
+const #18 = Field	#1.#19;	//  base/BoundedStack.usedSlots:I
+const #19 = NameAndType	#9:#10;//  usedSlots:I
+const #20 = Field	#1.#21;	//  base/BoundedStack.buffer:[Ljava/lang/Object;
+const #21 = NameAndType	#7:#8;//  buffer:[Ljava/lang/Object;
+const #22 = Asciz	LineNumberTable;
+const #23 = Asciz	LocalVariableTable;
+const #24 = Asciz	this;
+const #25 = Asciz	Lbase/BoundedStack;;
+const #26 = Asciz	capacity;
+const #27 = Asciz	pop;
+const #28 = Asciz	()Ljava/lang/Object;;
+const #29 = Asciz	result;
+const #30 = Asciz	Ljava/lang/Object;;
+const #31 = Asciz	push;
+const #32 = Asciz	(Ljava/lang/Object;)V;
+const #33 = Asciz	obj;
+const #34 = Asciz	SourceFile;
+const #35 = Asciz	BoundedStack.java;
+const #36 = Asciz	_coord;
+const #37 = Asciz	Laspects/cool/BoundedStackCoord;;
+const #38 = Asciz	_getBuffer;
+const #39 = Asciz	()[Ljava/lang/Object;;
+const #40 = Asciz	<clinit>;
+const #41 = Asciz	aspects/cool/BoundedStackCoord;
+const #42 = class	#41;	//  aspects/cool/BoundedStackCoord
+const #43 = Method	#42.#16;	//  aspects/cool/BoundedStackCoord."<init>":()V
+const #44 = NameAndType	#36:#37;//  _coord:Laspects/cool/BoundedStackCoord;
+const #45 = Field	#1.#44;	//  base/BoundedStack._coord:Laspects/cool/BoundedStackCoord;
+const #46 = Asciz	Synthetic;
+const #47 = Asciz	ajc$tjp_0;
+const #48 = Asciz	Lorg/aspectj/lang/JoinPoint$StaticPart;;
+const #49 = NameAndType	#47:#48;//  ajc$tjp_0:Lorg/aspectj/lang/JoinPoint$StaticPart;
+const #50 = Field	#1.#49;	//  base/BoundedStack.ajc$tjp_0:Lorg/aspectj/lang/JoinPoint$StaticPart;
+const #51 = Asciz	makeJP;
+const #52 = Asciz	(Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;;
+const #53 = NameAndType	#51:#52;//  makeJP:(Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+const #54 = Asciz	org/aspectj/runtime/reflect/Factory;
+const #55 = class	#54;	//  org/aspectj/runtime/reflect/Factory
+const #56 = Method	#55.#53;	//  org/aspectj/runtime/reflect/Factory.makeJP:(Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+const #57 = Asciz	base/BoundedStack$AjcClosure1;
+const #58 = class	#57;	//  base/BoundedStack$AjcClosure1
+const #59 = Asciz	([Ljava/lang/Object;)V;
+const #60 = NameAndType	#11:#59;//  "<init>":([Ljava/lang/Object;)V
+const #61 = Method	#58.#60;	//  base/BoundedStack$AjcClosure1."<init>":([Ljava/lang/Object;)V
+const #62 = Asciz	aspectOf;
+const #63 = Asciz	()Laspects/aspectj/LogAllToFile;;
+const #64 = NameAndType	#62:#63;//  aspectOf:()Laspects/aspectj/LogAllToFile;
+const #65 = Asciz	aspects/aspectj/LogAllToFile;
+const #66 = class	#65;	//  aspects/aspectj/LogAllToFile
+const #67 = Method	#66.#64;	//  aspects/aspectj/LogAllToFile.aspectOf:()Laspects/aspectj/LogAllToFile;
+const #68 = Asciz	ajc$around$aspects_aspectj_LogAllToFile$2$ec60c2f0;
+const #69 = Asciz	(Lorg/aspectj/runtime/internal/AroundClosure;Lorg/aspectj/lang/JoinPoint;)Ljava/lang/Object;;
+const #70 = NameAndType	#68:#69;//  ajc$around$aspects_aspectj_LogAllToFile$2$ec60c2f0:(Lorg/aspectj/runtime/internal/AroundClosure;Lorg/aspectj/lang/JoinPoint;)Ljava/lang/Object;
+const #71 = Method	#66.#70;	//  aspects/aspectj/LogAllToFile.ajc$around$aspects_aspectj_LogAllToFile$2$ec60c2f0:(Lorg/aspectj/runtime/internal/AroundClosure;Lorg/aspectj/lang/JoinPoint;)Ljava/lang/Object;
+const #72 = Asciz	pop_aroundBody0;
+const #73 = Asciz	(Lbase/BoundedStack;Lorg/aspectj/lang/JoinPoint;)Ljava/lang/Object;;
+const #74 = NameAndType	#72:#73;//  pop_aroundBody0:(Lbase/BoundedStack;Lorg/aspectj/lang/JoinPoint;)Ljava/lang/Object;
+const #75 = Method	#1.#74;	//  base/BoundedStack.pop_aroundBody0:(Lbase/BoundedStack;Lorg/aspectj/lang/JoinPoint;)Ljava/lang/Object;
+const #76 = Asciz	ajc$cflowCounter$0;
+const #77 = Asciz	Lorg/aspectj/runtime/internal/CFlowCounter;;
+const #78 = NameAndType	#76:#77;//  ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+const #79 = Field	#66.#78;	//  aspects/aspectj/LogAllToFile.ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+const #80 = Asciz	isValid;
+const #81 = Asciz	()Z;
+const #82 = NameAndType	#80:#81;//  isValid:()Z
+const #83 = Asciz	org/aspectj/runtime/internal/CFlowCounter;
+const #84 = class	#83;	//  org/aspectj/runtime/internal/CFlowCounter
+const #85 = Method	#84.#82;	//  org/aspectj/runtime/internal/CFlowCounter.isValid:()Z
+const #86 = Asciz	ajc$before$aspects_aspectj_LogAllToFile$1$8f05cad1;
+const #87 = Asciz	(Lorg/aspectj/lang/JoinPoint;)V;
+const #88 = NameAndType	#86:#87;//  ajc$before$aspects_aspectj_LogAllToFile$1$8f05cad1:(Lorg/aspectj/lang/JoinPoint;)V
+const #89 = Method	#66.#88;	//  aspects/aspectj/LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$8f05cad1:(Lorg/aspectj/lang/JoinPoint;)V
+const #90 = Asciz	ajc$after$aspects_aspectj_LogAllToFile$3$44227cde;
+const #91 = NameAndType	#90:#87;//  ajc$after$aspects_aspectj_LogAllToFile$3$44227cde:(Lorg/aspectj/lang/JoinPoint;)V
+const #92 = Method	#66.#91;	//  aspects/aspectj/LogAllToFile.ajc$after$aspects_aspectj_LogAllToFile$3$44227cde:(Lorg/aspectj/lang/JoinPoint;)V
+const #93 = Asciz	meth_pop_0_lock;
+const #94 = Asciz	(Lbase/BoundedStack;)V;
+const #95 = NameAndType	#93:#94;//  meth_pop_0_lock:(Lbase/BoundedStack;)V
+const #96 = Method	#42.#95;	//  aspects/cool/BoundedStackCoord.meth_pop_0_lock:(Lbase/BoundedStack;)V
+const #97 = Asciz	meth_pop_0_unlock;
+const #98 = NameAndType	#97:#94;//  meth_pop_0_unlock:(Lbase/BoundedStack;)V
+const #99 = Method	#42.#98;	//  aspects/cool/BoundedStackCoord.meth_pop_0_unlock:(Lbase/BoundedStack;)V
+const #100 = Asciz	ajc$tjp_1;
+const #101 = NameAndType	#100:#48;//  ajc$tjp_1:Lorg/aspectj/lang/JoinPoint$StaticPart;
+const #102 = Field	#1.#101;	//  base/BoundedStack.ajc$tjp_1:Lorg/aspectj/lang/JoinPoint$StaticPart;
+const #103 = Asciz	(Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;;
+const #104 = NameAndType	#51:#103;//  makeJP:(Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+const #105 = Method	#55.#104;	//  org/aspectj/runtime/reflect/Factory.makeJP:(Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+const #106 = Asciz	base/BoundedStack$AjcClosure3;
+const #107 = class	#106;	//  base/BoundedStack$AjcClosure3
+const #108 = Method	#107.#60;	//  base/BoundedStack$AjcClosure3."<init>":([Ljava/lang/Object;)V
+const #109 = Asciz	push_aroundBody2;
+const #110 = Asciz	(Lbase/BoundedStack;Ljava/lang/Object;Lorg/aspectj/lang/JoinPoint;)V;
+const #111 = NameAndType	#109:#110;//  push_aroundBody2:(Lbase/BoundedStack;Ljava/lang/Object;Lorg/aspectj/lang/JoinPoint;)V
+const #112 = Method	#1.#111;	//  base/BoundedStack.push_aroundBody2:(Lbase/BoundedStack;Ljava/lang/Object;Lorg/aspectj/lang/JoinPoint;)V
+const #113 = Asciz	meth_push_1_lock;
+const #114 = NameAndType	#113:#94;//  meth_push_1_lock:(Lbase/BoundedStack;)V
+const #115 = Method	#42.#114;	//  aspects/cool/BoundedStackCoord.meth_push_1_lock:(Lbase/BoundedStack;)V
+const #116 = Asciz	meth_push_1_unlock;
+const #117 = NameAndType	#116:#94;//  meth_push_1_unlock:(Lbase/BoundedStack;)V
+const #118 = Method	#42.#117;	//  aspects/cool/BoundedStackCoord.meth_push_1_unlock:(Lbase/BoundedStack;)V
+const #119 = Asciz	CrossCutting;
+const #120 = Asciz	adb.tagkit.ASHADOW;
+const #121 = Asciz	java/lang/Throwable;
+const #122 = class	#121;	//  java/lang/Throwable
+const #123 = Asciz	FieldLineNumber;
+const #124 = Asciz	org.aspectj.weaver.WeaverVersion;
+const #125 = Asciz	org.aspectj.weaver.WeaverState;
+const #126 = String	#35;	//  BoundedStack.java
+const #127 = Asciz	base.BoundedStack;
+const #128 = String	#127;	//  base.BoundedStack
+const #129 = Asciz	forName;
+const #130 = Asciz	(Ljava/lang/String;)Ljava/lang/Class;;
+const #131 = NameAndType	#129:#130;//  forName:(Ljava/lang/String;)Ljava/lang/Class;
+const #132 = Asciz	java/lang/Class;
+const #133 = class	#132;	//  java/lang/Class
+const #134 = Method	#133.#131;	//  java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+const #135 = Asciz	(Ljava/lang/String;Ljava/lang/Class;)V;
+const #136 = NameAndType	#11:#135;//  "<init>":(Ljava/lang/String;Ljava/lang/Class;)V
+const #137 = Method	#55.#136;	//  org/aspectj/runtime/reflect/Factory."<init>":(Ljava/lang/String;Ljava/lang/Class;)V
+const #138 = Asciz	method-execution;
+const #139 = String	#138;	//  method-execution
+const #140 = Asciz	1;
+const #141 = String	#140;	//  1
+const #142 = String	#27;	//  pop
+const #143 = Asciz	;
+const #144 = String	#143;	//  
+const #145 = Asciz	java.lang.Object;
+const #146 = String	#145;	//  java.lang.Object
+const #147 = Asciz	makeMethodSig;
+const #148 = Asciz	(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/aspectj/lang/reflect/MethodSignature;;
+const #149 = NameAndType	#147:#148;//  makeMethodSig:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/aspectj/lang/reflect/MethodSignature;
+const #150 = Method	#55.#149;	//  org/aspectj/runtime/reflect/Factory.makeMethodSig:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/aspectj/lang/reflect/MethodSignature;
+const #151 = Asciz	makeSJP;
+const #152 = Asciz	(Ljava/lang/String;Lorg/aspectj/lang/Signature;I)Lorg/aspectj/lang/JoinPoint$StaticPart;;
+const #153 = NameAndType	#151:#152;//  makeSJP:(Ljava/lang/String;Lorg/aspectj/lang/Signature;I)Lorg/aspectj/lang/JoinPoint$StaticPart;
+const #154 = Method	#55.#153;	//  org/aspectj/runtime/reflect/Factory.makeSJP:(Ljava/lang/String;Lorg/aspectj/lang/Signature;I)Lorg/aspectj/lang/JoinPoint$StaticPart;
+const #155 = String	#31;	//  push
+const #156 = Asciz	java.lang.Object:;
+const #157 = String	#156;	//  java.lang.Object:
+const #158 = Asciz	obj:;
+const #159 = String	#158;	//  obj:
+const #160 = Asciz	void;
+const #161 = String	#160;	//  void
+const #162 = Asciz	ajc$this;
+
+{
+protected java.lang.Object[] buffer;
+
+
+private int usedSlots;
+
+
+private aspects.cool.BoundedStackCoord _coord;
+
+
+private static final org.aspectj.lang.JoinPoint$StaticPart ajc$tjp_0;
+  Synthetic: true
+
+
+private static final org.aspectj.lang.JoinPoint$StaticPart ajc$tjp_1;
+  Synthetic: true
+
+
+public base.BoundedStack(int);
+  org.aspectj.weaver.MethodDeclarationLineNumber: length = 0x8
+   00 00 00 09 00 00 00 FFFFFF87 
+  Code:
+   Stack=3, Locals=2, Args_size=2
+   0:	aload_0
+   1:	invokespecial	#15; //Method java/lang/Object."<init>":()V
+   4:	nop
+   5:	aload_0
+   6:	iconst_0
+   7:	putfield	#18; //Field usedSlots:I
+   10:	aload_0
+   11:	iload_1
+   12:	anewarray	#3; //class java/lang/Object
+   15:	putfield	#20; //Field buffer:[Ljava/lang/Object;
+   18:	nop
+   19:	aload_0
+   20:	new	#42; //class aspects/cool/BoundedStackCoord
+   23:	dup
+   24:	invokespecial	#43; //Method aspects/cool/BoundedStackCoord."<init>":()V
+   27:	putfield	#45; //Field _coord:Laspects/cool/BoundedStackCoord;
+   30:	return
+   31:	return
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      19      0    this       Lbase/BoundedStack;
+   0      19      1    capacity       I
+
+  LineNumberTable: 
+   line 9: 0
+   line 7: 5
+   line 10: 10
+   line 11: 18
+
+
+public java.lang.Object pop();
+  org.aspectj.weaver.MethodDeclarationLineNumber: length = 0x8
+   00 00 00 0D 00 00 00 FFFFFFE1 
+  Code:
+   Stack=4, Locals=8, Args_size=1
+   0:	getstatic	#50; //Field ajc$tjp_0:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   3:	aload_0
+   4:	aload_0
+   5:	invokestatic	#56; //Method org/aspectj/runtime/reflect/Factory.makeJP:(Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+   8:	astore_2
+   9:	aload_0
+   10:	getfield	#45; //Field _coord:Laspects/cool/BoundedStackCoord;
+   13:	aload_0
+   14:	invokevirtual	#96; //Method aspects/cool/BoundedStackCoord.meth_pop_0_lock:(Lbase/BoundedStack;)V
+   17:	getstatic	#79; //Field aspects/aspectj/LogAllToFile.ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   20:	invokevirtual	#85; //Method org/aspectj/runtime/internal/CFlowCounter.isValid:()Z
+   23:	ifne	33
+   26:	invokestatic	#67; //Method aspects/aspectj/LogAllToFile.aspectOf:()Laspects/aspectj/LogAllToFile;
+   29:	aload_2
+   30:	invokevirtual	#89; //Method aspects/aspectj/LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$8f05cad1:(Lorg/aspectj/lang/JoinPoint;)V
+   33:	getstatic	#79; //Field aspects/aspectj/LogAllToFile.ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   36:	invokevirtual	#85; //Method org/aspectj/runtime/internal/CFlowCounter.isValid:()Z
+   39:	ifne	75
+   42:	invokestatic	#67; //Method aspects/aspectj/LogAllToFile.aspectOf:()Laspects/aspectj/LogAllToFile;
+   45:	iconst_2
+   46:	anewarray	#3; //class java/lang/Object
+   49:	astore_3
+   50:	aload_3
+   51:	iconst_0
+   52:	aload_0
+   53:	aastore
+   54:	aload_3
+   55:	iconst_1
+   56:	aload_2
+   57:	aastore
+   58:	new	#58; //class base/BoundedStack$AjcClosure1
+   61:	dup
+   62:	aload_3
+   63:	invokespecial	#61; //Method base/BoundedStack$AjcClosure1."<init>":([Ljava/lang/Object;)V
+   66:	aload_2
+   67:	invokevirtual	#71; //Method aspects/aspectj/LogAllToFile.ajc$around$aspects_aspectj_LogAllToFile$2$ec60c2f0:(Lorg/aspectj/runtime/internal/AroundClosure;Lorg/aspectj/lang/JoinPoint;)Ljava/lang/Object;
+   70:	astore	5
+   72:	goto	106
+   75:	aload_0
+   76:	aload_2
+   77:	invokestatic	#75; //Method pop_aroundBody0:(Lbase/BoundedStack;Lorg/aspectj/lang/JoinPoint;)Ljava/lang/Object;
+   80:	astore	5
+   82:	goto	106
+   85:	astore	4
+   87:	getstatic	#79; //Field aspects/aspectj/LogAllToFile.ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   90:	invokevirtual	#85; //Method org/aspectj/runtime/internal/CFlowCounter.isValid:()Z
+   93:	ifne	103
+   96:	invokestatic	#67; //Method aspects/aspectj/LogAllToFile.aspectOf:()Laspects/aspectj/LogAllToFile;
+   99:	aload_2
+   100:	invokevirtual	#92; //Method aspects/aspectj/LogAllToFile.ajc$after$aspects_aspectj_LogAllToFile$3$44227cde:(Lorg/aspectj/lang/JoinPoint;)V
+   103:	aload	4
+   105:	athrow
+   106:	getstatic	#79; //Field aspects/aspectj/LogAllToFile.ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   109:	invokevirtual	#85; //Method org/aspectj/runtime/internal/CFlowCounter.isValid:()Z
+   112:	ifne	122
+   115:	invokestatic	#67; //Method aspects/aspectj/LogAllToFile.aspectOf:()Laspects/aspectj/LogAllToFile;
+   118:	aload_2
+   119:	invokevirtual	#92; //Method aspects/aspectj/LogAllToFile.ajc$after$aspects_aspectj_LogAllToFile$3$44227cde:(Lorg/aspectj/lang/JoinPoint;)V
+   122:	aload	5
+   124:	astore	7
+   126:	goto	142
+   129:	astore	6
+   131:	aload_0
+   132:	getfield	#45; //Field _coord:Laspects/cool/BoundedStackCoord;
+   135:	aload_0
+   136:	invokevirtual	#99; //Method aspects/cool/BoundedStackCoord.meth_pop_0_unlock:(Lbase/BoundedStack;)V
+   139:	aload	6
+   141:	athrow
+   142:	aload_0
+   143:	getfield	#45; //Field _coord:Laspects/cool/BoundedStackCoord;
+   146:	aload_0
+   147:	invokevirtual	#99; //Method aspects/cool/BoundedStackCoord.meth_pop_0_unlock:(Lbase/BoundedStack;)V
+   150:	aload	7
+   152:	areturn
+  Exception table:
+   from   to  target type
+    17    85    85   Class java/lang/Throwable
+
+     9   129   129   Class java/lang/Throwable
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      20      0    this       Lbase/BoundedStack;
+
+  LineNumberTable: 
+   line 14: 17
+
+  CrossCutting: length = 0x258
+   00 00 00 01 00 4F 00 01 00 0D 00 0E 00 09 00 FFFFFF94
+   00 18 70 6F 70 20 28 29 4C 6A 61 76 61 2F 6C 61
+   6E 67 2F 4F 62 6A 65 63 74 3B 00 05 00 FFFFFFAC 61 73
+   70 65 63 74 73 2E 61 73 70 65 63 74 6A 2E 4C 6F
+   67 41 6C 6C 54 6F 46 69 6C 65 20 61 6A 63 24 61
+   72 6F 75 6E 64 24 61 73 70 65 63 74 73 5F 61 73
+   70 65 63 74 6A 5F 4C 6F 67 41 6C 6C 54 6F 46 69
+   6C 65 24 32 24 65 63 36 30 63 32 66 30 20 28 4C
+   6F 72 67 2F 61 73 70 65 63 74 6A 2F 72 75 6E 74
+   69 6D 65 2F 69 6E 74 65 72 6E 61 6C 2F 41 72 6F
+   75 6E 64 43 6C 6F 73 75 72 65 3B 4C 6F 72 67 2F
+   61 73 70 65 63 74 6A 2F 6C 61 6E 67 2F 4A 6F 69
+   6E 50 6F 69 6E 74 3B 29 4C 6A 61 76 61 2F 6C 61
+   6E 67 2F 4F 62 6A 65 63 74 3B 00 01 21 00 6F 61
+   73 70 65 63 74 73 2E 61 73 70 65 63 74 6A 2E 4C
+   6F 67 41 6C 6C 54 6F 46 69 6C 65 20 61 6A 63 24
+   62 65 66 6F 72 65 24 61 73 70 65 63 74 73 5F 61
+   73 70 65 63 74 6A 5F 4C 6F 67 41 6C 6C 54 6F 46
+   69 6C 65 24 31 24 38 66 30 35 63 61 64 31 20 28
+   4C 6F 72 67 2F 61 73 70 65 63 74 6A 2F 6C 61 6E
+   67 2F 4A 6F 69 6E 50 6F 69 6E 74 3B 29 56 00 01
+   21 00 6E 61 73 70 65 63 74 73 2E 61 73 70 65 63
+   74 6A 2E 4C 6F 67 41 6C 6C 54 6F 46 69 6C 65 20
+   61 6A 63 24 61 66 74 65 72 24 61 73 70 65 63 74
+   73 5F 61 73 70 65 63 74 6A 5F 4C 6F 67 41 6C 6C
+   54 6F 46 69 6C 65 24 33 24 34 34 32 32 37 63 64
+   65 20 28 4C 6F 72 67 2F 61 73 70 65 63 74 6A 2F
+   6C 61 6E 67 2F 4A 6F 69 6E 50 6F 69 6E 74 3B 29
+   56 00 01 21 00 45 61 73 70 65 63 74 73 2E 63 6F
+   6F 6C 2E 42 6F 75 6E 64 65 64 53 74 61 63 6B 43
+   6F 6F 72 64 20 6D 65 74 68 5F 70 6F 70 5F 30 5F
+   6C 6F 63 6B 20 28 4C 62 61 73 65 2F 42 6F 75 6E
+   64 65 64 53 74 61 63 6B 3B 29 56 00 00 00 47 61
+   73 70 65 63 74 73 2E 63 6F 6F 6C 2E 42 6F 75 6E
+   64 65 64 53 74 61 63 6B 43 6F 6F 72 64 20 6D 65
+   74 68 5F 70 6F 70 5F 30 5F 75 6E 6C 6F 63 6B 20
+   28 4C 62 61 73 65 2F 42 6F 75 6E 64 65 64 53 74
+   61 63 6B 3B 29 56 00 00 
+  adb.tagkit.ASHADOW: length = 0x36
+   00 00 00 2A 62 61 73 65 2E 42 6F 75 6E 64 65 64
+   53 74 61 63 6B 20 70 6F 70 20 28 29 4C 6A 61 76
+   61 2F 6C 61 6E 67 2F 4F 62 6A 65 63 74 3B 00 01
+   00 4F 00 00 00 15 
+
+public void push(java.lang.Object);
+  org.aspectj.weaver.MethodDeclarationLineNumber: length = 0x8
+   00 00 00 14 00 00 01 66 
+  Code:
+   Stack=4, Locals=7, Args_size=2
+   0:	aload_1
+   1:	astore_2
+   2:	getstatic	#102; //Field ajc$tjp_1:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   5:	aload_0
+   6:	aload_0
+   7:	aload_2
+   8:	invokestatic	#105; //Method org/aspectj/runtime/reflect/Factory.makeJP:(Lorg/aspectj/lang/JoinPoint$StaticPart;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Lorg/aspectj/lang/JoinPoint;
+   11:	astore_3
+   12:	aload_0
+   13:	getfield	#45; //Field _coord:Laspects/cool/BoundedStackCoord;
+   16:	aload_0
+   17:	invokevirtual	#115; //Method aspects/cool/BoundedStackCoord.meth_push_1_lock:(Lbase/BoundedStack;)V
+   20:	getstatic	#79; //Field aspects/aspectj/LogAllToFile.ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   23:	invokevirtual	#85; //Method org/aspectj/runtime/internal/CFlowCounter.isValid:()Z
+   26:	ifne	36
+   29:	invokestatic	#67; //Method aspects/aspectj/LogAllToFile.aspectOf:()Laspects/aspectj/LogAllToFile;
+   32:	aload_3
+   33:	invokevirtual	#89; //Method aspects/aspectj/LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$8f05cad1:(Lorg/aspectj/lang/JoinPoint;)V
+   36:	getstatic	#79; //Field aspects/aspectj/LogAllToFile.ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   39:	invokevirtual	#85; //Method org/aspectj/runtime/internal/CFlowCounter.isValid:()Z
+   42:	ifne	86
+   45:	invokestatic	#67; //Method aspects/aspectj/LogAllToFile.aspectOf:()Laspects/aspectj/LogAllToFile;
+   48:	iconst_3
+   49:	anewarray	#3; //class java/lang/Object
+   52:	astore	4
+   54:	aload	4
+   56:	iconst_0
+   57:	aload_0
+   58:	aastore
+   59:	aload	4
+   61:	iconst_1
+   62:	aload_2
+   63:	aastore
+   64:	aload	4
+   66:	iconst_2
+   67:	aload_3
+   68:	aastore
+   69:	new	#107; //class base/BoundedStack$AjcClosure3
+   72:	dup
+   73:	aload	4
+   75:	invokespecial	#108; //Method base/BoundedStack$AjcClosure3."<init>":([Ljava/lang/Object;)V
+   78:	aload_3
+   79:	invokevirtual	#71; //Method aspects/aspectj/LogAllToFile.ajc$around$aspects_aspectj_LogAllToFile$2$ec60c2f0:(Lorg/aspectj/runtime/internal/AroundClosure;Lorg/aspectj/lang/JoinPoint;)Ljava/lang/Object;
+   82:	pop
+   83:	goto	116
+   86:	aload_0
+   87:	aload_2
+   88:	aload_3
+   89:	invokestatic	#112; //Method push_aroundBody2:(Lbase/BoundedStack;Ljava/lang/Object;Lorg/aspectj/lang/JoinPoint;)V
+   92:	goto	116
+   95:	astore	5
+   97:	getstatic	#79; //Field aspects/aspectj/LogAllToFile.ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   100:	invokevirtual	#85; //Method org/aspectj/runtime/internal/CFlowCounter.isValid:()Z
+   103:	ifne	113
+   106:	invokestatic	#67; //Method aspects/aspectj/LogAllToFile.aspectOf:()Laspects/aspectj/LogAllToFile;
+   109:	aload_3
+   110:	invokevirtual	#92; //Method aspects/aspectj/LogAllToFile.ajc$after$aspects_aspectj_LogAllToFile$3$44227cde:(Lorg/aspectj/lang/JoinPoint;)V
+   113:	aload	5
+   115:	athrow
+   116:	getstatic	#79; //Field aspects/aspectj/LogAllToFile.ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   119:	invokevirtual	#85; //Method org/aspectj/runtime/internal/CFlowCounter.isValid:()Z
+   122:	ifne	132
+   125:	invokestatic	#67; //Method aspects/aspectj/LogAllToFile.aspectOf:()Laspects/aspectj/LogAllToFile;
+   128:	aload_3
+   129:	invokevirtual	#92; //Method aspects/aspectj/LogAllToFile.ajc$after$aspects_aspectj_LogAllToFile$3$44227cde:(Lorg/aspectj/lang/JoinPoint;)V
+   132:	goto	151
+   135:	goto	151
+   138:	astore	6
+   140:	aload_0
+   141:	getfield	#45; //Field _coord:Laspects/cool/BoundedStackCoord;
+   144:	aload_0
+   145:	invokevirtual	#118; //Method aspects/cool/BoundedStackCoord.meth_push_1_unlock:(Lbase/BoundedStack;)V
+   148:	aload	6
+   150:	athrow
+   151:	aload_0
+   152:	getfield	#45; //Field _coord:Laspects/cool/BoundedStackCoord;
+   155:	aload_0
+   156:	invokevirtual	#118; //Method aspects/cool/BoundedStackCoord.meth_push_1_unlock:(Lbase/BoundedStack;)V
+   159:	return
+   160:	return
+  Exception table:
+   from   to  target type
+    20    95    95   Class java/lang/Throwable
+
+    12   138   138   Class java/lang/Throwable
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      23      0    this       Lbase/BoundedStack;
+   0      23      1    obj       Ljava/lang/Object;
+
+  LineNumberTable: 
+   line 21: 20
+
+  CrossCutting: length = 0x25C
+   00 00 00 01 00 56 00 01 00 14 00 15 00 0C 00 FFFFFF9C
+   00 1A 70 75 73 68 20 28 4C 6A 61 76 61 2F 6C 61
+   6E 67 2F 4F 62 6A 65 63 74 3B 29 56 00 05 00 FFFFFFAC
+   61 73 70 65 63 74 73 2E 61 73 70 65 63 74 6A 2E
+   4C 6F 67 41 6C 6C 54 6F 46 69 6C 65 20 61 6A 63
+   24 61 72 6F 75 6E 64 24 61 73 70 65 63 74 73 5F
+   61 73 70 65 63 74 6A 5F 4C 6F 67 41 6C 6C 54 6F
+   46 69 6C 65 24 32 24 65 63 36 30 63 32 66 30 20
+   28 4C 6F 72 67 2F 61 73 70 65 63 74 6A 2F 72 75
+   6E 74 69 6D 65 2F 69 6E 74 65 72 6E 61 6C 2F 41
+   72 6F 75 6E 64 43 6C 6F 73 75 72 65 3B 4C 6F 72
+   67 2F 61 73 70 65 63 74 6A 2F 6C 61 6E 67 2F 4A
+   6F 69 6E 50 6F 69 6E 74 3B 29 4C 6A 61 76 61 2F
+   6C 61 6E 67 2F 4F 62 6A 65 63 74 3B 00 01 21 00
+   6F 61 73 70 65 63 74 73 2E 61 73 70 65 63 74 6A
+   2E 4C 6F 67 41 6C 6C 54 6F 46 69 6C 65 20 61 6A
+   63 24 62 65 66 6F 72 65 24 61 73 70 65 63 74 73
+   5F 61 73 70 65 63 74 6A 5F 4C 6F 67 41 6C 6C 54
+   6F 46 69 6C 65 24 31 24 38 66 30 35 63 61 64 31
+   20 28 4C 6F 72 67 2F 61 73 70 65 63 74 6A 2F 6C
+   61 6E 67 2F 4A 6F 69 6E 50 6F 69 6E 74 3B 29 56
+   00 01 21 00 6E 61 73 70 65 63 74 73 2E 61 73 70
+   65 63 74 6A 2E 4C 6F 67 41 6C 6C 54 6F 46 69 6C
+   65 20 61 6A 63 24 61 66 74 65 72 24 61 73 70 65
+   63 74 73 5F 61 73 70 65 63 74 6A 5F 4C 6F 67 41
+   6C 6C 54 6F 46 69 6C 65 24 33 24 34 34 32 32 37
+   63 64 65 20 28 4C 6F 72 67 2F 61 73 70 65 63 74
+   6A 2F 6C 61 6E 67 2F 4A 6F 69 6E 50 6F 69 6E 74
+   3B 29 56 00 01 21 00 46 61 73 70 65 63 74 73 2E
+   63 6F 6F 6C 2E 42 6F 75 6E 64 65 64 53 74 61 63
+   6B 43 6F 6F 72 64 20 6D 65 74 68 5F 70 75 73 68
+   5F 31 5F 6C 6F 63 6B 20 28 4C 62 61 73 65 2F 42
+   6F 75 6E 64 65 64 53 74 61 63 6B 3B 29 56 00 00
+   00 48 61 73 70 65 63 74 73 2E 63 6F 6F 6C 2E 42
+   6F 75 6E 64 65 64 53 74 61 63 6B 43 6F 6F 72 64
+   20 6D 65 74 68 5F 70 75 73 68 5F 31 5F 75 6E 6C
+   6F 63 6B 20 28 4C 62 61 73 65 2F 42 6F 75 6E 64
+   65 64 53 74 61 63 6B 3B 29 56 00 00 
+  adb.tagkit.ASHADOW: length = 0x38
+   00 00 00 2C 62 61 73 65 2E 42 6F 75 6E 64 65 64
+   53 74 61 63 6B 20 70 75 73 68 20 28 4C 6A 61 76
+   61 2F 6C 61 6E 67 2F 4F 62 6A 65 63 74 3B 29 56
+   00 01 00 56 00 00 00 0C 
+
+public java.lang.Object[] _getBuffer();
+  Code:
+   Stack=1, Locals=1, Args_size=1
+   0:	aload_0
+   1:	getfield	#20; //Field buffer:[Ljava/lang/Object;
+   4:	areturn
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      5      0    this       Lbase/BoundedStack;
+
+  LineNumberTable: 
+   line 1: 0
+
+
+static {};
+  Code:
+   Stack=10, Locals=1, Args_size=0
+   0:	new	#55; //class org/aspectj/runtime/reflect/Factory
+   3:	dup
+   4:	ldc	#126; //String BoundedStack.java
+   6:	ldc	#128; //String base.BoundedStack
+   8:	invokestatic	#134; //Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+   11:	invokespecial	#137; //Method org/aspectj/runtime/reflect/Factory."<init>":(Ljava/lang/String;Ljava/lang/Class;)V
+   14:	astore_0
+   15:	aload_0
+   16:	ldc	#139; //String method-execution
+   18:	aload_0
+   19:	ldc	#141; //String 1
+   21:	ldc	#142; //String pop
+   23:	ldc	#128; //String base.BoundedStack
+   25:	ldc	#144; //String 
+   27:	ldc	#144; //String 
+   29:	ldc	#144; //String 
+   31:	ldc	#146; //String java.lang.Object
+   33:	invokevirtual	#150; //Method org/aspectj/runtime/reflect/Factory.makeMethodSig:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/aspectj/lang/reflect/MethodSignature;
+   36:	bipush	13
+   38:	invokevirtual	#154; //Method org/aspectj/runtime/reflect/Factory.makeSJP:(Ljava/lang/String;Lorg/aspectj/lang/Signature;I)Lorg/aspectj/lang/JoinPoint$StaticPart;
+   41:	putstatic	#50; //Field ajc$tjp_0:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   44:	aload_0
+   45:	ldc	#139; //String method-execution
+   47:	aload_0
+   48:	ldc	#141; //String 1
+   50:	ldc	#155; //String push
+   52:	ldc	#128; //String base.BoundedStack
+   54:	ldc	#157; //String java.lang.Object:
+   56:	ldc	#159; //String obj:
+   58:	ldc	#144; //String 
+   60:	ldc	#161; //String void
+   62:	invokevirtual	#150; //Method org/aspectj/runtime/reflect/Factory.makeMethodSig:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/aspectj/lang/reflect/MethodSignature;
+   65:	bipush	20
+   67:	invokevirtual	#154; //Method org/aspectj/runtime/reflect/Factory.makeSJP:(Ljava/lang/String;Lorg/aspectj/lang/Signature;I)Lorg/aspectj/lang/JoinPoint$StaticPart;
+   70:	putstatic	#102; //Field ajc$tjp_1:Lorg/aspectj/lang/JoinPoint$StaticPart;
+   73:	return
+  LineNumberTable: 
+   line 1: 0
+
+
+static final java.lang.Object pop_aroundBody0(base.BoundedStack, org.aspectj.lang.JoinPoint);
+  Synthetic: true
+  Code:
+   Stack=3, Locals=3, Args_size=2
+   0:	aload_0
+   1:	getfield	#20; //Field buffer:[Ljava/lang/Object;
+   4:	aload_0
+   5:	getfield	#18; //Field usedSlots:I
+   8:	iconst_1
+   9:	isub
+   10:	aaload
+   11:	astore_2
+   12:	aload_0
+   13:	dup
+   14:	getfield	#18; //Field usedSlots:I
+   17:	iconst_1
+   18:	isub
+   19:	putfield	#18; //Field usedSlots:I
+   22:	aload_0
+   23:	getfield	#20; //Field buffer:[Ljava/lang/Object;
+   26:	aload_0
+   27:	getfield	#18; //Field usedSlots:I
+   30:	aconst_null
+   31:	aastore
+   32:	aload_2
+   33:	areturn
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      34      0    ajc$this       Lbase/BoundedStack;
+   12      22      2    result       Ljava/lang/Object;
+
+  LineNumberTable: 
+   line 14: 0
+   line 15: 12
+   line 16: 22
+   line 17: 32
+
+
+static final void push_aroundBody2(base.BoundedStack, java.lang.Object, org.aspectj.lang.JoinPoint);
+  Synthetic: true
+  Code:
+   Stack=3, Locals=3, Args_size=3
+   0:	aload_0
+   1:	getfield	#20; //Field buffer:[Ljava/lang/Object;
+   4:	aload_0
+   5:	getfield	#18; //Field usedSlots:I
+   8:	aload_1
+   9:	aastore
+   10:	aload_0
+   11:	dup
+   12:	getfield	#18; //Field usedSlots:I
+   15:	iconst_1
+   16:	iadd
+   17:	putfield	#18; //Field usedSlots:I
+   20:	return
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      21      0    ajc$this       Lbase/BoundedStack;
+   0      21      1    obj       Ljava/lang/Object;
+
+  LineNumberTable: 
+   line 21: 0
+   line 22: 10
+   line 23: 20
+
+
+}
+
