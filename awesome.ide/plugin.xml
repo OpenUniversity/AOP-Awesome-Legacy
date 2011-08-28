@@ -10,7 +10,7 @@
       </category>
       <wizard
             name="Awesome Project"
-            icon="icons/aw.jpg"
+            icon="icons/aw2.jpg"
             category="awesome.ide"
             class="awesome.ide.wizards.NewAwesomeProjectWizard"
             id="awesome.ide.wizards.NewAwesomeProjectWizard">

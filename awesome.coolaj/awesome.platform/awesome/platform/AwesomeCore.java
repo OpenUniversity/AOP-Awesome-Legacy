@@ -45,10 +45,10 @@ public class AwesomeCore {
 		
 		return false;
 	}
-/*	public static AspectClass create(UnwovenClassFile classFile) {
+	public static AspectClass create(UnwovenClassFile classFile) {
 		AspectClass result = new AspectClass(classFile);
 		return result;
-	}*/
+	}
 
 	public static boolean hasAnnotation(LazyMethodGen mg, String annotName) {
 		AnnotationGen[] annotations = mg.getMethod().getAnnotations();
