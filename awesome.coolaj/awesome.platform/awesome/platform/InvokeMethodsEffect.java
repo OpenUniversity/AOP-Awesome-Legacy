@@ -6,7 +6,12 @@ import java.util.List;
 
 import org.aspectj.apache.bcel.generic.InstructionFactory;
 import org.aspectj.apache.bcel.generic.InstructionList;
+import org.aspectj.bridge.ISourceLocation;
+import org.aspectj.weaver.AdviceKind;
+import org.aspectj.weaver.Member;
 import org.aspectj.weaver.Shadow;
+import org.aspectj.weaver.UnresolvedType;
+import org.aspectj.weaver.ast.Test;
 import org.aspectj.weaver.bcel.BcelObjectType;
 import org.aspectj.weaver.bcel.BcelShadow;
 import org.aspectj.weaver.bcel.BcelWorld;
@@ -108,6 +113,54 @@ public class InvokeMethodsEffect extends AwesomeEffect {
 	private LazyClassGen getLazyClassGen(String className) {
 		BcelObjectType bcelType = BcelWorld.getBcelObjectType(world.resolve(className));
 		return bcelType.getLazyClassGen();
+	}
+	
+	@Override
+	public AdviceKind getKind() {
+		switch(type)
+		{
+		case Before:
+			return AdviceKind.Before;
+		case After:
+			return AdviceKind.After;
+		default:
+			return AdviceKind.After; //TBD				
+		}
+	}
+	
+	@Override
+	public Member getSignature() {
+
+		return methods.get(0).getMemberView(); 
+		// TBD - each effect should apply a single method
+	}
+	
+	@Override
+	public String getPointcutString() 
+	{
+		return "methodexecution";
+	}
+	@Override
+	public ISourceLocation getSourceLocation() {
+		return methods.get(0).getSourceLocation();
+	}
+	@Override
+	public UnresolvedType getDeclaringType() {
+		
+		return getLazyClassGen(ac.getClassFile().getClassName()).getType();
+	}
+	@Override
+	public Test getPointCutTest() {
+		return null;
+	}
+	@Override
+	public UnresolvedType getDeclaringAspect() {
+		return getLazyClassGen(ac.getClassFile().getClassName()).getType();
+	}
+	
+	@Override
+	public String getType() {		
+		return "MethodInvocation";
 	}
 
 }

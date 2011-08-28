@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.aspectj.weaver.bcel.BcelShadow;
+import org.aspectj.weaver.bcel.LazyClassGen;
 import org.aspectj.weaver.bcel.UnwovenClassFile;
 import org.aspectj.weaver.IClassFileProvider;
 import org.aspectj.weaver.Shadow;
@@ -16,13 +17,20 @@ import awesome.platform.MethodParameter.Type;
 public aspect ValidatorMechanism extends AbstractWeaver {
 	private static final String ID = "Validator";
 	private List<AspectClass> aspectClasses = new ArrayList<AspectClass>();
+	private List<IEffect> effects = new  ArrayList<IEffect>();
 	
 	@Override
-	public List<IEffect> match(BcelShadow shadow) {
+	public List<IEffect> match(BcelShadow shadow)
+	{
+		
 		// We assume we have one aspect class. We are interested in method-execution shadows defined in
 		// class @TargetClass and belongs to @TargetShadows.
 		
 		List<IEffect> result = new ArrayList<IEffect>();
+		
+		if(aspectClasses.size() == 0)
+			return result;
+
 		
 		if(shadow.getKind() == Shadow.MethodExecution /*|| shadow.getKind() == Shadow.ConstructorExecution*/) {
 			AspectClass ac = aspectClasses.get(0);
@@ -43,6 +51,8 @@ public aspect ValidatorMechanism extends AbstractWeaver {
 			effect.addMethodInvocation(effectMethodName, new MethodParameter[] {new MethodParameter(Type.ALOAD1)});
 			result.add(effect);
 		
+			effects.add(effect);
+			
 			return result;
 		}
 		
@@ -83,5 +93,33 @@ public aspect ValidatorMechanism extends AbstractWeaver {
 	
 	private void initializeUserFields() {
 		// TODO Add initialization code for user defined fields
+	}
+
+	@Override
+	public boolean handledByMe(LazyClassGen aspectClazz) 
+	{
+		boolean handled = false;
+		
+		for(AspectClass c : aspectClasses)
+		{
+			if(c.getName() == aspectClazz.getName())
+			{
+				handled = true;
+				break;
+			}
+		}
+		
+		return handled;
+		
+	}
+
+	@Override
+	public List<IEffect> getEffects(LazyClassGen aspectClazz) {
+		return effects;
+	}
+
+	@Override
+	public String getName() {
+		return getAspectMechanismId();
 	}
 }
