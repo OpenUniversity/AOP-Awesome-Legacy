@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/awesome.coolaj.example.verify"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="4"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.aspectj.tools.ajc.Main"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-1.5 -outjar woven.jar&#13;&#10;src/base/Stack.java src/base/BoundedStack.java src/aspects/aspectj/LogAllToFile.aj src/aspects/cool/BoundedStackCoord.java  src/aspects/StackValidator.java"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="awesome.coolaj.example.verify"/>
+</launchConfiguration>
