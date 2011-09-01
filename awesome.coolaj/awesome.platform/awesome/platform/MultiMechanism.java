@@ -1,36 +1,40 @@
 package awesome.platform;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import org.aspectj.apache.bcel.Constants;
 import org.aspectj.apache.bcel.classfile.Attribute;
 import org.aspectj.apache.bcel.classfile.Code;
 import org.aspectj.apache.bcel.classfile.ConstantPool;
-import org.aspectj.apache.bcel.classfile.JavaClass;
-import org.aspectj.apache.bcel.classfile.Method;
-import org.aspectj.apache.bcel.generic.*;
-import org.aspectj.apache.bcel.Constants;
+import org.aspectj.apache.bcel.generic.FieldInstruction;
+import org.aspectj.apache.bcel.generic.Instruction;
+import org.aspectj.apache.bcel.generic.InstructionHandle;
+import org.aspectj.apache.bcel.generic.InstructionList;
+import org.aspectj.apache.bcel.generic.InstructionTargeter;
+import org.aspectj.apache.bcel.generic.InvokeInstruction;
+import org.aspectj.apache.bcel.generic.MULTIANEWARRAY;
 import org.aspectj.bridge.context.CompilationAndWeavingContext;
 import org.aspectj.bridge.context.ContextToken;
-import org.aspectj.weaver.NameMangler;
-import org.aspectj.weaver.Shadow;
 import org.aspectj.weaver.IClassFileProvider;
+import org.aspectj.weaver.Member;
+import org.aspectj.weaver.NameMangler;
+import org.aspectj.weaver.ResolvedMember;
+import org.aspectj.weaver.Shadow;
 import org.aspectj.weaver.bcel.BcelShadow;
 import org.aspectj.weaver.bcel.BcelWorld;
 import org.aspectj.weaver.bcel.ExceptionRange;
 import org.aspectj.weaver.bcel.LazyClassGen;
 import org.aspectj.weaver.bcel.LazyMethodGen;
 import org.aspectj.weaver.bcel.Utility;
-import org.aspectj.weaver.Member;
-import org.aspectj.weaver.ResolvedMember;
 
-import awesome.platform.IEffect;
+import ajplugin.AJWeaver;
 import awesome.platform.adb.tagkit.CrossCuttingAttribute;
 import awesome.platform.adb.tagkit.EffectApplication;
 import awesome.platform.adb.tagkit.JoinPointDescriptor;
 import awesome.platform.adb.tagkit.ShadowAttribute;
-
-
-import ajplugin.AJWeaver;
 public class MultiMechanism {
 	
 	private BcelWorld world;

@@ -39,7 +39,7 @@ public class GoodWriter implements Runnable
 				randomString.append(symbols.charAt(ni));					
 			}
 			
-			stack.push(randomString);			
+			stack.push(randomString.toString());			
 		}
 		
 		System.out.println("GoodWriter end");

@@ -1,4 +1,4 @@
-
+package aspects.validator;
 
 import org.aspectj.lang.annotation.Aspect;
 
@@ -18,7 +18,7 @@ public class StackValidator {
 		}
 	}
 	public static void validate_push(Object obj) {
-		System.out.println("validate_push");
+		//System.out.println("Validate Push");
 		if( !string(obj) ) {
 			throw new RuntimeException("Input Validation failed for method push(Object obj). Cause: !string(obj)");
 		}

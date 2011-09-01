@@ -49,7 +49,8 @@ private @COOLConditionField boolean empty = true;
   }
   @COOLLock(methodName="push", className="", parameterTypes={"java.lang.Object"})
   public synchronized void meth_push_1_lock(base.BoundedStack thiz) {
-    while(false
+    //System.out.println("COOL Lock");
+	  while(false
       || meth_push_1.isBusyByOtherThread()
       || meth_pop_0.isBusyByOtherThread()
       || !requires_push_15789782_0())

@@ -11,7 +11,7 @@ import org.aspectj.weaver.AdviceKind;
 
 public aspect MultiOrderConfig { 
 
-	   List around(MultiMechanism mm, List multiEffects, BcelShadow shadow): 
+/*	   List around(MultiMechanism mm, List multiEffects, BcelShadow shadow): 
 		   execution(List MultiMechanism.multiOrder(List, BcelShadow)) 
 		   && this(mm) && args(multiEffects, shadow) {
 		   int coolPos = mm.getMechanismPos(COOLWeaver.class);
@@ -50,5 +50,5 @@ public aspect MultiOrderConfig {
 			   }
 		   }		   
 		   return proceed(mm, multiEffects, shadow);
-	   }
+	   }*/
 }
