@@ -8,11 +8,11 @@ public class Main
 	{
 		stack = new BoundedStack(50000);
 		GoodWriter gw  = new GoodWriter(stack);
-		Thread t1 = new Thread(gw);
+		Thread t1 = new Thread(gw, "GoodWriter");
 		t1.start();
 		
 		BadWriter bw  = new BadWriter(stack);
-		Thread t2 = new Thread(bw);
+		Thread t2 = new Thread(bw, "BadWriter");
 		t2.start();
 		
 		

@@ -8,7 +8,7 @@ public aspect LogAllToFile {
 	private boolean caughtException = false;
 	protected String indent="";
 	
-	pointcut scope(): !within(LogAllToFile) && !cflow(within(LogAllToFile));
+	pointcut scope(): !within(aspects.validator.StackValidator) && !within(LogAllToFile) && !cflow(within(LogAllToFile));
 	pointcut scopeBefore(): scope() && if(useAspect);
 	pointcut scopeAround(): scope();
 	pointcut scopeAfter(): scope();
@@ -30,7 +30,7 @@ public aspect LogAllToFile {
 			!staticinitialization(*) ) );
 
 	public pointcut everythingBefore() : 
-		(everything() || get(* *.*) || set(* *.*)) &&
+		(everything() /*|| get(* *.*) || set(* *.*)*/) &&
 		!initialization(*.new(..)) &&
 		!preinitialization(*.new(..)) &&
 		!staticinitialization(*) &&

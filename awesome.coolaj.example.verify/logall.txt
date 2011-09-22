@@ -1,0 +1,1830 @@
+Compiled from "LogAllToFile.aj"
+public class aspects.aspectj.LogAllToFile extends java.lang.Object
+  SourceFile: "LogAllToFile.aj"
+  org.aspectj.weaver.PointcutDeclaration: length = 0x12C
+   00 1E 4C 61 73 70 65 63 74 73 2F 61 73 70 65 63
+   74 6A 2F 4C 6F 67 41 6C 6C 54 6F 46 69 6C 65 3B
+   00 00 00 00 00 05 73 63 6F 70 65 00 00 05 07 02
+   02 01 00 22 4C 61 73 70 65 63 74 73 2F 76 61 6C
+   69 64 61 74 6F 72 2F 53 74 61 63 6B 56 61 6C 69
+   64 61 74 6F 72 3B 00 00 07 00 00 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF
+   FFFFFFFF FFFFFFFF FFFFFFFF 00 00 00 FFFFFFF4 00 00 01 13 00 00 00 FFFFFFED 00
+   00 01 14 00 00 00 FFFFFFEC 00 00 01 14 05 07 02 02 01
+   00 1E 4C 61 73 70 65 63 74 73 2F 61 73 70 65 63
+   74 6A 2F 4C 6F 67 41 6C 6C 54 6F 46 69 6C 65 3B
+   00 00 07 00 00 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 00 00 01
+   21 00 00 01 2C 00 00 01 1A 00 00 01 2D 00 00 01
+   19 00 00 01 2D 07 0A 02 02 01 00 1E 4C 61 73 70
+   65 63 74 73 2F 61 73 70 65 63 74 6A 2F 4C 6F 67
+   41 6C 6C 54 6F 46 69 6C 65 3B 00 00 07 00 00 FFFFFFFF
+   FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 00 00 01 40 00 00 01 4B 00
+   00 01 39 00 00 01 4C 00 00 00 00 00 00 00 01 33
+   00 00 01 4D 00 00 01 32 00 00 01 4D 00 00 01 19
+   00 00 01 4D 00 00 00 FFFFFFEC 00 00 01 4D 
+  org.aspectj.weaver.WeaverVersion: length = 0xC
+   00 06 00 00 00 00 01 21 FFFFFFF1 75 68 40 
+  org.aspectj.weaver.PointcutDeclaration: length = 0xA8
+   00 1E 4C 61 73 70 65 63 74 73 2F 61 73 70 65 63
+   74 6A 2F 4C 6F 67 41 6C 6C 54 6F 46 69 6C 65 3B
+   00 00 00 00 00 0B 73 63 6F 70 65 42 65 66 6F 72
+   65 00 00 05 08 00 00 05 73 63 6F 70 65 00 00 FFFFFFFF
+   FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 00 00 01 6A 00 00 01 70 09
+   01 01 00 1E 4C 61 73 70 65 63 74 73 2F 61 73 70
+   65 63 74 6A 2F 4C 6F 67 41 6C 6C 54 6F 46 69 6C
+   65 3B 00 00 00 19 00 0A 61 6A 63 24 69 66 24 31
+   37 38 00 03 28 29 5A 00 00 00 00 00 00 00 00 00
+   00 00 00 00 00 00 00 00 00 00 01 75 00 00 01 FFFFFF81
+   00 00 01 6A 00 00 01 FFFFFF81 
+  org.aspectj.weaver.PointcutDeclaration: length = 0x4E
+   00 1E 4C 61 73 70 65 63 74 73 2F 61 73 70 65 63
+   74 6A 2F 4C 6F 67 41 6C 6C 54 6F 46 69 6C 65 3B
+   00 00 00 00 00 0B 73 63 6F 70 65 41 72 6F 75 6E
+   64 00 00 08 00 00 05 73 63 6F 70 65 00 00 FFFFFFFF FFFFFFFF
+   FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 00 00 01 FFFFFF9E 00 00 01 FFFFFFA4 
+  org.aspectj.weaver.PointcutDeclaration: length = 0x4D
+   00 1E 4C 61 73 70 65 63 74 73 2F 61 73 70 65 63
+   74 6A 2F 4C 6F 67 41 6C 6C 54 6F 46 69 6C 65 3B
+   00 00 00 00 00 0A 73 63 6F 70 65 41 66 74 65 72
+   00 00 08 00 00 05 73 63 6F 70 65 00 00 FFFFFFFF FFFFFFFF FFFFFFFF
+   FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 00 00 01 FFFFFFC0 00 00 01 FFFFFFC6 
+  org.aspectj.weaver.PointcutDeclaration: length = 0x1F4
+   00 1E 4C 61 73 70 65 63 74 73 2F 61 73 70 65 63
+   74 6A 2F 4C 6F 67 41 6C 6C 54 6F 46 69 6C 65 3B
+   00 00 00 01 00 0A 65 76 65 72 79 74 68 69 6E 67
+   00 00 05 06 01 01 01 00 00 00 00 05 05 00 01 2A
+   00 01 04 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 00 00 FFFFFFFF FFFFFFFF FFFFFFFF
+   FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 00 00 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 07
+   00 00 01 FFFFFFF7 00 00 01 FFFFFFFF 00 00 01 FFFFFFF2 00 00 02 00
+   06 01 03 01 00 00 00 00 05 05 00 01 2A 00 01 04
+   FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 00 00 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF
+   FFFFFFFF FFFFFFFF 00 00 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 07 00 00 02
+   13 00 00 02 1B 00 00 02 09 00 00 02 1C 06 01 09
+   06 00 00 00 00 05 05 00 01 2A 00 01 04 FFFFFFFF FFFFFFFF FFFFFFFF
+   FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 00 00 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 00
+   00 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 07 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF
+   FFFFFFFF FFFFFFFF 00 00 02 FFFFFFEE 00 00 02 FFFFFFFE 0D 05 00 00 03 07
+   00 00 03 10 00 00 02 FFFFFFEE 00 00 03 10 00 00 02 09
+   00 00 03 10 00 00 01 FFFFFFF2 00 00 03 10 05 07 01 0A
+   03 00 00 00 00 05 05 00 01 2A 00 01 04 FFFFFFFF FFFFFFFF FFFFFFFF
+   FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 00 00 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 00
+   00 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 07 00 00 03 2C 00 00
+   03 34 00 00 03 1D 00 00 03 35 00 00 03 1C 00 00
+   03 35 05 07 01 08 03 00 00 00 00 05 05 00 01 2A
+   00 01 04 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 00 00 FFFFFFFF FFFFFFFF FFFFFFFF
+   FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 00 00 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 07
+   00 00 03 51 00 00 03 59 00 00 03 3F 00 00 03 5A
+   00 00 03 3E 00 00 03 5A 07 01 07 04 00 00 00 00
+   05 05 00 01 2A 00 00 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 00
+   00 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 00 00 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF
+   FFFFFFFF FFFFFFFF FFFFFFFF 07 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 00 00 03 64
+   00 00 03 7A 00 00 03 63 00 00 03 7A 00 00 03 3E
+   00 00 03 7A 00 00 03 1C 00 00 03 7A 00 00 01 FFFFFFF2
+   00 00 03 7A 
+  org.aspectj.weaver.PointcutDeclaration: length = 0x15D
+   00 1E 4C 61 73 70 65 63 74 73 2F 61 73 70 65 63
+   74 6A 2F 4C 6F 67 41 6C 6C 54 6F 46 69 6C 65 3B
+   00 00 00 01 00 10 65 76 65 72 79 74 68 69 6E 67
+   42 65 66 6F 72 65 00 00 05 08 00 00 0A 65 76 65
+   72 79 74 68 69 6E 67 00 00 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF
+   FFFFFFFF 00 00 03 FFFFFFAF 00 00 03 FFFFFFBA 05 07 01 0A 03 00 00
+   00 00 05 05 00 01 2A 00 01 04 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF
+   FFFFFFFF FFFFFFFF 00 00 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 00 00 FFFFFFFF FFFFFFFF
+   FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 07 00 00 03 FFFFFFF3 00 00 03 FFFFFFFB 00
+   00 03 FFFFFFE4 00 00 03 FFFFFFFC 00 00 03 FFFFFFE3 00 00 03 FFFFFFFC 05
+   07 01 08 03 00 00 00 00 05 05 00 01 2A 00 01 04
+   FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 00 00 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF
+   FFFFFFFF FFFFFFFF 00 00 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 07 00 00 04
+   17 00 00 04 1F 00 00 04 05 00 00 04 20 00 00 04
+   04 00 00 04 20 05 07 01 07 04 00 00 00 00 05 05
+   00 01 2A 00 00 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 00 00 FFFFFFFF
+   FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 00 00 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF
+   FFFFFFFF 07 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 00 00 04 29 00 00
+   04 3F 00 00 04 28 00 00 04 3F 07 0D 05 00 00 04
+   48 00 00 04 51 00 00 04 47 00 00 04 51 00 00 04
+   28 00 00 04 51 00 00 04 04 00 00 04 51 00 00 03
+   FFFFFFE3 00 00 04 51 00 00 03 FFFFFFAF 00 00 04 51 
+  org.aspectj.weaver.PointcutDeclaration: length = 0x15D
+   00 1E 4C 61 73 70 65 63 74 73 2F 61 73 70 65 63
+   74 6A 2F 4C 6F 67 41 6C 6C 54 6F 46 69 6C 65 3B
+   00 00 00 01 00 10 65 76 65 72 79 74 68 69 6E 67
+   41 72 6F 75 6E 64 00 00 05 08 00 00 0A 65 76 65
+   72 79 74 68 69 6E 67 00 00 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF
+   FFFFFFFF 00 00 04 FFFFFF96 00 00 04 FFFFFFA1 05 07 01 0A 03 00 00
+   00 00 05 05 00 01 2A 00 01 04 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF
+   FFFFFFFF FFFFFFFF 00 00 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 00 00 FFFFFFFF FFFFFFFF
+   FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 07 00 00 04 FFFFFFB9 00 00 04 FFFFFFC1 00
+   00 04 FFFFFFAA 00 00 04 FFFFFFC2 00 00 04 FFFFFFA9 00 00 04 FFFFFFC2 05
+   07 01 08 03 00 00 00 00 05 05 00 01 2A 00 01 04
+   FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 00 00 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF
+   FFFFFFFF FFFFFFFF 00 00 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 07 00 00 04
+   FFFFFFDD 00 00 04 FFFFFFE5 00 00 04 FFFFFFCB 00 00 04 FFFFFFE6 00 00 04
+   FFFFFFCA 00 00 04 FFFFFFE6 05 07 01 07 04 00 00 00 00 05 05
+   00 01 2A 00 00 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 00 00 FFFFFFFF
+   FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 00 00 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF
+   FFFFFFFF 07 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 00 00 04 FFFFFFEF 00 00
+   05 05 00 00 04 FFFFFFEE 00 00 05 05 07 0D 05 00 00 05
+   0E 00 00 05 17 00 00 05 0D 00 00 05 17 00 00 04
+   FFFFFFEE 00 00 05 17 00 00 04 FFFFFFCA 00 00 05 17 00 00 04
+   FFFFFFA9 00 00 05 17 00 00 04 FFFFFF96 00 00 05 17 
+  org.aspectj.weaver.PointcutDeclaration: length = 0x73
+   00 1E 4C 61 73 70 65 63 74 73 2F 61 73 70 65 63
+   74 6A 2F 4C 6F 67 41 6C 6C 54 6F 46 69 6C 65 3B
+   00 00 00 01 00 0F 65 76 65 72 79 74 68 69 6E 67
+   41 66 74 65 72 00 00 05 08 00 00 0A 65 76 65 72
+   79 74 68 69 6E 67 00 00 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF
+   00 00 05 46 00 00 05 51 07 0D 05 00 00 05 5A 00
+   00 05 63 00 00 05 59 00 00 05 63 00 00 05 46 00
+   00 05 63 
+  org.aspectj.weaver.Aspect: length = 0x9
+   01 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 
+  org.aspectj.weaver.SourceContext: length = 0x1DC
+   00 5E 43 3A 5C 61 6F 70 5C 61 77 65 73 6F 6D 65
+   5F 73 76 6E 5C 77 6F 72 6B 73 70 61 63 65 5C 61
+   77 65 73 6F 6D 65 2E 63 6F 6F 6C 61 6A 2E 65 78
+   61 6D 70 6C 65 2E 76 65 72 69 66 79 5C 73 72 63
+   5C 61 73 70 65 63 74 73 5C 61 73 70 65 63 74 6A
+   5C 4C 6F 67 41 6C 6C 54 6F 46 69 6C 65 2E 61 6A
+   00 00 00 5E 00 00 00 19 00 00 00 1B 00 00 00 37
+   00 00 00 4A 00 00 00 4C 00 00 00 6A 00 00 00 FFFFFF8C
+   00 00 00 FFFFFFB7 00 00 00 FFFFFFD5 00 00 00 FFFFFFD8 00 00 01 50
+   00 00 01 FFFFFF84 00 00 01 FFFFFFA7 00 00 01 FFFFFFC9 00 00 01 FFFFFFCB
+   00 00 01 FFFFFFEC 00 00 02 05 00 00 02 21 00 00 02 35
+   00 00 02 49 00 00 02 62 00 00 02 FFFFFF80 00 00 02 FFFFFFA3
+   00 00 02 FFFFFFC9 00 00 02 FFFFFFEA 00 00 03 03 00 00 03 17
+   00 00 03 3A 00 00 03 5F 00 00 03 FFFFFF81 00 00 03 FFFFFF83
+   00 00 03 FFFFFFAB 00 00 03 FFFFFFE0 00 00 04 01 00 00 04 25
+   00 00 04 44 00 00 04 54 00 00 04 67 00 00 04 6B
+   00 00 04 FFFFFF93 00 00 04 FFFFFFA6 00 00 04 FFFFFFC7 00 00 04 FFFFFFEB
+   00 00 05 0A 00 00 05 1A 00 00 05 1C 00 00 05 43
+   00 00 05 56 00 00 05 66 00 00 05 69 00 00 05 FFFFFF8C
+   00 00 05 FFFFFF8F 00 00 05 FFFFFFC3 00 00 05 FFFFFFE4 00 00 05 FFFFFFE8
+   00 00 05 FFFFFFEA 00 00 06 26 00 00 06 47 00 00 06 62
+   00 00 06 6A 00 00 06 7F 00 00 06 FFFFFF8E 00 00 06 FFFFFFB0
+   00 00 06 FFFFFFB5 00 00 06 FFFFFFB9 00 00 06 FFFFFFBD 00 00 06 FFFFFFED
+   00 00 07 0D 00 00 07 11 00 00 07 4C 00 00 07 6D
+   00 00 07 73 00 00 07 75 00 00 07 78 00 00 07 FFFFFFAD
+   00 00 07 FFFFFFC6 00 00 07 FFFFFFD2 00 00 07 FFFFFFDB 00 00 07 FFFFFFF2
+   00 00 08 2C 00 00 08 47 00 00 08 6C 00 00 08 FFFFFFB3
+   00 00 08 FFFFFFD5 00 00 08 FFFFFFDB 00 00 09 18 00 00 09 29
+   00 00 09 44 00 00 09 FFFFFF86 00 00 09 FFFFFFB6 00 00 09 FFFFFFD2
+   00 00 09 FFFFFFD7 00 00 09 FFFFFFDB 00 00 09 FFFFFFDE 
+  Aspect: length = 0xAA9
+   2A 46 0A 2B 20 30 20 4C 6F 67 41 6C 6C 54 6F 46
+   69 6C 65 2E 61 6A 0A 61 73 70 65 63 74 73 5C 61
+   73 70 65 63 74 6A 5C 4C 6F 67 41 6C 6C 54 6F 46
+   69 6C 65 0A 2A 42 0A 31 20 30 3A 36 20 39 34 20
+   41 73 70 65 63 74 4A 0A 31 20 36 38 20 36 39 20
+   61 6A 63 24 61 66 74 65 72 24 61 73 70 65 63 74
+   73 5F 61 73 70 65 63 74 6A 5F 4C 6F 67 41 6C 6C
+   54 6F 46 69 6C 65 24 32 24 34 34 32 32 37 63 64
+   65 20 28 4C 6F 72 67 2F 61 73 70 65 63 74 6A 2F
+   6C 61 6E 67 2F 4A 6F 69 6E 50 6F 69 6E 74 3B 29
+   56 20 28 28 28 28 28 28 28 28 28 28 21 77 69 74
+   68 69 6E 28 61 73 70 65 63 74 73 2E 61 73 70 65
+   63 74 6A 2E 4C 6F 67 41 6C 6C 54 6F 46 69 6C 65
+   29 26 26 21 77 69 74 68 69 6E 28 61 73 70 65 63
+   74 73 2E 76 61 6C 69 64 61 74 6F 72 2E 53 74 61
+   63 6B 56 61 6C 69 64 61 74 6F 72 29 29 26 26 21
+   73 74 61 74 69 63 69 6E 69 74 69 61 6C 69 7A 61
+   74 69 6F 6E 28 2A 2E 3C 63 6C 69 6E 69 74 3E 28
+   29 29 29 26 26 21 68 61 6E 64 6C 65 72 28 2A 29
+   29 26 26 21 70 72 65 69 6E 69 74 69 61 6C 69 7A
+   61 74 69 6F 6E 28 6E 65 77 28 2E 2E 29 29 29 26
+   26 21 69 6E 69 74 69 61 6C 69 7A 61 74 69 6F 6E
+   28 6E 65 77 28 2E 2E 29 29 29 26 26 65 78 65 63
+   75 74 69 6F 6E 28 2A 2A 28 2E 2E 29 29 29 26 26
+   21 63 6F 6E 63 72 65 74 65 63 66 6C 6F 77 28 6F
+   72 67 2E 61 73 70 65 63 74 6A 2E 72 75 6E 74 69
+   6D 65 2E 69 6E 74 65 72 6E 61 6C 2E 43 46 6C 6F
+   77 43 6F 75 6E 74 65 72 61 73 70 65 63 74 73 2E
+   61 73 70 65 63 74 6A 2E 4C 6F 67 41 6C 6C 54 6F
+   46 69 6C 65 2E 61 6A 63 24 63 66 6C 6F 77 43 6F
+   75 6E 74 65 72 24 30 29 29 26 26 70 65 72 73 69
+   6E 67 6C 65 74 6F 6E 28 61 73 70 65 63 74 73 2E
+   61 73 70 65 63 74 6A 2E 4C 6F 67 41 6C 6C 54 6F
+   46 69 6C 65 29 29 7C 7C 28 28 28 28 28 28 28 28
+   21 77 69 74 68 69 6E 28 61 73 70 65 63 74 73 2E
+   61 73 70 65 63 74 6A 2E 4C 6F 67 41 6C 6C 54 6F
+   46 69 6C 65 29 26 26 21 77 69 74 68 69 6E 28 61
+   73 70 65 63 74 73 2E 76 61 6C 69 64 61 74 6F 72
+   2E 53 74 61 63 6B 56 61 6C 69 64 61 74 6F 72 29
+   29 26 26 21 73 74 61 74 69 63 69 6E 69 74 69 61
+   6C 69 7A 61 74 69 6F 6E 28 2A 2E 3C 63 6C 69 6E
+   69 74 3E 28 29 29 29 26 26 61 64 76 69 63 65 65
+   78 65 63 75 74 69 6F 6E 28 2A 2A 29 29 26 26 21
+   68 61 6E 64 6C 65 72 28 2A 29 29 26 26 21 70 72
+   65 69 6E 69 74 69 61 6C 69 7A 61 74 69 6F 6E 28
+   6E 65 77 28 2E 2E 29 29 29 26 26 21 69 6E 69 74
+   69 61 6C 69 7A 61 74 69 6F 6E 28 6E 65 77 28 2E
+   2E 29 29 29 26 26 21 63 6F 6E 63 72 65 74 65 63
+   66 6C 6F 77 28 6F 72 67 2E 61 73 70 65 63 74 6A
+   2E 72 75 6E 74 69 6D 65 2E 69 6E 74 65 72 6E 61
+   6C 2E 43 46 6C 6F 77 43 6F 75 6E 74 65 72 61 73
+   70 65 63 74 73 2E 61 73 70 65 63 74 6A 2E 4C 6F
+   67 41 6C 6C 54 6F 46 69 6C 65 2E 61 6A 63 24 63
+   66 6C 6F 77 43 6F 75 6E 74 65 72 24 30 29 29 26
+   26 70 65 72 73 69 6E 67 6C 65 74 6F 6E 28 61 73
+   70 65 63 74 73 2E 61 73 70 65 63 74 6A 2E 4C 6F
+   67 41 6C 6C 54 6F 46 69 6C 65 29 29 29 7C 7C 28
+   28 28 28 28 28 28 28 21 77 69 74 68 69 6E 28 61
+   73 70 65 63 74 73 2E 61 73 70 65 63 74 6A 2E 4C
+   6F 67 41 6C 6C 54 6F 46 69 6C 65 29 26 26 21 77
+   69 74 68 69 6E 28 61 73 70 65 63 74 73 2E 76 61
+   6C 69 64 61 74 6F 72 2E 53 74 61 63 6B 56 61 6C
+   69 64 61 74 6F 72 29 29 26 26 21 73 74 61 74 69
+   63 69 6E 69 74 69 61 6C 69 7A 61 74 69 6F 6E 28
+   2A 2E 3C 63 6C 69 6E 69 74 3E 28 29 29 29 26 26
+   21 68 61 6E 64 6C 65 72 28 2A 29 29 26 26 21 70
+   72 65 69 6E 69 74 69 61 6C 69 7A 61 74 69 6F 6E
+   28 6E 65 77 28 2E 2E 29 29 29 26 26 21 69 6E 69
+   74 69 61 6C 69 7A 61 74 69 6F 6E 28 6E 65 77 28
+   2E 2E 29 29 29 26 26 63 61 6C 6C 28 2A 2A 28 2E
+   2E 29 29 29 26 26 21 63 6F 6E 63 72 65 74 65 63
+   66 6C 6F 77 28 6F 72 67 2E 61 73 70 65 63 74 6A
+   2E 72 75 6E 74 69 6D 65 2E 69 6E 74 65 72 6E 61
+   6C 2E 43 46 6C 6F 77 43 6F 75 6E 74 65 72 61 73
+   70 65 63 74 73 2E 61 73 70 65 63 74 6A 2E 4C 6F
+   67 41 6C 6C 54 6F 46 69 6C 65 2E 61 6A 63 24 63
+   66 6C 6F 77 43 6F 75 6E 74 65 72 24 30 29 29 26
+   26 70 65 72 73 69 6E 67 6C 65 74 6F 6E 28 61 73
+   70 65 63 74 73 2E 61 73 70 65 63 74 6A 2E 4C 6F
+   67 41 6C 6C 54 6F 46 69 6C 65 29 29 29 20 41 4A
+   41 64 76 69 63 65 20 6F 72 67 2E 61 73 70 65 63
+   74 6A 2E 6C 61 6E 67 2E 4A 6F 69 6E 50 6F 69 6E
+   74 20 30 0A 34 20 35 34 20 35 35 20 61 6A 63 24
+   62 65 66 6F 72 65 24 61 73 70 65 63 74 73 5F 61
+   73 70 65 63 74 6A 5F 4C 6F 67 41 6C 6C 54 6F 46
+   69 6C 65 24 31 24 32 63 66 37 34 30 62 30 20 28
+   4C 6F 72 67 2F 61 73 70 65 63 74 6A 2F 6C 61 6E
+   67 2F 4A 6F 69 6E 50 6F 69 6E 74 3B 29 56 20 28
+   28 28 28 28 28 28 28 28 28 28 21 77 69 74 68 69
+   6E 28 61 73 70 65 63 74 73 2E 61 73 70 65 63 74
+   6A 2E 4C 6F 67 41 6C 6C 54 6F 46 69 6C 65 29 26
+   26 21 77 69 74 68 69 6E 28 61 73 70 65 63 74 73
+   2E 76 61 6C 69 64 61 74 6F 72 2E 53 74 61 63 6B
+   56 61 6C 69 64 61 74 6F 72 29 29 26 26 21 73 74
+   61 74 69 63 69 6E 69 74 69 61 6C 69 7A 61 74 69
+   6F 6E 28 2A 2E 3C 63 6C 69 6E 69 74 3E 28 29 29
+   29 26 26 61 64 76 69 63 65 65 78 65 63 75 74 69
+   6F 6E 28 2A 2A 29 29 26 26 21 68 61 6E 64 6C 65
+   72 28 2A 29 29 26 26 21 70 72 65 69 6E 69 74 69
+   61 6C 69 7A 61 74 69 6F 6E 28 6E 65 77 28 2E 2E
+   29 29 29 26 26 21 69 6E 69 74 69 61 6C 69 7A 61
+   74 69 6F 6E 28 6E 65 77 28 2E 2E 29 29 29 26 26
+   69 66 28 62 6F 6F 6C 65 61 6E 61 73 70 65 63 74
+   73 2E 61 73 70 65 63 74 6A 2E 4C 6F 67 41 6C 6C
+   54 6F 46 69 6C 65 2E 61 6A 63 24 69 66 24 31 37
+   38 28 29 29 29 26 26 21 63 6F 6E 63 72 65 74 65
+   63 66 6C 6F 77 28 6F 72 67 2E 61 73 70 65 63 74
+   6A 2E 72 75 6E 74 69 6D 65 2E 69 6E 74 65 72 6E
+   61 6C 2E 43 46 6C 6F 77 43 6F 75 6E 74 65 72 61
+   73 70 65 63 74 73 2E 61 73 70 65 63 74 6A 2E 4C
+   6F 67 41 6C 6C 54 6F 46 69 6C 65 2E 61 6A 63 24
+   63 66 6C 6F 77 43 6F 75 6E 74 65 72 24 30 29 29
+   26 26 70 65 72 73 69 6E 67 6C 65 74 6F 6E 28 61
+   73 70 65 63 74 73 2E 61 73 70 65 63 74 6A 2E 4C
+   6F 67 41 6C 6C 54 6F 46 69 6C 65 29 29 7C 7C 28
+   28 28 28 28 28 28 28 28 21 77 69 74 68 69 6E 28
+   61 73 70 65 63 74 73 2E 61 73 70 65 63 74 6A 2E
+   4C 6F 67 41 6C 6C 54 6F 46 69 6C 65 29 26 26 21
+   77 69 74 68 69 6E 28 61 73 70 65 63 74 73 2E 76
+   61 6C 69 64 61 74 6F 72 2E 53 74 61 63 6B 56 61
+   6C 69 64 61 74 6F 72 29 29 26 26 21 73 74 61 74
+   69 63 69 6E 69 74 69 61 6C 69 7A 61 74 69 6F 6E
+   28 2A 2E 3C 63 6C 69 6E 69 74 3E 28 29 29 29 26
+   26 21 68 61 6E 64 6C 65 72 28 2A 29 29 26 26 21
+   70 72 65 69 6E 69 74 69 61 6C 69 7A 61 74 69 6F
+   6E 28 6E 65 77 28 2E 2E 29 29 29 26 26 21 69 6E
+   69 74 69 61 6C 69 7A 61 74 69 6F 6E 28 6E 65 77
+   28 2E 2E 29 29 29 26 26 63 61 6C 6C 28 2A 2A 28
+   2E 2E 29 29 29 26 26 69 66 28 62 6F 6F 6C 65 61
+   6E 61 73 70 65 63 74 73 2E 61 73 70 65 63 74 6A
+   2E 4C 6F 67 41 6C 6C 54 6F 46 69 6C 65 2E 61 6A
+   63 24 69 66 24 31 37 38 28 29 29 29 26 26 21 63
+   6F 6E 63 72 65 74 65 63 66 6C 6F 77 28 6F 72 67
+   2E 61 73 70 65 63 74 6A 2E 72 75 6E 74 69 6D 65
+   2E 69 6E 74 65 72 6E 61 6C 2E 43 46 6C 6F 77 43
+   6F 75 6E 74 65 72 61 73 70 65 63 74 73 2E 61 73
+   70 65 63 74 6A 2E 4C 6F 67 41 6C 6C 54 6F 46 69
+   6C 65 2E 61 6A 63 24 63 66 6C 6F 77 43 6F 75 6E
+   74 65 72 24 30 29 29 26 26 70 65 72 73 69 6E 67
+   6C 65 74 6F 6E 28 61 73 70 65 63 74 73 2E 61 73
+   70 65 63 74 6A 2E 4C 6F 67 41 6C 6C 54 6F 46 69
+   6C 65 29 29 29 7C 7C 28 28 28 28 28 28 28 28 28
+   21 77 69 74 68 69 6E 28 61 73 70 65 63 74 73 2E
+   61 73 70 65 63 74 6A 2E 4C 6F 67 41 6C 6C 54 6F
+   46 69 6C 65 29 26 26 21 77 69 74 68 69 6E 28 61
+   73 70 65 63 74 73 2E 76 61 6C 69 64 61 74 6F 72
+   2E 53 74 61 63 6B 56 61 6C 69 64 61 74 6F 72 29
+   29 26 26 21 73 74 61 74 69 63 69 6E 69 74 69 61
+   6C 69 7A 61 74 69 6F 6E 28 2A 2E 3C 63 6C 69 6E
+   69 74 3E 28 29 29 29 26 26 21 68 61 6E 64 6C 65
+   72 28 2A 29 29 26 26 21 70 72 65 69 6E 69 74 69
+   61 6C 69 7A 61 74 69 6F 6E 28 6E 65 77 28 2E 2E
+   29 29 29 26 26 21 69 6E 69 74 69 61 6C 69 7A 61
+   74 69 6F 6E 28 6E 65 77 28 2E 2E 29 29 29 26 26
+   65 78 65 63 75 74 69 6F 6E 28 2A 2A 28 2E 2E 29
+   29 29 26 26 69 66 28 62 6F 6F 6C 65 61 6E 61 73
+   70 65 63 74 73 2E 61 73 70 65 63 74 6A 2E 4C 6F
+   67 41 6C 6C 54 6F 46 69 6C 65 2E 61 6A 63 24 69
+   66 24 31 37 38 28 29 29 29 26 26 21 63 6F 6E 63
+   72 65 74 65 63 66 6C 6F 77 28 6F 72 67 2E 61 73
+   70 65 63 74 6A 2E 72 75 6E 74 69 6D 65 2E 69 6E
+   74 65 72 6E 61 6C 2E 43 46 6C 6F 77 43 6F 75 6E
+   74 65 72 61 73 70 65 63 74 73 2E 61 73 70 65 63
+   74 6A 2E 4C 6F 67 41 6C 6C 54 6F 46 69 6C 65 2E
+   61 6A 63 24 63 66 6C 6F 77 43 6F 75 6E 74 65 72
+   24 30 29 29 26 26 70 65 72 73 69 6E 67 6C 65 74
+   6F 6E 28 61 73 70 65 63 74 73 2E 61 73 70 65 63
+   74 6A 2E 4C 6F 67 41 6C 6C 54 6F 46 69 6C 65 29
+   29 29 20 41 4A 41 64 76 69 63 65 20 6F 72 67 2E
+   61 73 70 65 63 74 6A 2E 6C 61 6E 67 2E 4A 6F 69
+   6E 50 6F 69 6E 74 20 30 0A 
+  FieldLineNumber: length = 0x8B
+   2A 46 0A 2B 20 30 20 61 73 70 65 63 74 73 2E 61
+   73 70 65 63 74 6A 0A 4C 6F 67 41 6C 6C 54 6F 46
+   69 6C 65 2E 61 6A 0A 2A 42 0A 6F 75 74 20 30 3A
+   30 0A 63 61 75 67 68 74 45 78 63 65 70 74 69 6F
+   6E 20 30 0A 69 6E 64 65 6E 74 20 30 0A 75 73 65
+   41 73 70 65 63 74 20 30 0A 61 6A 63 24 69 6E 69
+   74 46 61 69 6C 75 72 65 43 61 75 73 65 20 30 0A
+   61 6A 63 24 70 65 72 53 69 6E 67 6C 65 74 6F 6E
+   49 6E 73 74 61 6E 63 65 20 30 0A 
+  org.aspectj.weaver.WeaverState: length = 0x3
+   03 00 00 
+  RuntimeVisibleAnnotations: length = 0x6
+   00 01 00 FFFFFFA8 00 00 
+  minor version: 0
+  major version: 49
+  Constant pool:
+const #1 = class	#2;	//  aspects/aspectj/LogAllToFile
+const #2 = Asciz	aspects/aspectj/LogAllToFile;
+const #3 = class	#4;	//  java/lang/Object
+const #4 = Asciz	java/lang/Object;
+const #5 = Asciz	out;
+const #6 = Asciz	Ljava/io/PrintStream;;
+const #7 = Asciz	caughtException;
+const #8 = Asciz	Z;
+const #9 = Asciz	indent;
+const #10 = Asciz	Ljava/lang/String;;
+const #11 = Asciz	useAspect;
+const #12 = Asciz	ajc$initFailureCause;
+const #13 = Asciz	Ljava/lang/Throwable;;
+const #14 = Asciz	ajc$perSingletonInstance;
+const #15 = Asciz	Laspects/aspectj/LogAllToFile;;
+const #16 = Asciz	<clinit>;
+const #17 = Asciz	()V;
+const #18 = Asciz	Code;
+const #19 = Field	#1.#20;	//  aspects/aspectj/LogAllToFile.useAspect:Z
+const #20 = NameAndType	#11:#8;//  useAspect:Z
+const #21 = Method	#1.#22;	//  aspects/aspectj/LogAllToFile.ajc$postClinit:()V
+const #22 = NameAndType	#23:#17;//  ajc$postClinit:()V
+const #23 = Asciz	ajc$postClinit;
+const #24 = Field	#1.#25;	//  aspects/aspectj/LogAllToFile.ajc$initFailureCause:Ljava/lang/Throwable;
+const #25 = NameAndType	#12:#13;//  ajc$initFailureCause:Ljava/lang/Throwable;
+const #26 = class	#27;	//  java/lang/Throwable
+const #27 = Asciz	java/lang/Throwable;
+const #28 = Asciz	LineNumberTable;
+const #29 = Asciz	LocalVariableTable;
+const #30 = Asciz	<init>;
+const #31 = Method	#3.#32;	//  java/lang/Object."<init>":()V
+const #32 = NameAndType	#30:#17;//  "<init>":()V
+const #33 = Field	#1.#34;	//  aspects/aspectj/LogAllToFile.out:Ljava/io/PrintStream;
+const #34 = NameAndType	#5:#6;//  out:Ljava/io/PrintStream;
+const #35 = Field	#1.#36;	//  aspects/aspectj/LogAllToFile.caughtException:Z
+const #36 = NameAndType	#7:#8;//  caughtException:Z
+const #37 = String	#38;	//  
+const #38 = Asciz	;
+const #39 = Field	#1.#40;	//  aspects/aspectj/LogAllToFile.indent:Ljava/lang/String;
+const #40 = NameAndType	#9:#10;//  indent:Ljava/lang/String;
+const #41 = Asciz	this;
+const #42 = Asciz	ajc$pointcut$$scope$e3;
+const #43 = Asciz	RuntimeVisibleAnnotations;
+const #44 = Asciz	Lorg/aspectj/lang/annotation/Pointcut;;
+const #45 = Asciz	value;
+const #46 = Asciz	(!within(aspects.validator.StackValidator) && (!within(aspects.aspectj.LogAllToFile) && !cflow(within(aspects.aspectj.LogAllToFile))));
+const #47 = Asciz	argNames;
+const #48 = Asciz	org.aspectj.weaver.MethodDeclarationLineNumber;
+const #49 = Asciz	org.aspectj.weaver.AjSynthetic;
+const #50 = Asciz	ajc$pointcut$$scopeBefore$15b;
+const #51 = Asciz	(scope() && if(void java.lang.Object.if_()));
+const #52 = Asciz	ajc$pointcut$$scopeAround$18f;
+const #53 = Asciz	scope();
+const #54 = Asciz	ajc$pointcut$$scopeAfter$1b2;
+const #55 = Asciz	ajc$pointcut$$everything$1dd;
+const #56 = Asciz	((call(* *(..)) || (execution(* *(..)) || (adviceexecution(* *) || handler(*)))) && (!initialization(new(..)) && (!preinitialization(new(..)) && !staticinitialization(*.<clinit>()))));
+const #57 = Asciz	ajc$pointcut$$everythingBefore$395;
+const #58 = Asciz	(everything() && (!initialization(new(..)) && (!preinitialization(new(..)) && (!staticinitialization(*.<clinit>()) && !handler(*)))));
+const #59 = Asciz	ajc$pointcut$$everythingAround$47d;
+const #60 = Asciz	ajc$pointcut$$everythingAfter$52e;
+const #61 = Asciz	(everything() && !handler(*));
+const #62 = Asciz	ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0;
+const #63 = Asciz	(Lorg/aspectj/lang/JoinPoint;)V;
+const #64 = Asciz	Lorg/aspectj/lang/annotation/Before;;
+const #65 = Asciz	(everythingBefore() && scopeBefore());
+const #66 = Asciz	org.aspectj.weaver.Advice;
+const #67 = String	#68;	//  before
+const #68 = Asciz	before;
+const #69 = Method	#1.#70;	//  aspects/aspectj/LogAllToFile.log:(Ljava/lang/String;Lorg/aspectj/lang/JoinPoint;)V
+const #70 = NameAndType	#71:#72;//  log:(Ljava/lang/String;Lorg/aspectj/lang/JoinPoint;)V
+const #71 = Asciz	log;
+const #72 = Asciz	(Ljava/lang/String;Lorg/aspectj/lang/JoinPoint;)V;
+const #73 = Asciz	thisJoinPoint;
+const #74 = Asciz	Lorg/aspectj/lang/JoinPoint;;
+const #75 = Asciz	ajc$after$aspects_aspectj_LogAllToFile$2$44227cde;
+const #76 = Asciz	Lorg/aspectj/lang/annotation/After;;
+const #77 = Asciz	(everythingAfter() && scopeAfter());
+const #78 = String	#79;	//  after
+const #79 = Asciz	after;
+const #80 = String	#81;	//  logFileName
+const #81 = Asciz	logFileName;
+const #82 = Method	#83.#85;	//  java/lang/System.getProperty:(Ljava/lang/String;)Ljava/lang/String;
+const #83 = class	#84;	//  java/lang/System
+const #84 = Asciz	java/lang/System;
+const #85 = NameAndType	#86:#87;//  getProperty:(Ljava/lang/String;)Ljava/lang/String;
+const #86 = Asciz	getProperty;
+const #87 = Asciz	(Ljava/lang/String;)Ljava/lang/String;;
+const #88 = String	#89;	//  logAllToFile.out
+const #89 = Asciz	logAllToFile.out;
+const #90 = class	#91;	//  java/io/FileOutputStream
+const #91 = Asciz	java/io/FileOutputStream;
+const #92 = Method	#90.#93;	//  java/io/FileOutputStream."<init>":(Ljava/lang/String;Z)V
+const #93 = NameAndType	#30:#94;//  "<init>":(Ljava/lang/String;Z)V
+const #94 = Asciz	(Ljava/lang/String;Z)V;
+const #95 = class	#96;	//  java/io/PrintStream
+const #96 = Asciz	java/io/PrintStream;
+const #97 = Method	#95.#98;	//  java/io/PrintStream."<init>":(Ljava/io/OutputStream;)V
+const #98 = NameAndType	#30:#99;//  "<init>":(Ljava/io/OutputStream;)V
+const #99 = Asciz	(Ljava/io/OutputStream;)V;
+const #100 = class	#101;	//  java/lang/StringBuilder
+const #101 = Asciz	java/lang/StringBuilder;
+const #102 = Method	#103.#105;	//  java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+const #103 = class	#104;	//  java/lang/String
+const #104 = Asciz	java/lang/String;
+const #105 = NameAndType	#106:#107;//  valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+const #106 = Asciz	valueOf;
+const #107 = Asciz	(Ljava/lang/Object;)Ljava/lang/String;;
+const #108 = Method	#100.#109;	//  java/lang/StringBuilder."<init>":(Ljava/lang/String;)V
+const #109 = NameAndType	#30:#110;//  "<init>":(Ljava/lang/String;)V
+const #110 = Asciz	(Ljava/lang/String;)V;
+const #111 = Method	#100.#112;	//  java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+const #112 = NameAndType	#113:#114;//  append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+const #113 = Asciz	append;
+const #114 = Asciz	(Ljava/lang/String;)Ljava/lang/StringBuilder;;
+const #115 = String	#116;	//  : 
+const #116 = Asciz	: ;
+const #117 = InterfaceMethod	#118.#120;	//  org/aspectj/lang/JoinPoint.toLongString:()Ljava/lang/String;
+const #118 = class	#119;	//  org/aspectj/lang/JoinPoint
+const #119 = Asciz	org/aspectj/lang/JoinPoint;
+const #120 = NameAndType	#121:#122;//  toLongString:()Ljava/lang/String;
+const #121 = Asciz	toLongString;
+const #122 = Asciz	()Ljava/lang/String;;
+const #123 = Method	#100.#124;	//  java/lang/StringBuilder.toString:()Ljava/lang/String;
+const #124 = NameAndType	#125:#122;//  toString:()Ljava/lang/String;
+const #125 = Asciz	toString;
+const #126 = Method	#95.#127;	//  java/io/PrintStream.println:(Ljava/lang/String;)V
+const #127 = NameAndType	#128:#110;//  println:(Ljava/lang/String;)V
+const #128 = Asciz	println;
+const #129 = Method	#95.#130;	//  java/io/PrintStream.flush:()V
+const #130 = NameAndType	#131:#17;//  flush:()V
+const #131 = Asciz	flush;
+const #132 = Field	#83.#133;	//  java/lang/System.err:Ljava/io/PrintStream;
+const #133 = NameAndType	#134:#6;//  err:Ljava/io/PrintStream;
+const #134 = Asciz	err;
+const #135 = String	#136;	//  Error in LogAllToFile: 
+const #136 = Asciz	Error in LogAllToFile: ;
+const #137 = Method	#138.#140;	//  java/lang/Exception.getMessage:()Ljava/lang/String;
+const #138 = class	#139;	//  java/lang/Exception
+const #139 = Asciz	java/lang/Exception;
+const #140 = NameAndType	#141:#122;//  getMessage:()Ljava/lang/String;
+const #141 = Asciz	getMessage;
+const #142 = String	#143;	//  Logging is disabled!
+const #143 = Asciz	Logging is disabled!;
+const #144 = Asciz	advType;
+const #145 = Asciz	jp;
+const #146 = Asciz	fileName;
+const #147 = Asciz	fout;
+const #148 = Asciz	Ljava/io/FileOutputStream;;
+const #149 = Asciz	e;
+const #150 = Asciz	Ljava/lang/Exception;;
+const #151 = Asciz	ajc$if$178;
+const #152 = Asciz	()Z;
+const #153 = Asciz	aspectOf;
+const #154 = Asciz	()Laspects/aspectj/LogAllToFile;;
+const #155 = Field	#1.#156;	//  aspects/aspectj/LogAllToFile.ajc$perSingletonInstance:Laspects/aspectj/LogAllToFile;
+const #156 = NameAndType	#14:#15;//  ajc$perSingletonInstance:Laspects/aspectj/LogAllToFile;
+const #157 = class	#158;	//  org/aspectj/lang/NoAspectBoundException
+const #158 = Asciz	org/aspectj/lang/NoAspectBoundException;
+const #159 = String	#160;	//  aspects_aspectj_LogAllToFile
+const #160 = Asciz	aspects_aspectj_LogAllToFile;
+const #161 = Method	#157.#162;	//  org/aspectj/lang/NoAspectBoundException."<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+const #162 = NameAndType	#30:#163;//  "<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+const #163 = Asciz	(Ljava/lang/String;Ljava/lang/Throwable;)V;
+const #164 = Asciz	hasAspect;
+const #165 = Method	#1.#32;	//  aspects/aspectj/LogAllToFile."<init>":()V
+const #166 = Asciz	SourceFile;
+const #167 = Asciz	LogAllToFile.aj;
+const #168 = Asciz	Lorg/aspectj/lang/annotation/Aspect;;
+const #169 = Asciz	org.aspectj.weaver.PointcutDeclaration;
+const #170 = Asciz	org.aspectj.weaver.WeaverVersion;
+const #171 = Asciz	org.aspectj.weaver.Aspect;
+const #172 = Asciz	org.aspectj.weaver.SourceContext;
+const #173 = Asciz	Synthetic;
+const #174 = Asciz	ajc$cflowCounter$0;
+const #175 = Asciz	Lorg/aspectj/runtime/internal/CFlowCounter;;
+const #176 = Asciz	ajc$preClinit;
+const #177 = NameAndType	#176:#17;//  ajc$preClinit:()V
+const #178 = Method	#1.#177;	//  aspects/aspectj/LogAllToFile.ajc$preClinit:()V
+const #179 = Asciz	org/aspectj/runtime/internal/CFlowCounter;
+const #180 = class	#179;	//  org/aspectj/runtime/internal/CFlowCounter
+const #181 = Method	#180.#32;	//  org/aspectj/runtime/internal/CFlowCounter."<init>":()V
+const #182 = NameAndType	#174:#175;//  ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+const #183 = Field	#1.#182;	//  aspects/aspectj/LogAllToFile.ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+const #184 = Asciz	Aspect;
+const #185 = Asciz	inc;
+const #186 = NameAndType	#185:#17;//  inc:()V
+const #187 = Method	#180.#186;	//  org/aspectj/runtime/internal/CFlowCounter.inc:()V
+const #188 = Asciz	java/lang/ExceptionInInitializerError;
+const #189 = class	#188;	//  java/lang/ExceptionInInitializerError
+const #190 = Asciz	dec;
+const #191 = NameAndType	#190:#17;//  dec:()V
+const #192 = Method	#180.#191;	//  org/aspectj/runtime/internal/CFlowCounter.dec:()V
+const #193 = Asciz	adb.tagkit.AllJoinPoints;
+const #194 = Asciz	CrossCutting;
+const #195 = Asciz	FieldLineNumber;
+const #196 = Asciz	org.aspectj.weaver.WeaverState;
+
+{
+protected java.lang.String indent;
+
+
+static boolean useAspect;
+
+
+public static final aspects.aspectj.LogAllToFile ajc$perSingletonInstance;
+
+
+public static final org.aspectj.runtime.internal.CFlowCounter ajc$cflowCounter$0;
+  Synthetic: true
+
+
+static {};
+  LineNumberTable: 
+   line 51: 9
+   line 6: 52
+
+
+
+  Code:
+   Stack=2, Locals=5, Args_size=0
+   0:	invokestatic	#178; //Method ajc$preClinit:()V
+   3:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   6:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   9:	iconst_1
+   10:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   13:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   16:	putstatic	#19; //Field useAspect:Z
+   19:	goto	44
+   22:	astore_2
+   23:	aload_2
+   24:	instanceof	#189; //class java/lang/ExceptionInInitializerError
+   27:	ifeq	35
+   30:	aload_2
+   31:	checkcast	#189; //class java/lang/ExceptionInInitializerError
+   34:	athrow
+   35:	nop
+   36:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   39:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   42:	aload_2
+   43:	athrow
+   44:	nop
+   45:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   48:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   51:	nop
+   52:	invokestatic	#21; //Method ajc$postClinit:()V
+   55:	goto	63
+   58:	astore_0
+   59:	aload_0
+   60:	putstatic	#24; //Field ajc$initFailureCause:Ljava/lang/Throwable;
+   63:	goto	92
+   66:	astore	4
+   68:	aload	4
+   70:	instanceof	#189; //class java/lang/ExceptionInInitializerError
+   73:	ifeq	82
+   76:	aload	4
+   78:	checkcast	#189; //class java/lang/ExceptionInInitializerError
+   81:	athrow
+   82:	nop
+   83:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   86:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   89:	aload	4
+   91:	athrow
+   92:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   95:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   98:	return
+   99:	return
+  Exception table:
+   from   to  target type
+    16    19    22   Class java/lang/Throwable
+
+     9    55    58   Class java/lang/Throwable
+
+     9    66    66   Class java/lang/Throwable
+
+  LineNumberTable: 
+   line 51: 9
+   line 6: 52
+
+
+public aspects.aspectj.LogAllToFile();
+  LineNumberTable: 
+   line 6: 0
+   line 7: 45
+   line 8: 76
+   line 9: 109
+   line 6: 143
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      188      0    this       Laspects/aspectj/LogAllToFile;
+
+
+  Code:
+   Stack=3, Locals=13, Args_size=1
+   0:	aload_0
+   1:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   4:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   7:	nop
+   8:	goto	22
+   11:	astore	12
+   13:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   16:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   19:	aload	12
+   21:	athrow
+   22:	nop
+   23:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   26:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   29:	nop
+   30:	invokespecial	#31; //Method java/lang/Object."<init>":()V
+   33:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   36:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   39:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   42:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   45:	aload_0
+   46:	aconst_null
+   47:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   50:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   53:	putfield	#33; //Field out:Ljava/io/PrintStream;
+   56:	goto	68
+   59:	astore_2
+   60:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   63:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   66:	aload_2
+   67:	athrow
+   68:	nop
+   69:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   72:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   75:	nop
+   76:	aload_0
+   77:	iconst_0
+   78:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   81:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   84:	putfield	#35; //Field caughtException:Z
+   87:	goto	101
+   90:	astore	4
+   92:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   95:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   98:	aload	4
+   100:	athrow
+   101:	nop
+   102:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   105:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   108:	nop
+   109:	aload_0
+   110:	ldc	#37; //String 
+   112:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   115:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   118:	putfield	#39; //Field indent:Ljava/lang/String;
+   121:	goto	135
+   124:	astore	6
+   126:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   129:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   132:	aload	6
+   134:	athrow
+   135:	nop
+   136:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   139:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   142:	nop
+   143:	goto	157
+   146:	astore	8
+   148:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   151:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   154:	aload	8
+   156:	athrow
+   157:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   160:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   163:	goto	180
+   166:	goto	180
+   169:	astore	10
+   171:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   174:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   177:	aload	10
+   179:	athrow
+   180:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   183:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   186:	return
+   187:	return
+  Exception table:
+   from   to  target type
+   118   121   124   Class java/lang/Throwable
+
+    84    87    90   Class java/lang/Throwable
+
+    53    56    59   Class java/lang/Throwable
+
+    45   146   146   Class java/lang/Throwable
+
+    39   169   169   Class java/lang/Throwable
+
+     7     8    11   Class java/lang/Throwable
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      188      0    this       Laspects/aspectj/LogAllToFile;
+
+  LineNumberTable: 
+   line 6: 0
+   line 7: 45
+   line 8: 76
+   line 9: 109
+   line 6: 143
+
+
+void ajc$pointcut$$scope$e3();
+  LineNumberTable: 
+   line 11: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      1      0    this       Laspects/aspectj/LogAllToFile;
+
+
+  RuntimeVisibleAnnotations: length = 0x10
+   00 01 00 2C 00 02 00 2D 73 00 2E 00 2F 73 00 26
+   
+  org.aspectj.weaver.MethodDeclarationLineNumber: length = 0x8
+   00 00 00 0B 00 00 00 FFFFFFE3 
+  org.aspectj.weaver.AjSynthetic: length = 0x
+   
+  Code:
+   Stack=0, Locals=1, Args_size=1
+   0:	return
+  LineNumberTable: 
+   line 11: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      1      0    this       Laspects/aspectj/LogAllToFile;
+
+
+void ajc$pointcut$$scopeBefore$15b();
+  LineNumberTable: 
+   line 12: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      1      0    this       Laspects/aspectj/LogAllToFile;
+
+
+  RuntimeVisibleAnnotations: length = 0x10
+   00 01 00 2C 00 02 00 2D 73 00 33 00 2F 73 00 26
+   
+  org.aspectj.weaver.MethodDeclarationLineNumber: length = 0x8
+   00 00 00 0C 00 00 01 5B 
+  org.aspectj.weaver.AjSynthetic: length = 0x
+   
+  Code:
+   Stack=0, Locals=1, Args_size=1
+   0:	return
+  LineNumberTable: 
+   line 12: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      1      0    this       Laspects/aspectj/LogAllToFile;
+
+
+void ajc$pointcut$$scopeAround$18f();
+  LineNumberTable: 
+   line 13: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      1      0    this       Laspects/aspectj/LogAllToFile;
+
+
+  RuntimeVisibleAnnotations: length = 0x10
+   00 01 00 2C 00 02 00 2D 73 00 35 00 2F 73 00 26
+   
+  org.aspectj.weaver.MethodDeclarationLineNumber: length = 0x8
+   00 00 00 0D 00 00 01 FFFFFF8F 
+  org.aspectj.weaver.AjSynthetic: length = 0x
+   
+  Code:
+   Stack=0, Locals=1, Args_size=1
+   0:	return
+  LineNumberTable: 
+   line 13: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      1      0    this       Laspects/aspectj/LogAllToFile;
+
+
+void ajc$pointcut$$scopeAfter$1b2();
+  LineNumberTable: 
+   line 14: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      1      0    this       Laspects/aspectj/LogAllToFile;
+
+
+  RuntimeVisibleAnnotations: length = 0x10
+   00 01 00 2C 00 02 00 2D 73 00 35 00 2F 73 00 26
+   
+  org.aspectj.weaver.MethodDeclarationLineNumber: length = 0x8
+   00 00 00 0E 00 00 01 FFFFFFB2 
+  org.aspectj.weaver.AjSynthetic: length = 0x
+   
+  Code:
+   Stack=0, Locals=1, Args_size=1
+   0:	return
+  LineNumberTable: 
+   line 14: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      1      0    this       Laspects/aspectj/LogAllToFile;
+
+
+public void ajc$pointcut$$everything$1dd();
+  LineNumberTable: 
+   line 30: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      1      0    this       Laspects/aspectj/LogAllToFile;
+
+
+  RuntimeVisibleAnnotations: length = 0x10
+   00 01 00 2C 00 02 00 2D 73 00 38 00 2F 73 00 26
+   
+  org.aspectj.weaver.MethodDeclarationLineNumber: length = 0x8
+   00 00 00 10 00 00 01 FFFFFFDD 
+  org.aspectj.weaver.AjSynthetic: length = 0x
+   
+  Code:
+   Stack=0, Locals=1, Args_size=1
+   0:	return
+  LineNumberTable: 
+   line 30: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      1      0    this       Laspects/aspectj/LogAllToFile;
+
+
+public void ajc$pointcut$$everythingBefore$395();
+  LineNumberTable: 
+   line 37: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      1      0    this       Laspects/aspectj/LogAllToFile;
+
+
+  RuntimeVisibleAnnotations: length = 0x10
+   00 01 00 2C 00 02 00 2D 73 00 3A 00 2F 73 00 26
+   
+  org.aspectj.weaver.MethodDeclarationLineNumber: length = 0x8
+   00 00 00 20 00 00 03 FFFFFF95 
+  org.aspectj.weaver.AjSynthetic: length = 0x
+   
+  Code:
+   Stack=0, Locals=1, Args_size=1
+   0:	return
+  LineNumberTable: 
+   line 37: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      1      0    this       Laspects/aspectj/LogAllToFile;
+
+
+public void ajc$pointcut$$everythingAround$47d();
+  LineNumberTable: 
+   line 45: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      1      0    this       Laspects/aspectj/LogAllToFile;
+
+
+  RuntimeVisibleAnnotations: length = 0x10
+   00 01 00 2C 00 02 00 2D 73 00 3A 00 2F 73 00 26
+   
+  org.aspectj.weaver.MethodDeclarationLineNumber: length = 0x8
+   00 00 00 28 00 00 04 7D 
+  org.aspectj.weaver.AjSynthetic: length = 0x
+   
+  Code:
+   Stack=0, Locals=1, Args_size=1
+   0:	return
+  LineNumberTable: 
+   line 45: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      1      0    this       Laspects/aspectj/LogAllToFile;
+
+
+public void ajc$pointcut$$everythingAfter$52e();
+  LineNumberTable: 
+   line 49: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      1      0    this       Laspects/aspectj/LogAllToFile;
+
+
+  RuntimeVisibleAnnotations: length = 0x10
+   00 01 00 2C 00 02 00 2D 73 00 3D 00 2F 73 00 26
+   
+  org.aspectj.weaver.MethodDeclarationLineNumber: length = 0x8
+   00 00 00 2F 00 00 05 2E 
+  org.aspectj.weaver.AjSynthetic: length = 0x
+   
+  Code:
+   Stack=0, Locals=1, Args_size=1
+   0:	return
+  LineNumberTable: 
+   line 49: 0
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      1      0    this       Laspects/aspectj/LogAllToFile;
+
+
+public void ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0(org.aspectj.lang.JoinPoint);
+  LineNumberTable: 
+   line 54: 6
+   line 55: 39
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      61      0    this       Laspects/aspectj/LogAllToFile;
+   0      61      1    thisJoinPoint       Lorg/aspectj/lang/JoinPoint;
+
+
+  org.aspectj.weaver.Advice: length = 0x5A
+   01 05 08 00 00 10 65 76 65 72 79 74 68 69 6E 67
+   42 65 66 6F 72 65 00 00 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF
+   00 00 05 FFFFFF9C 00 00 05 FFFFFFAD 08 00 00 0B 73 63 6F 70
+   65 42 65 66 6F 72 65 00 00 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF
+   FFFFFFFF 00 00 05 FFFFFFB2 00 00 05 FFFFFFBE 00 00 05 FFFFFF9C 00 00 05
+   FFFFFFBE 02 00 00 05 FFFFFF91 00 00 05 FFFFFFBE 
+  org.aspectj.weaver.MethodDeclarationLineNumber: length = 0x8
+   00 00 00 35 00 00 05 FFFFFF91 
+  Code:
+   Stack=4, Locals=6, Args_size=2
+   0:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   3:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   6:	aload_0
+   7:	ldc	#67; //String before
+   9:	aload_1
+   10:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   13:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   16:	invokevirtual	#69; //Method log:(Ljava/lang/String;Lorg/aspectj/lang/JoinPoint;)V
+   19:	goto	31
+   22:	astore_3
+   23:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   26:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   29:	aload_3
+   30:	athrow
+   31:	nop
+   32:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   35:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   38:	nop
+   39:	goto	53
+   42:	astore	5
+   44:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   47:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   50:	aload	5
+   52:	athrow
+   53:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   56:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   59:	return
+   60:	return
+  Exception table:
+   from   to  target type
+    16    19    22   Class java/lang/Throwable
+
+     6    42    42   Class java/lang/Throwable
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      61      0    this       Laspects/aspectj/LogAllToFile;
+   0      61      1    thisJoinPoint       Lorg/aspectj/lang/JoinPoint;
+
+  LineNumberTable: 
+   line 54: 6
+   line 55: 39
+
+  adb.tagkit.AllJoinPoints: length = 0x4A
+   00 00 00 02 01 00 00 00 36 00 0F 4C 6F 67 41 6C
+   6C 54 6F 46 69 6C 65 2E 61 6A 00 00 00 01 00 07
+   41 73 70 65 63 74 4A 09 00 00 00 35 00 0F 4C 6F
+   67 41 6C 6C 54 6F 46 69 6C 65 2E 61 6A 00 00 00
+   01 00 07 41 73 70 65 63 74 4A 
+  CrossCutting: length = 0x4
+   00 00 00 00 
+  RuntimeVisibleAnnotations: length = 0x10
+   00 01 00 40 00 02 00 2D 73 00 41 00 2F 73 00 26
+   
+
+public void ajc$after$aspects_aspectj_LogAllToFile$2$44227cde(org.aspectj.lang.JoinPoint);
+  LineNumberTable: 
+   line 68: 6
+   line 69: 39
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      61      0    this       Laspects/aspectj/LogAllToFile;
+   0      61      1    thisJoinPoint       Lorg/aspectj/lang/JoinPoint;
+
+
+  org.aspectj.weaver.Advice: length = 0x58
+   02 05 08 00 00 0F 65 76 65 72 79 74 68 69 6E 67
+   41 66 74 65 72 00 00 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 00
+   00 06 FFFFFFC9 00 00 06 FFFFFFD9 08 00 00 0A 73 63 6F 70 65
+   41 66 74 65 72 00 00 FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF 00
+   00 06 FFFFFFDE 00 00 06 FFFFFFE9 00 00 06 FFFFFFC9 00 00 06 FFFFFFE9 02
+   00 00 06 FFFFFFBF 00 00 06 FFFFFFE9 
+  org.aspectj.weaver.MethodDeclarationLineNumber: length = 0x8
+   00 00 00 43 00 00 06 FFFFFFBF 
+  Code:
+   Stack=4, Locals=6, Args_size=2
+   0:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   3:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   6:	aload_0
+   7:	ldc	#78; //String after
+   9:	aload_1
+   10:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   13:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   16:	invokevirtual	#69; //Method log:(Ljava/lang/String;Lorg/aspectj/lang/JoinPoint;)V
+   19:	goto	31
+   22:	astore_3
+   23:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   26:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   29:	aload_3
+   30:	athrow
+   31:	nop
+   32:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   35:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   38:	nop
+   39:	goto	53
+   42:	astore	5
+   44:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   47:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   50:	aload	5
+   52:	athrow
+   53:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   56:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   59:	return
+   60:	return
+  Exception table:
+   from   to  target type
+    16    19    22   Class java/lang/Throwable
+
+     6    42    42   Class java/lang/Throwable
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      61      0    this       Laspects/aspectj/LogAllToFile;
+   0      61      1    thisJoinPoint       Lorg/aspectj/lang/JoinPoint;
+
+  LineNumberTable: 
+   line 68: 6
+   line 69: 39
+
+  adb.tagkit.AllJoinPoints: length = 0x4A
+   00 00 00 02 01 00 00 00 44 00 0F 4C 6F 67 41 6C
+   6C 54 6F 46 69 6C 65 2E 61 6A 00 00 00 01 00 07
+   41 73 70 65 63 74 4A 09 00 00 00 43 00 0F 4C 6F
+   67 41 6C 6C 54 6F 46 69 6C 65 2E 61 6A 00 00 00
+   01 00 07 41 73 70 65 63 74 4A 
+  CrossCutting: length = 0x4
+   00 00 00 00 
+  RuntimeVisibleAnnotations: length = 0x10
+   00 01 00 4C 00 02 00 2D 73 00 4D 00 2F 73 00 26
+   
+
+protected void log(java.lang.String, org.aspectj.lang.JoinPoint);
+  LineNumberTable: 
+   line 76: 6
+   line 77: 41
+   line 79: 44
+   line 80: 79
+   line 81: 113
+   line 82: 117
+   line 83: 120
+   line 84: 167
+   line 86: 240
+   line 87: 566
+   line 88: 664
+   line 89: 671
+   line 90: 868
+   line 91: 926
+   line 93: 959
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      981      0    this       Laspects/aspectj/LogAllToFile;
+   0      981      1    advType       Ljava/lang/String;
+   0      981      2    jp       Lorg/aspectj/lang/JoinPoint;
+   671      266      3    e       Ljava/lang/Exception;
+   113      105      3    fileName       Ljava/lang/String;
+   167      51      4    fout       Ljava/io/FileOutputStream;
+
+
+  org.aspectj.weaver.MethodDeclarationLineNumber: length = 0x8
+   00 00 00 4B 00 00 07 FFFFFF89 
+  Code:
+   Stack=4, Locals=69, Args_size=3
+   0:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   3:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   6:	aload_0
+   7:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   10:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   13:	getfield	#35; //Field caughtException:Z
+   16:	goto	30
+   19:	astore	6
+   21:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   24:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   27:	aload	6
+   29:	athrow
+   30:	nop
+   31:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   34:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   37:	nop
+   38:	ifeq	44
+   41:	goto	973
+   44:	aload_0
+   45:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   48:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   51:	getfield	#33; //Field out:Ljava/io/PrintStream;
+   54:	goto	68
+   57:	astore	8
+   59:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   62:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   65:	aload	8
+   67:	athrow
+   68:	nop
+   69:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   72:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   75:	nop
+   76:	ifnonnull	240
+   79:	ldc	#80; //String logFileName
+   81:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   84:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   87:	invokestatic	#82; //Method java/lang/System.getProperty:(Ljava/lang/String;)Ljava/lang/String;
+   90:	goto	104
+   93:	astore	10
+   95:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   98:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   101:	aload	10
+   103:	athrow
+   104:	nop
+   105:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   108:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   111:	nop
+   112:	astore_3
+   113:	aload_3
+   114:	ifnonnull	120
+   117:	ldc	#88; //String logAllToFile.out
+   119:	astore_3
+   120:	aload_3
+   121:	iconst_1
+   122:	istore	11
+   124:	astore	12
+   126:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   129:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   132:	new	#90; //class java/io/FileOutputStream
+   135:	dup
+   136:	aload	12
+   138:	iload	11
+   140:	invokespecial	#92; //Method java/io/FileOutputStream."<init>":(Ljava/lang/String;Z)V
+   143:	goto	157
+   146:	astore	14
+   148:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   151:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   154:	aload	14
+   156:	athrow
+   157:	nop
+   158:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   161:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   164:	nop
+   165:	astore	4
+   167:	aload_0
+   168:	aload	4
+   170:	astore	15
+   172:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   175:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   178:	new	#95; //class java/io/PrintStream
+   181:	dup
+   182:	aload	15
+   184:	invokespecial	#97; //Method java/io/PrintStream."<init>":(Ljava/io/OutputStream;)V
+   187:	goto	201
+   190:	astore	17
+   192:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   195:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   198:	aload	17
+   200:	athrow
+   201:	nop
+   202:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   205:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   208:	nop
+   209:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   212:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   215:	putfield	#33; //Field out:Ljava/io/PrintStream;
+   218:	goto	232
+   221:	astore	19
+   223:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   226:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   229:	aload	19
+   231:	athrow
+   232:	nop
+   233:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   236:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   239:	nop
+   240:	aload_0
+   241:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   244:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   247:	getfield	#33; //Field out:Ljava/io/PrintStream;
+   250:	goto	264
+   253:	astore	21
+   255:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   258:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   261:	aload	21
+   263:	athrow
+   264:	nop
+   265:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   268:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   271:	nop
+   272:	aload_0
+   273:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   276:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   279:	getfield	#39; //Field indent:Ljava/lang/String;
+   282:	goto	296
+   285:	astore	23
+   287:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   290:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   293:	aload	23
+   295:	athrow
+   296:	nop
+   297:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   300:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   303:	nop
+   304:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   307:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   310:	invokestatic	#102; //Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+   313:	goto	327
+   316:	astore	25
+   318:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   321:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   324:	aload	25
+   326:	athrow
+   327:	nop
+   328:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   331:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   334:	nop
+   335:	astore	26
+   337:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   340:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   343:	new	#100; //class java/lang/StringBuilder
+   346:	dup
+   347:	aload	26
+   349:	invokespecial	#108; //Method java/lang/StringBuilder."<init>":(Ljava/lang/String;)V
+   352:	goto	366
+   355:	astore	28
+   357:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   360:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   363:	aload	28
+   365:	athrow
+   366:	nop
+   367:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   370:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   373:	nop
+   374:	aload_1
+   375:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   378:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   381:	invokevirtual	#111; //Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   384:	goto	398
+   387:	astore	30
+   389:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   392:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   395:	aload	30
+   397:	athrow
+   398:	nop
+   399:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   402:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   405:	nop
+   406:	ldc	#115; //String : 
+   408:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   411:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   414:	invokevirtual	#111; //Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   417:	goto	431
+   420:	astore	32
+   422:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   425:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   428:	aload	32
+   430:	athrow
+   431:	nop
+   432:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   435:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   438:	nop
+   439:	aload_2
+   440:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   443:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   446:	invokeinterface	#117,  1; //InterfaceMethod org/aspectj/lang/JoinPoint.toLongString:()Ljava/lang/String;
+   451:	goto	465
+   454:	astore	34
+   456:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   459:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   462:	aload	34
+   464:	athrow
+   465:	nop
+   466:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   469:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   472:	nop
+   473:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   476:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   479:	invokevirtual	#111; //Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   482:	goto	496
+   485:	astore	36
+   487:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   490:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   493:	aload	36
+   495:	athrow
+   496:	nop
+   497:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   500:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   503:	nop
+   504:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   507:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   510:	invokevirtual	#123; //Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+   513:	goto	527
+   516:	astore	38
+   518:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   521:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   524:	aload	38
+   526:	athrow
+   527:	nop
+   528:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   531:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   534:	nop
+   535:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   538:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   541:	invokevirtual	#126; //Method java/io/PrintStream.println:(Ljava/lang/String;)V
+   544:	goto	558
+   547:	astore	40
+   549:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   552:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   555:	aload	40
+   557:	athrow
+   558:	nop
+   559:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   562:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   565:	nop
+   566:	aload_0
+   567:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   570:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   573:	getfield	#33; //Field out:Ljava/io/PrintStream;
+   576:	goto	590
+   579:	astore	42
+   581:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   584:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   587:	aload	42
+   589:	athrow
+   590:	nop
+   591:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   594:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   597:	nop
+   598:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   601:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   604:	invokevirtual	#129; //Method java/io/PrintStream.flush:()V
+   607:	goto	621
+   610:	astore	44
+   612:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   615:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   618:	aload	44
+   620:	athrow
+   621:	nop
+   622:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   625:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   628:	nop
+   629:	goto	959
+   632:	astore	45
+   634:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   637:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   640:	aload	45
+   642:	goto	656
+   645:	astore	47
+   647:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   650:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   653:	aload	47
+   655:	athrow
+   656:	nop
+   657:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   660:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   663:	nop
+   664:	astore_3
+   665:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   668:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   671:	getstatic	#132; //Field java/lang/System.err:Ljava/io/PrintStream;
+   674:	goto	688
+   677:	astore	49
+   679:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   682:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   685:	aload	49
+   687:	athrow
+   688:	nop
+   689:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   692:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   695:	nop
+   696:	ldc	#135; //String Error in LogAllToFile: 
+   698:	astore	50
+   700:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   703:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   706:	new	#100; //class java/lang/StringBuilder
+   709:	dup
+   710:	aload	50
+   712:	invokespecial	#108; //Method java/lang/StringBuilder."<init>":(Ljava/lang/String;)V
+   715:	goto	729
+   718:	astore	52
+   720:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   723:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   726:	aload	52
+   728:	athrow
+   729:	nop
+   730:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   733:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   736:	nop
+   737:	aload_3
+   738:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   741:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   744:	invokevirtual	#137; //Method java/lang/Exception.getMessage:()Ljava/lang/String;
+   747:	goto	761
+   750:	astore	54
+   752:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   755:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   758:	aload	54
+   760:	athrow
+   761:	nop
+   762:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   765:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   768:	nop
+   769:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   772:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   775:	invokevirtual	#111; //Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   778:	goto	792
+   781:	astore	56
+   783:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   786:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   789:	aload	56
+   791:	athrow
+   792:	nop
+   793:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   796:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   799:	nop
+   800:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   803:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   806:	invokevirtual	#123; //Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+   809:	goto	823
+   812:	astore	58
+   814:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   817:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   820:	aload	58
+   822:	athrow
+   823:	nop
+   824:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   827:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   830:	nop
+   831:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   834:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   837:	invokevirtual	#126; //Method java/io/PrintStream.println:(Ljava/lang/String;)V
+   840:	goto	854
+   843:	astore	60
+   845:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   848:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   851:	aload	60
+   853:	athrow
+   854:	nop
+   855:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   858:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   861:	nop
+   862:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   865:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   868:	getstatic	#132; //Field java/lang/System.err:Ljava/io/PrintStream;
+   871:	goto	885
+   874:	astore	62
+   876:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   879:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   882:	aload	62
+   884:	athrow
+   885:	nop
+   886:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   889:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   892:	nop
+   893:	ldc	#142; //String Logging is disabled!
+   895:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   898:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   901:	invokevirtual	#126; //Method java/io/PrintStream.println:(Ljava/lang/String;)V
+   904:	goto	918
+   907:	astore	64
+   909:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   912:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   915:	aload	64
+   917:	athrow
+   918:	nop
+   919:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   922:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   925:	nop
+   926:	aload_0
+   927:	iconst_1
+   928:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   931:	invokevirtual	#187; //Method org/aspectj/runtime/internal/CFlowCounter.inc:()V
+   934:	putfield	#35; //Field caughtException:Z
+   937:	goto	951
+   940:	astore	66
+   942:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   945:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   948:	aload	66
+   950:	athrow
+   951:	nop
+   952:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   955:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   958:	nop
+   959:	goto	973
+   962:	astore	68
+   964:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   967:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   970:	aload	68
+   972:	athrow
+   973:	getstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   976:	invokevirtual	#192; //Method org/aspectj/runtime/internal/CFlowCounter.dec:()V
+   979:	return
+   980:	return
+  Exception table:
+   from   to  target type
+   934   937   940   Class java/lang/Throwable
+
+   901   904   907   Class java/lang/Throwable
+
+   868   871   874   Class java/lang/Throwable
+
+   837   840   843   Class java/lang/Throwable
+
+   806   809   812   Class java/lang/Throwable
+
+   775   778   781   Class java/lang/Throwable
+
+   744   747   750   Class java/lang/Throwable
+
+   706   715   718   Class java/lang/Throwable
+
+   671   674   677   Class java/lang/Throwable
+
+   640   642   645   Class java/lang/Throwable
+
+   604   607   610   Class java/lang/Throwable
+
+   573   576   579   Class java/lang/Throwable
+
+   541   544   547   Class java/lang/Throwable
+
+   510   513   516   Class java/lang/Throwable
+
+   479   482   485   Class java/lang/Throwable
+
+   446   451   454   Class java/lang/Throwable
+
+   414   417   420   Class java/lang/Throwable
+
+   381   384   387   Class java/lang/Throwable
+
+   343   352   355   Class java/lang/Throwable
+
+   310   313   316   Class java/lang/Throwable
+
+   279   282   285   Class java/lang/Throwable
+
+   247   250   253   Class java/lang/Throwable
+
+   215   218   221   Class java/lang/Throwable
+
+   178   187   190   Class java/lang/Throwable
+
+   132   143   146   Class java/lang/Throwable
+
+    87    90    93   Class java/lang/Throwable
+
+    51    54    57   Class java/lang/Throwable
+
+    13    16    19   Class java/lang/Throwable
+
+    44   629   632   Class java/lang/Exception
+
+     6   962   962   Class java/lang/Throwable
+
+  LocalVariableTable: 
+   Start  Length  Slot  Name   Signature
+   0      981      0    this       Laspects/aspectj/LogAllToFile;
+   0      981      1    advType       Ljava/lang/String;
+   0      981      2    jp       Lorg/aspectj/lang/JoinPoint;
+   671      266      3    e       Ljava/lang/Exception;
+   113      105      3    fileName       Ljava/lang/String;
+   167      51      4    fout       Ljava/io/FileOutputStream;
+
+  LineNumberTable: 
+   line 76: 6
+   line 77: 41
+   line 79: 44
+   line 80: 79
+   line 81: 113
+   line 82: 117
+   line 83: 120
+   line 84: 167
+   line 86: 240
+   line 87: 566
+   line 88: 664
+   line 89: 671
+   line 90: 868
+   line 91: 926
+   line 93: 959
+
+  adb.tagkit.AllJoinPoints: length = 0x422
+   00 00 00 1D 05 00 00 00 4C 00 0F 4C 6F 67 41 6C
+   6C 54 6F 46 69 6C 65 2E 61 6A 00 00 00 01 00 07
+   41 73 70 65 63 74 4A 05 00 00 00 4F 00 0F 4C 6F
+   67 41 6C 6C 54 6F 46 69 6C 65 2E 61 6A 00 00 00
+   01 00 07 41 73 70 65 63 74 4A 01 00 00 00 50 00
+   0F 4C 6F 67 41 6C 6C 54 6F 46 69 6C 65 2E 61 6A
+   00 00 00 01 00 07 41 73 70 65 63 74 4A 02 00 00
+   00 53 00 0F 4C 6F 67 41 6C 6C 54 6F 46 69 6C 65
+   2E 61 6A 00 00 00 01 00 07 41 73 70 65 63 74 4A
+   02 00 00 00 54 00 0F 4C 6F 67 41 6C 6C 54 6F 46
+   69 6C 65 2E 61 6A 00 00 00 01 00 07 41 73 70 65
+   63 74 4A 06 00 00 00 54 00 0F 4C 6F 67 41 6C 6C
+   54 6F 46 69 6C 65 2E 61 6A 00 00 00 02 00 09 56
+   61 6C 69 64 61 74 6F 72 00 07 41 73 70 65 63 74
+   4A 05 00 00 00 56 00 0F 4C 6F 67 41 6C 6C 54 6F
+   46 69 6C 65 2E 61 6A 00 00 00 01 00 07 41 73 70
+   65 63 74 4A 05 00 00 00 56 00 0F 4C 6F 67 41 6C
+   6C 54 6F 46 69 6C 65 2E 61 6A 00 00 00 01 00 07
+   41 73 70 65 63 74 4A 01 00 00 00 56 00 0F 4C 6F
+   67 41 6C 6C 54 6F 46 69 6C 65 2E 61 6A 00 00 00
+   01 00 07 41 73 70 65 63 74 4A 02 00 00 00 56 00
+   0F 4C 6F 67 41 6C 6C 54 6F 46 69 6C 65 2E 61 6A
+   00 00 00 01 00 07 41 73 70 65 63 74 4A 01 00 00
+   00 56 00 0F 4C 6F 67 41 6C 6C 54 6F 46 69 6C 65
+   2E 61 6A 00 00 00 01 00 07 41 73 70 65 63 74 4A
+   01 00 00 00 56 00 0F 4C 6F 67 41 6C 6C 54 6F 46
+   69 6C 65 2E 61 6A 00 00 00 01 00 07 41 73 70 65
+   63 74 4A 01 00 00 00 56 00 0F 4C 6F 67 41 6C 6C
+   54 6F 46 69 6C 65 2E 61 6A 00 00 00 01 00 07 41
+   73 70 65 63 74 4A 01 00 00 00 56 00 0F 4C 6F 67
+   41 6C 6C 54 6F 46 69 6C 65 2E 61 6A 00 00 00 01
+   00 07 41 73 70 65 63 74 4A 01 00 00 00 56 00 0F
+   4C 6F 67 41 6C 6C 54 6F 46 69 6C 65 2E 61 6A 00
+   00 00 01 00 07 41 73 70 65 63 74 4A 01 00 00 00
+   56 00 0F 4C 6F 67 41 6C 6C 54 6F 46 69 6C 65 2E
+   61 6A 00 00 00 01 00 07 41 73 70 65 63 74 4A 05
+   00 00 00 57 00 0F 4C 6F 67 41 6C 6C 54 6F 46 69
+   6C 65 2E 61 6A 00 00 00 01 00 07 41 73 70 65 63
+   74 4A 01 00 00 00 57 00 0F 4C 6F 67 41 6C 6C 54
+   6F 46 69 6C 65 2E 61 6A 00 00 00 01 00 07 41 73
+   70 65 63 74 4A 0B 00 00 00 58 00 0F 4C 6F 67 41
+   6C 6C 54 6F 46 69 6C 65 2E 61 6A 00 00 00 01 00
+   07 41 73 70 65 63 74 4A 05 00 00 00 59 00 0F 4C
+   6F 67 41 6C 6C 54 6F 46 69 6C 65 2E 61 6A 00 00
+   00 01 00 07 41 73 70 65 63 74 4A 02 00 00 00 59
+   00 0F 4C 6F 67 41 6C 6C 54 6F 46 69 6C 65 2E 61
+   6A 00 00 00 01 00 07 41 73 70 65 63 74 4A 01 00
+   00 00 59 00 0F 4C 6F 67 41 6C 6C 54 6F 46 69 6C
+   65 2E 61 6A 00 00 00 01 00 07 41 73 70 65 63 74
+   4A 01 00 00 00 59 00 0F 4C 6F 67 41 6C 6C 54 6F
+   46 69 6C 65 2E 61 6A 00 00 00 01 00 07 41 73 70
+   65 63 74 4A 01 00 00 00 59 00 0F 4C 6F 67 41 6C
+   6C 54 6F 46 69 6C 65 2E 61 6A 00 00 00 01 00 07
+   41 73 70 65 63 74 4A 01 00 00 00 59 00 0F 4C 6F
+   67 41 6C 6C 54 6F 46 69 6C 65 2E 61 6A 00 00 00
+   01 00 07 41 73 70 65 63 74 4A 05 00 00 00 5A 00
+   0F 4C 6F 67 41 6C 6C 54 6F 46 69 6C 65 2E 61 6A
+   00 00 00 01 00 07 41 73 70 65 63 74 4A 01 00 00
+   00 5A 00 0F 4C 6F 67 41 6C 6C 54 6F 46 69 6C 65
+   2E 61 6A 00 00 00 01 00 07 41 73 70 65 63 74 4A
+   06 00 00 00 5B 00 0F 4C 6F 67 41 6C 6C 54 6F 46
+   69 6C 65 2E 61 6A 00 00 00 02 00 09 56 61 6C 69
+   64 61 74 6F 72 00 07 41 73 70 65 63 74 4A 03 00
+   00 00 4B 00 0F 4C 6F 67 41 6C 6C 54 6F 46 69 6C
+   65 2E 61 6A 00 00 00 03 00 09 56 61 6C 69 64 61
+   74 6F 72 00 04 43 4F 4F 4C 00 07 41 73 70 65 63
+   74 4A 
+  CrossCutting: length = 0x4
+   00 00 00 00 
+
+public static final boolean ajc$if$178();
+  LineNumberTable: 
+   line 12: 0
+
+
+
+  org.aspectj.weaver.AjSynthetic: length = 0x
+   
+  Code:
+   Stack=1, Locals=0, Args_size=0
+   0:	getstatic	#19; //Field useAspect:Z
+   3:	ireturn
+  LineNumberTable: 
+   line 12: 0
+
+
+
+public static aspects.aspectj.LogAllToFile aspectOf();
+  LineNumberTable: 
+   line 1: 0
+
+
+
+  org.aspectj.weaver.AjSynthetic: length = 0x
+   
+  Code:
+   Stack=4, Locals=0, Args_size=0
+   0:	getstatic	#155; //Field ajc$perSingletonInstance:Laspects/aspectj/LogAllToFile;
+   3:	ifnonnull	19
+   6:	new	#157; //class org/aspectj/lang/NoAspectBoundException
+   9:	dup
+   10:	ldc	#159; //String aspects_aspectj_LogAllToFile
+   12:	getstatic	#24; //Field ajc$initFailureCause:Ljava/lang/Throwable;
+   15:	invokespecial	#161; //Method org/aspectj/lang/NoAspectBoundException."<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+   18:	athrow
+   19:	getstatic	#155; //Field ajc$perSingletonInstance:Laspects/aspectj/LogAllToFile;
+   22:	areturn
+  LineNumberTable: 
+   line 1: 0
+
+
+
+public static boolean hasAspect();
+  LineNumberTable: 
+   line 1: 0
+
+
+
+  org.aspectj.weaver.AjSynthetic: length = 0x
+   
+  Code:
+   Stack=1, Locals=0, Args_size=0
+   0:	getstatic	#155; //Field ajc$perSingletonInstance:Laspects/aspectj/LogAllToFile;
+   3:	ifnull	8
+   6:	iconst_1
+   7:	ireturn
+   8:	iconst_0
+   9:	ireturn
+  LineNumberTable: 
+   line 1: 0
+
+
+
+static void ajc$preClinit();
+  LineNumberTable: 
+   line 1: 0
+
+
+
+  Synthetic: true
+  Code:
+   Stack=2, Locals=0, Args_size=0
+   0:	new	#180; //class org/aspectj/runtime/internal/CFlowCounter
+   3:	dup
+   4:	invokespecial	#181; //Method org/aspectj/runtime/internal/CFlowCounter."<init>":()V
+   7:	putstatic	#183; //Field ajc$cflowCounter$0:Lorg/aspectj/runtime/internal/CFlowCounter;
+   10:	return
+  LineNumberTable: 
+   line 1: 0
+
+
+}
+

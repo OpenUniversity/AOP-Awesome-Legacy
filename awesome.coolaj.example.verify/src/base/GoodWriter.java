@@ -24,6 +24,8 @@ public class GoodWriter implements Runnable
 		
 		for(int i = 0; i<10000; i++)
 		{
+			randomString = new StringBuffer();
+			
 			int j;
 			for(j = 0; j<5; j++)
 			{
