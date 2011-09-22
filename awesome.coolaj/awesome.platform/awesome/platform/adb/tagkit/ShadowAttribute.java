@@ -63,7 +63,7 @@ public class ShadowAttribute extends AjAttribute
 				throw new BCException("target for multiple methods:" + meth + element.rangeMethod);
 		}
 
-		String s = buf.toString();
+		//String s = buf.toString();
 		//System.out.println(getName() + " jasmin value end");
 		
 	}

@@ -54,7 +54,7 @@ public privileged aspect COOLWeaver extends AbstractWeaver {
 	
 	public String getName()
 	{
-		return "COOLWeaver";
+		return "COOL";
 	}
 	
 	public List<IEffect> getEffects(LazyClassGen aspectClazz)
@@ -356,7 +356,7 @@ public privileged aspect COOLWeaver extends AbstractWeaver {
 	 * field.
 	 */
 	public void setInputFiles(IClassFileProvider input) {
-		System.out.println("Begin setInputFiles...");
+		//System.out.println("Begin setInputFiles...");
 		
 		super.setInputFiles(input);
 		if (typeMunger == null)
@@ -370,7 +370,7 @@ public privileged aspect COOLWeaver extends AbstractWeaver {
 			UnwovenClassFile classFile = (UnwovenClassFile) i.next();
 			UnresolvedType clazz = Utils.getUnresolvedType(classFile);
 			allClasses.add(clazz);
-			System.out.println("class file " + clazz + " added to allClasses");
+			//System.out.println("class file " + clazz + " added to allClasses");
 		}
 		
 		for (UnresolvedType classType : allClasses) {			

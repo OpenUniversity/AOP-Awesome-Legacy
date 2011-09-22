@@ -2,6 +2,7 @@ package awesome.platform;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import org.aspectj.apache.bcel.Constants;
 import org.aspectj.apache.bcel.classfile.Attribute;
 import org.aspectj.apache.bcel.classfile.Code;
 import org.aspectj.apache.bcel.classfile.ConstantPool;
+import org.aspectj.apache.bcel.classfile.Method;
 import org.aspectj.apache.bcel.generic.FieldInstruction;
 import org.aspectj.apache.bcel.generic.Instruction;
 import org.aspectj.apache.bcel.generic.InstructionHandle;
@@ -18,6 +20,7 @@ import org.aspectj.apache.bcel.generic.InvokeInstruction;
 import org.aspectj.apache.bcel.generic.MULTIANEWARRAY;
 import org.aspectj.bridge.context.CompilationAndWeavingContext;
 import org.aspectj.bridge.context.ContextToken;
+import org.aspectj.weaver.AjAttribute;
 import org.aspectj.weaver.IClassFileProvider;
 import org.aspectj.weaver.Member;
 import org.aspectj.weaver.NameMangler;
@@ -31,14 +34,18 @@ import org.aspectj.weaver.bcel.LazyMethodGen;
 import org.aspectj.weaver.bcel.Utility;
 
 import ajplugin.AJWeaver;
+import awesome.config.spec.FeatureInteractions;
+import awesome.platform.adb.tagkit.JoinPointGranularityAttribute;
 import awesome.platform.adb.tagkit.CrossCuttingAttribute;
 import awesome.platform.adb.tagkit.EffectApplication;
 import awesome.platform.adb.tagkit.JoinPointDescriptor;
 import awesome.platform.adb.tagkit.ShadowAttribute;
-public class MultiMechanism {
+public class MultiMechanism 
+{
 	
 	private BcelWorld world;
 	private List<IMechanism> mechanisms;
+	private List<String> names = null;
 
 	private Map<LazyMethodGen, List<BcelShadow>> methodShadows = new HashMap<LazyMethodGen, List<BcelShadow>>();
 
@@ -46,6 +53,20 @@ public class MultiMechanism {
 		System.out.println("MultiMechanism: "+this);
 		this.world = world;
 		this.mechanisms = new ArrayList<IMechanism>();
+	}
+	
+	public List<String> getNames()
+	{
+		if(null == names)
+		{
+			names = new LinkedList<String>();
+			for(IMechanism m : mechanisms)
+			{
+				names.add(m.getName());
+			}
+		}
+		
+		return names;
 	}
 	
 
@@ -278,15 +299,10 @@ public class MultiMechanism {
 	
 	}
 	
+	/*
 	protected void printAttributes(LazyClassGen clazz)
 	{
-		//JavaClass jc = clazz.getJavaClass(world);
-		//JavaClass jc2 = clazz.getJavaClass(world);
-		//Method[] ms = jc.getMethods();
-		/*for(Method m1 : ms)
-		{
-			m1.getAttributes();
-		}*/
+	
 		
 		List <LazyMethodGen> methods = clazz.getMethodGens();
 		
@@ -308,6 +324,69 @@ public class MultiMechanism {
 			}
 		}		
 	}
+	*/
+	
+	private void genereteAllJPsTag(LazyClassGen clazz)
+	{
+		awesome.platform.adb.util.log.logger.logLn("generating AllJPsTag for " + 
+				clazz.getName());
+		
+		List<LazyMethodGen> methods = clazz.getMethodGens();
+		
+		for(LazyMethodGen m : methods)
+		{
+			if(m.isAbstract() )
+				continue;
+			
+			List<BcelShadow> shadowList = allShadows.get(m.getName());
+			if(null == shadowList)
+				continue;
+			
+			JoinPointGranularityAttribute ajpa = new JoinPointGranularityAttribute(this, shadowList);
+			
+			Attribute ccAttribute;
+			ccAttribute = Utility.bcelAttribute(ajpa, 
+							clazz.getConstantPool());
+					
+			
+			Attribute[] ats = m.getMethod().getAttributes();
+			for(Attribute a : ats)
+			{
+				if(a instanceof Code)
+				{
+					Code c = (Code) a;
+					Attribute[] attrs = c.getAttributes();
+					Attribute[] extAttrs = new Attribute[attrs.length+1];
+					System.arraycopy(attrs, 0, extAttrs, 0, attrs.length);
+					extAttrs[attrs.length] = ccAttribute;	
+					c.setAttributes(extAttrs);
+				}				
+			}
+		}
+		
+	}
+	
+	/*
+	private void addAttribute(AjAttribute attribute, LazyClassGen clazz, LazyMethodGen m)
+	{
+		Attribute ccAttribute;
+		ccAttribute = Utility.bcelAttribute(attribute, 
+						clazz.getConstantPool());
+						
+		Attribute[] ats = m.getMethod().getAttributes();
+		for(Attribute a : ats)
+		{
+			if(a instanceof Code)
+			{
+				Code c = (Code) a;
+				Attribute[] attrs = c.getAttributes();
+				Attribute[] extAttrs = new Attribute[attrs.length+1];
+				System.arraycopy(attrs, 0, extAttrs, 0, attrs.length);
+				extAttrs[attrs.length] = ccAttribute;	
+				c.setAttributes(extAttrs);				
+			}				
+		}
+	}*/
 	
 	protected void generateCrossCuttingTag(LazyClassGen clazz)
 	{
@@ -354,7 +433,7 @@ public class MultiMechanism {
 				}				
 			}
 			
-			Attribute[] as = m.getMethod().getCode().getAttributes();
+			//Attribute[] as = m.getMethod().getCode().getAttributes();
 							
 			//changedMethods.add(m);
 			
@@ -425,13 +504,15 @@ public class MultiMechanism {
 
 	private Map<String, List<EffectApplication>> methodNameToEffect;
 	
+	private Map<String, List<BcelShadow>> allShadows;
+	
 	
 	
 	
 	
 	public boolean transform(LazyClassGen clazz) 
 	{
-		awesome.platform.adb.util.log.logger.logLn("transform " + clazz);
+		awesome.platform.adb.util.log.logger.logLn("transforming class: " + clazz);
 		
 		boolean isChanged = false;
 		
@@ -439,16 +520,20 @@ public class MultiMechanism {
 
 		 // need to prepare a list of effects for each method
 		methodNameToEffect = new HashMap<String, List<EffectApplication>>();	
+		allShadows = new HashMap<String, List<BcelShadow>>();
 		
         List<BcelShadow> shadows = reify(clazz);
         for (BcelShadow shadow:shadows)
-        {        	        
-        	//shadow.setOriginalPositions();
-        	
+        {        	              
+        	awesome.platform.adb.util.log.logger.logLn("\ttransforming shadow: " + 
+        			shadow.getEnclosingMethod().getName() + " line " + shadow.getSourceLine() + 
+        			" kind " + shadow.getKind());
         	if (transform(shadow)) 
         		isChanged=true;     	
         }
                
+        genereteAllJPsTag(clazz);
+        
         // call after the transformation
         generateCrossCuttingTag(clazz);
         //printAttributes(clazz);
@@ -461,14 +546,21 @@ public class MultiMechanism {
 	{
 		//System.out.println("Transforming a shadow:"+shadow+", "+shadow.getSourceLocation());
 		
-		if(shadow.getKind() == BcelShadow.FieldGet || shadow.getKind() == BcelShadow.FieldSet)
-		{
-			int x = 1;
-		}
-    
 		boolean isChanged = false;
 		ContextToken tok = CompilationAndWeavingContext.enteringPhase(
 				CompilationAndWeavingContext.IMPLEMENTING_ON_SHADOW, shadow);
+		
+		if(FeatureInteractions.instance().isInEMJPG(shadow.getKind().getName()))
+    	{
+			List<BcelShadow> shadowList = allShadows.get(shadow.getEnclosingMethod().getName());
+			if(null == shadowList)
+			{
+				shadowList = new ArrayList<BcelShadow>();
+				allShadows.put(shadow.getEnclosingMethod().getName(), shadowList);
+			}
+			
+			shadowList.add(shadow);
+    	}
 		
 		List<List<IEffect>> multiEffects = match(shadow);
 		List<IEffect> effects = multiOrder(multiEffects, shadow);
@@ -476,10 +568,11 @@ public class MultiMechanism {
 		List<EffectApplication> effectList = methodNameToEffect.get(shadow.getEnclosingMethod().getName());
     	if(null == effectList)
     	{
-    		effectList = new ArrayList<EffectApplication>();    		    	    		        		        
+    		effectList = new ArrayList<EffectApplication>();
+    		methodNameToEffect.put(shadow.getEnclosingMethod().getName(), effectList);
     	}
     	
-    	methodNameToEffect.put(shadow.getEnclosingMethod().getName(), effectList);
+    	
     	    	
     	for(IEffect e : effects)
     	{

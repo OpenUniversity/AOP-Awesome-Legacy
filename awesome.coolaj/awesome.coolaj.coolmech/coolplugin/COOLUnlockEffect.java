@@ -17,7 +17,7 @@ public class COOLUnlockEffect extends COOLCoordEffect {
 	
 	public void transform(BcelShadow shadow) {
      // System.err.println("Weaving Unlock advice!");
-      weaveAfterThrowing(shadow, UnresolvedType.THROWABLE);
+      //weaveAfterThrowing(shadow, UnresolvedType.THROWABLE);
       weaveAfterReturning(shadow);
 	}
 	
