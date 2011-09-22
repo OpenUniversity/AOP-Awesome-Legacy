@@ -30,6 +30,7 @@ import org.apache.bcel.classfile.Method;
 import org.apache.bcel.util.ClassPath;
 import org.apache.bcel.util.SyntheticRepository;
 
+import adb.backend.bcel.JoinPointGranularityAttribute.JoinPointGranularityAttributeReader;
 import adb.backend.bcel.AspectAttribute.AspectAttributeReader;
 import adb.backend.bcel.CrossCuttingAttribute.CrossCuttingAttributeReader;
 import adb.backend.bcel.FieldLineNumberAttribute.FieldLineNumberAttributeReader;
@@ -55,6 +56,10 @@ public class BCELBackend {
 		
 		ShadowAttributeReader sr = new ShadowAttributeReader();
 		org.apache.bcel.classfile.Attribute.addAttributeReader(sr.getName(),sr);
+		
+		JoinPointGranularityAttributeReader alljpsr = new JoinPointGranularityAttributeReader();
+		org.apache.bcel.classfile.Attribute.addAttributeReader(alljpsr.getName(),alljpsr);
+		
 	}
 	
 	private Map<String,Map<String,Attribute>> classAttributes = new HashMap<String, Map<String,Attribute>>();

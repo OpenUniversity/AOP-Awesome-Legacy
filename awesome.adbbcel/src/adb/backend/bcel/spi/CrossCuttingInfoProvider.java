@@ -24,8 +24,10 @@ import java.util.List;
 
 import adb.backend.AdviceApplicationDescriptor;
 import adb.backend.AfterBindingEventListener;
+import adb.backend.JoinPointComputation;
 import adb.backend.LocationDescriptor;
 import adb.backend.MethodIdentifier;
+import adb.backend.bcel.JoinPointGranularityAttribute;
 import adb.backend.bcel.BCELBackend;
 import adb.backend.bcel.CrossCuttingAttribute;
 import adb.backend.bcel.JoinPointDescriptor;
@@ -37,7 +39,8 @@ import com.sun.jdi.ReferenceType;
 import com.sun.jdi.VirtualMachine;
 
 public class CrossCuttingInfoProvider implements
-		adb.backend.CrossCuttingInfoProvider {
+		adb.backend.CrossCuttingInfoProvider 
+		{
 	
 	private BCELBackend back;
 	private VirtualMachine vm;
@@ -52,6 +55,17 @@ public class CrossCuttingInfoProvider implements
 //		return ( out.isEmpty() ) ? null : out.get(0);
 //	}
 
+	public List<JoinPointComputation> getExposedJoinPointComputations(String classname,
+			String methodname, String methodsig)
+	{
+		JoinPointGranularityAttribute at = 
+			(JoinPointGranularityAttribute) back.getMethodAttribute(classname, methodname, methodsig, 
+					JoinPointGranularityAttribute.NAME);
+		
+		return at.getJoinPointsList();
+		
+	}
+	
 	public List<adb.backend.JoinPointDescriptor> getJoinpointsForMethod(String classname,
 			String methodname,String methodsig) {
 		CrossCuttingAttribute att = (CrossCuttingAttribute) back.getMethodAttribute(classname, methodname, methodsig, CrossCuttingAttribute.NAME);

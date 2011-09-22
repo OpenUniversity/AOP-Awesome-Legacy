@@ -3,7 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/tools"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/AJDI"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/AJDI"/>
 	<classpathentry kind="lib" path="C:/aop/aoda/1.01/src/resources/bcel/bcel-5.2.jar" sourcepath="C:/aop/bcel-5.2/src/java"/>
 	<classpathentry kind="con" path="org.eclipse.ajdt.core.ASPECTJRT_CONTAINER"/>
 	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.6.0_17/lib/tools.jar"/>

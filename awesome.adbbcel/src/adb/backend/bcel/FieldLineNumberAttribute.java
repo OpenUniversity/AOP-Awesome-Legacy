@@ -40,6 +40,9 @@ public class FieldLineNumberAttribute extends Attribute{
 				return null;
 			FieldLineNumberAttribute attr = new FieldLineNumberAttribute(name_index,length,pool);
 			
+			if(lines[0].length() == 0)
+				return attr; // no fields
+			
 			for (int i = 0; i < lines.length; i++) {
 				String[] parts = lines[i].split(" ",2);
 				attr.addfield(parts[0],decoder.decode(parts[1]));
