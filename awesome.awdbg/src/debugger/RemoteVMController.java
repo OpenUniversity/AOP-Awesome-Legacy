@@ -409,11 +409,12 @@ public class RemoteVMController implements Runnable
 		fullName = className + ":" + lineNumber;
 		
 		long threadId = event.thread().uniqueID();
+		String threadName = event.thread().name();
 		
 		BreakPoint bp = breakAtMethods.get(fullName);
 		bp.hit();
 		
-		System.out.println("[" + threadId + "]" + " Hit breakpoint [" + bp.getId() + "] at " + fullName + " " +
+		System.out.println("[" + threadId + " " + threadName + "]" + " Hit breakpoint [" + bp.getId() + "] at " + fullName + " " +
 				bp.getHitCount() + " time(s) " );
 		
 		bpContext = new BreakPointContext(event);

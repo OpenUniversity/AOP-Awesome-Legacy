@@ -21,6 +21,16 @@ public class Show extends AbstractCommand
 		
 		command = new ShowAdvice();
 		showCommands.register(command);	
+		
+		command = new ShowAllJoinPoints();
+		showCommands.register(command);	
+		
+		command = new ShowVisibleJoinPoints();
+		showCommands.register(command);	
+		
+		command = new ShowAdvisability();
+		showCommands.register(command);	
+		
 	}
 	
 	@Override

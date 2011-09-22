@@ -25,6 +25,7 @@ import adb.backend.AdviceApplicationDescriptor;
 import adb.backend.AfterBindingEventListener;
 import adb.backend.CrossCuttingInfoProvider;
 import adb.backend.JoinPointDescriptor;
+import adb.backend.JoinPointComputation;
 import adb.backend.MethodIdentifier;
 
 public class NullCrosscuttingProvider implements CrossCuttingInfoProvider {
@@ -55,6 +56,12 @@ public class NullCrosscuttingProvider implements CrossCuttingInfoProvider {
 	@Override
 	public MethodIdentifier isTargetMethod(String classname, String methodname, String methodsig) {
 		return null;
+	}
+
+	@Override
+	public List<JoinPointComputation> getExposedJoinPointComputations(
+			String classname, String methodname, String methodsig) {
+		return Collections.emptyList();
 	}
 
 }

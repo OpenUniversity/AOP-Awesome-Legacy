@@ -22,6 +22,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import adb.backend.JoinPointComputation;
 import adb.backend.MethodIdentifier;
 import adb.tools.InterList;
 import ajdi.InitJoinPoint;
@@ -118,6 +119,32 @@ public class MethodImpl implements Method {
 
 	public MethodExecutionJoinPoint executionJoinPoint() {
 		return getJPI().jp;
+	}
+	
+	public List<JoinPointComputation> exposedJoinPoints()
+	{
+		return Collections.unmodifiableList(shadowMaster().getExposedJoinPointComputations(this));
+	}
+	
+	public List<JoinPointComputation> visibleJoinPoints(String mechName)
+	{
+		List<JoinPointComputation> jpcs = shadowMaster().getExposedJoinPointComputations(this);
+		List<JoinPointComputation> visibleJpcs = new LinkedList<JoinPointComputation>();
+		
+		for(JoinPointComputation jpc : jpcs)
+		{
+			List<String> visibleIn = jpc.getVisibleIn();
+			for(String mech : visibleIn)
+			{
+				if(mech.equals(mechName))
+				{
+					visibleJpcs.add(jpc);
+					break;
+				}					
+			}			
+		}
+		
+		return visibleJpcs;		
 	}
 	
 	public List<JoinPoint> allJoinPoints() {

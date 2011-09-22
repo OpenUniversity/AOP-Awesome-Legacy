@@ -41,6 +41,7 @@ import adb.backend.EventManager;
 import adb.backend.FieldLocationProvider;
 import adb.backend.FilterManager;
 import adb.backend.JoinPointDescriptor;
+import adb.backend.JoinPointComputation;
 import adb.backend.MethodIdentifier;
 import adb.backend.NoSuchAdviceException;
 import adb.backend.NoSuchBindingException;
@@ -588,6 +589,14 @@ public class ShadowMaster {
 		return jpMgr.getJoinPoint(descr);
 	}
 
+	public List<JoinPointComputation> getExposedJoinPointComputations(MethodImpl in)
+	{
+		List<JoinPointComputation> jpcs = aspectCCIP.getExposedJoinPointComputations(in.getBase().declaringType().name(), 
+				in.getBase().name(), in.getBase().signature());
+		
+		return jpcs;		
+	}
+	
 	// lazy init JP
 	public MethodImpl.JoinPointInfo getJoinPointInfoFor(MethodImpl in) {
 		List<JoinPointDescriptor> pcs = aspectCCIP.getJoinpointsForMethod(in.getBase().declaringType().name(), in.getBase()

@@ -27,6 +27,8 @@ package ajdi;
 import java.util.List;
 
 
+import adb.backend.JoinPointComputation;
+
 import com.sun.jdi.AbsentInformationException;
 import com.sun.jdi.ClassNotLoadedException;
 
@@ -44,6 +46,10 @@ import com.sun.jdi.ClassNotLoadedException;
  */
 public interface Method extends TypeComponent, SourceLocatable, Comparable<Method>,Shadow {
 
+	public List<JoinPointComputation> exposedJoinPoints();
+	public List<JoinPointComputation> visibleJoinPoints(String mechName);
+	
+	
 	public MethodExecutionJoinPoint executionJoinPoint();
 	
 	/**

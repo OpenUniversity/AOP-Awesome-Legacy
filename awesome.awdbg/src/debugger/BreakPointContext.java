@@ -1,5 +1,10 @@
 package debugger;
 
+import java.util.List;
+
+import com.sun.jdi.IncompatibleThreadStateException;
+
+import adb.backend.JoinPointComputation;
 import ajdi.JoinPoint;
 import ajdi.Method;
 import ajdi.ThreadReference;
@@ -11,7 +16,8 @@ public class BreakPointContext
 	Method method;
 	ThreadReference thread;
 	JoinPoint[] joinPoints;
-	
+	JoinPointComputation[] joinPointComputations;
+	                     
 	public BreakPointContext(MethodEntryEvent event)
 	{
 		method = event.method();
@@ -29,16 +35,45 @@ public class BreakPointContext
 		this.thread = thread;
 	}
 	
-	/*
+	
 	public Method getMethod()
 	{
 		return method;
 	}
-	*/
+	
 	
 	public ThreadReference thread()
 	{
 		return thread;
+	}
+	
+	public JoinPointComputation[] getEmergingGranularity()
+	{
+		if(null == method)
+		{
+			try 
+			{
+				method = thread().frame(0).location().method();
+			} 
+			catch (IncompatibleThreadStateException e) {				
+				e.printStackTrace();
+				return null;
+			}
+		}
+		
+		if(null == joinPointComputations)
+		{
+			List<JoinPointComputation> jpList = method.exposedJoinPoints();
+			joinPointComputations = new JoinPointComputation[jpList.size()];
+			int i = 0;
+			for(JoinPointComputation jpc : jpList)
+			{
+				joinPointComputations[i] = jpc;
+				i++;
+			}
+		}
+		
+		return joinPointComputations;		
 	}
 	
 	public JoinPoint[] getJoinPoints() throws DebuggerException

@@ -21,7 +21,10 @@ import java.util.List;
 
 import adb.NotAnAspectException;
 
-public interface CrossCuttingInfoProvider extends InfoProvider {
+public interface CrossCuttingInfoProvider extends InfoProvider 
+{
+	public List<JoinPointComputation> getExposedJoinPointComputations(String classname,
+			String methodname, String methodsig);
 	
 	/**
 	 * @param classname class containing the method 
