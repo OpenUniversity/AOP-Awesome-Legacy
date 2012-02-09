@@ -1,4 +1,4 @@
-package awesome.platform;
+package awesome.platform.prev;
 
 public class MethodParameter {
 	private Type type;

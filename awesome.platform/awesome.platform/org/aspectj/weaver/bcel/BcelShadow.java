@@ -69,7 +69,7 @@ import org.aspectj.weaver.patterns.NotPointcut;
 import org.aspectj.weaver.patterns.OrPointcut;
 import org.aspectj.weaver.patterns.ThisOrTargetPointcut;
 
-import awesome.platform.IEffect;
+import awesome.platform.prev.IEffect;
 
 /*
  * Some fun implementation stuff:

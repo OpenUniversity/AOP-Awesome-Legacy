@@ -1,4 +1,4 @@
-package awesome.platform;
+package awesome.platform.prev;
 
 import static org.junit.Assert.*;
 
@@ -11,7 +11,7 @@ import org.aspectj.weaver.bcel.BcelWorld;
 import org.aspectj.weaver.bcel.LazyClassGen;
 import org.junit.Test;
 
-import awesome.platform.annotations.AwSuppressReify;
+import awesome.platform.annotations.prev.AwSuppressReify;
 
 
 public class MultiMechanismTest {

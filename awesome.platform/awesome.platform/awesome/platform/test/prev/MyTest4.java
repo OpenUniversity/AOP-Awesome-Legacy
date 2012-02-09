@@ -1,7 +1,7 @@
-package awesome.platform.test;
+package awesome.platform.test.prev;
 
-import awesome.platform.annotations.AwAdviceExecution;
-import awesome.platform.annotations.AwSuppressReify;
+import awesome.platform.annotations.prev.AwAdviceExecution;
+import awesome.platform.annotations.prev.AwSuppressReify;
 
 
 public class MyTest4 {

@@ -1,4 +1,4 @@
-package awesome.platform;
+package awesome.platform.prev;
 import org.aspectj.weaver.*;
 import org.aspectj.weaver.bcel.BcelShadow;
 

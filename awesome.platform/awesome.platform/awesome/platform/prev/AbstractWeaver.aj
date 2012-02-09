@@ -1,4 +1,4 @@
-package awesome.platform;
+package awesome.platform.prev;
 import org.aspectj.apache.bcel.generic.InstructionList;
 import org.aspectj.apache.bcel.generic.InstructionHandle;
 import org.aspectj.weaver.IClassFileProvider;

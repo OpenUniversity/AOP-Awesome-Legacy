@@ -1,4 +1,4 @@
-package awesome.platform.test;
+package awesome.platform.test.prev;
 
 public class MyTest1 {
 	private int x = 0;

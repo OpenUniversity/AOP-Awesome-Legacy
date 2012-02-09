@@ -69,7 +69,7 @@ import org.aspectj.weaver.patterns.ExposedState;
 import org.aspectj.weaver.patterns.PerClause;
 import org.aspectj.weaver.patterns.Pointcut;
 
-import awesome.platform.IEffect;
+import awesome.platform.prev.IEffect;
 
 
 /**

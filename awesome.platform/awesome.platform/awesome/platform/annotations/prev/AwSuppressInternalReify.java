@@ -1,4 +1,4 @@
-package awesome.platform.annotations;
+package awesome.platform.annotations.prev;
 
 public @interface AwSuppressInternalReify {
 

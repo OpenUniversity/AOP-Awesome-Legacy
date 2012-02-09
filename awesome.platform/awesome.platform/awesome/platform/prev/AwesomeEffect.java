@@ -1,4 +1,4 @@
-package awesome.platform;
+package awesome.platform.prev;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -20,7 +20,7 @@ import org.aspectj.weaver.bcel.Range;
 import org.aspectj.weaver.bcel.ShadowRange;
 import org.aspectj.weaver.bcel.Utility;
 
-import awesome.platform.IEffect;
+import awesome.platform.prev.IEffect;
 
 
 /**

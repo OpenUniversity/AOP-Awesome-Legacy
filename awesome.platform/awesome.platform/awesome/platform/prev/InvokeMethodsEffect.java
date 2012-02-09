@@ -1,4 +1,4 @@
-package awesome.platform;
+package awesome.platform.prev;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +14,7 @@ import org.aspectj.weaver.bcel.LazyClassGen;
 import org.aspectj.weaver.bcel.LazyMethodGen;
 import org.aspectj.weaver.bcel.Utility;
 
-import awesome.platform.MethodParameter.Type;
+import awesome.platform.prev.MethodParameter.Type;
 
 public class InvokeMethodsEffect extends AwesomeEffect {
 	private List<LazyMethodGen> methods = new ArrayList<LazyMethodGen>();

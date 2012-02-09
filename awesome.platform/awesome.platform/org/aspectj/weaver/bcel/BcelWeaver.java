@@ -94,7 +94,7 @@ import org.aspectj.weaver.patterns.WithinPointcut;
 import org.aspectj.weaver.tools.Trace;
 import org.aspectj.weaver.tools.TraceFactory;
 
-import awesome.platform.MultiMechanism;
+import awesome.platform.prev.MultiMechanism;
 
 
 public class BcelWeaver {

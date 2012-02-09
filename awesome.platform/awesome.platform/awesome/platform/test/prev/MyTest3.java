@@ -1,6 +1,6 @@
-package awesome.platform.test;
+package awesome.platform.test.prev;
 
-import awesome.platform.annotations.AwSuppressInternalReify;
+import awesome.platform.annotations.prev.AwSuppressInternalReify;
 
 public class MyTest3 {
 	private int x = 0;

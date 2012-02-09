@@ -1,4 +1,4 @@
-package awesome.platform;
+package awesome.platform.prev;
 
 import org.aspectj.apache.bcel.classfile.annotation.AnnotationGen;
 import org.aspectj.apache.bcel.classfile.annotation.ElementNameValuePairGen;
