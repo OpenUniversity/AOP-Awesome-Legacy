@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="awesome.coolaj.coolmech"/>
+	<classpathentry kind="src" path="aw.cool"/>
 	<classpathentry kind="src" path="awesome.platform"/>
 	<classpathentry kind="src" path="awesome.coolaj.ajmech"/>
 	<classpathentry kind="src" path="awesome.coolaj.validator"/>
