@@ -9,11 +9,18 @@
             id="awesome.ide">
       </category>
       <wizard
-            name="Awesome Project"
-            icon="icons/aw2.jpg"
+            name="Multi-Mechanism Project"
+            icon="icons/mm.ico"
             category="awesome.ide"
             class="awesome.ide.wizards.NewAwesomeProjectWizard"
             id="awesome.ide.wizards.NewAwesomeProjectWizard">
+      </wizard>
+      <wizard
+            category="awesome.ide"
+            class="awesome.ide.NewWizard1"
+            icon="icons/m.ico"
+            id="awesome.ide.wizards.AspectMechanismProjectWizard"
+            name="Aspect Mechanism Project">
       </wizard>
    </extension>
 
