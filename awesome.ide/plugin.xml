@@ -17,7 +17,7 @@
       </wizard>
       <wizard
             category="awesome.ide"
-            class="awesome.ide.NewWizard1"
+            class="awesome.ide.wizards.AspectMechanismProjectWizard"
             icon="icons/m.ico"
             id="awesome.ide.wizards.AspectMechanismProjectWizard"
             name="Aspect Mechanism Project">

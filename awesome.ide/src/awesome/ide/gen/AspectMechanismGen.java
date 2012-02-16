@@ -22,9 +22,9 @@ public class AspectMechanismGen
   public String generate(Object argument)
   {
     final StringBuffer stringBuffer = new StringBuffer();
-    String packageName = ((NewAwesomeProjectWizard.AspectMechanismDescriptor) argument).getPackageName();
-    String aspectName = ((NewAwesomeProjectWizard.AspectMechanismDescriptor) argument).getAspectName();
-    String id = ((NewAwesomeProjectWizard.AspectMechanismDescriptor) argument).getId();
+    String packageName = ((AspectMechanismDescriptor) argument).getPackageName();
+    String aspectName = ((AspectMechanismDescriptor) argument).getAspectName();
+    String id = ((AspectMechanismDescriptor) argument).getId();
     stringBuffer.append(TEXT_1);
     stringBuffer.append(packageName);
     stringBuffer.append(TEXT_2);
