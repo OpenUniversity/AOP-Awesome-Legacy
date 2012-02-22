@@ -10,7 +10,7 @@
       </category>
       <wizard
             name="Multi-Mechanism Project"
-            icon="icons/mm.ico"
+            icon="icons/mm_icon.png"
             category="awesome.ide"
             class="awesome.ide.wizards.NewAwesomeProjectWizard"
             id="awesome.ide.wizards.NewAwesomeProjectWizard">
@@ -18,7 +18,7 @@
       <wizard
             category="awesome.ide"
             class="awesome.ide.wizards.AspectMechanismProjectWizard"
-            icon="icons/m.ico"
+            icon="icons/am_icon.png"
             id="awesome.ide.wizards.AspectMechanismProjectWizard"
             name="Aspect Mechanism Project">
       </wizard>
