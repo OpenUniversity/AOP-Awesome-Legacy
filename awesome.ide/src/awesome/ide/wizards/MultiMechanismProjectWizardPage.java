@@ -1,5 +1,8 @@
 package awesome.ide.wizards;
 
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.jface.dialogs.IDialogPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -20,14 +23,14 @@ import org.eclipse.swt.widgets.Text;
 public class MultiMechanismProjectWizardPage extends WizardPage {
 	private Text projectNameText;
 
-	private Text dsal1NameText;
+	private Text dsalsText;
 
 	private Text dsal2NameText;
 
 	public MultiMechanismProjectWizardPage() {
 		super("wizardPage");
-		setTitle("New Awesome Project");
-		setDescription("This wizard creates a new Awesome Project.");
+		setTitle("New Multi-Mechanism Project");
+		setDescription("This wizard creates a new Multi-Mechanism Project.");
 	}
 
 	/**
@@ -39,9 +42,9 @@ public class MultiMechanismProjectWizardPage extends WizardPage {
 		container.setLayout(layout);
 		layout.numColumns = 2;
 		layout.verticalSpacing = 9;
+		
 		Label label = new Label(container, SWT.NULL);
 		label.setText("&Project Name:");
-
 		projectNameText = new Text(container, SWT.BORDER | SWT.SINGLE);
 		GridData gd = new GridData(GridData.FILL_HORIZONTAL);
 		projectNameText.setLayoutData(gd);
@@ -53,44 +56,55 @@ public class MultiMechanismProjectWizardPage extends WizardPage {
 
 
 		label = new Label(container, SWT.NULL);
-		label.setText("&First DSAL Name:");
+		label.setText("&DSALs (Comma Separated):");
 
-		dsal1NameText = new Text(container, SWT.BORDER | SWT.SINGLE);
+		dsalsText = new Text(container, SWT.BORDER | SWT.SINGLE);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
-		dsal1NameText.setLayoutData(gd);
-		dsal1NameText.addModifyListener(new ModifyListener() {
+		dsalsText.setLayoutData(gd);
+		dsalsText.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
 				dialogChanged();
 			}
 		});
 		
-		label = new Label(container, SWT.NULL);
-		label.setText("&Second DSAL Name (Optional):");
-		
-		dsal2NameText = new Text(container, SWT.BORDER | SWT.SINGLE);
-		gd = new GridData(GridData.FILL_HORIZONTAL);
-		dsal2NameText.setLayoutData(gd);
+//		label = new Label(container, SWT.NULL);
+//		label.setText("&Second DSAL Name (Optional):");
+//		
+//		dsal2NameText = new Text(container, SWT.BORDER | SWT.SINGLE);
+//		gd = new GridData(GridData.FILL_HORIZONTAL);
+//		dsal2NameText.setLayoutData(gd);
 		
 		dialogChanged();
 		setControl(container);
 	}
 
 	private void dialogChanged() {
-		String dsalName = getFirstDsalName();
+		String dsalsText = getDsalsText();
 
 		if (getProjectName().length() == 0) {
-			updateStatus("Project name must be specified");
+			updateStatus("A name for the project must be specified");
 			return;
 		}
-		if (dsalName.length() == 0) {
-			updateStatus("DSAL name must be specified");
+		// list of DSALs should not contains spaces
+		if(dsalsText.indexOf(' ') != -1) {
+			updateStatus("The list of DSALs should not contains spaces");
 			return;
 		}
-		if (dsalName.contains(" ")) {
-			updateStatus("DSAL name cannot contain spaces");
+		if(dsalsText.indexOf(',') == -1 || dsalsText.split(",").length < 2) {
+			updateStatus("At least two DSALs should be specified");
 			return;
 		}
-		
+		// the corresponding project of each DSAL should exist in the workspace
+		String[] dsals = dsalsText.split(",");
+		for(String dsal : dsals) {
+			IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+			IProject project = root.getProject("awm." + dsal.toLowerCase());
+			if(!project.exists()) {
+				updateStatus("Aspect mechanism project " + "awm." + dsal.toLowerCase() + " does not exist in the workspace");
+				return;
+			}
+		}
+	
 		updateStatus(null);
 	}
 
@@ -103,10 +117,13 @@ public class MultiMechanismProjectWizardPage extends WizardPage {
 		return projectNameText.getText();
 	}
 
-	public String getFirstDsalName() {
-		return dsal1NameText.getText();
+	/**
+	 * @return the dsals to be composed that were entered by the user
+	 */
+	private String getDsalsText() {
+		return dsalsText.getText();
 	}
-	public String getSecondDsalName() {
-		return dsal2NameText.getText();
+	public String[] getDsalNames() {
+		return getDsalsText().split(",");
 	}
 }
