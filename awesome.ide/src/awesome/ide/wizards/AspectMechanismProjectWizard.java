@@ -1,6 +1,9 @@
 package awesome.ide.wizards;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -40,9 +43,10 @@ import org.osgi.framework.Bundle;
 
 import awesome.ide.Activator;
 import awesome.ide.gen.AspectMechanismGen;
+import awesome.ide.gen.ManifestGen;
 
 /**
- * Thanks goes to:
+ * Thanks to:
  * http://sdqweb.ipd.kit.edu/wiki/JDT_Tutorial:_Creating_Eclipse_Java_Projects_Programmatically
  * 
  */
@@ -50,7 +54,6 @@ import awesome.ide.gen.AspectMechanismGen;
 public class AspectMechanismProjectWizard extends Wizard implements INewWizard {
 	private static final String SRC_FOLDER = "src";
 	private static final String JARS_FOLDER = "jars";
-	private static final String AJ_FOLDER = "awesome.aj";
 
 	private AspectMechanismProjectWizardPage page;
 
@@ -109,20 +112,41 @@ public class AspectMechanismProjectWizard extends Wizard implements INewWizard {
 		throws CoreException {
 		monitor.beginTask("Creating Aspect Mechanism Project...", 2);
 		
-		IJavaProject project = createJavaProject(projectName);
-		createSrcFolder(project);
-		createDSALPackage(project, projectName, dsalName);
+		IJavaProject javaProj = createJavaProject(projectName);
+		createSrcFolder(javaProj);
+		createDSALPackage(javaProj, dsalName);
+		createManifestFile(javaProj, dsalName);
 		
 		monitor.worked(1);
 		
-		AspectJUIPlugin.convertToAspectJProject(project.getProject());
-		AspectJUIPlugin.addAjrtToBuildPath(project.getProject());
+		AspectJUIPlugin.convertToAspectJProject(javaProj.getProject());
+		AspectJUIPlugin.addAjrtToBuildPath(javaProj.getProject());
 		
 		// Create the 'jars' folder, and put the jars in it
-		createJarsFolder(project);
+		createJarsFolder(javaProj);
 		
 		monitor.worked(1);
 
+	}
+
+	private void createManifestFile(IJavaProject javaProj, String dsalName) {
+		IProject project = javaProj.getProject();
+		ManifestDescriptor desc = new ManifestDescriptor();
+		desc.setDsalName(dsalName);
+		String content;
+		content = new ManifestGen().generate(desc);
+		try {
+			project.getFile(dsalName.toLowerCase() + "." + "manifest").create(toInputStream(content), true, null);
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (CoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	private InputStream toInputStream(String str) throws UnsupportedEncodingException {
+		return new ByteArrayInputStream(str.getBytes("UTF-8"));
 	}
 
 	/**
@@ -131,10 +155,11 @@ public class AspectMechanismProjectWizard extends Wizard implements INewWizard {
 	 * @param packageName
 	 * @throws JavaModelException
 	 */
-	private void createDSALPackage(IJavaProject project, String packageName, String dsalName) throws JavaModelException {
+	private void createDSALPackage(IJavaProject project, String dsalName) throws JavaModelException {
 		// create the package
 		IFolder srcFolder = project.getProject().getFolder(SRC_FOLDER);
 		IPackageFragmentRoot src = project.getPackageFragmentRoot(srcFolder);
+		String packageName = project.getProject().getName();
 		IPackageFragment pack = src.createPackageFragment(packageName, false, null);
 		
 		// generate an aspect mechanism within the package
@@ -197,36 +222,6 @@ public class AspectMechanismProjectWizard extends Wizard implements INewWizard {
 		srcFolder.create(false, true, null);
 		addFolderToBuildPath(project, SRC_FOLDER);
 	}
-	private void createDsalSourceFolders(List<String> dsalNames, IJavaProject javaProject) 
-		throws CoreException, JavaModelException {
-		
-		IFolder ajSourceFolder = javaProject.getProject().getFolder(AJ_FOLDER);
-		ajSourceFolder.create(false, true, null);
-		IPackageFragmentRoot src = javaProject.getPackageFragmentRoot(ajSourceFolder);
-		IPackageFragment pack = src.createPackageFragment(AJ_FOLDER, false, null);
-		AspectMechanismDescriptor desc = new AspectMechanismDescriptor();
-		desc.setPackageName(AJ_FOLDER);
-		desc.setAspectName("AJMechanism");
-		desc.setId("Aspectj");
-		StringBuffer buffer = new StringBuffer();
-		buffer.append(new AspectMechanismGen().generate(desc));
-		pack.createCompilationUnit("AJMechanism.aj", buffer.toString(), false, null);
-		
-		for(String dsalName: dsalNames){
-			IFolder dsalSourceFolder = javaProject.getProject().getFolder("awesome." + dsalName.toLowerCase());
-			dsalSourceFolder.create(false, true, null);
-			
-			src = javaProject.getPackageFragmentRoot(dsalSourceFolder);
-			pack = src.createPackageFragment("awesome." + dsalName.toLowerCase(), false, null);
-			
-			desc.setPackageName("awesome." + dsalName.toLowerCase());
-			desc.setAspectName(dsalName + "Mechanism");
-			desc.setId(dsalName);
-			buffer = new StringBuffer();
-			buffer.append(new AspectMechanismGen().generate(desc));
-			pack.createCompilationUnit(dsalName + "Mechanism.aj", buffer.toString(), false, null);
-		}
-	}
 
 	private void addJarsToBuildPath(IJavaProject javaProject) {
 		String[] jars = {"asm-3.1.jar", "awesome.platform.jar", "commons.jar", "jrockit.jar"};
@@ -278,27 +273,6 @@ public class AspectMechanismProjectWizard extends Wizard implements INewWizard {
 		System.arraycopy(oldEntries, 0, newEntries, 0, oldEntries.length);
 		newEntries[oldEntries.length] = JavaCore.newSourceEntry(proot.getPath());
 		javaProj.setRawClasspath(newEntries, null);
-	}
-	
-	private void addDsalSourceFoldersToBuildPath(List<String> dsalNames, IJavaProject javaProject)
-			throws JavaModelException { 
-		IFolder ajSourceFolder = javaProject.getProject().getFolder(AJ_FOLDER);
-		IPackageFragmentRoot proot = javaProject.getPackageFragmentRoot(ajSourceFolder);
-		IClasspathEntry[] oldEntries = javaProject.getRawClasspath();
-		IClasspathEntry[] newEntries = new IClasspathEntry[oldEntries.length + 1];
-		System.arraycopy(oldEntries, 0, newEntries, 0, oldEntries.length);
-		newEntries[oldEntries.length] = JavaCore.newSourceEntry(proot.getPath());
-		javaProject.setRawClasspath(newEntries, null);
-		
-		for(String dsalName: dsalNames){
-			IFolder dsalSourceFolder = javaProject.getProject().getFolder("awesome." + dsalName.toLowerCase());
-			proot = javaProject.getPackageFragmentRoot(dsalSourceFolder);
-			oldEntries = javaProject.getRawClasspath();
-			newEntries = new IClasspathEntry[oldEntries.length + 1];
-			System.arraycopy(oldEntries, 0, newEntries, 0, oldEntries.length);
-			newEntries[oldEntries.length] = JavaCore.newSourceEntry(proot.getPath());
-			javaProject.setRawClasspath(newEntries, null);
-		}
 	}
 
 	/**

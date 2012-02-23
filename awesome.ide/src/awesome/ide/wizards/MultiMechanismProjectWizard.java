@@ -47,12 +47,12 @@ import awesome.ide.gen.AspectMechanismGen;
  * 
  */
 
-public class NewAwesomeProjectWizard extends Wizard implements INewWizard {
+public class MultiMechanismProjectWizard extends Wizard implements INewWizard {
 	private static final String AJ_FOLDER = "awesome.aj";
 
-	private NewAwesomeProjectWizardPage page;
+	private MultiMechanismProjectWizardPage page;
 
-	public NewAwesomeProjectWizard() {
+	public MultiMechanismProjectWizard() {
 		super();
 		setNeedsProgressMonitor(true);
 	}
@@ -61,7 +61,7 @@ public class NewAwesomeProjectWizard extends Wizard implements INewWizard {
 	 * Adding the page to the wizard.
 	 */
 	public void addPages() {
-		page = new NewAwesomeProjectWizardPage();
+		page = new MultiMechanismProjectWizardPage();
 		addPage(page);
 	}
 

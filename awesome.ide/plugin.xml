@@ -12,7 +12,7 @@
             name="Multi-Mechanism Project"
             icon="icons/mm_icon.png"
             category="awesome.ide"
-            class="awesome.ide.wizards.NewAwesomeProjectWizard"
+            class="awesome.ide.wizards.MultiMechanismProjectWizard"
             id="awesome.ide.wizards.NewAwesomeProjectWizard">
       </wizard>
       <wizard

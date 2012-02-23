@@ -17,14 +17,14 @@ import org.eclipse.swt.widgets.Text;
  * OR with the extension that matches the expected one (mpe).
  */
 
-public class NewAwesomeProjectWizardPage extends WizardPage {
+public class MultiMechanismProjectWizardPage extends WizardPage {
 	private Text projectNameText;
 
 	private Text dsal1NameText;
 
 	private Text dsal2NameText;
 
-	public NewAwesomeProjectWizardPage() {
+	public MultiMechanismProjectWizardPage() {
 		super("wizardPage");
 		setTitle("New Awesome Project");
 		setDescription("This wizard creates a new Awesome Project.");
