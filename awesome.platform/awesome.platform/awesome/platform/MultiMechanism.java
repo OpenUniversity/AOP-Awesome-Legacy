@@ -33,7 +33,6 @@ import org.aspectj.weaver.bcel.LazyClassGen;
 import org.aspectj.weaver.bcel.LazyMethodGen;
 import org.aspectj.weaver.bcel.Utility;
 
-import ajplugin.AJWeaver;
 import awesome.config.spec.FeatureInteractions;
 import awesome.platform.adb.tagkit.JoinPointGranularityAttribute;
 import awesome.platform.adb.tagkit.CrossCuttingAttribute;
@@ -456,8 +455,10 @@ public class MultiMechanism
 		IMechanism m =  null;
 		for(IMechanism m2 : mechanisms)
 		{
-			if(m2.getClass() == AJWeaver.class)
+			if(m2.getClass().getName().compareTo("AJWeaver")==0)
+			{
 				continue;
+			}
 			
 			if(m2.handledByMe(clazz))
 			{				
@@ -467,7 +468,17 @@ public class MultiMechanism
 		}
 		
 		if(m == null)
-			m = getMechanism(AJWeaver.class);
+		{
+			for(IMechanism m2 : mechanisms)
+			{
+				if(m2.getClass().getName().compareTo("AJWeaver")==0);
+				{
+					m = m2;
+					break;
+				}
+			}
+			
+		}
 			
 		return m;		
 	}
