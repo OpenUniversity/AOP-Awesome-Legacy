@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="aw.cool"/>
-	<classpathentry kind="src" path="awesome.platform"/>
 	<classpathentry kind="src" path="aw.aj"/>
 	<classpathentry kind="src" path="aw.validate"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
