@@ -30,7 +30,7 @@ public class MultiMechanismProjectWizardPage extends WizardPage {
 	public MultiMechanismProjectWizardPage() {
 		super("wizardPage");
 		setTitle("New Multi-Mechanism Project");
-		setDescription("This wizard creates a new Multi-Mechanism Project.");
+		setDescription("This wizard creates a new multi-mechanism project");
 	}
 
 	/**

@@ -27,7 +27,7 @@ public class AspectMechanismProjectWizardPage extends WizardPage {
 	public AspectMechanismProjectWizardPage() {
 		super("wizardPage");
 		setTitle("New Aspect Mechanism Project");
-		setDescription("This wizard creates a new aspect mechanism Project.");
+		setDescription("This wizard creates a new aspect mechanism project");
 	}
 
 	/**
