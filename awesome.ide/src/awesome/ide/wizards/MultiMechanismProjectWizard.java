@@ -1,6 +1,7 @@
 package awesome.ide.wizards;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -127,8 +128,29 @@ public class MultiMechanismProjectWizard extends Wizard implements INewWizard {
 		// Create the folder extmodules, and put the jars in it
 		createJarsFolder(project);
 		
+		createSpecFolder(project, dsalNames);
+		
 		monitor.worked(1);
 
+	}
+
+	private void createSpecFolder(IJavaProject javaProject, String[] dsalNames) throws CoreException {
+		IFolder spec = javaProject.getProject().getFolder("spec");
+		spec.create(false, true, null);
+		
+		// get the project of each dsal and extract the manifest file
+		for(String dsalName : dsalNames) {
+			IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+			//IProject project = root.getProject("awm." + dsalName);
+			//project.getFile(dsalName + ".manifest").get;
+			
+			// create the manifest in the multi-mechanism project
+			IFile manifest = javaProject.getProject().getFile(new Path("spec/" + dsalName + ".manifest"));
+			InputStream content = root.getProject("awm." + dsalName).getFile(dsalName + ".manifest").getContents();
+			manifest.create(content, true, null);
+		}
+		
+		
 	}
 
 	private IJavaProject createJavaProject(String projectName) throws CoreException, JavaModelException {
