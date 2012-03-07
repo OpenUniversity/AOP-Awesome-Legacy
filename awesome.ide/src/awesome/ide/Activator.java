@@ -15,6 +15,13 @@ public class Activator extends AbstractUIPlugin {
 	// The shared instance
 	private static Activator plugin;
 	
+	// location of the jars
+	public static final String JARS_FOLDER = "resources";
+	public static final String ASM_JAR = "asm-3.1.jar";
+	public static final String AWESOME_JAR = "awesome.platform.jar";
+	public static final String COMMONS_JAR = "commons.jar";
+	public static final String JROCKIT_JAR = "jrockit.jar";
+	
 	/**
 	 * The constructor
 	 */

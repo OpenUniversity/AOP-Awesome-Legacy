@@ -41,16 +41,15 @@ import org.osgi.framework.Bundle;
 
 import awesome.ide.Activator;
 import awesome.ide.gen.AspectMechanismGen;
+import awesome.ide.model.MultiMechanismProject;
 
 /**
  * Thanks goes to:
  * http://sdqweb.ipd.kit.edu/wiki/JDT_Tutorial:_Creating_Eclipse_Java_Projects_Programmatically
  * 
  */
-
 public class MultiMechanismProjectWizard extends Wizard implements INewWizard {
-	private static final String AJ_FOLDER = "awesome.aj";
-
+	
 	private MultiMechanismProjectWizardPage page;
 
 	public MultiMechanismProjectWizard() {
@@ -72,20 +71,13 @@ public class MultiMechanismProjectWizard extends Wizard implements INewWizard {
 	 */
 	public boolean performFinish() {
 		final String projectName = page.getProjectName();
-//		final String dsal1Name = /*page.getFirstDsalName()*/"Validate";
-//		final String dsal2Name = /*page.getSecondDsalName()*/"Comprendo";
 		final String[] dsalNames = page.getDsalNames();
 		
 		IRunnableWithProgress op = new IRunnableWithProgress() {
 			public void run(IProgressMonitor monitor) throws InvocationTargetException {
 				try {
-//					List<String> dsalNames = new ArrayList<String>();
-//					dsalNames.add(dsal1Name);
-//					if(!dsal2Name.equals(""))
-//						dsalNames.add(dsal2Name);
-					
 					doFinish(projectName, dsalNames, monitor);
-				} catch (CoreException e) {
+				} catch (Exception e) {
 					throw new InvocationTargetException(e);
 				} finally {
 					monitor.done();
@@ -104,198 +96,10 @@ public class MultiMechanismProjectWizard extends Wizard implements INewWizard {
 		return true;
 	}
 	
-	/**
-	 * Code taken from 
-	 * http://sdqweb.ipd.kit.edu/wiki/JDT_Tutorial:_Creating_Eclipse_Java_Projects_Programmatically
-	 * @throws CoreException
-	 */
 	private void doFinish(String projectName, String[] dsalNames, IProgressMonitor monitor) 
-		throws CoreException {
-		monitor.beginTask("Creating Awesome Project...", 2);
-		
-		IJavaProject project = createJavaProject(projectName);
-		
-		monitor.worked(1);
-		
-		AspectJUIPlugin.convertToAspectJProject(project.getProject());
-		AspectJUIPlugin.addAjrtToBuildPath(project.getProject());
-		
-		// Create source folder for each DSAL, and a Java package within each.
-		// An aspect (dsal weaver) is generated within each package.
-		createDsalSourceFolders(dsalNames, project);
-		addDsalSourceFoldersToBuildPath(dsalNames, project);
-		 
-		// Create the folder extmodules, and put the jars in it
-		createJarsFolder(project);
-		
-		createSpecFolder(project, dsalNames);
-		
-		monitor.worked(1);
-
+		throws Exception {
+		MultiMechanismProject.create(projectName, dsalNames, monitor);
 	}
-
-	private void createSpecFolder(IJavaProject javaProject, String[] dsalNames) throws CoreException {
-		IFolder spec = javaProject.getProject().getFolder("spec");
-		spec.create(false, true, null);
-		
-		// get the project of each dsal and extract the manifest file
-		for(String dsalName : dsalNames) {
-			IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-			//IProject project = root.getProject("awm." + dsalName);
-			//project.getFile(dsalName + ".manifest").get;
-			
-			// create the manifest in the multi-mechanism project
-			IFile manifest = javaProject.getProject().getFile(new Path("spec/" + dsalName + ".manifest"));
-			InputStream content = root.getProject("awm." + dsalName).getFile(dsalName + ".manifest").getContents();
-			manifest.create(content, true, null);
-		}
-		
-		
-	}
-
-	private IJavaProject createJavaProject(String projectName) throws CoreException, JavaModelException {
-		
-		// Create a simple project of type org.eclipse.core.resources.IProject:
-		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-		IProject project = root.getProject(projectName);
-		project.create(null);
-		project.open(null);
-		
-		// Set the Java nature:
-		IProjectDescription description = project.getDescription();
-		description.setNatureIds(new String[] { JavaCore.NATURE_ID });
-		project.setDescription(description, null);
-		IJavaProject javaProject = JavaCore.create(project); 
-	
-		// Set the Java output folder:
-		IFolder binFolder = project.getFolder("bin");
-		binFolder.create(false, true, null);
-		javaProject.setOutputLocation(binFolder.getFullPath(), null);
-		
-		addJavaLibrariesToClassPath(javaProject);
-		
-		return javaProject;
-	}
-
-	private void createJarsFolder(IJavaProject javaProject) throws CoreException {
-		String[] jars = {"asm-3.1.jar", "awesome.platform.jar", "commons.jar", "jrockit.jar"};
-		Bundle bundle = Platform.getBundle(Activator.PLUGIN_ID);
-		
-		IFolder extmodules = javaProject.getProject().getFolder("jars");
-		extmodules.create(false, true, null);
-		
-		for(String jar : jars) {
-			URL fileURL = bundle.getEntry("resources/" + jar);
-			IFile newfile = extmodules.getFile(jar);
-			try {
-				newfile.create(fileURL.openStream(), true, null);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		// add the jars in extmodules to the build path:
-		addJarsToBuildPath(javaProject);
-	}
-
-	private void createDsalSourceFolders(String[] dsalNames, IJavaProject javaProject) 
-		throws CoreException, JavaModelException {
-		
-//		IFolder ajSourceFolder = javaProject.getProject().getFolder(AJ_FOLDER);
-//		ajSourceFolder.create(false, true, null);
-//		IPackageFragmentRoot src = javaProject.getPackageFragmentRoot(ajSourceFolder);
-//		IPackageFragment pack = src.createPackageFragment(AJ_FOLDER, false, null);
-//		AspectMechanismDescriptor desc = new AspectMechanismDescriptor();
-//		desc.setPackageName(AJ_FOLDER);
-//		desc.setAspectName("AJMechanism");
-//		desc.setId("Aspectj");
-//		StringBuffer buffer = new StringBuffer();
-//		buffer.append(new AspectMechanismGen().generate(desc));
-//		pack.createCompilationUnit("AJMechanism.aj", buffer.toString(), false, null);
-		IPackageFragmentRoot src;
-		IPackageFragment pack;
-		AspectMechanismDescriptor desc = new AspectMechanismDescriptor();
-		StringBuffer buffer;
-		
-		for(String dsalName: dsalNames){
-			IFolder dsalSourceFolder = javaProject.getProject().getFolder("awm." + dsalName.toLowerCase());
-			dsalSourceFolder.create(false, true, null);
-			
-			src = javaProject.getPackageFragmentRoot(dsalSourceFolder);
-			pack = src.createPackageFragment("awm." + dsalName.toLowerCase(), false, null);
-			
-			desc.setPackageName("awm." + dsalName.toLowerCase());
-			desc.setAspectName(dsalName + "Mechanism");
-			desc.setId(dsalName);
-			buffer = new StringBuffer();
-			buffer.append(new AspectMechanismGen().generate(desc));
-			pack.createCompilationUnit(dsalName + "Mechanism.aj", buffer.toString(), false, null);
-		}
-	}
-
-	private void addJarsToBuildPath(IJavaProject javaProject) {
-		String[] jars = {"asm-3.1.jar", "awesome.platform.jar", "commons.jar", "jrockit.jar"};
-		
-		IClasspathEntry[] originalCP;
-		try {
-			for(String jar : jars){
-				originalCP = javaProject.getRawClasspath();
-				IPath path = new Path(javaProject.getPath() + "/jars/" + jar);
-				
-				IClasspathEntry lib;
-				// add awesome.platform.jar to inpath (we saw in our eyes the value needed)
-				if(jar.equals("awesome.platform.jar")){
-					IClasspathAttribute att = JavaCore.newClasspathAttribute("org.eclipse.ajdt.inpath", "org.eclipse.ajdt.inpath");
-					lib = JavaCore.newLibraryEntry(path, null, null, null, new IClasspathAttribute[]{att}, true);
-				} else {
-					lib = JavaCore.newLibraryEntry(path, null, null);
-				}
-				
-				int originalCPLength = originalCP.length;
-				IClasspathEntry[] newCP = new IClasspathEntry[originalCPLength + 1];
-				System.arraycopy(originalCP, 0, newCP, 0, originalCPLength);
-				newCP[originalCPLength] = lib;
-				javaProject.setRawClasspath(newCP, new NullProgressMonitor());
-			}
-			
-		} catch (JavaModelException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	private void addJavaLibrariesToClassPath(IJavaProject javaProject) throws JavaModelException {
-		List<IClasspathEntry> entries = new ArrayList<IClasspathEntry>();
-		IVMInstall vmInstall = JavaRuntime.getDefaultVMInstall();
-		LibraryLocation[] locations = JavaRuntime.getLibraryLocations(vmInstall);
-		for (LibraryLocation element : locations) {
-		 entries.add(JavaCore.newLibraryEntry(element.getSystemLibraryPath(), null, null));
-		}
-		//add libs to project class path
-		javaProject.setRawClasspath(entries.toArray(new IClasspathEntry[entries.size()]), null);
-	}
-
-	private void addDsalSourceFoldersToBuildPath(String[] dsalNames, IJavaProject javaProject)
-			throws JavaModelException {
-/*		IFolder ajSourceFolder = javaProject.getProject().getFolder(AJ_FOLDER);
-		IPackageFragmentRoot proot = javaProject.getPackageFragmentRoot(ajSourceFolder);
-		IClasspathEntry[] oldEntries = javaProject.getRawClasspath();
-		IClasspathEntry[] newEntries = new IClasspathEntry[oldEntries.length + 1];
-		System.arraycopy(oldEntries, 0, newEntries, 0, oldEntries.length);
-		newEntries[oldEntries.length] = JavaCore.newSourceEntry(proot.getPath());
-		javaProject.setRawClasspath(newEntries, null);*/
-		
-		for(String dsalName: dsalNames){
-			IFolder dsalSourceFolder = javaProject.getProject().getFolder("awm." + dsalName.toLowerCase());
-			IPackageFragmentRoot proot = javaProject.getPackageFragmentRoot(dsalSourceFolder);
-			IClasspathEntry[] oldEntries = javaProject.getRawClasspath();
-			IClasspathEntry[] newEntries = new IClasspathEntry[oldEntries.length + 1];
-			System.arraycopy(oldEntries, 0, newEntries, 0, oldEntries.length);
-			newEntries[oldEntries.length] = JavaCore.newSourceEntry(proot.getPath());
-			javaProject.setRawClasspath(newEntries, null);
-		}
-	}
-
 	/**
 	 * @see IWorkbenchWizard#init(IWorkbench, IStructuredSelection)
 	 */
