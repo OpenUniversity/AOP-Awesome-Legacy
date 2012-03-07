@@ -31,10 +31,21 @@ import org.osgi.framework.Bundle;
 
 import awesome.ide.Activator;
 
-public class MechanismProject {
+public abstract class MechanismProject {
 	private static final String BIN_FOLDER = "bin";
 	private static final String JARS_FOLDER = "jars";
 
+	public abstract String getName();
+	
+	public static void deleteProject(MechanismProject mProj) throws CoreException {
+		if(!ResourcesPlugin.getWorkspace().getRoot().getProject(mProj.getName()).exists())
+			return;
+		else { 
+			ResourcesPlugin.getWorkspace().getRoot().getProject(mProj.getName()).delete(true, null);
+		}
+			
+	}
+	
 	protected IJavaProject createJavaProject(String projectName) throws CoreException, JavaModelException {
 		
 		// Create a simple project of type org.eclipse.core.resources.IProject:

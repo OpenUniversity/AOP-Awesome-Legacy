@@ -1,12 +1,8 @@
 package awesome.ide.model;
 
-import java.io.InputStream;
-
 import org.eclipse.ajdt.ui.AspectJUIPlugin;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
@@ -31,7 +27,7 @@ public class MultiMechanismProject extends MechanismProject {
 		this.dsalNames = dsalNames;
 	}
 	
-	public static MultiMechanismProject create(String projectName, String[] dsalNames, IProgressMonitor monitor) throws Exception {
+	public static MultiMechanismProject createProject(String projectName, String[] dsalNames, IProgressMonitor monitor) throws Exception {
 		MultiMechanismProject mmProj = new MultiMechanismProject(projectName, dsalNames);
 		
 		if(monitor != null)
@@ -121,5 +117,8 @@ public class MultiMechanismProject extends MechanismProject {
 		}
 	}
 
-
+	@Override
+	public String getName() {
+		return projectName;
+	}
 }

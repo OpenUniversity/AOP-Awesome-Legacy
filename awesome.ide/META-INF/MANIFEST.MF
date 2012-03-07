@@ -15,3 +15,4 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ajdt.ui;bundle-version="2.1.1"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: awesome.ide.model

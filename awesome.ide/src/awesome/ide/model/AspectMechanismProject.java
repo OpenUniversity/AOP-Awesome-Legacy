@@ -6,7 +6,6 @@ import java.io.UnsupportedEncodingException;
 import org.eclipse.ajdt.ui.AspectJUIPlugin;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -77,6 +76,8 @@ public class AspectMechanismProject extends MechanismProject {
 		
 		return amProj;
 	}
+	
+	@Override
 	public String getName() {
 		return PROJ_PREFIX + "." + dsalName.toLowerCase();
 	}
