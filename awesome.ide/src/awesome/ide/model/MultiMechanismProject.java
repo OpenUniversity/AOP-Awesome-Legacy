@@ -3,6 +3,8 @@ package awesome.ide.model;
 import org.eclipse.ajdt.ui.AspectJUIPlugin;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
@@ -21,6 +23,16 @@ public class MultiMechanismProject extends MechanismProject {
 	private static final String COMP_SPEC_FILE = "composition.spec";
 	private String projectName;
 	private String[] dsalNames;
+	
+//	public class Spec {
+//		public String getDirName() {
+//			return SPEC_FOLDER;
+//		}
+//		public boolean exists() {
+//			IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(MultiMechanismProject.this.getName());
+//			return project.getFolder(getDirName()).exists();
+//		}
+//	}
 	
 	private MultiMechanismProject(String projectName, String[] dsalNames) {
 		this.projectName = projectName;
