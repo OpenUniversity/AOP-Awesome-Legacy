@@ -37,13 +37,27 @@ public abstract class MechanismProject {
 
 	public abstract String getName();
 	
-	public static void deleteProject(MechanismProject mProj) throws CoreException {
-		if(!ResourcesPlugin.getWorkspace().getRoot().getProject(mProj.getName()).exists())
+	/**
+	 * Deletes the project from the workspace.
+	 * @param mProj the project to be deleted.
+	 * @param busyWait try to delete again and again in case of failure (note infinite loop danger). This option is
+	 * for testing purposes only. Otherwise use busyWait=false.
+	 * @throws CoreException 
+	 */
+	public static void deleteProject(MechanismProject mProj, boolean busyWait) throws CoreException {
+		String name = mProj.getName();
+		if(!ResourcesPlugin.getWorkspace().getRoot().getProject(name).exists())
 			return;
 		else { 
-			ResourcesPlugin.getWorkspace().getRoot().getProject(mProj.getName()).delete(true, null);
+			try {
+				ResourcesPlugin.getWorkspace().getRoot().getProject(name).delete(true, null);
+			} catch (CoreException e) {
+				if(busyWait)
+					deleteProject(mProj, true);
+				else
+					throw e;
+			}
 		}
-			
 	}
 	
 	protected IJavaProject createJavaProject(String projectName) throws CoreException, JavaModelException {

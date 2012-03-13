@@ -24,9 +24,9 @@ public class MultiMechanismProjectTest {
 	}
 	@After
 	public void tearDown() throws CoreException {
-		MultiMechanismProject.deleteProject(mmProj);
-		AspectMechanismProject.deleteProject(valProj);
-		AspectMechanismProject.deleteProject(coolProj);
+		MultiMechanismProject.deleteProject(mmProj, true);
+		AspectMechanismProject.deleteProject(valProj, true);
+		AspectMechanismProject.deleteProject(coolProj, true);
 	}
 	@Test
 	public void testProjectCreation() {
@@ -35,7 +35,7 @@ public class MultiMechanismProjectTest {
 	}
 	@Test
 	public void testProjectDeletion() throws CoreException {
-		AspectMechanismProject.deleteProject(mmProj);
+		AspectMechanismProject.deleteProject(mmProj, true);
 		assertFalse(ResourcesPlugin.getWorkspace().getRoot().getProject(mmProj.getName()).exists());
 	}
 	@Test

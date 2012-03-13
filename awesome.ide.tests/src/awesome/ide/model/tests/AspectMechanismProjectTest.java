@@ -1,6 +1,9 @@
 package awesome.ide.model.tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
@@ -11,14 +14,18 @@ import org.junit.Test;
 import awesome.ide.model.AspectMechanismProject;
 
 public class AspectMechanismProjectTest {
-	AspectMechanismProject amProj;
+	//private String dsalName;
+	private AspectMechanismProject amProj;
 	@Before
 	public void setUp() throws Exception {
+		//dsalName = "Validate" + new Random().nextInt(100000);
 		amProj = AspectMechanismProject.createProject("Validate", null);
+		//System.out.println("Created project " + amProj.getName() + "...");
 	}
 	@After
 	public void tearDown() throws CoreException {
-		AspectMechanismProject.deleteProject(amProj);
+		//System.out.println("Deleting project " + amProj.getName() + "...");
+		AspectMechanismProject.deleteProject(amProj, true);
 	}
 	@Test
 	public void testProjectCreation() {
@@ -27,7 +34,7 @@ public class AspectMechanismProjectTest {
 	}
 	@Test
 	public void testProjectDeletion() throws CoreException {
-		AspectMechanismProject.deleteProject(amProj);
+		AspectMechanismProject.deleteProject(amProj, true);
 		assertFalse(ResourcesPlugin.getWorkspace().getRoot().getProject(amProj.getName()).exists());
 	}
 	@Test
