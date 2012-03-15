@@ -21,6 +21,7 @@ import awesome.ide.wizards.AspectMechanismDescriptor;
 public class MultiMechanismProject extends MechanismProject {
 	private static final String SPEC_FOLDER = "spec";
 	private static final String COMP_SPEC_FILE = "composition.spec";
+	private IJavaProject javaProj;
 	private String projectName;
 	private String[] dsalNames;
 	
@@ -45,23 +46,26 @@ public class MultiMechanismProject extends MechanismProject {
 		if(monitor != null)
 			monitor.beginTask("Creating Multi-Mechanism Project...", 2);
 		
-		IJavaProject javaProj = mmProj.createJavaProject(projectName);
+		mmProj.javaProj = mmProj.createJavaProject(projectName);
 		
 		if(monitor != null)
 			monitor.worked(1);
 		
-		AspectJUIPlugin.convertToAspectJProject(javaProj.getProject());
-		AspectJUIPlugin.addAjrtToBuildPath(javaProj.getProject());
+		AspectJUIPlugin.convertToAspectJProject(mmProj.javaProj.getProject());
+		AspectJUIPlugin.addAjrtToBuildPath(mmProj.javaProj.getProject());
+		
+		mmProj.copySourceFolderFromAspectMechanismProjects();
+		mmProj.addSourceFoldersToBuildPath();
 		
 		// Create a source folder for each DSAL, and a Java package within it.
 		// An aspect mechanism class is generated within each package.
-		mmProj.createDsalSourceFolders(dsalNames, javaProj);
-		mmProj.addDsalSourceFoldersToBuildPath(dsalNames, javaProj);
+		//mmProj.createDsalSourceFolders(dsalNames, javaProj);
+		//mmProj.addDsalSourceFoldersToBuildPath(dsalNames, javaProj);
 		 
 		// Create a folder with the dependent jars
-		mmProj.createJarsFolder(javaProj);
+		mmProj.createJarsFolder(mmProj.javaProj);
 		
-		mmProj.createSpecFolder(javaProj, dsalNames);
+		mmProj.createSpecFolder();
 		
 		if(monitor != null)
 			monitor.worked(1);
@@ -69,6 +73,16 @@ public class MultiMechanismProject extends MechanismProject {
 		return mmProj;
 	}
 	
+	private void copySourceFolderFromAspectMechanismProjects() throws Exception {
+		// TODO Auto-generated method stub
+		for(String dsalName : dsalNames) {
+			AspectMechanismProject amProj = AspectMechanismProject.createProject(dsalName, null);
+			IFolder amSrc = amProj.getSrcFolder();
+			// source folder is copied under a folder with the name of the am project
+			amSrc.copy(new Path(javaProj.getProject().getFullPath() + "/" + amProj.getName()), true, null);
+		}
+	}
+
 	/**
 	 * Creates a spec folder within the multi-mechanism project. The folder
 	 * contains the manifest of the composed mechanisms and a composition specification file.
@@ -76,8 +90,8 @@ public class MultiMechanismProject extends MechanismProject {
 	 * @param dsalNames
 	 * @throws Exception
 	 */
-	private void createSpecFolder(IJavaProject javaProject, String[] dsalNames) throws Exception {
-		IFolder spec = javaProject.getProject().getFolder(SPEC_FOLDER);
+	private void createSpecFolder() throws Exception {
+		IFolder spec = javaProj.getProject().getFolder(SPEC_FOLDER);
 		spec.create(false, true, null);
 		
 		// get the project of each dsal and extract the manifest file
@@ -86,16 +100,15 @@ public class MultiMechanismProject extends MechanismProject {
 			AspectMechanismProject.Manifest manifest = amProj.new Manifest();
 			
 			// create the manifest in the multi-mechanism project
-			IFile newManifest = javaProject.getProject().getFile(new Path(SPEC_FOLDER + "/" + manifest.getName()));
+			IFile newManifest = javaProj.getProject().getFile(new Path(SPEC_FOLDER + "/" + manifest.getName()));
 			newManifest.create(manifest.getContents(), true, null);
 		}
 		
 		// create a composition specification file
-		javaProject.getProject().getFile(new Path(SPEC_FOLDER + "/" + COMP_SPEC_FILE)).create(toInputStream(""), true, null);
+		javaProj.getProject().getFile(new Path(SPEC_FOLDER + "/" + COMP_SPEC_FILE)).create(toInputStream(""), true, null);
 	}
 	
-	private void createDsalSourceFolders(String[] dsalNames, IJavaProject javaProject) 
-		throws CoreException, JavaModelException {
+	private void createDsalSourceFolders() throws CoreException, JavaModelException {
 
 		IPackageFragmentRoot src;
 		IPackageFragment pack;
@@ -103,10 +116,10 @@ public class MultiMechanismProject extends MechanismProject {
 		StringBuffer buffer;
 		
 		for(String dsalName: dsalNames){
-			IFolder dsalSourceFolder = javaProject.getProject().getFolder("awm." + dsalName.toLowerCase());
+			IFolder dsalSourceFolder = javaProj.getProject().getFolder("awm." + dsalName.toLowerCase());
 			dsalSourceFolder.create(false, true, null);
 			
-			src = javaProject.getPackageFragmentRoot(dsalSourceFolder);
+			src = javaProj.getPackageFragmentRoot(dsalSourceFolder);
 			pack = src.createPackageFragment("awm." + dsalName.toLowerCase(), false, null);
 			
 			desc.setPackageName("awm." + dsalName.toLowerCase());
@@ -117,15 +130,16 @@ public class MultiMechanismProject extends MechanismProject {
 			pack.createCompilationUnit(dsalName + "Mechanism.aj", buffer.toString(), false, null);
 		}
 	}
-	private void addDsalSourceFoldersToBuildPath(String[] dsalNames, IJavaProject javaProject) throws JavaModelException {
+	private void addSourceFoldersToBuildPath() throws Exception {
 		for(String dsalName: dsalNames){
-			IFolder dsalSourceFolder = javaProject.getProject().getFolder("awm." + dsalName.toLowerCase());
-			IPackageFragmentRoot proot = javaProject.getPackageFragmentRoot(dsalSourceFolder);
-			IClasspathEntry[] oldEntries = javaProject.getRawClasspath();
+			AspectMechanismProject amProj = AspectMechanismProject.createProject(dsalName, null);
+			IFolder dsalSourceFolder = javaProj.getProject().getFolder(amProj.getName());
+			IPackageFragmentRoot proot = javaProj.getPackageFragmentRoot(dsalSourceFolder);
+			IClasspathEntry[] oldEntries = javaProj.getRawClasspath();
 			IClasspathEntry[] newEntries = new IClasspathEntry[oldEntries.length + 1];
 			System.arraycopy(oldEntries, 0, newEntries, 0, oldEntries.length);
 			newEntries[oldEntries.length] = JavaCore.newSourceEntry(proot.getPath());
-			javaProject.setRawClasspath(newEntries, null);
+			javaProj.setRawClasspath(newEntries, null);
 		}
 	}
 

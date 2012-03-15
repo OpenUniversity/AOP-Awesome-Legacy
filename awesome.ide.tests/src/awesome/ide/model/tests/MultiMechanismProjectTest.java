@@ -33,12 +33,29 @@ public class MultiMechanismProjectTest {
 	@Test
 	public void testProjectCreation() {
 		assertTrue(ResourcesPlugin.getWorkspace().getRoot().getProject(mmProj.getName()).exists());
+	}
+	@Test
+	public void testSpecFolderCreation() {
 		IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(mmProj.getName());
 		IFolder specFolder = project.getFolder("spec");
 		assertTrue(specFolder.exists());
 		assertTrue(specFolder.getFile("validate.manifest").exists());
 		assertTrue(specFolder.getFile("cool.manifest").exists());
 		assertTrue(specFolder.getFile("composition.spec").exists());
+	}
+	@Test
+	public void testCreationOfSourceFolders() {
+		IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(mmProj.getName());
+		
+		// check that the source folder of cool exists
+		IFolder coolFolder = project.getFolder("awm.cool");
+		assertTrue(coolFolder.exists());
+		// check that the package exists in the source folder
+		IFolder coolPack = coolFolder.getFolder("awm/cool");
+		// check that an aspect mechanism class exists in the package
+		assertTrue(coolPack.getFile("CoolMechanism.aj").exists());
+		
+		// and the same for validate...
 	}
 	@Test
 	public void testProjectDeletion() throws CoreException {

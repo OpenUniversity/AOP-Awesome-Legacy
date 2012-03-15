@@ -133,5 +133,13 @@ public class AspectMechanismProject extends MechanismProject {
 		newEntries[oldEntries.length] = JavaCore.newSourceEntry(proot.getPath());
 		javaProj.setRawClasspath(newEntries, null);
 	}
+	
+	/**
+	 * @return the package where the source files of the mechanism reside.
+	 */
+	public IFolder getSrcFolder() {
+		String srcPath = SRC_FOLDER;// + "/" + PROJ_PREFIX + "/" + dsalName.toLowerCase();
+		return ResourcesPlugin.getWorkspace().getRoot().getProject(this.getName()).getFolder(srcPath);
+	}
 
 }
