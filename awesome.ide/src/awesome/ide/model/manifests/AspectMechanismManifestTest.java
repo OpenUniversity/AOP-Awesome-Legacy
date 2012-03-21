@@ -23,19 +23,6 @@ public class AspectMechanismManifestTest {
 		assertEquals("mechanism-id", entries.get(0).getKey());
 		assertEquals("cool", entries.get(0).getValue());
 		assertEquals("granularity", entries.get(2).getKey());
-		assertEquals("method-invocation => execution(method)", entries.get(2).getValue());
-		
-		ManifestEntry first = entries.get(0);
-		assertEquals(MechanismIdEntry.class, first.getClass());
-		
-		ManifestEntry second = entries.get(1);
-		assertEquals(AspectEntry.class, second.getClass());
-		
-		ManifestEntry third = entries.get(2);
-		assertEquals(GranularityEntry.class, third.getClass());
-		
-		ManifestEntry fourth = entries.get(3);
-		assertEquals(AdviceTypesEntry.class, fourth.getClass());
-	
+		assertEquals("method-invocation => execution(method)", entries.get(2).getValue());	
 	}
 }

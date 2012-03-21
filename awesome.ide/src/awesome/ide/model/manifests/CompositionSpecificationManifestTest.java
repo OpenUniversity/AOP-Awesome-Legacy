@@ -24,11 +24,5 @@ public class CompositionSpecificationManifestTest {
 		assertEquals("a.a b.b", entries.get(0).getValue());
 		assertEquals("after-advice-order", entries.get(1).getKey());
 		assertEquals("b.b a.a", entries.get(1).getValue());
-		
-		ManifestEntry first = entries.get(0);
-		assertEquals(BeforeAdviceOrderEntry.class, first.getClass());
-		
-		ManifestEntry second = entries.get(1);
-		assertEquals(AfterAdviceOrderEntry.class, second.getClass());
 	}
 }

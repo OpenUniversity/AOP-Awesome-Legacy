@@ -6,10 +6,10 @@ import java.io.StringReader;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class AbstractManifest {
+public class AwesomeManifest {
 	
 	private BufferedReader reader;
-	public AbstractManifest(String contents) {
+	public AwesomeManifest(String contents) {
 		reader = new BufferedReader(new StringReader(contents));
 	}
 	public List<ManifestEntry> getEntries() throws IOException {
@@ -18,12 +18,11 @@ public abstract class AbstractManifest {
 		while( (line = reader.readLine()) != null ) {
 			String key = line.split(":")[0];
 			String value = line.split(":")[1].trim();
-			ManifestEntry entry = getEntryByKey(key);
+			ManifestEntry entry = new ManifestEntry();
 			entry.setKey(key);
 			entry.setValue(value);
 			result.add(entry);
 		}
 		return result;
 	}
-	protected abstract ManifestEntry getEntryByKey(String key);	
 }
