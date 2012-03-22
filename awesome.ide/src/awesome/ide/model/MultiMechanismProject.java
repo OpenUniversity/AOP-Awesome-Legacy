@@ -6,6 +6,8 @@ import java.util.List;
 import org.eclipse.ajdt.ui.AspectJUIPlugin;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.jdt.core.IClasspathEntry;
@@ -23,17 +25,37 @@ public class MultiMechanismProject extends MechanismProject {
 	public static final String CONFIG_FOLDER = "config";
 	
 	private IJavaProject javaProj;
-	private String projectName;
-	private String[] dsalNames;
-	private IFolder configFolder;
+	private String name;
 	
-	private MultiMechanismProject(String projectName, String[] dsalNames) {
-		this.projectName = projectName;
-		this.dsalNames = dsalNames;
+	private MultiMechanismProject(String projectName) {
+		this.name = projectName;
 	}
 	
+	/**
+	 * Returns a handle for an existing multi-mechanism project
+	 * @param name
+	 * @return
+	 */
+	public static MultiMechanismProject getProject(String name) {
+		MultiMechanismProject mmProj = new MultiMechanismProject(name);
+
+		// set javaProj
+		IProject proj = ResourcesPlugin.getWorkspace().getRoot().getProject(name);
+		mmProj.javaProj = JavaCore.create(proj);
+	
+		return mmProj;
+	}
+	
+	/**
+	 * Creates a new multi-mechanism project
+	 * @param projectName
+	 * @param dsalNames
+	 * @param monitor
+	 * @return
+	 * @throws Exception
+	 */
 	public static MultiMechanismProject createProject(String projectName, String[] dsalNames, IProgressMonitor monitor) throws Exception {
-		MultiMechanismProject mmProj = new MultiMechanismProject(projectName, dsalNames);
+		MultiMechanismProject mmProj = new MultiMechanismProject(projectName);
 		
 		if(monitor != null)
 			monitor.beginTask("Creating Multi-Mechanism Project...", 2);
@@ -46,13 +68,13 @@ public class MultiMechanismProject extends MechanismProject {
 		AspectJUIPlugin.convertToAspectJProject(mmProj.javaProj.getProject());
 		AspectJUIPlugin.addAjrtToBuildPath(mmProj.javaProj.getProject());
 		
-		mmProj.createSourceFolders();
-		mmProj.addSourceFoldersToBuildPath();
+		mmProj.createSourceFolders(dsalNames);
+		mmProj.addSourceFoldersToBuildPath(dsalNames);
 		 
 		// Create a folder with the dependent jars
 		mmProj.createJarsFolder(mmProj.javaProj);
 		
-		mmProj.createSpecFolder();
+		mmProj.createSpecFolder(dsalNames);
 		
 		if(monitor != null)
 			monitor.worked(1);
@@ -65,7 +87,7 @@ public class MultiMechanismProject extends MechanismProject {
 	 * In addition, a folder is generated for holding the generated configuration aspects. 
 	 * @throws Exception
 	 */
-	private void createSourceFolders() throws Exception {
+	private void createSourceFolders(String[] dsalNames) throws Exception {
 		for(String dsalName : dsalNames) {
 			AspectMechanismProject amProj = AspectMechanismProject.createProject(dsalName, null);
 			IFolder amSrc = amProj.getSrcFolder();
@@ -74,8 +96,7 @@ public class MultiMechanismProject extends MechanismProject {
 		}
 		
 		// create a folder for the configuration aspects
-		configFolder = javaProj.getProject().getFolder(CONFIG_FOLDER);
-		configFolder.create(false, true, null);
+		javaProj.getProject().getFolder(CONFIG_FOLDER).create(false, true, null);
 	}
 
 	/**
@@ -85,7 +106,7 @@ public class MultiMechanismProject extends MechanismProject {
 	 * @param dsalNames
 	 * @throws Exception
 	 */
-	private void createSpecFolder() throws Exception {
+	private void createSpecFolder(String[] dsalNames) throws Exception {
 		IFolder spec = javaProj.getProject().getFolder(SPEC_FOLDER);
 		spec.create(false, true, null);
 		
@@ -103,9 +124,9 @@ public class MultiMechanismProject extends MechanismProject {
 		javaProj.getProject().getFile(new Path(SPEC_FOLDER + "/" + COMP_SPEC_FILE)).create(toInputStream(""), true, null);
 	}
 	
-	private void addSourceFoldersToBuildPath() throws Exception {
-		for(String dsalName: dsalNames){
-			AspectMechanismProject amProj = AspectMechanismProject.createProject(dsalName, null);
+	private void addSourceFoldersToBuildPath(String[] folders) throws Exception {
+		for(String folder: folders){
+			AspectMechanismProject amProj = AspectMechanismProject.createProject(folder, null);
 			IFolder dsalSourceFolder = javaProj.getProject().getFolder(amProj.getName());
 			IPackageFragmentRoot proot = javaProj.getPackageFragmentRoot(dsalSourceFolder);
 			IClasspathEntry[] oldEntries = javaProj.getRawClasspath();
@@ -118,7 +139,7 @@ public class MultiMechanismProject extends MechanismProject {
 
 	@Override
 	public String getName() {
-		return projectName;
+		return name;
 	}
 
 	public CSManifest getCompositionSpecification() {
@@ -146,7 +167,7 @@ public class MultiMechanismProject extends MechanismProject {
 		file.create(toInputStream(contents), true, null);
 	}
 	public IFolder getConfigFolder() {
-		return configFolder;
+		return ResourcesPlugin.getWorkspace().getRoot().getProject(name).getFolder(CONFIG_FOLDER);
 	}
 
 	private List<String> getMechanismsCapitalized(List<Advice> advice) {

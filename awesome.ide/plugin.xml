@@ -23,5 +23,29 @@
             name="Aspect Mechanism Project">
       </wizard>
    </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="true"
+            id="awesome.ide.objectContribution"
+            nameFilter="awmm.*"
+            objectClass="org.eclipse.core.resources.IProject">
+         <menu
+               id="awesome.ide.menu.awesome"
+               label="Awesome"
+               path="additions">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               class="awesome.ide.actions.GenerateFromSpecificationAction"
+               enablesFor="1"
+               id="awesome.ide.action.generate"
+               label="Generate from Specification"
+               menubarPath="awesome.ide.menu.awesome/group1">
+         </action>
+      </objectContribution>
+   </extension>
 
 </plugin>
