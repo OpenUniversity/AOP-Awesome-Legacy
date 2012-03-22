@@ -54,13 +54,8 @@ public class MultiMechanismProject extends MechanismProject {
 		AspectJUIPlugin.convertToAspectJProject(mmProj.javaProj.getProject());
 		AspectJUIPlugin.addAjrtToBuildPath(mmProj.javaProj.getProject());
 		
-		mmProj.copySourceFolderFromAspectMechanismProjects();
+		mmProj.createSourceFolders();
 		mmProj.addSourceFoldersToBuildPath();
-		
-		// Create a source folder for each DSAL, and a Java package within it.
-		// An aspect mechanism class is generated within each package.
-		//mmProj.createDsalSourceFolders(dsalNames, javaProj);
-		//mmProj.addDsalSourceFoldersToBuildPath(dsalNames, javaProj);
 		 
 		// Create a folder with the dependent jars
 		mmProj.createJarsFolder(mmProj.javaProj);
@@ -73,14 +68,25 @@ public class MultiMechanismProject extends MechanismProject {
 		return mmProj;
 	}
 	
-	private void copySourceFolderFromAspectMechanismProjects() throws Exception {
-		// TODO Auto-generated method stub
+	/**
+	 * For each aspect mechanism, its source folder is copied from its project.
+	 * In addition, a folder is generated for holding the generated configuration aspects. 
+	 * @throws Exception
+	 */
+	private void createSourceFolders() throws Exception {
 		for(String dsalName : dsalNames) {
 			AspectMechanismProject amProj = AspectMechanismProject.createProject(dsalName, null);
 			IFolder amSrc = amProj.getSrcFolder();
 			// source folder is copied under a folder with the name of the am project
 			amSrc.copy(new Path(javaProj.getProject().getFullPath() + "/" + amProj.getName()), true, null);
 		}
+		
+		// create a folder for the configuration aspects
+		javaProj.getProject().getFolder(getConfigAspectsFolderName()).create(false, true, null);
+	}
+
+	public String getConfigAspectsFolderName() {
+		return getName() + ".config";
 	}
 
 	/**

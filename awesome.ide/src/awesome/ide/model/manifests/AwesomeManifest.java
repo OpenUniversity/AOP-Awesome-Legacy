@@ -25,4 +25,13 @@ public class AwesomeManifest {
 		}
 		return result;
 	}
+	public ManifestEntry getEntry(String key) throws IOException {
+		List<ManifestEntry> entries = getEntries();
+		
+		for(ManifestEntry entry : entries)
+			if(entry.getKey().equals(key))
+				return entry;
+		
+		return null;
+	}
 }

@@ -20,7 +20,7 @@ public class MultiMechanismProjectTest {
 	public void setUp() throws Exception {
 		valProj = AspectMechanismProject.createProject("Validate", null);
 		coolProj = AspectMechanismProject.createProject("Cool", null);
-		mmProj = MultiMechanismProject.createProject("Validate", new String[]{"Validate", "Cool"}, null);
+		mmProj = MultiMechanismProject.createProject("coolval", new String[]{"Validate", "Cool"}, null);
 	}
 	@After
 	public void tearDown() throws CoreException {
@@ -46,14 +46,19 @@ public class MultiMechanismProjectTest {
 		IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(mmProj.getName());
 		
 		// check that the source folder of cool exists
-		IFolder coolFolder = project.getFolder("awm.cool");
-		assertTrue(coolFolder.exists());
+		IFolder folder = project.getFolder("awm.cool");
+		assertTrue(folder.exists());
 		// check that the package exists in the source folder
-		IFolder coolPack = coolFolder.getFolder("awm/cool");
+		IFolder coolPack = folder.getFolder("awm/cool");
 		// check that an aspect mechanism class exists in the package
 		assertTrue(coolPack.getFile("CoolMechanism.aj").exists());
 		
-		// and the same for validate...
+		// and the same applies for validate...
+		
+		// now we check that the folder awm.config is also created
+		// (this is the folder that will hold the generated configuration aspects)
+		folder = project.getFolder("coolval.config");
+		assertTrue(folder.exists());
 	}
 	@Test
 	public void testProjectDeletion() throws CoreException {
@@ -68,3 +73,4 @@ public class MultiMechanismProjectTest {
 	    }
 	}
 }
+

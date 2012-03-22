@@ -1,0 +1,25 @@
+<%@ jet package="awesome.ide.gen" imports="awesome.ide.model.manifests.* java.util.*" class="AdviceOrderConfigGen" %>
+<% List<Advice> advice = (List<Advice>)(((Object[])argument)[0]); %>
+<% List<String> mechanisms = (List<String>)(((Object[])argument)[1]); %>
+public aspect BeforeAdviceOrderConfig {
+	List around(MultiMechanism mm, List multiEffects, BcelShadow shadow):
+		execution(List MultiMechanism.multiOrderBefore(List, BcelShadow))
+			&& this(mm) && args(multiEffects, shadow) {
+
+<%for(String mech : mechanisms) {%>
+			int <%=mech.toLowerCase()%>Pos = mm.getMechanismPos(<%=mech%>Mechanism.class);
+<%}%>
+			List<IEffect> result = new ArrayList<IEffect>();
+
+			// multiEffects is a List of List<IEffect>
+<% for(String mech : mechanisms) {%>
+			List<IEffect> <%=mech.toLowerCase()%>Effects = (List<IEffect>)multiEffects.get(<%=mech.toLowerCase()%>Pos);
+<%}%>
+
+			// setting the desired advice order
+<% for(Advice adv : advice) { %>
+			result.addAll(<%=adv.getMechanism().toLowerCase()%>Effects);
+<%}%>
+
+			return result;
+}
