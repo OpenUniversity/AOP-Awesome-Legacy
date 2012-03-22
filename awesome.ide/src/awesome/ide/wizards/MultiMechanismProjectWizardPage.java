@@ -22,10 +22,7 @@ import org.eclipse.swt.widgets.Text;
 
 public class MultiMechanismProjectWizardPage extends WizardPage {
 	private Text projectNameText;
-
 	private Text dsalsText;
-
-	private Text dsal2NameText;
 
 	public MultiMechanismProjectWizardPage() {
 		super("wizardPage");
@@ -67,13 +64,6 @@ public class MultiMechanismProjectWizardPage extends WizardPage {
 			}
 		});
 		
-//		label = new Label(container, SWT.NULL);
-//		label.setText("&Second DSAL Name (Optional):");
-//		
-//		dsal2NameText = new Text(container, SWT.BORDER | SWT.SINGLE);
-//		gd = new GridData(GridData.FILL_HORIZONTAL);
-//		dsal2NameText.setLayoutData(gd);
-		
 		dialogChanged();
 		setControl(container);
 	}
@@ -81,8 +71,12 @@ public class MultiMechanismProjectWizardPage extends WizardPage {
 	private void dialogChanged() {
 		String dsalsText = getDsalsText();
 
-		if (getProjectName().length() == 0) {
+		if(getProjectName().length() == 0) {
 			updateStatus("A name for the project must be specified");
+			return;
+		}
+		if(!getProjectName().startsWith("awmm.")) {
+			updateStatus("Project name should have the prefix 'awmm.'");
 			return;
 		}
 		// list of DSALs should not contains spaces
