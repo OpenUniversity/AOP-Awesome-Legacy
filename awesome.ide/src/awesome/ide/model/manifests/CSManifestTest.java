@@ -22,7 +22,7 @@ public class CSManifestTest {
 	}
 
 	@Test
-	public void testEntries() throws IOException {
+	public void testEntries() throws Exception {
 		List<ManifestEntry> entries = manifest.getEntries();
 		
 		assertEquals(2, entries.size());
@@ -32,7 +32,7 @@ public class CSManifestTest {
 		assertEquals("b.after_adv1 a.after_adv2", entries.get(1).getValue());
 	}
 	@Test
-	public void testBeforeAdviceOrder() throws IOException {
+	public void testBeforeAdviceOrder() throws Exception {
 		List<Advice> advice = manifest.getAdviceOrder(CSManifest.AdviceType.Before);
 		
 		assertEquals(2, advice.size());
@@ -42,7 +42,7 @@ public class CSManifestTest {
 		assertEquals("before_adv2", advice.get(1).getType());
 	}
 	@Test
-	public void testAfterAdviceOrder() throws IOException {
+	public void testAfterAdviceOrder() throws Exception {
 		List<Advice> advice = manifest.getAdviceOrder(CSManifest.AdviceType.After);
 		
 		//b.after_adv1 a.after_adv2

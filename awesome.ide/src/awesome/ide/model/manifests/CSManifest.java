@@ -4,10 +4,16 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
+
+import awesome.ide.model.MultiMechanismProject;
+
 public class CSManifest extends AwesomeManifest {
-	private static final String BEFORE_ADVICE_ORDER_KEY = "before-advice-order";
-	private static final String AFTER_ADVICE_ORDER_KEY = "after-advice-order";
-	private static final String AROUND_ADVICE_ORDER_KEY = "after-advice-order";
+	// note: when adding a new key update the keyIsNotKnown method!
+	public static final String BEFORE_ADVICE_ORDER_KEY = "before-advice-order";
+	public static final String AFTER_ADVICE_ORDER_KEY = "after-advice-order";
+	public static final String AROUND_ADVICE_ORDER_KEY = "after-advice-order";
 
 	public enum AdviceType {
 		Before,
@@ -15,11 +21,21 @@ public class CSManifest extends AwesomeManifest {
 		Around
 	}
 	
+	/**
+	 * This constructor creates a composition specification that is not connected
+	 * to any particular multi-mechanism project. It should probably used for
+	 * testing purposes only.
+	 * @param contents
+	 */
 	public CSManifest(String contents) {
 		super(contents);
 	}
 
-	public List<Advice> getAdviceOrder(AdviceType type) throws IOException {
+	public CSManifest(MultiMechanismProject mmProject) {
+		super(mmProject);
+	}
+
+	public List<Advice> getAdviceOrder(AdviceType type) throws Exception {
 		ManifestEntry entry = null;
 		switch(type) {
 		case Before:
@@ -44,5 +60,17 @@ public class CSManifest extends AwesomeManifest {
 		}
 		
 		return result;
+	}
+
+	protected boolean keyIsNotKnown(String key) {
+		if(!key.equals(BEFORE_ADVICE_ORDER_KEY) && !key.equals(AROUND_ADVICE_ORDER_KEY) && !key.equals(AFTER_ADVICE_ORDER_KEY))
+			return true;
+		else
+			return false;
+	}
+
+	@Override
+	public IPath getPath() {
+		return new Path(MultiMechanismProject.SPEC_FOLDER + "/" + MultiMechanismProject.COMP_SPEC_FILE);
 	}
 }

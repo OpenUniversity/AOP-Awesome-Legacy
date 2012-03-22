@@ -15,7 +15,7 @@ public class AspectMechanismManifestTest {
 		"granularity: method-invocation => execution(method)" + NL +
 		"advice-types: lock => before, unlock => after";
 	@Test
-	public void testManifest() throws IOException {
+	public void testManifest() throws Exception {
 		AspectMechanismManifest manifest = new AspectMechanismManifest(contents);
 		List<ManifestEntry> entries = manifest.getEntries();
 		

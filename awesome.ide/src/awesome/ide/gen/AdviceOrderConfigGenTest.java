@@ -50,7 +50,7 @@ public class AdviceOrderConfigGenTest {
 
 	
 	@Test
-	public void testGenerate() throws IOException {
+	public void testGenerate() throws Exception {
 		AdviceOrderConfigGen gen = new AdviceOrderConfigGen();
 		List<Advice> advice = new CSManifest(CS_CONTENT).getAdviceOrder(CSManifest.AdviceType.Before);
 		List<String> mechanisms = getMechanismsCapitalized(advice);

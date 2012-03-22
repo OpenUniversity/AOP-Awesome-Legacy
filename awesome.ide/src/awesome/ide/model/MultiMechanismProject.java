@@ -1,39 +1,31 @@
 package awesome.ide.model;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.eclipse.ajdt.ui.AspectJUIPlugin;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.JavaCore;
-import org.eclipse.jdt.core.JavaModelException;
 
-import awesome.ide.gen.AspectMechanismGen;
-import awesome.ide.wizards.AspectMechanismDescriptor;
+import awesome.ide.gen.AdviceOrderConfigGen;
+import awesome.ide.model.manifests.Advice;
+import awesome.ide.model.manifests.CSManifest;
 
 public class MultiMechanismProject extends MechanismProject {
-	private static final String SPEC_FOLDER = "spec";
-	private static final String COMP_SPEC_FILE = "composition.spec";
+	public static final String SPEC_FOLDER = "spec";
+	public static final String COMP_SPEC_FILE = "composition.spec";
+	public static final String CONFIG_FOLDER = "config";
+	
 	private IJavaProject javaProj;
 	private String projectName;
 	private String[] dsalNames;
-	
-//	public class Spec {
-//		public String getDirName() {
-//			return SPEC_FOLDER;
-//		}
-//		public boolean exists() {
-//			IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(MultiMechanismProject.this.getName());
-//			return project.getFolder(getDirName()).exists();
-//		}
-//	}
+	private IFolder configFolder;
 	
 	private MultiMechanismProject(String projectName, String[] dsalNames) {
 		this.projectName = projectName;
@@ -82,11 +74,8 @@ public class MultiMechanismProject extends MechanismProject {
 		}
 		
 		// create a folder for the configuration aspects
-		javaProj.getProject().getFolder(getConfigAspectsFolderName()).create(false, true, null);
-	}
-
-	public String getConfigAspectsFolderName() {
-		return getName() + ".config";
+		configFolder = javaProj.getProject().getFolder(CONFIG_FOLDER);
+		configFolder.create(false, true, null);
 	}
 
 	/**
@@ -114,28 +103,6 @@ public class MultiMechanismProject extends MechanismProject {
 		javaProj.getProject().getFile(new Path(SPEC_FOLDER + "/" + COMP_SPEC_FILE)).create(toInputStream(""), true, null);
 	}
 	
-	private void createDsalSourceFolders() throws CoreException, JavaModelException {
-
-		IPackageFragmentRoot src;
-		IPackageFragment pack;
-		AspectMechanismDescriptor desc = new AspectMechanismDescriptor();
-		StringBuffer buffer;
-		
-		for(String dsalName: dsalNames){
-			IFolder dsalSourceFolder = javaProj.getProject().getFolder("awm." + dsalName.toLowerCase());
-			dsalSourceFolder.create(false, true, null);
-			
-			src = javaProj.getPackageFragmentRoot(dsalSourceFolder);
-			pack = src.createPackageFragment("awm." + dsalName.toLowerCase(), false, null);
-			
-			desc.setPackageName("awm." + dsalName.toLowerCase());
-			desc.setAspectName(dsalName + "Mechanism");
-			desc.setId(dsalName);
-			buffer = new StringBuffer();
-			buffer.append(new AspectMechanismGen().generate(desc));
-			pack.createCompilationUnit(dsalName + "Mechanism.aj", buffer.toString(), false, null);
-		}
-	}
 	private void addSourceFoldersToBuildPath() throws Exception {
 		for(String dsalName: dsalNames){
 			AspectMechanismProject amProj = AspectMechanismProject.createProject(dsalName, null);
@@ -152,5 +119,45 @@ public class MultiMechanismProject extends MechanismProject {
 	@Override
 	public String getName() {
 		return projectName;
+	}
+
+	public CSManifest getCompositionSpecification() {
+		return new CSManifest(this);
+	}
+
+	/**
+	 * Currently we generate for the BEFORE_ADVICE_ORDER key
+	 * @throws Exception 
+	 */
+	public void generateConfigurationAspects() throws Exception {
+		AdviceOrderConfigGen gen = new AdviceOrderConfigGen();
+		
+		// get the before advice order
+		List<Advice> advice = getCompositionSpecification().getAdviceOrder(CSManifest.AdviceType.Before);
+		
+		// generate the contents of the configuration aspect
+		List<String> mechanisms = getMechanismsCapitalized(advice);
+		Object[] argument = new Object[]{advice, mechanisms};
+		String contents = gen.generate(argument);
+		
+		// create the aspect in the config folder
+		IFolder folder = getConfigFolder();
+		IFile file = folder.getFile("BeforeAdviceOrderConfig.aj");
+		file.create(toInputStream(contents), true, null);
+	}
+	public IFolder getConfigFolder() {
+		return configFolder;
+	}
+
+	private List<String> getMechanismsCapitalized(List<Advice> advice) {
+		List<String> result = new LinkedList<String>();
+		for(Advice adv : advice)
+			if(!result.contains(capitalize(adv.getMechanism()))) result.add(capitalize(adv.getMechanism()));
+		return result;
+	}
+	private String capitalize(String str) {
+		char[] stringArray = str.toCharArray();
+		stringArray[0] = Character.toUpperCase(stringArray[0]);
+		return new String(stringArray);
 	}
 }
