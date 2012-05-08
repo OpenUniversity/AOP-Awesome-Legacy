@@ -561,6 +561,7 @@ public class MultiMechanism
 		ContextToken tok = CompilationAndWeavingContext.enteringPhase(
 				CompilationAndWeavingContext.IMPLEMENTING_ON_SHADOW, shadow);
 		
+		// check if the shadow is in the emergent granularity
 		if(FeatureInteractions.instance().isInEMJPG(shadow.getKind().getName()))
     	{
 			List<BcelShadow> shadowList = allShadows.get(shadow.getEnclosingMethod().getName());
@@ -576,6 +577,7 @@ public class MultiMechanism
 		List<List<IEffect>> multiEffects = match(shadow);
 		List<IEffect> effects = multiOrder(multiEffects, shadow);
 		
+		// begin init methodNameToEffect
 		List<EffectApplication> effectList = methodNameToEffect.get(shadow.getEnclosingMethod().getName());
     	if(null == effectList)
     	{
@@ -591,6 +593,7 @@ public class MultiMechanism
     		//if(e instanceof BcelAdvice)    			
     		effectList.add(new EffectApplication(e, shadow));
     	}
+    	// end init methodNameToEffect
 		
  
 		if (effects != null && effects.size() > 0) {
