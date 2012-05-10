@@ -1,0 +1,4 @@
+lib/
+	adbbcel.jar, ajdi.jar: are produced from the projects ADBBCEL, AJDI
+	tools.jar: is imported from C:\Program Files\Java\jdk1.6.0_23\lib
+	bcel-5.2/jar: from http://commons.apache.org/bcel/download_bcel.cgi
