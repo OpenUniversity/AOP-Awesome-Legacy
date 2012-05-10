@@ -1,5 +1,9 @@
-<project name="awesome.platform">	
+<project name="awesome.platform" basedir=".">	
 	<target name="jar">
 		<jar destfile="awesome.platform.jar" basedir="bin"></jar>
+	</target>
+	<target name="copy_to_aw_ide">
+		<!-- Copy the produced jar to awesome.ide/resources -->
+		<copy file="awesome.platform.jar" todir="../awesome.ide/resources"/>
 	</target>
 </project>
