@@ -33,7 +33,7 @@ import awesome.ide.Activator;
 
 public abstract class MechanismProject {
 	private static final String BIN_FOLDER = "bin";
-	private static final String JARS_FOLDER = "jars";
+	private static final String JARS_FOLDER = "lib";
 
 	public abstract String getName();
 	

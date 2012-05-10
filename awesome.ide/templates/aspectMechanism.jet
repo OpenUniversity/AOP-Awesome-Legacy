@@ -38,7 +38,7 @@ public aspect <%=aspectName%> extends AbstractWeaver {
 	 */
 	@Override
 	public List<IEffect> getEffects(LazyClassGen aspectClazz) {
-		return null;
+		return new ArrayList<IEffect>();
 	}
 	@Override
 	public boolean handledByMe(LazyClassGen aspectClazz) {
