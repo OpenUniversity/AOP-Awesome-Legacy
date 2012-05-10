@@ -1,3 +1,3 @@
-<%@ jet package="awesome.ide.gen" imports="awesome.ide.wizards.*" class="ManifestGen" %>
-<%String dsalName = ((ManifestDescriptor)argument).getDsalName();%>
+<%@ jet package="awesome.ide.gen" class="ManifestGen" %>
+<%String dsalName = ((String[])argument)[0];%>
 mechanism-id: <%=dsalName.toLowerCase()%>

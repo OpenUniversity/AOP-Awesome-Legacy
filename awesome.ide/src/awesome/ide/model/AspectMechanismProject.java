@@ -18,8 +18,6 @@ import org.eclipse.jdt.core.JavaModelException;
 
 import awesome.ide.gen.AspectMechanismGen;
 import awesome.ide.gen.ManifestGen;
-import awesome.ide.wizards.AspectMechanismDescriptor;
-import awesome.ide.wizards.ManifestDescriptor;
 
 public class AspectMechanismProject extends MechanismProject {
 	private static final String PROJ_PREFIX = "awm";
@@ -100,20 +98,14 @@ public class AspectMechanismProject extends MechanismProject {
 		IPackageFragment pack = src.createPackageFragment(packageName, false, null);
 		
 		// generate an aspect mechanism within the package
-		AspectMechanismDescriptor desc = new AspectMechanismDescriptor();
-		desc.setPackageName(packageName);
-		desc.setAspectName(dsalName + "Mechanism");
-		desc.setId(dsalName);
 		StringBuffer buffer = new StringBuffer();
-		buffer.append(new AspectMechanismGen().generate(desc));
+		buffer.append(new AspectMechanismGen().generate(new String[]{packageName, dsalName + "Mechanism", dsalName}));
 		pack.createCompilationUnit(dsalName + "Mechanism" + ".aj", buffer.toString(), false, null);
 	}
 	private void createManifestFile(IJavaProject javaProj, String dsalName) {
 		IProject project = javaProj.getProject();
-		ManifestDescriptor desc = new ManifestDescriptor();
-		desc.setDsalName(dsalName);
 		String content;
-		content = new ManifestGen().generate(desc);
+		content = new ManifestGen().generate(new String[]{dsalName});
 		try {
 			project.getFile(this.new Manifest().getName()).create(toInputStream(content), true, null);
 		} catch (UnsupportedEncodingException e) {

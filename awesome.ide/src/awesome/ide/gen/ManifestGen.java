@@ -1,7 +1,5 @@
 package awesome.ide.gen;
 
-import awesome.ide.wizards.*;
-
 public class ManifestGen
 {
   protected static String nl;
@@ -19,7 +17,7 @@ public class ManifestGen
   public String generate(Object argument)
   {
     final StringBuffer stringBuffer = new StringBuffer();
-    String dsalName = ((ManifestDescriptor)argument).getDsalName();
+    String dsalName = ((String[])argument)[0];
     stringBuffer.append(TEXT_1);
     stringBuffer.append(dsalName.toLowerCase());
     return stringBuffer.toString();

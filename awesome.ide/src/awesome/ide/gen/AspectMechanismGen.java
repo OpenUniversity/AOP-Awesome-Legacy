@@ -1,7 +1,5 @@
 package awesome.ide.gen;
 
-import awesome.ide.wizards.*;
-
 public class AspectMechanismGen
 {
   protected static String nl;
@@ -22,9 +20,9 @@ public class AspectMechanismGen
   public String generate(Object argument)
   {
     final StringBuffer stringBuffer = new StringBuffer();
-    String packageName = ((AspectMechanismDescriptor) argument).getPackageName();
-    String aspectName = ((AspectMechanismDescriptor) argument).getAspectName();
-    String id = ((AspectMechanismDescriptor) argument).getId();
+    String packageName = ((String[])argument)[0];
+    String aspectName = ((String[])argument)[1];
+    String id = ((String[])argument)[2];
     stringBuffer.append(TEXT_1);
     stringBuffer.append(packageName);
     stringBuffer.append(TEXT_2);

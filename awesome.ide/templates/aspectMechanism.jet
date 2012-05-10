@@ -1,7 +1,7 @@
-<%@ jet package="awesome.ide.gen" imports="awesome.ide.wizards.*" class="AspectMechanismGen" %>
-<%String packageName = ((AspectMechanismDescriptor) argument).getPackageName();%>
-<%String aspectName = ((AspectMechanismDescriptor) argument).getAspectName();%>
-<%String id = ((AspectMechanismDescriptor) argument).getId();%>
+<%@ jet package="awesome.ide.gen" class="AspectMechanismGen" %>
+<%String packageName = ((String[])argument)[0];%>
+<%String aspectName = ((String[])argument)[1];%>
+<%String id = ((String[])argument)[2];%>
 package <%=packageName%>;
 
 import java.util.List;

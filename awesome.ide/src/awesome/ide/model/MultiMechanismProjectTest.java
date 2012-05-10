@@ -57,7 +57,7 @@ public class MultiMechanismProjectTest {
 		
 		// now we check that the folder awm.config is also created
 		// (this is the folder that will hold the generated configuration aspects)
-		folder = project.getFolder("coolval.config");
+		folder = project.getFolder("config");
 		assertTrue(folder.exists());
 	}
 	@Test
