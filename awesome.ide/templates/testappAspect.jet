@@ -1,0 +1,14 @@
+<%@ jet package="awesome.ide.gen" class="TestappAspect"%>
+<%String packageName = ((String[])argument)[0];%>
+<%String aspectName = ((String[])argument)[1];%>
+<%String mechanismId = ((String[])argument)[2];%>
+package <%=packageName%>;
+
+import org.aspectj.lang.annotation.Aspect;
+import awesome.platform.annotations.AwAspectMechanism;
+
+@Aspect
+@AwAspectMechanism(id="<%=mechanismId%>")
+public aspect <%=aspectName%> {
+	// define your aspect here...
+}

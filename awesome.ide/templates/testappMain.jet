@@ -1,0 +1,9 @@
+<%@ jet package="awesome.ide.gen" class="TestappMain"%>
+<%String packageName = ((String[])argument)[0];%>
+package <%=packageName%>;
+
+public class Main {
+	public static void main(String[] args) {
+		// Define you base application here...
+	}
+}
