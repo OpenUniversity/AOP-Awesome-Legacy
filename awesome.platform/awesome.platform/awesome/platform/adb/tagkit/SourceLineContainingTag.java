@@ -10,6 +10,12 @@ import java.util.TreeMap;
 
 import org.aspectj.weaver.AjAttribute;
 
+/**
+ * Base class for all attributes that contain references 
+ * to source file lines
+ * 
+ *
+ */
 public abstract class SourceLineContainingTag extends AjAttribute 
 {
 	private Map<String,Integer> paths = new TreeMap<String,Integer>();

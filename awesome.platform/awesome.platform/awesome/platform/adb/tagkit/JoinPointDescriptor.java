@@ -37,12 +37,6 @@ public class JoinPointDescriptor
 	public int shadowLast;
 	
 	
-	/*
-	public String toString(){
-		return "JoinPoint:" + type + ":" + rangeMethod+":"+ beginLineNumber + "->"+ endLineNumber + " " + advice.toString();
-	}*/
-
-	
 	public JoinPointDescriptor(int shadowUid, 
 			                   int type, 
 			                   int slnr, 

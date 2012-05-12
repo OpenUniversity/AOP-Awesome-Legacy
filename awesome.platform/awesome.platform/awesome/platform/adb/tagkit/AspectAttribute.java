@@ -17,6 +17,17 @@ import awesome.platform.IMechanism;
 import awesome.platform.adb.util.DataFormatter;
 import awesome.platform.adb.util.SigBuilder;
 
+/**
+ * 
+ * The aspect attribute is attached to each aspect class
+ * The attribute lists:
+ * 1. The name of the source file
+ * 2. The start and end of the class declaration in the source file
+ * 3. The list of advice
+ *    For each advice: it's type, signature, starting and end position 
+ *    in the source file
+ *
+ */
 public class AspectAttribute extends SourceLineContainingTag {
 
 	private PerClause.Kind per;
@@ -48,7 +59,6 @@ public class AspectAttribute extends SourceLineContainingTag {
 	{
 		super(true);
 		
-		//per = aspectClazz.getType().getPerClause();
 		per = mech.getPerClause(aspectClazz);
 		
 		ISourceLocation l = aspectClazz.getType().getSourceLocation();
@@ -79,8 +89,6 @@ public class AspectAttribute extends SourceLineContainingTag {
 		
 		out.append("\n");
 		
-		
-		
 		for (Iterator<IEffect> it = advices.iterator(); it.hasNext();) {
 			IEffect adv = it.next();
 			out.append(getAdviceFormatString(adv) + "\n");
@@ -98,30 +106,21 @@ public class AspectAttribute extends SourceLineContainingTag {
 		sig = SigBuilder.makeMethodSig(adv.getSignature());
 		
 		String name = adv.getSignature().getName();
-		//String pc = adv.getPointcut().toString();
+		
 		ISourceLocation pos = adv.getSourceLocation();
 		String fileName = pos.getSourceFileName();
 		filePath = adv.getDeclaringType().getName().replace(".", "\\");
-		
-		
-		
-		//EclipseSourceLocation esLocation = (EclipseSourceLocation) pos;
-		//int elnr = esLocation.getCompilationResult().lineSeparatorPositions.length;
-		//int elnr = pos.getEndLine();
-		
+			
 		BcelMethod method = (BcelMethod) adv.getSignature();
 		
 		LineNumberTable lnTable = method.getMethod().getLineNumberTable();
 		int length = lnTable.getLineNumberTable().length;
-		//int slnr = pos.getLine();
+		
 		int slnr = lnTable.getLineNumberTable()[0].getLineNumber();
 		int elnr = lnTable.getLineNumberTable()[length-1].getLineNumber();
-		
-		
 					
 		int nargs = adv.getSignature().getParameterTypes().length;
 		UnresolvedType[] formals = adv.getSignature().getParameterTypes();
-//		List/*<Formal>*/ formals = msig.getFormals();
 		
 		String pcString = adv.getPointcutString().replace(" ", "");
 		

@@ -22,6 +22,17 @@ import awesome.platform.adb.util.SigBuilder;
 
 import awesome.platform.IEffect;
 
+/**
+ * This attribute is added to each method and lists the joinpoint in it
+ * For each join point we list:
+ *   shadow id	
+ *   type
+ *   start and end of source line
+ *   start and end position in the bytecode range
+ *   range method: name + signature
+ *   list of effect; for each effect: the method signature + the point cut test
+ *  
+ */
 public class CrossCuttingAttribute extends AjAttribute
 {	
 	private List<JoinPointDescriptor> jpds  = new LinkedList<JoinPointDescriptor>();
@@ -162,46 +173,7 @@ public class CrossCuttingAttribute extends AjAttribute
 		}
 		
 		BcelShadow shadow =  effect.getShadow();
-		// need to use the line number table?
-		//int startPos = shadow.getRange().getStart().getPosition();
-	/*	
-		int startPosShadow = shadow.getRange().getStart().getPosition();
-		int endPosShadow  = shadow.getRange().getEnd().getPosition();
-		
-		//int startPosShadow = shadow.getOriginalStart();
-		//int endPosShadow = shadow.getOriginalEnd();
-		awesome.platform.adb.util.log.logger.logLn("makeAapl before shadow " + shadow + " startPosShadow " + startPosShadow + 
-				" endPosShadow " + endPosShadow);
 
-		shadow.getRange().getBody().setPositions();
-		
-		
-		startPosShadow = shadow.getRange().getStart().getPosition();
-		endPosShadow  = shadow.getRange().getEnd().getPosition();
-		awesome.platform.adb.util.log.logger.logLn("makeAapl after shadow " + shadow + " startPosShadow " + startPosShadow + 
-				" endPosShadow " + endPosShadow);
-
-		MethodGen mg = shadow.getEnclosingMethod().pack();
-		mg.getInstructionList().setPositions();
-		
-		InstructionHandle ih = shadow.getRange().getRealStart();
-		while(ih != null)
-		{
-			awesome.platform.adb.util.log.logger.logLn(ih.toString());
-			ih = ih.getNext();
-		}
-		
-		awesome.platform.adb.util.log.logger.logLn("method: ");
-		
-		
-		ih = mg.getInstructionList().getStart();
-		//ih = shadow.getEnclosingMethod().getBodyForPrint().getStart();
-		while(ih != null)
-		{
-			awesome.platform.adb.util.log.logger.logLn(ih.toString());
-			ih = ih.getNext();
-		}
-	*/	
 		int endPos  = shadow.getRange().getRealEnd().getPosition();
 	
 		
@@ -299,12 +271,7 @@ public class CrossCuttingAttribute extends AjAttribute
 		buf.writeShort(jp.type);
 		buf.writeShort(jp.beginLineNumber);
 		buf.writeShort(jp.endLineNumber);
-		//if (jp.rangeFirst == null)
-		//	throw new BCException("Joinpoint has no range start: " + jp);
-
-		//if (jp.rangeLast == null)
-		//	throw new BCException("Joinpoint has no range end: " + jp);
-
+	
 		buf.writeShort(jp.rangeFirst);
 		buf.writeShort(jp.rangeLast);
 				
@@ -335,5 +302,4 @@ public class CrossCuttingAttribute extends AjAttribute
 	{
 		return NAME;
 	}
-
 }

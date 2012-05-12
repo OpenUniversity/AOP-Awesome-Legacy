@@ -11,6 +11,11 @@ import org.aspectj.weaver.Member;
 import org.aspectj.weaver.bcel.BcelWorld;
 import org.aspectj.weaver.bcel.LazyClassGen;
 
+/**
+ * This attribute is attached to each class
+ * For each field its location in the source file is listed
+ *
+ */
 public class FieldLineNumberAttribute extends SourceLineContainingTag 
 {
 	public static final String name = "FieldLineNumber";
