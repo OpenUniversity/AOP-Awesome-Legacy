@@ -357,7 +357,7 @@ public class AttributeTester {
 	{
 		if(args.length<2)
 		{
-			System.out.println("Usage: AttributeTester <class path> <class name> " + args.length);
+			System.out.println("Usage: AttributeTester <class path> <class name> ");
 			return;
 		}
 		
