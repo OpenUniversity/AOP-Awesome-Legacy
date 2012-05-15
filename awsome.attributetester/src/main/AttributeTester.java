@@ -1,9 +1,13 @@
 package main;
 
+import java.io.IOException;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 import org.apache.bcel.Repository;
 import org.apache.bcel.classfile.Code;
@@ -292,6 +296,7 @@ public class AttributeTester {
 		{
 			Repository.setRepository(SyntheticRepository.getInstance(new ClassPath(classPath)));
 			
+			System.out.println("*** START CLASS REPORT ***");
 			System.out.println("My class path: " + Repository.getRepository().getClassPath());
 
 			AspectAttributeReader ar = new AspectAttributeReader();
@@ -352,17 +357,42 @@ public class AttributeTester {
 	
 	/**
 	 * @param args
+	 * @throws IOException 
 	 */
-	public static void main(String[] args) 
+	public static void main(String[] args) throws IOException 
 	{
-		if(args.length<2)
+		if(args.length != 1 && args.length != 2)
 		{
-			System.out.println("Usage: AttributeTester <class path> <class name> ");
+			System.out.println("Usage:\n" +
+					"AttributeTester <jarpath> <classname>: prints a report to the standard output\n" +
+					"containing the attributes found in jarpath/classname.\n" +
+					"AttributeTester <jarpath> [outfile] : prints a report to the standard output\n" +
+					"about the attributes of all classes found in jarpath.\n");
 			return;
 		}
 		
-		AttributeTester m = new AttributeTester();
-		m.testAttributes(args[0], args[1]);
+		if(args.length == 2) {
+			// handle the case of a single report
+			AttributeTester tester = new AttributeTester();
+			tester.testAttributes(args[0], args[1]);
+			return;
+		} else if(args.length == 1) {
+			// here we print a report for all classes found in the jarfile
+			JarFile jarFile = new JarFile(args[0]);
+			Enumeration<JarEntry> entries = jarFile.entries();
+			JarEntry entry;
+			while(entries.hasMoreElements()) {
+				entry = entries.nextElement();
+				if(entry.getName().endsWith(".class")) {
+					AttributeTester tester = new AttributeTester();
+					tester.testAttributes(args[0], entry.getName().split(".class")[0]); 					
+				}
+			}
+			return;
+		}
+	
+		//String workingDir = System.getProperty("user.dir");
+		
 	}
 
 }
