@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.List;
 
-public class WeavingLog {
+public class WeavingTrace {
 	public static final String CLASS_KEY = "class:";
 	private static final String NUM_OF_REIFIED_SHADOWS_KEY = "num_of_reified_shadows:";
 	private String testapp;
@@ -14,22 +14,22 @@ public class WeavingLog {
 	public int getNumberOfReifiedShadows() {
 		return numberOfReifiedShadows;
 	}
-	WeavingLog(String testapp, String clazz) {
+	WeavingTrace(String testapp, String clazz) {
 		this.testapp = testapp;
 		this.clazz = clazz;
-		initLog();
+		initTrace();
 	}
 	public List<Object> getReifiedShadows() {
 		return null;
 	}
 	/**
 	 * In this method we initialize the fields holding the weaving data of the
-	 * clazz type. We go over thre whole weaving log, searching for the lines
+	 * clazz type. We go over thre whole weaving trace, searching for the lines
 	 * corresponding to clazz and then initialize the fields accordingly. 
 	 */
-	private void initLog() {
+	private void initTrace() {
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(WeavingLogManager.WEAVING_LOG_FOLDER + "/" + testapp + ".log "));
+			BufferedReader reader = new BufferedReader(new FileReader(WeavingTraceManager.WEAVING_TRACE_FOLDER + "/" + testapp + ".trace "));
 			String line;
 			boolean found = false;
 			while((line = reader.readLine()) != null) {
@@ -43,7 +43,7 @@ public class WeavingLog {
 			}
 			// if clazz was not found we throw an exception
 			if(!found)
-				throw new RuntimeException("class " + clazz + " was not found in the weaving log");
+				throw new RuntimeException("class " + clazz + " was not found in the weaving trace");
 			
 			// now the lines till next CLASS_PREFIX are ours
 			while((line = reader.readLine()) != null) {
