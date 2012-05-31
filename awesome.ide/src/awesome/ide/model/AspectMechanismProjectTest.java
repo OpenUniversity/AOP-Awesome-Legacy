@@ -18,7 +18,7 @@ public class AspectMechanismProjectTest {
 	@Before
 	public void setUp() throws Exception {
 		//dsalName = "Validate" + new Random().nextInt(100000);
-		amProj = AspectMechanismProject.createProject("Validate", null);
+		amProj = AspectMechanismProject.create("Validate", null);
 		//System.out.println("Created project " + amProj.getName() + "...");
 	}
 	@After

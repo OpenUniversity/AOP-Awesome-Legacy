@@ -18,9 +18,9 @@ public class MultiMechanismProjectTest {
 	AspectMechanismProject valProj, coolProj;
 	@Before
 	public void setUp() throws Exception {
-		valProj = AspectMechanismProject.createProject("Validate", null);
-		coolProj = AspectMechanismProject.createProject("Cool", null);
-		mmProj = MultiMechanismProject.createProject("coolval", new String[]{"Validate", "Cool"}, null);
+		valProj = AspectMechanismProject.create("Validate", null);
+		coolProj = AspectMechanismProject.create("Cool", null);
+		mmProj = MultiMechanismProject.create("coolval", new String[]{"Validate", "Cool"}, null);
 	}
 	@After
 	public void tearDown() throws CoreException {

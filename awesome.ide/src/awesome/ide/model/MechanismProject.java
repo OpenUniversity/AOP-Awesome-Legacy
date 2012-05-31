@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.jdt.core.IClasspathAttribute;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.launching.IVMInstall;
@@ -33,16 +34,17 @@ import awesome.ide.Activator;
 
 public abstract class MechanismProject {
 	private static final String BIN_FOLDER = "bin";
-	private static final String JARS_FOLDER = "lib";
+	private static final String LIB_FOLDER = "lib";
+	private static final String SRC_FOLDER = "src";
+	public static final IPath JUNIT4_CONTAINER_PATH = new Path("org.eclipse.jdt.junit.JUNIT_CONTAINER/4");
+	public static final IPath JRE_CONTAINER_PATH = new Path("org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6");
 
 	public abstract String getName();
 	
 	/**
-	 * Deletes the project from the workspace.
-	 * @param mProj the project to be deleted.
 	 * @param busyWait try to delete again and again in case of failure (note infinite loop danger). This option is
 	 * for testing purposes only. Otherwise use busyWait=false.
-	 * @throws CoreException 
+	 * @throws CoreException
 	 */
 	public static void deleteProject(MechanismProject mProj, boolean busyWait) throws CoreException {
 		String name = mProj.getName();
@@ -79,6 +81,7 @@ public abstract class MechanismProject {
 		binFolder.create(false, true, null);
 		javaProject.setOutputLocation(binFolder.getFullPath(), null);
 		
+		//addContainerToBuildPath(javaProject, JRE_CONTAINER_PATH);
 		addJavaLibrariesToClassPath(javaProject);
 		
 		return javaProject;
@@ -90,14 +93,16 @@ public abstract class MechanismProject {
 		for (LibraryLocation element : locations) {
 		 entries.add(JavaCore.newLibraryEntry(element.getSystemLibraryPath(), null, null));
 		}
-		//add libs to project class path
+		//add libs to project class path. should be changed to append!
 		javaProject.setRawClasspath(entries.toArray(new IClasspathEntry[entries.size()]), null);
 	}
-	protected void createJarsFolder(IJavaProject javaProject) throws CoreException {
-		String[] jars = {Activator.ASM_JAR, Activator.AWESOME_JAR, Activator.COMMONS_JAR, Activator.JROCKIT_JAR};
+	private void addEntriesToClasspath(IJavaProject javaProj, List<IClasspathEntry> entries) {
+		// move redundant code here...
+	}
+	protected void createLibFolder(IJavaProject javaProject, String[] jars) throws CoreException {
 		Bundle bundle = Platform.getBundle(Activator.PLUGIN_ID);
 		
-		IFolder jarsFolder = javaProject.getProject().getFolder(JARS_FOLDER);
+		IFolder jarsFolder = javaProject.getProject().getFolder(LIB_FOLDER);
 		jarsFolder.create(false, true, null);
 		
 		for(String jar : jars) {
@@ -110,16 +115,14 @@ public abstract class MechanismProject {
 				e.printStackTrace();
 			}
 		}
-		addJarsToBuildPath(javaProject);
+		addJarsToBuildPath(javaProject, jars);
 	}
-	private void addJarsToBuildPath(IJavaProject javaProject) {
-		String[] jars = {Activator.ASM_JAR, Activator.AWESOME_JAR, Activator.COMMONS_JAR, Activator.JROCKIT_JAR};
-		
+	private void addJarsToBuildPath(IJavaProject javaProject, String[] jars) {	
 		IClasspathEntry[] originalCP;
 		try {
 			for(String jar : jars){
 				originalCP = javaProject.getRawClasspath();
-				IPath path = new Path(javaProject.getPath() + "/" + JARS_FOLDER + "/" + jar);
+				IPath path = new Path(javaProject.getPath() + "/" + LIB_FOLDER + "/" + jar);
 				
 				IClasspathEntry lib;
 				// add awesome.platform.jar to inpath (we saw in our eyes the value needed)
@@ -142,8 +145,57 @@ public abstract class MechanismProject {
 			e.printStackTrace();
 		}
 	}
-	protected InputStream toInputStream(String str)
-			throws UnsupportedEncodingException {
-				return new ByteArrayInputStream(str.getBytes("UTF-8"));
-			}
+	protected InputStream toInputStream(String str) {
+		try {
+			return new ByteArrayInputStream(str.getBytes("UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	/**
+	 * Creates a folder named 'src' and add it to the build path.
+	 * @param project
+	 * @return
+	 * @throws CoreException
+	 */
+	protected IFolder createSrcFolder(IJavaProject project) throws CoreException {
+		IFolder srcFolder = project.getProject().getFolder(SRC_FOLDER);
+		srcFolder.create(false, true, null);
+		addFolderToClasspath(project, SRC_FOLDER);
+		
+		return srcFolder;
+	}
+	private void addFolderToClasspath(IJavaProject javaProj, String folderName) throws JavaModelException {
+		IFolder folder = javaProj.getProject().getFolder(folderName);
+		IPackageFragmentRoot proot = javaProj.getPackageFragmentRoot(folder);
+		IClasspathEntry entry = JavaCore.newSourceEntry(proot.getPath());
+		addEntryToClasspath(javaProj, entry);
+		
+		//IFolder folder = javaProj.getProject().getFolder(folderName);
+		//IPackageFragmentRoot proot = javaProj.getPackageFragmentRoot(folder);
+//		IClasspathEntry[] oldEntries = javaProj.getRawClasspath();
+//		IClasspathEntry[] newEntries = new IClasspathEntry[oldEntries.length + 1];
+//		System.arraycopy(oldEntries, 0, newEntries, 0, oldEntries.length);
+//		newEntries[oldEntries.length] = JavaCore.newSourceEntry(proot.getPath());
+//		javaProj.setRawClasspath(newEntries, null);
+	}
+	protected void addContainerToClasspath(IJavaProject javaProj, IPath containerPath) {
+		IClasspathEntry entry =  JavaCore.newContainerEntry(containerPath, false);
+		addEntryToClasspath(javaProj, entry);
+	}
+	protected void addProjectToClassPath(IJavaProject javaProj, String projectName) {
+		IClasspathEntry entry = JavaCore.newProjectEntry(new Path("/" + projectName), true);
+		addEntryToClasspath(javaProj, entry);
+	}
+	private void addEntryToClasspath(IJavaProject javaProj, IClasspathEntry entry) {
+		try {
+			IClasspathEntry[] oldEntries = javaProj.getRawClasspath();
+			IClasspathEntry[] newEntries = new IClasspathEntry[oldEntries.length + 1];
+			System.arraycopy(oldEntries, 0, newEntries, 0, oldEntries.length);
+			newEntries[oldEntries.length] = entry;
+			javaProj.setRawClasspath(newEntries, null);
+		} catch(JavaModelException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

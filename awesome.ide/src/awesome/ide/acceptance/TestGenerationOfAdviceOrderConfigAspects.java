@@ -33,7 +33,7 @@ public class TestGenerationOfAdviceOrderConfigAspects {
 	@Before
 	public void setUp() throws Exception {
 		// step 1: creating a multi-mechanism project
-		mmProj = MultiMechanismProject.createProject("coolajval", new String[]{"aspectj", "cool", "validate"}, null);
+		mmProj = MultiMechanismProject.create("coolajval", new String[]{"aspectj", "cool", "validate"}, null);
 	}
 	@Test
 	public void theTest() throws Exception {

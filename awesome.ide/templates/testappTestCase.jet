@@ -1,12 +1,12 @@
-<%@jet package="awesome.ide.gen" class="TestappTestCase" %>
+<%@jet package="awesome.ide.gen" class="TestappTestCaseGen" %>
 <% String packageName = ((String[])argument)[0]; %>
 <% String testappId = ((String[])argument)[1]; %>
 package <%=packageName%>;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
-import awesome.platform.utils.WeavingLogManager;
-import awesome.platform.utils.WeavingLog;
+import awesome.tracing.weaving.WeavingLogManager;
+import awesome.tracing.weaving.WeavingLog;
 
 public class Testapp<%=testappId%> {
 	@Test

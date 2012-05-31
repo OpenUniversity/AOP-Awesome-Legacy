@@ -12,6 +12,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
 
 import awesome.ide.model.AspectMechanismProject;
+import awesome.ide.model.AspectMechanismTestProject;
 
 /**
  * Thanks to:
@@ -67,7 +68,8 @@ public class AspectMechanismProjectWizard extends Wizard implements INewWizard {
 	
 	private void doFinish(String dsalName, IProgressMonitor monitor) 
 		throws Exception {
-		AspectMechanismProject.createProject(dsalName, monitor);
+		AspectMechanismProject amProj = AspectMechanismProject.create(dsalName, monitor);
+		AspectMechanismTestProject.create(amProj, monitor);
 	}
 	/**
 	 * @see IWorkbenchWizard#init(IWorkbench, IStructuredSelection)

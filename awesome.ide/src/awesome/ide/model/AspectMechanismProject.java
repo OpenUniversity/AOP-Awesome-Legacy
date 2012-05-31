@@ -1,21 +1,18 @@
 package awesome.ide.model;
 
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-
 import org.eclipse.ajdt.ui.AspectJUIPlugin;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
-import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
 
+import awesome.ide.Activator;
 import awesome.ide.gen.AspectMechanismGen;
 import awesome.ide.gen.ManifestGen;
 
@@ -45,7 +42,7 @@ public class AspectMechanismProject extends MechanismProject {
 	 * @return an handle for the project
 	 * @throws Exception
 	 */
-	public static AspectMechanismProject createProject(String dsalName, IProgressMonitor monitor) throws Exception {
+	public static AspectMechanismProject create(String dsalName, IProgressMonitor monitor) throws Exception {
 		AspectMechanismProject amProj = new AspectMechanismProject(dsalName);
 		
 		// return in case that the project already exists in the workspace
@@ -66,11 +63,12 @@ public class AspectMechanismProject extends MechanismProject {
 		AspectJUIPlugin.convertToAspectJProject(javaProj.getProject());
 		AspectJUIPlugin.addAjrtToBuildPath(javaProj.getProject());
 		
-		// Create the 'jars' folder, and put the jars in it
-		amProj.createJarsFolder(javaProj);
+		// Create the 'lib' folder, and put the jars in it
+		String[] jars = {Activator.ASM_JAR, Activator.AWESOME_JAR, Activator.COMMONS_JAR, Activator.JROCKIT_JAR};
+		amProj.createLibFolder(javaProj, jars);
 		
 		if(monitor != null)
-			monitor.worked(1);
+			monitor.worked(2);
 		
 		return amProj;
 	}
@@ -79,11 +77,7 @@ public class AspectMechanismProject extends MechanismProject {
 	public String getName() {
 		return PROJ_PREFIX + "." + dsalName.toLowerCase();
 	}
-	private void createSrcFolder(IJavaProject project) throws CoreException {
-		IFolder srcFolder = project.getProject().getFolder(SRC_FOLDER);
-		srcFolder.create(false, true, null);
-		addFolderToBuildPath(project, SRC_FOLDER);
-	}
+
 	/**
 	 * Create a DSAL package (same name as project name) and generates an aspect mechanism inside it.
 	 * @param project
@@ -108,22 +102,10 @@ public class AspectMechanismProject extends MechanismProject {
 		content = new ManifestGen().generate(new String[]{dsalName});
 		try {
 			project.getFile(this.new Manifest().getName()).create(toInputStream(content), true, null);
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (CoreException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	private void addFolderToBuildPath(IJavaProject javaProj, String folderName) throws JavaModelException {
-		IFolder folder = javaProj.getProject().getFolder(folderName);
-		IPackageFragmentRoot proot = javaProj.getPackageFragmentRoot(folder);
-		IClasspathEntry[] oldEntries = javaProj.getRawClasspath();
-		IClasspathEntry[] newEntries = new IClasspathEntry[oldEntries.length + 1];
-		System.arraycopy(oldEntries, 0, newEntries, 0, oldEntries.length);
-		newEntries[oldEntries.length] = JavaCore.newSourceEntry(proot.getPath());
-		javaProj.setRawClasspath(newEntries, null);
 	}
 	
 	/**
@@ -132,6 +114,9 @@ public class AspectMechanismProject extends MechanismProject {
 	public IFolder getSrcFolder() {
 		String srcPath = SRC_FOLDER;// + "/" + PROJ_PREFIX + "/" + dsalName.toLowerCase();
 		return ResourcesPlugin.getWorkspace().getRoot().getProject(this.getName()).getFolder(srcPath);
+	}
+	public String getDsalName() {
+		return dsalName;
 	}
 
 }

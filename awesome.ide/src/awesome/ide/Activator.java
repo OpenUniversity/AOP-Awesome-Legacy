@@ -21,7 +21,9 @@ public class Activator extends AbstractUIPlugin {
 	public static final String AWESOME_JAR = "awesome.platform.jar";
 	public static final String COMMONS_JAR = "commons.jar";
 	public static final String JROCKIT_JAR = "jrockit.jar";
-	
+	public static final String ASPECTJRT_JAR = "aspectjrt.jar";
+	public static final String ASPECTJTOOLS_JAR = "aspectjtools.jar";
+
 	/**
 	 * The constructor
 	 */

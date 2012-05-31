@@ -14,7 +14,7 @@ import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.JavaCore;
-
+import awesome.ide.Activator;
 import awesome.ide.gen.AdviceOrderConfigGen;
 import awesome.ide.model.manifests.Advice;
 import awesome.ide.model.manifests.CSManifest;
@@ -54,7 +54,7 @@ public class MultiMechanismProject extends MechanismProject {
 	 * @return
 	 * @throws Exception
 	 */
-	public static MultiMechanismProject createProject(String projectName, String[] dsalNames, IProgressMonitor monitor) throws Exception {
+	public static MultiMechanismProject create(String projectName, String[] dsalNames, IProgressMonitor monitor) throws Exception {
 		MultiMechanismProject mmProj = new MultiMechanismProject(projectName);
 		
 		if(monitor != null)
@@ -72,7 +72,8 @@ public class MultiMechanismProject extends MechanismProject {
 		mmProj.addSourceFoldersToBuildPath(dsalNames);
 		 
 		// Create a folder with the dependent jars
-		mmProj.createJarsFolder(mmProj.javaProj);
+		String[] jars = {Activator.ASM_JAR, Activator.AWESOME_JAR, Activator.COMMONS_JAR, Activator.JROCKIT_JAR};
+		mmProj.createLibFolder(mmProj.javaProj, jars);
 		
 		mmProj.createSpecFolder(dsalNames);
 		
@@ -89,7 +90,7 @@ public class MultiMechanismProject extends MechanismProject {
 	 */
 	private void createSourceFolders(String[] dsalNames) throws Exception {
 		for(String dsalName : dsalNames) {
-			AspectMechanismProject amProj = AspectMechanismProject.createProject(dsalName, null);
+			AspectMechanismProject amProj = AspectMechanismProject.create(dsalName, null);
 			IFolder amSrc = amProj.getSrcFolder();
 			// source folder is copied under a folder with the name of the am project
 			amSrc.copy(new Path(javaProj.getProject().getFullPath() + "/" + amProj.getName()), true, null);
@@ -112,7 +113,7 @@ public class MultiMechanismProject extends MechanismProject {
 		
 		// get the project of each dsal and extract the manifest file
 		for(String dsalName : dsalNames) {
-			AspectMechanismProject amProj = AspectMechanismProject.createProject(dsalName, null);
+			AspectMechanismProject amProj = AspectMechanismProject.create(dsalName, null);
 			AspectMechanismProject.Manifest manifest = amProj.new Manifest();
 			
 			// create the manifest in the multi-mechanism project
@@ -126,7 +127,7 @@ public class MultiMechanismProject extends MechanismProject {
 	
 	private void addSourceFoldersToBuildPath(String[] folders) throws Exception {
 		for(String folder: folders){
-			AspectMechanismProject amProj = AspectMechanismProject.createProject(folder, null);
+			AspectMechanismProject amProj = AspectMechanismProject.create(folder, null);
 			IFolder dsalSourceFolder = javaProj.getProject().getFolder(amProj.getName());
 			IPackageFragmentRoot proot = javaProj.getPackageFragmentRoot(dsalSourceFolder);
 			IClasspathEntry[] oldEntries = javaProj.getRawClasspath();
