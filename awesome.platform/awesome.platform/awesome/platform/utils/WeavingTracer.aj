@@ -1,12 +1,12 @@
-package awesome.platform;
+package awesome.platform.utils;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.List;
-import org.aspectj.weaver.bcel.LazyClassGen;
+
 import org.aspectj.weaver.bcel.BcelShadow;
+import org.aspectj.weaver.bcel.LazyClassGen;
+
+import awesome.platform.MultiMechanism;
+
 
 public aspect WeavingTracer {
 	private WeavingLogger logger = new WeavingLogger();

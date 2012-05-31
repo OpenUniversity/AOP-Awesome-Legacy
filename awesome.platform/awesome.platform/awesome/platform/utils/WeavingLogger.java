@@ -1,4 +1,4 @@
-package awesome.platform;
+package awesome.platform.utils;
 
 import java.io.BufferedWriter;
 import java.io.File;
