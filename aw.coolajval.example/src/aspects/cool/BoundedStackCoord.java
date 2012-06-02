@@ -30,6 +30,7 @@ private @COOLConditionField boolean empty = true;
   private MethodState meth_pop_0 = new MethodState();
   private MethodState meth_push_1 = new MethodState();
 
+  @AwSourceLines(sourceLines = {5, 6, 11, 19})
   @COOLLock(methodName="pop", className="", parameterTypes={})
   public synchronized void meth_pop_0_lock(base.BoundedStack thiz) {
     while(false
@@ -41,6 +42,7 @@ private @COOLConditionField boolean empty = true;
     meth_pop_0.in();
   }
 
+  @AwSourceLines(sourceLines = {5, 6, 11, 19})
   @COOLUnlock(methodName="pop", className="", parameterTypes={})
   public synchronized void meth_pop_0_unlock(base.BoundedStack thiz) {
     meth_pop_0.out();
