@@ -148,31 +148,7 @@ public class BcelShadow extends Shadow {
 		return shadowId;
 	}
 	
-	//private int originalStart = -1;
-	//private int originalEnd = -1;
-	
-	/*(public void setOriginalPositions()
-	{
-		getRange().getBody().setPositions();
-    	originalStart = getRange().getStart().getPosition();
-		originalEnd = getRange().getEnd().getPosition();	
-		
-		awesome.platform.adb.util.log.logger.logLn("setOriginalPositions id " + 
-				shadowId + " originalStart " + originalStart + 
-				" endPosShadow " + originalEnd);
 
-	}
-	
-	public int getOriginalStart()
-	{
-		return originalStart;		
-	}
-	
-	public int getOriginalEnd()
-	{
-		return originalEnd;
-	}
-	*/
 	// added for awdb END
 
 	/**
