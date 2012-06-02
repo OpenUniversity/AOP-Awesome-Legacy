@@ -58,6 +58,7 @@ import awesome.platform.*;
 import com.sun.org.apache.bcel.internal.generic.IndexedInstruction;
 
 
+
 public aspect AJWeaver extends AbstractWeaver {
 
 	private Map<BcelShadow, List<ShadowMunger>> shadowMungers = new HashMap<BcelShadow, List<ShadowMunger>>();
