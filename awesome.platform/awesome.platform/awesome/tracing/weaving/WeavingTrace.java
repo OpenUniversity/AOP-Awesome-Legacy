@@ -29,7 +29,7 @@ public class WeavingTrace {
 	 */
 	private void initTrace() {
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(WeavingTraceManager.WEAVING_TRACE_FOLDER + "/" + testapp + ".trace "));
+			BufferedReader reader = new BufferedReader(new FileReader(WeavingTraceWriter.WEAVING_TRACE_FOLDER + "/" + WeavingTraceWriter.getNameOfTraceFile(testapp)));
 			String line;
 			boolean found = false;
 			while((line = reader.readLine()) != null) {

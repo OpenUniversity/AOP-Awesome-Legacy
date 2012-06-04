@@ -5,18 +5,20 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class WeavingLogger {
-	private static final String OUTFILE = System.getenv().get("WEAVING_TRACE_FILE");
+public class WeavingTraceWriter {
+	public static final String WEAVING_TRACE_FOLDER = "weaving.trace";
+	private static final String TEST_APP = System.getenv().get("TEST_APP");
+	private static final String TRACE_SUFFIX = ".trace";
 	private static final String CLASS_KEY = "class: ";
 	private static final String NL = "\n";
 	private static final String NUM_OF_REFIED_SHADOWS_KEY = "num_of_reified_shadows: ";
 	private StringBuffer buffer;
 	private BufferedWriter writer;
 	
-	public WeavingLogger() {
+	public WeavingTraceWriter() {
 		buffer = new StringBuffer();
 		// delete the output file if it exists
-		File file = new File(OUTFILE);
+		File file = new File(WEAVING_TRACE_FOLDER + "/" + getNameOfTraceFile(TEST_APP));
 		if(file.exists())
 			file.delete();
 	}
@@ -36,7 +38,7 @@ public class WeavingLogger {
 	public void endWeaving() {
 		// out file is open for appending, buffer is flushed, and file is closed.
 		try {
-			writer = new BufferedWriter(new FileWriter(OUTFILE, true));
+			writer = new BufferedWriter(new FileWriter(getNameOfTraceFile(TEST_APP), true));
 			writer.write(buffer.toString());
 			writer.close();
 		} catch (IOException e) {
@@ -46,6 +48,9 @@ public class WeavingLogger {
 
 	public void numOfReifiedShadows(int size) {
 		buffer.append(NUM_OF_REFIED_SHADOWS_KEY + size + NL);
+	}
+	public static String getNameOfTraceFile(String testapp) {
+		return testapp + TRACE_SUFFIX;
 	}
 
 }
