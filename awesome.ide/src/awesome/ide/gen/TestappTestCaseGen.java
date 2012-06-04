@@ -13,8 +13,10 @@ public class TestappTestCaseGen
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = "package ";
-  protected final String TEXT_2 = ";" + NL + "" + NL + "import org.junit.Test;" + NL + "import static org.junit.Assert.*;" + NL + "import awesome.tracing.weaving.WeavingLogManager;" + NL + "import awesome.tracing.weaving.WeavingLog;" + NL + "" + NL + "public class Testapp";
-  protected final String TEXT_3 = " {" + NL + "\t@Test" + NL + "\tpublic void test() {" + NL + "\t\t// define you first test here..." + NL + "\t}" + NL + "}";
+  protected final String TEXT_2 = ";" + NL + "" + NL + "import org.junit.Test;" + NL + "import static org.junit.Assert.*;" + NL + "import awesome.tracing.weaving.WeavingTraceManager;" + NL + "import awesome.tracing.weaving.WeavingTrace;" + NL + "" + NL + "public class Testapp";
+  protected final String TEXT_3 = " {" + NL + "\t@Test" + NL + "\tpublic void test() {" + NL + "\t\tWeavingTrace atrace = WeavingTraceManager.getTrace(\"testapp";
+  protected final String TEXT_4 = "\", \"aspects.Aspect\");" + NL + "\t\tWeavingTrace ctrace = WeavingTraceManager.getTrace(\"testapp";
+  protected final String TEXT_5 = "\", \"base.Main\");" + NL + "\t\t// define rest of the test here..." + NL + "\t}" + NL + "}";
 
   public String generate(Object argument)
   {
@@ -26,6 +28,10 @@ public class TestappTestCaseGen
     stringBuffer.append(TEXT_2);
     stringBuffer.append(testappId);
     stringBuffer.append(TEXT_3);
+    stringBuffer.append(testappId);
+    stringBuffer.append(TEXT_4);
+    stringBuffer.append(testappId);
+    stringBuffer.append(TEXT_5);
     return stringBuffer.toString();
   }
 }

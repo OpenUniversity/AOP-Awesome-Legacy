@@ -5,12 +5,14 @@ package <%=packageName%>;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
-import awesome.tracing.weaving.WeavingLogManager;
-import awesome.tracing.weaving.WeavingLog;
+import awesome.tracing.weaving.WeavingTraceManager;
+import awesome.tracing.weaving.WeavingTrace;
 
 public class Testapp<%=testappId%> {
 	@Test
 	public void test() {
-		// define you first test here...
+		WeavingTrace atrace = WeavingTraceManager.getTrace("testapp<%=testappId%>", "aspects.Aspect");
+		WeavingTrace ctrace = WeavingTraceManager.getTrace("testapp<%=testappId%>", "base.Main");
+		// define rest of the test here...
 	}
 }
