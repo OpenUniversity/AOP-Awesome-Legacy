@@ -1,0 +1,20 @@
+<%@ jet package="awesome.ide.gen" class="TestappLaunchGen" %>
+<% String projectName = ((String[])argument)[0]; %>
+<% String testapp = ((String[])argument)[1]; %>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<stringAttribute key="bad_container_name" value="\<%=projectName%>\testapp"/>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/<%=projectName%>/lib/aspectjtools.jar"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<mapAttribute key="org.eclipse.debug.core.environmentVariables">
+<mapEntry key="ENABLE_WEAVING_TRACE" value="1"/>
+<mapEntry key="TEST_APP" value="<%=testapp%>"/>
+</mapAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.aspectj.tools.ajc.Main"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-1.5 -outjar <%=testapp%>.jar&#13;&#10;<%=testapp%>/aspects/* <%=testapp%>/base/*"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="<%=projectName%>"/>
+</launchConfiguration>

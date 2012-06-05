@@ -13,17 +13,19 @@ import org.eclipse.jdt.core.IJavaProject;
 
 import awesome.ide.Activator;
 import awesome.ide.gen.TestappAspect;
+import awesome.ide.gen.TestappLaunchGen;
 import awesome.ide.gen.TestappMain;
 import awesome.ide.gen.TestappTestCaseGen;
 
 public class AspectMechanismTestProject extends MechanismProject {
 	private static final String TESTAPP_PACKAGE = "testapps";
 	private static final String TESTAPP_ID = "1";
-	private static final String TESTCASE_NAME = "Testapp";
-	private static final String TESTAPP_FOLDER_NAME = "testapp";
-	private static final String ASPECTS_FOLDER_NAME = "aspects";
-	private static final String BASE_FOLDER_NAME = "base";
-	private static final String TESTAPP_MAIN_NAME = "Main";
+	private static final String TESTCASE_PREFIX = "Testapp";
+	private static final String TESTAPP_PREFIX = "testapp";
+	private static final String ASPECTS_FOLDER = "aspects";
+	private static final String BASE_FOLDER = "base";
+	private static final String TESTAPP_MAIN = "Main";
+	private static final String TESTAPP_LAUNCH = TESTAPP_PREFIX + TESTAPP_ID + ".weave.launch";
 	private static final String WEAVING_TRACE_FOLDER = "awtrace";
 	private AspectMechanismProject amProj;
 	
@@ -65,7 +67,7 @@ public class AspectMechanismTestProject extends MechanismProject {
 		amtProj.createSrcFolder(javaProj);
 		
 		// create a single testapp folder
-		amtProj.createTestappFolder(javaProj, TESTAPP_FOLDER_NAME + TESTAPP_ID);
+		amtProj.createTestappFolder(javaProj, TESTAPP_PREFIX + TESTAPP_ID);
 		
 		// create a 'awtrace' folder to hold the weaving trace files
 		amtProj.createWeavingTraceFolder(javaProj);
@@ -92,15 +94,18 @@ public class AspectMechanismTestProject extends MechanismProject {
 			IFolder folder = project.getFolder(folderName);
 			folder.create(false, true, null);
 			// create the ASPECTS folder:
-			IFolder aspectsFolder = folder.getFolder(ASPECTS_FOLDER_NAME);
+			IFolder aspectsFolder = folder.getFolder(ASPECTS_FOLDER);
 			aspectsFolder.create(false, true, null);
-			InputStream source = toInputStream(new TestappAspect().generate(new String[]{ASPECTS_FOLDER_NAME, getTestAppAspectName(), amProj.getDsalName()}));
+			InputStream source = toInputStream(new TestappAspect().generate(new String[]{ASPECTS_FOLDER, getTestAppAspectName(), amProj.getDsalName()}));
 			aspectsFolder.getFile(getTestAppAspectName() + ".java").create(source, false, null);
 			// create the BASE folder:
-			IFolder baseFolder = folder.getFolder(BASE_FOLDER_NAME);
+			IFolder baseFolder = folder.getFolder(BASE_FOLDER);
 			baseFolder.create(false, true, null);
-			source = toInputStream(new TestappMain().generate(new String[]{BASE_FOLDER_NAME}));
-			baseFolder.getFile(TESTAPP_MAIN_NAME + ".java").create(source, false, null);
+			source = toInputStream(new TestappMain().generate(new String[]{BASE_FOLDER}));
+			baseFolder.getFile(TESTAPP_MAIN + ".java").create(source, false, null);
+			// create a launch configuration file
+			source = toInputStream(new TestappLaunchGen().generate(new String[]{getName(), TESTAPP_PREFIX + TESTAPP_ID}));
+			folder.getFile(TESTAPP_LAUNCH).create(source, false, null);
 			
 		} catch (CoreException e) {
 			throw new RuntimeException(e);
@@ -113,7 +118,7 @@ public class AspectMechanismTestProject extends MechanismProject {
 		IFolder pack = srcFolder.getFolder(TESTAPP_PACKAGE);
 		pack.create(false, true, null);
 		// create a JUnit test case for the testapp
-		IFile testcase = pack.getFile(TESTCASE_NAME + TESTAPP_ID + ".java");
+		IFile testcase = pack.getFile(TESTCASE_PREFIX + TESTAPP_ID + ".java");
 		String contents = new TestappTestCaseGen().generate(new String[]{TESTAPP_PACKAGE, TESTAPP_ID, getTestAppAspectName()});
 		testcase.create(toInputStream(contents), true, null);
 		
