@@ -1,6 +1,7 @@
 <%@jet package="awesome.ide.gen" class="TestappTestCaseGen" %>
 <% String packageName = ((String[])argument)[0]; %>
 <% String testappId = ((String[])argument)[1]; %>
+<% String aspectName = ((String[])argument)[2]; %>
 package <%=packageName%>;
 
 import org.junit.Test;
@@ -11,7 +12,7 @@ import awesome.tracing.weaving.WeavingTrace;
 public class Testapp<%=testappId%> {
 	@Test
 	public void test() {
-		WeavingTrace atrace = WeavingTraceManager.getTrace("testapp<%=testappId%>", "aspects.Aspect");
+		WeavingTrace atrace = WeavingTraceManager.getTrace("testapp<%=testappId%>", "aspects.<%=aspectName%>");
 		WeavingTrace ctrace = WeavingTraceManager.getTrace("testapp<%=testappId%>", "base.Main");
 		// define rest of the test here...
 	}

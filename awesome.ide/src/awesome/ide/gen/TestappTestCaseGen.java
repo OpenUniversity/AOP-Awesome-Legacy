@@ -15,14 +15,16 @@ public class TestappTestCaseGen
   protected final String TEXT_1 = "package ";
   protected final String TEXT_2 = ";" + NL + "" + NL + "import org.junit.Test;" + NL + "import static org.junit.Assert.*;" + NL + "import awesome.tracing.weaving.WeavingTraceManager;" + NL + "import awesome.tracing.weaving.WeavingTrace;" + NL + "" + NL + "public class Testapp";
   protected final String TEXT_3 = " {" + NL + "\t@Test" + NL + "\tpublic void test() {" + NL + "\t\tWeavingTrace atrace = WeavingTraceManager.getTrace(\"testapp";
-  protected final String TEXT_4 = "\", \"aspects.Aspect\");" + NL + "\t\tWeavingTrace ctrace = WeavingTraceManager.getTrace(\"testapp";
-  protected final String TEXT_5 = "\", \"base.Main\");" + NL + "\t\t// define rest of the test here..." + NL + "\t}" + NL + "}";
+  protected final String TEXT_4 = "\", \"aspects.";
+  protected final String TEXT_5 = "\");" + NL + "\t\tWeavingTrace ctrace = WeavingTraceManager.getTrace(\"testapp";
+  protected final String TEXT_6 = "\", \"base.Main\");" + NL + "\t\t// define rest of the test here..." + NL + "\t}" + NL + "}";
 
   public String generate(Object argument)
   {
     final StringBuffer stringBuffer = new StringBuffer();
      String packageName = ((String[])argument)[0]; 
      String testappId = ((String[])argument)[1]; 
+     String aspectName = ((String[])argument)[2]; 
     stringBuffer.append(TEXT_1);
     stringBuffer.append(packageName);
     stringBuffer.append(TEXT_2);
@@ -30,8 +32,10 @@ public class TestappTestCaseGen
     stringBuffer.append(TEXT_3);
     stringBuffer.append(testappId);
     stringBuffer.append(TEXT_4);
-    stringBuffer.append(testappId);
+    stringBuffer.append(aspectName);
     stringBuffer.append(TEXT_5);
+    stringBuffer.append(testappId);
+    stringBuffer.append(TEXT_6);
     return stringBuffer.toString();
   }
 }

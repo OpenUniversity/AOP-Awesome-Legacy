@@ -21,10 +21,10 @@ public class AspectMechanismTestProject extends MechanismProject {
 	private static final String TESTAPP_ID = "1";
 	private static final String TESTCASE_NAME = "Testapp";
 	private static final String TESTAPP_FOLDER_NAME = "testapp";
-	private static final String TESTAPP_ASPECT_NAME = "Aspect";
 	private static final String ASPECTS_FOLDER_NAME = "aspects";
 	private static final String BASE_FOLDER_NAME = "base";
 	private static final String TESTAPP_MAIN_NAME = "Main";
+	private static final String WEAVING_TRACE_FOLDER = "awtrace";
 	private AspectMechanismProject amProj;
 	
 	private AspectMechanismTestProject(AspectMechanismProject amProj) {
@@ -67,12 +67,25 @@ public class AspectMechanismTestProject extends MechanismProject {
 		// create a single testapp folder
 		amtProj.createTestappFolder(javaProj, TESTAPP_FOLDER_NAME + TESTAPP_ID);
 		
+		// create a 'awtrace' folder to hold the weaving trace files
+		amtProj.createWeavingTraceFolder(javaProj);
+		
 		if(monitor != null)
 			monitor.worked(2);
 		
 		return amtProj;
 	}
 	
+	private void createWeavingTraceFolder(IJavaProject javaProj) {
+		IProject project = javaProj.getProject();
+		IFolder folder = project.getFolder(WEAVING_TRACE_FOLDER);
+		try {
+			folder.create(false, true, null);
+		} catch (CoreException e) {
+			throw new RuntimeException("Creation of folder " + WEAVING_TRACE_FOLDER + " failed");
+		}
+	}
+
 	private void createTestappFolder(IJavaProject javaProj, String folderName) {
 		try {
 			IProject project = javaProj.getProject();
@@ -81,8 +94,8 @@ public class AspectMechanismTestProject extends MechanismProject {
 			// create the ASPECTS folder:
 			IFolder aspectsFolder = folder.getFolder(ASPECTS_FOLDER_NAME);
 			aspectsFolder.create(false, true, null);
-			InputStream source = toInputStream(new TestappAspect().generate(new String[]{ASPECTS_FOLDER_NAME, TESTAPP_ASPECT_NAME, amProj.getDsalName()}));
-			aspectsFolder.getFile(TESTAPP_ASPECT_NAME + ".aj").create(source, false, null);
+			InputStream source = toInputStream(new TestappAspect().generate(new String[]{ASPECTS_FOLDER_NAME, getTestAppAspectName(), amProj.getDsalName()}));
+			aspectsFolder.getFile(getTestAppAspectName() + ".java").create(source, false, null);
 			// create the BASE folder:
 			IFolder baseFolder = folder.getFolder(BASE_FOLDER_NAME);
 			baseFolder.create(false, true, null);
@@ -101,10 +114,17 @@ public class AspectMechanismTestProject extends MechanismProject {
 		pack.create(false, true, null);
 		// create a JUnit test case for the testapp
 		IFile testcase = pack.getFile(TESTCASE_NAME + TESTAPP_ID + ".java");
-		String contents = new TestappTestCaseGen().generate(new String[]{TESTAPP_PACKAGE, TESTAPP_ID});
+		String contents = new TestappTestCaseGen().generate(new String[]{TESTAPP_PACKAGE, TESTAPP_ID, getTestAppAspectName()});
 		testcase.create(toInputStream(contents), true, null);
 		
 		return srcFolder;
+	}
+	private String getTestAppAspectName() {
+		return capitalize(amProj.getDsalName()) + "Aspect";
+	}
+	private String capitalize(String str) {
+		if (str.length() == 0) return str;
+        return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
 	}
 
 }

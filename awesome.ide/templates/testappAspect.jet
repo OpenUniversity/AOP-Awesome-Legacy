@@ -9,6 +9,6 @@ import awesome.platform.annotations.AwAspectMechanism;
 
 @Aspect
 @AwAspectMechanism(id="<%=mechanismId%>")
-public aspect <%=aspectName%> {
+public class <%=aspectName%> {
 	// define your aspect here...
 }
