@@ -48,8 +48,13 @@ public class AspectMechanismTestProject extends MechanismProject {
 		if(monitor != null)
 			monitor.beginTask("Creating Aspect Mechanism Test Project...", 3);
 		
-		// create a Java project and convert to AspectJ project
+		// create a Java project
 		IJavaProject javaProj = amtProj.createJavaProject(amtProj.getName());
+
+		// add the am project to the classpath. This should be done before AJ deps so it comes first in the build order
+		amtProj.addProjectToClassPath(javaProj, amProj.getName());
+		
+		// convert to AspectJ project
 		AspectJUIPlugin.convertToAspectJProject(javaProj.getProject());
 		AspectJUIPlugin.addAjrtToBuildPath(javaProj.getProject());
 		
@@ -61,7 +66,6 @@ public class AspectMechanismTestProject extends MechanismProject {
 		
 		// configure classpath
 		amtProj.addContainerToClasspath(javaProj, JUNIT4_CONTAINER_PATH);
-		amtProj.addProjectToClassPath(javaProj, amProj.getName());
 		
 		// create the source folder
 		amtProj.createSrcFolder(javaProj);
