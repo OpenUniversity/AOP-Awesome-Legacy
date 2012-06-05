@@ -7,8 +7,9 @@ import java.io.File;
  * these services, a launch configuration should be defined with the following 
  * environment variables:<br/>
  * <ul>
- * <li>ENABLE_WEAVING_TRACE whether the tracing should be enabled, e.g., "true"</li>
+ * <li>ENABLE_WEAVING_TRACE whether the tracing should be enabled, e.g., "1"</li>
  * <li>TEST_APP the name of the woven test application.</li>
+ * <li>WEAVING_TRACE_FOLDER the folder to which the trace files should be written</li>
  * </ul>
  * @author Oren
  *

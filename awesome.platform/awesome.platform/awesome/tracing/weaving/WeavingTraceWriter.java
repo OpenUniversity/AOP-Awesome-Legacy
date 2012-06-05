@@ -6,7 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class WeavingTraceWriter {
-	public static final String WEAVING_TRACE_FOLDER = "weaving.trace";
+	// it is assumed that a the 'awtrace' folder already exists in the project
+	public static final String WEAVING_TRACE_FOLDER = "awtrace";
 	private static final String TEST_APP = System.getenv().get("TEST_APP");
 	private static final String TRACE_SUFFIX = ".trace";
 	private static final String CLASS_KEY = "class: ";
@@ -21,6 +22,11 @@ public class WeavingTraceWriter {
 		File file = new File(WEAVING_TRACE_FOLDER + "/" + getNameOfTraceFile(TEST_APP));
 		if(file.exists())
 			file.delete();
+		try {
+			file.createNewFile();
+		} catch (IOException e) {
+			throw new RuntimeException("Creation of file " + file.getName() + "failed");
+		}
 	}
 	
 	/**
@@ -38,7 +44,7 @@ public class WeavingTraceWriter {
 	public void endWeaving() {
 		// out file is open for appending, buffer is flushed, and file is closed.
 		try {
-			writer = new BufferedWriter(new FileWriter(getNameOfTraceFile(TEST_APP), true));
+			writer = new BufferedWriter(new FileWriter(WEAVING_TRACE_FOLDER + "/" + getNameOfTraceFile(TEST_APP), true));
 			writer.write(buffer.toString());
 			writer.close();
 		} catch (IOException e) {
