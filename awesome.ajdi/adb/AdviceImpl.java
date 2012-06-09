@@ -60,7 +60,9 @@ public class AdviceImpl extends MethodImpl implements Advice {
 	// private String method;
 	private List<Binding> bindings;
 	
+	//AWDB
 	private String effectType;
+	private Integer[] sourceLines;
 
 	// public AdviceImpl(Aspect parent, Binding binding, int type,
 	// com.sun.jdi.Method base,/*String baseName,*/ShadowMaster master,LineRange
@@ -87,7 +89,8 @@ public class AdviceImpl extends MethodImpl implements Advice {
 
 	public AdviceImpl(Aspect parent, List<Binding> binding, int type,
 			com.sun.jdi.Method base,/* String baseName, */ShadowMaster master,
-			LineRange range, int[] args, String[] argnames, String effectType) {
+			LineRange range, int[] args, String[] argnames, String effectType,
+			Integer[] sourceLines) {
 		super(base, parent, master);
 		if (base == null) {
 			throw new InternalDebuggerException(
@@ -113,7 +116,10 @@ public class AdviceImpl extends MethodImpl implements Advice {
 		this.argIndices = args;
 		this.argNames = argnames;
 		
+		
+		//AWDB
 		this.effectType = effectType;
+		this.sourceLines = sourceLines;
 		
 		// method = baseName;
 		// master.getEventSystem().addBindingCreationListener(new BCL());
@@ -360,8 +366,14 @@ public class AdviceImpl extends MethodImpl implements Advice {
 		
 	}
 	
+	//AWDB
 	public String effectType()
 	{
 		return effectType;
+	}
+	
+	public Integer []sourceLines()
+	{
+		return sourceLines;
 	}
 }

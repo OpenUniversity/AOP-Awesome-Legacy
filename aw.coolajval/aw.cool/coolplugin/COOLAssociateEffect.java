@@ -23,6 +23,14 @@ public class COOLAssociateEffect extends COOLEffect
 	private Member aspectField;
 	private UnresolvedType targetType;
 	
+	@Override
+	public int[] getSourceLines() {
+		int[] lines = new int[1];
+		lines[0]=0;
+		
+		return lines;
+	}
+	
 	public String getType()
 	{
 		return "COOLAssociate";

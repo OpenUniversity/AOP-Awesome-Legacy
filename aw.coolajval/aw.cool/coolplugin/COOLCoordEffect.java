@@ -1,10 +1,12 @@
 package coolplugin;
 
 import java.lang.reflect.Modifier;
+import java.util.ArrayList;
 
 import org.aspectj.apache.bcel.generic.InstructionFactory;
 import org.aspectj.apache.bcel.generic.InstructionList;
 import org.aspectj.bridge.ISourceLocation;
+import org.aspectj.weaver.AnnotationAJ;
 import org.aspectj.weaver.Member;
 import org.aspectj.weaver.MemberImpl;
 import org.aspectj.weaver.ResolvedType;
@@ -15,7 +17,8 @@ import org.aspectj.weaver.bcel.BcelWorld;
 import org.aspectj.weaver.bcel.Utility;
 
 
-public abstract class COOLCoordEffect extends COOLEffect {
+public abstract class COOLCoordEffect extends COOLEffect 
+{
 	protected String aspectClassName, adviceMethodName;
 	protected Member targetMember;
 	protected String fieldName;
@@ -23,6 +26,22 @@ public abstract class COOLCoordEffect extends COOLEffect {
 	private Member adviceMethod;
 	private ISourceLocation sourceLocation;
 	private ResolvedType aspectType;
+	
+	
+	private ArrayList<Integer> sourceLines;
+	
+	public int[] getSourceLines()
+	{
+		int []arr = new int[sourceLines.size()];
+		
+		
+		for(int i=0; i<sourceLines.size(); i++)
+		{
+			arr[i] = sourceLines.get(i);
+		}
+		
+		return arr;
+	}
 	
 	public Member getSignature()
 	{
@@ -49,6 +68,49 @@ public abstract class COOLCoordEffect extends COOLEffect {
 		return aspectType;
 	}
 	
+	// read the source line annotation
+	void buildSourceLines()
+	{
+		sourceLines = new ArrayList<Integer>();
+		
+		AnnotationAJ ans[] = adviceMethod.getAnnotations();
+		AnnotationAJ linesAnn = null;
+		for(AnnotationAJ a : ans)
+		{
+			if(a.getTypeName().equals("awesome.platform.annotations.AwSourceLines"))
+			{
+				linesAnn = a;
+				break;
+			}
+		}
+		
+		if(null == linesAnn)
+			return;
+		
+		String lines = linesAnn.getStringFormOfValue("sourceLines");
+	
+		int start = 1;
+		int i = 0;
+		while (start != lines.length())
+		{
+			StringBuffer val = new StringBuffer();
+			char c = lines.charAt(start);
+			while (c!=',' && c!=']')
+			{
+				val.append(c);
+				start++;
+				c = lines.charAt(start);
+			}
+			
+			sourceLines.add(Integer.parseInt(val.toString()));
+			
+			if(c==']')
+				break;
+			
+			start++;
+		}
+	}
+	
 	public COOLCoordEffect(String aspectClassName, 
 			               String adviceMethodName, 
 			               Member targetMember, 
@@ -56,8 +118,7 @@ public abstract class COOLCoordEffect extends COOLEffect {
 			               Member adviceMethod,
 			               ISourceLocation loc,
 			               ResolvedType aspectType) 
-	{
-		//System.err.println("Buildying a COOL advice:"+aspectClassName+"."+adviceMethodName);
+	{	
 		this.aspectClassName = aspectClassName;
 		this.adviceMethodName = adviceMethodName;
 		this.targetMember = targetMember;
@@ -65,6 +126,8 @@ public abstract class COOLCoordEffect extends COOLEffect {
 		this.adviceMethod = adviceMethod;
 		this.sourceLocation = loc;
 		this.aspectType = aspectType;
+		
+		buildSourceLines();
 	}
 			
 	protected InstructionList getAdviceInstructions(BcelShadow shadow) {

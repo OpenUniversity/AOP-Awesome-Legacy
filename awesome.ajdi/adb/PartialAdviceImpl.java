@@ -45,8 +45,8 @@ public class PartialAdviceImpl extends AdviceImpl {
 	
 	public PartialAdviceImpl(Aspect parent, List<Binding> binding, int type,
 			MethodIdentifier container, ShadowMaster master, LineRange range, int[] args,
-			String[] argnames, String effectType) {
-		super(parent, binding, type, null, master, range, args, argnames, effectType);
+			String[] argnames, String effectType, Integer[] sourceLines) {
+		super(parent, binding, type, null, master, range, args, argnames, effectType, sourceLines);
 		this.container = container;
 	}
 

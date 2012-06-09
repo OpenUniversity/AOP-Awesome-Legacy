@@ -49,6 +49,8 @@ private @COOLConditionField boolean empty = true;
     on_exit_pop_33109165_0(thiz);
     notifyAll();
   }
+  
+  @AwSourceLines(sourceLines = {5, 6, 11, 19})
   @COOLLock(methodName="push", className="", parameterTypes={"java.lang.Object"})
   public synchronized void meth_push_1_lock(base.BoundedStack thiz) {
     //System.out.println("COOL Lock");
@@ -61,6 +63,7 @@ private @COOLConditionField boolean empty = true;
     meth_push_1.in();
   }
 
+  @AwSourceLines(sourceLines = {5, 6, 11, 19})
   @COOLUnlock(methodName="push", className="", parameterTypes={"java.lang.Object"})
   public synchronized void meth_push_1_unlock(base.BoundedStack thiz) {
     meth_push_1.out();

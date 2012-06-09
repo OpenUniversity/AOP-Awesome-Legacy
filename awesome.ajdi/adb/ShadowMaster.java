@@ -718,11 +718,11 @@ public class ShadowMaster {
 				throw new InternalDebuggerException("advice method " + meth
 						+ " not found, advice inlining not supported; compile with -O0");
 			return (new AdviceImpl(parent, getBindings(ad.getBindings()), ad.getType(), m, this, range, ad.getArgIndices(), ad
-					.getArgNames(), ad.getEffectType()));
+					.getArgNames(), ad.getEffectType(), ad.getSourceLines()));
 
 		} catch (ClassNotPreparedException e) {
 			return (new PartialAdviceImpl(parent, getBindings(ad.getBindings()), ad.getType(), ad.getContainer(), this, range, ad
-					.getArgIndices(), ad.getArgNames(), ad.getEffectType()));
+					.getArgIndices(), ad.getArgNames(), ad.getEffectType(), ad.getSourceLines()));
 		}
 	}
 

@@ -52,13 +52,14 @@ public class AdviceDescriptor {
 	protected int[] argIndices;
 	protected String[] argNames;
 	
-	protected String effectType;
+	//AWDB
+	private String effectType;	
+	private Integer[] sourceLines;
 
-	
-	
-	
+	/*
 	public AdviceDescriptor(int type, String file,int startln, int endln, String aspect,String container, 
-			String methodname, String methodsig, String effectType, int[] argIndices,String[] argNames,BindingDescriptor[] bindings) {
+			String methodname, String methodsig, String effectType, Integer[] sourceLines, int[] argIndices,String[] argNames,
+			BindingDescriptor[] bindings) {
 		super();
 		this.type = type;
 		this.location = new SourceLocationDescriptor(file,startln,endln);
@@ -67,16 +68,21 @@ public class AdviceDescriptor {
 		this.bindings = bindings;
 		this.argIndices = argIndices;
 		this.argNames = argNames;
+		
+		//AWDB
 		this.effectType = effectType;
+		this.sourceLines = sourceLines;
+		
 	}
-
+*/
 
 	/**
 	 * 
 	 * DANGER: INCOMPLETE STATE: NEEDS: ASPECT, CONTAINER
 	 */
+	/*
 	public AdviceDescriptor(int type,String file, int startln, int endln, String methodname, String methodsig, 
-			String effectType, int[] argIndices,String[] argNames,BindingDescriptor[] bindings) {
+			String effectType, Integer[] sourceLines, int[] argIndices,String[] argNames,BindingDescriptor[] bindings) {
 		super();
 		this.location = new SourceLocationDescriptor(file,startln,endln);
 		this.type = type;
@@ -84,9 +90,13 @@ public class AdviceDescriptor {
 		this.bindings = bindings;
 		this.argIndices = argIndices;
 		this.argNames = argNames;
+		
+		// AWDB
 		this.effectType = effectType;
+		this.sourceLines = sourceLines;
+		
 	}
-
+*/
 	public void complete(String aspect,String container){
 		this.container.complete(container);
 		this.aspect = aspect;
@@ -98,19 +108,27 @@ public class AdviceDescriptor {
 	 */
 	public AdviceDescriptor(int type, String file, int startline, int endLine,
 			String methodName, String methodSig, int[] indices,
-			String[] argNames, String pointCut, String effectType) {
+			String[] argNames, String pointCut, String effectType, Integer[] sourceLines) {
 		this.location = new SourceLocationDescriptor(file,startline,endLine);
 		this.type = type;
 		this.container = new MethodIdentifier(methodName,methodSig);
 		this.bindings = new BindingDescriptor[]{new BindingDescriptor(Binding.DEFAULT_NAME,file,startline,startline,pointCut,container)};
 		this.argIndices = indices;
 		this.argNames = argNames;
+		
+		//AWDB
 		this.effectType = effectType;
+		this.sourceLines = sourceLines;
 	}
 	
 	public String getEffectType()
 	{
 		return effectType;
+	}
+	
+	public Integer[] getSourceLines()
+	{
+		return sourceLines;
 	}
 	
 	public int getType() {

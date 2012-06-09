@@ -18,6 +18,7 @@
 package adb.backend.bcel;
 
 import java.io.DataInputStream;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -50,6 +51,30 @@ public class AspectAttribute extends Attribute {
 			return new AspectAttribute(mechName, per,adv,slnr,elnr,name_index,length,pool);
 		}
 
+		public static Integer []getIntArrayFromString(String s)
+		{
+			Integer []arr = null;
+			
+			List<Integer> list = new ArrayList<Integer>();		
+			
+			int start = 0;
+			while(start < s.length() )
+			{
+				StringBuffer val = new StringBuffer();
+				while(start != s.length() && s.charAt(start) != ',')
+				{
+					val.append(s.charAt(start));
+					start++;
+				}
+				
+				list.add(Integer.parseInt(val.toString()));
+				start++;
+			}
+			
+			arr = new Integer[list.size()];
+			return list.toArray(arr);
+		}
+		
 		public static AdviceDescriptor decodeAdvice(String data, LinePartDecoder decoder) {
 //			AdviceFormat extends SourceLineContainingFormat
 //
@@ -69,16 +94,19 @@ public class AspectAttribute extends Attribute {
 			String pointCut = parts[5];
 			String effectType = parts[6];
 			
-			String[] argNames = new String[(parts.length - 7)/2];
+			String lines = parts[7];
+			Integer[] linesInt = getIntArrayFromString(lines);
+			
+			String[] argNames = new String[(parts.length - 8)/2];
 			int[] indices = new int[argNames.length];
 			
 			for (int i = 0; i < indices.length; i++) {
-				argNames[i] = parts[i*2+7];
-				indices[i] = Integer.parseInt(parts[i*2+8]);
+				argNames[i] = parts[i*2+8];
+				indices[i] = Integer.parseInt(parts[i*2+9]);
 			}
 			
 			return new AdviceDescriptor(typeId,slnr.path,slnr.lnr,elnr.lnr,methodName,methodSig,indices,argNames,pointCut,
-					effectType);
+					effectType, linesInt);
 		}
 
 		@Override

@@ -45,7 +45,9 @@ public interface Advice extends TypeComponent,Method,Shadow{
 	 */
 	public AdviceExecutionJoinPoint executionJoinPoint();
 	
+	//AWDB
 	public String effectType();
+	public Integer []sourceLines();
 	
 	
 }
