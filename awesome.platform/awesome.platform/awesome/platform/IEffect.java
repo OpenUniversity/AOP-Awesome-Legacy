@@ -23,5 +23,7 @@ public interface IEffect {
 	
 	public String getType();
 	
+	public int []getSourceLines();
+	
 	
 }

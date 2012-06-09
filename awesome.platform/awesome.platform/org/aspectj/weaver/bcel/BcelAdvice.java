@@ -95,6 +95,16 @@ public class BcelAdvice extends Advice implements IEffect {
 	}
 	
 	//YA
+	
+	@Override
+	public int[] getSourceLines() {
+		int[] lines = new int[1];
+		lines[0]=0;
+		
+		return lines;
+	}
+
+
 	public String getPointcutString()
 	{
 		return getPointcut().toString();		
@@ -1494,6 +1504,9 @@ public class BcelAdvice extends Advice implements IEffect {
       private boolean isLastInstructionInRange(InstructionHandle ih, ShadowRange aRange) {
       	return ih.getNext() == aRange.getEnd();
       }
+
+
+
   	
   	
   	/*

@@ -52,7 +52,7 @@ public class ShowAdvice extends AbstractCommand
 				throw new DebuggerException("Invalid joinpoint ID " + params);
 			}
 			
-			System.out.println("Aspect\tType\tSource Location");
+			System.out.println("Aspect\tType\tSource Location\tOriginal Locations");
 			System.out.println("---------------------------------------------------------------------------------");
 			
 			JoinPoint myJp = jps[jpId];
@@ -77,7 +77,15 @@ public class ShowAdvice extends AbstractCommand
 				
 				SourceLocation location = adv.location();
 				
-				System.out.println(aspectName + "\t" + advType + "\t" + location);				
+				System.out.print(aspectName + "\t" + advType + "\t" + location + "\t");
+				
+				Integer [] lines = adv.sourceLines();
+				for(int i=0; i < lines.length; i++)
+				{
+					System.out.print(lines[i] + " ");
+				}
+				
+				System.out.println();
 			}
 		}
 		catch(NumberFormatException e)

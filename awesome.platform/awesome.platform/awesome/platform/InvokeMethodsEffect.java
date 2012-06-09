@@ -162,5 +162,13 @@ public class InvokeMethodsEffect extends AwesomeEffect {
 	public String getType() {		
 		return "MethodInvocation";
 	}
+	
+	@Override
+	public int[] getSourceLines() {
+		int[] lines = new int[1];
+		lines[0]=0;
+		
+		return lines;
+	}
 
 }

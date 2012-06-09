@@ -98,6 +98,25 @@ public class AspectAttribute extends SourceLineContainingTag {
 	}
 	
 	
+	private String getLinesString(IEffect adv)
+	{
+		StringBuffer result = new StringBuffer();
+				
+		int []lines = adv.getSourceLines();
+		
+		for(int i = 0; i<lines.length; i++)
+		{
+			result.append(lines[i]);
+			
+			if(i<lines.length-1)
+				result.append(",");
+		}
+		
+		
+		
+		return result.toString();
+	}
+
 	public String getAdviceFormatString(IEffect adv) 
 	{
 		int type = DataFormatter.getAdviceType(adv);
@@ -129,12 +148,17 @@ public class AspectAttribute extends SourceLineContainingTag {
 				getLinePart(fileName,filePath,elnr) + " "+ name + " " + sig +" " + 
 				pcString + " " + adv.getType());
 		
+		out.append(" ");
+		out.append(getLinesString(adv));
+		
 		for(int i = 0;i<nargs;i++){
 			out.append(" ");
 			out.append(formals[i].getName());
 			out.append(" ");
 			out.append(i);
 		}
+		
+		
 		
 		return out.toString();
 	}
