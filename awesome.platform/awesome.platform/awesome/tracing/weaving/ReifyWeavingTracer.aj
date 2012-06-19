@@ -9,9 +9,9 @@ import awesome.platform.MultiMechanism;
 
 
 public aspect ReifyWeavingTracer {
-	private WeavingTraceWriter writer = new WeavingTraceWriter();
-	private String ENABLED = System.getenv().get("ENABLE_WEAVING_TRACE");
-	private boolean enabled = ENABLED.equals("1");
+	WeavingTraceWriter writer;
+	private static String ENABLED_VAR = System.getenv().get("ENABLE_WEAVING_TRACE");
+	private boolean tracingEnabled = ENABLED_VAR.equals("1");
 
 	pointcut transform(LazyClassGen clazz):
 		execution(boolean MultiMechanism.transform(LazyClassGen)) && args(clazz);
@@ -20,20 +20,23 @@ public aspect ReifyWeavingTracer {
 	
 	// notifying the logger upon entering the weaving process of a new class
 	before(LazyClassGen clazz) : transform(clazz) {
-		if(enabled) {
-			writer.beginWeaving(clazz.getClassName());			
+		///System.out.println("tracing enabled: " + tracingEnabled);
+		if(tracingEnabled) {
+			if(writer == null)
+				writer = new WeavingTraceWriter();
+				writer.beginWeaving(clazz.getClassName());			
 		}
 	}
 	// notifying the logger that the weaving ended
 	after(LazyClassGen clazz) : transform(clazz) {
-		if(enabled) {
+		if(tracingEnabled) {
 			writer.endWeaving();			
 		}
 	}
 	
 	// providing the logger with data about the reify process
 	after(LazyClassGen clazz) returning(List<BcelShadow> shadows) : reify(clazz) {
-		if(enabled) {
+		if(tracingEnabled) {
 			writer.numOfReifiedShadows(shadows.size());
 		}
 	}

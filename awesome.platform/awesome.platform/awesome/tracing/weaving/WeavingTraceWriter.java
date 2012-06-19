@@ -6,27 +6,40 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class WeavingTraceWriter {
-	// it is assumed that a the 'awtrace' folder already exists in the project
+	// it is assumed that the 'awtrace' folder already exists in the project
 	public static final String WEAVING_TRACE_FOLDER = "awtrace";
 	private static final String TEST_APP = System.getenv().get("TEST_APP");
+	//private static String ENABLED_VAR = System.getenv().get("ENABLE_WEAVING_TRACE");
+	//private boolean tracingEnabled = ENABLED_VAR.equals("1");
 	private static final String TRACE_SUFFIX = ".trace";
 	private static final String CLASS_KEY = "class: ";
 	private static final String NL = "\n";
 	private static final String NUM_OF_REFIED_SHADOWS_KEY = "num_of_reified_shadows: ";
 	private StringBuffer buffer;
 	private BufferedWriter writer;
+//	private static WeavingTraceWriter instance;
+	
+//	public static WeavingTraceWriter getInstance() {
+//		if(instance == null)
+//			instance = new WeavingTraceWriter();
+//		
+//		return instance;
+//	}
 	
 	public WeavingTraceWriter() {
-		buffer = new StringBuffer();
-		// delete the output file if it exists
-		File file = new File(WEAVING_TRACE_FOLDER + "/" + getNameOfTraceFile(TEST_APP));
-		if(file.exists())
-			file.delete();
-		try {
-			file.createNewFile();
-		} catch (IOException e) {
-			throw new RuntimeException("Creation of file " + file.getName() + "failed");
-		}
+		//System.out.println("tracing enabled: " + tracingEnabled);
+		//if(tracingEnabled) {
+			buffer = new StringBuffer();
+			// delete the output file if it exists
+			File file = new File(WEAVING_TRACE_FOLDER + "/" + getNameOfTraceFile(TEST_APP));
+			if(file.exists())
+				file.delete();
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				throw new RuntimeException("Creation of file " + file.getName() + "failed");
+			}
+		//}
 	}
 	
 	/**
