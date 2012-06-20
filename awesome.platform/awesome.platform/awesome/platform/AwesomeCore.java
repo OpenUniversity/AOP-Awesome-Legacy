@@ -1,12 +1,15 @@
 package awesome.platform;
 
+import org.aspectj.apache.bcel.classfile.JavaClass;
 import org.aspectj.apache.bcel.classfile.annotation.AnnotationGen;
 import org.aspectj.apache.bcel.classfile.annotation.ElementNameValuePairGen;
+import org.aspectj.weaver.bcel.LazyClassGen;
 import org.aspectj.weaver.bcel.LazyMethodGen;
 import org.aspectj.weaver.bcel.UnwovenClassFile;
 
 public class AwesomeCore {
 	private static final String AJ_ANNOTATION = "org.aspectj.lang.annotation.Aspect";
+	public static final String ASPECT_MECHANISM_ANNOTATION = "awesome.platform.annotations.AwAspectMechanism";
 	
 	/**
 	 * 
@@ -30,11 +33,11 @@ public class AwesomeCore {
 	 * @return true if the given class has an @AwAspectMechanism annotation with
 	 * value id=aspectMechanismId 
 	 */
-	public static boolean belongsToAspectMechanism(UnwovenClassFile classFile, String aspectMechanismId) {
-		AnnotationGen[] annotations = classFile.getJavaClass().getAnnotations();
-		
+	public static boolean belongsToAspectMechanism(JavaClass classFile, String aspectMechanismId) {
+		AnnotationGen[] annotations = classFile.getAnnotations();
+				
 		for(AnnotationGen annot : annotations)
-			if(annot.getTypeName().equals("awesome.platform.annotations.AwAspectMechanism")){
+			if(annot.getTypeName().equals(ASPECT_MECHANISM_ANNOTATION)){
 				ElementNameValuePairGen elem = (ElementNameValuePairGen) annot.getValues().get(0);
 				String id = elem.getValue().stringifyValue();
 				if(id.equals(aspectMechanismId))
@@ -45,6 +48,7 @@ public class AwesomeCore {
 		
 		return false;
 	}
+	
 	public static AspectClass create(UnwovenClassFile classFile) {
 		AspectClass result = new AspectClass(classFile);
 		return result;
@@ -52,6 +56,14 @@ public class AwesomeCore {
 
 	public static boolean hasAnnotation(LazyMethodGen mg, String annotName) {
 		AnnotationGen[] annotations = mg.getMethod().getAnnotations();
+		for(AnnotationGen annot : annotations){
+			if(annot.getTypeName().equals(annotName))
+				return true;
+		}	
+		return false;
+	}
+	public static boolean hasAnnotation(JavaClass clazz, String annotName) {
+		AnnotationGen[] annotations = clazz.getAnnotations();
 		for(AnnotationGen annot : annotations){
 			if(annot.getTypeName().equals(annotName))
 				return true;

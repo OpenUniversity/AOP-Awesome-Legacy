@@ -78,7 +78,7 @@ public aspect ValidatorMechanism extends AbstractWeaver {
 			UnwovenClassFile classFile = (UnwovenClassFile) i.next();
 			 	
 			if(!AwesomeCore.hasAspectAnnotation(classFile) || 
-				!AwesomeCore.belongsToAspectMechanism(classFile, getAspectMechanismId())) {
+				!AwesomeCore.belongsToAspectMechanism(classFile.getJavaClass(), getAspectMechanismId())) {
 				continue;
 			}
 			System.out.println("Found " + getAspectMechanismId() + " aspect class: " + classFile.getClassName() + ".");
