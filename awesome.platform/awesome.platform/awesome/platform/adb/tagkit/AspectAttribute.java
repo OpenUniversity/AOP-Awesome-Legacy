@@ -69,7 +69,7 @@ public class AspectAttribute extends SourceLineContainingTag {
 		fileName = aspectClazz.getFileName();					
 		filePath = aspectClazz.getName().replace(".", "\\");
 		
-		mechName = mech.getName();
+		mechName = mech.getId();
 		
 		advices = mech.getEffects(aspectClazz);
 	}

@@ -119,7 +119,7 @@ public aspect ValidatorMechanism extends AbstractWeaver {
 	}
 
 	@Override
-	public String getName() {
+	public String getId() {
 		return getAspectMechanismId();
 	}
 }

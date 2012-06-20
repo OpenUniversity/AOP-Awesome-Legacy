@@ -52,7 +52,7 @@ public privileged aspect COOLWeaver extends AbstractWeaver {
 
 	Map<String, List<IEffect>> classToEffects = new HashMap<String,  List<IEffect>>();
 	
-	public String getName()
+	public String getId()
 	{
 		return "COOL";
 	}

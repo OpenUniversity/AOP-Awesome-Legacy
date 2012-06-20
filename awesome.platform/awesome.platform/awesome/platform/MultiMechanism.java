@@ -72,7 +72,7 @@ public class MultiMechanism
 			names = new LinkedList<String>();
 			for(IMechanism m : mechanisms)
 			{
-				names.add(m.getName());
+				names.add(m.getId());
 			}
 		}
 		

@@ -1,4 +1,4 @@
-package ajplugin;
+package awesome.platform;
 
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
@@ -37,6 +37,7 @@ import org.aspectj.util.PartialOrder;
 import org.aspectj.weaver.AdviceKind;
 import org.aspectj.weaver.AjAttribute;
 import org.aspectj.weaver.AjcMemberMaker;
+import org.aspectj.weaver.AnnotationAJ;
 import org.aspectj.weaver.BCException;
 import org.aspectj.weaver.ConcreteTypeMunger;
 import org.aspectj.weaver.IntMap;
@@ -58,8 +59,9 @@ import awesome.platform.*;
 import com.sun.org.apache.bcel.internal.generic.IndexedInstruction;
 
 
-
-public aspect AJWeaver extends AbstractWeaver {
+public abstract aspect AwesomeMechanism extends AbstractWeaver {
+	
+	public static final String ASPECTJ_MECHANISM_ID = "aspectj";
 
 	private Map<BcelShadow, List<ShadowMunger>> shadowMungers = new HashMap<BcelShadow, List<ShadowMunger>>();
 
@@ -68,19 +70,29 @@ public aspect AJWeaver extends AbstractWeaver {
 	private List<ShadowMunger> mungers = new ArrayList<ShadowMunger>();
 
 	BcelClassWeaver itdWeaver;
-
-	public String getId()
-	{
-		return "AspectJ";
+	
+	public boolean handledByMe(LazyClassGen azpect) {
+		// method is supposed to be called only for aspects
+		if(!azpect.getType().isAspect()) {
+			System.err.println("Warning: " + getId() + ".handledByMe called with non-aspect class");
+			return false;			
+		}
+		// in case @AwAspectMechanism does not exist, we return true if our mechanism is AspectJ
+		if(!AwesomeCore.hasAnnotation(azpect.getJavaClass(world), AwesomeCore.ASPECT_MECHANISM_ANNOTATION))
+			if(getId().toLowerCase().equals(ASPECTJ_MECHANISM_ID))
+				return true;
+			else
+				return false;
+		
+		// now we check based on @AwAspectMechanism
+		if(AwesomeCore.belongsToAspectMechanism(azpect.getJavaClass(world), getId()))
+			return true;
+		
+		
+		return false;
 	}
 	
-	public boolean handledByMe(LazyClassGen aspectClazz)
-	{
-		return aspectClazz.getType().isAspect();
-	}
-	
-	public PerClause.Kind getPerClause(LazyClassGen aspectClazz)
-	{
+	public PerClause.Kind getPerClause(LazyClassGen aspectClazz) {
 		return aspectClazz.getType().getPerClause().getKind();
 	}
 	
@@ -104,6 +116,10 @@ public aspect AJWeaver extends AbstractWeaver {
 	
 	boolean around(MultiMechanism mm, LazyClassGen clazz):
 		transformClass(mm, clazz) {
+		
+		if(clazz.getType().isAspect() && !handledByMe(clazz))
+			return proceed(mm, clazz);
+		
 		itdWeaver = new BcelClassWeaver(world, clazz);
 		boolean result = itdWeaver.weaveNormalITDs();
 		mungers = world.getCrosscuttingMembersSet().getShadowMungers();
@@ -125,18 +141,12 @@ public aspect AJWeaver extends AbstractWeaver {
 		return itdWeaver.weaveLateITDs(result);
 	}
 
-	/*
-	 public void init(List addedSuperInitializersAsList,
-	 List addedThisInitializers, Set aspectsAffectingType) {
-	 setAddedSuperInitializersAsList(addedSuperInitializersAsList);
-	 setAddedThisInitializers(addedThisInitializers);
-	 this.aspectsAffectingType = aspectsAffectingType;
-	 resetInitializationShadows();
-	 resetShadowMungers();
-	 } */
-
 	List<BcelShadow> around(MultiMechanism mm, LazyMethodGen mg) :
 		reifyMethod(mm, mg) {
+		
+		if(mg.getEnclosingClass().getType().isAspect() && !handledByMe(mg.getEnclosingClass()))
+			return proceed(mm, mg);
+		
 		//Transforming synchronized methods 
 		if (mg.hasBody() && world.isJoinpointSynchronizationEnabled()
 				&& world.areSynchronizationPointcutsInUse()
@@ -179,6 +189,10 @@ public aspect AJWeaver extends AbstractWeaver {
 	List<BcelShadow> around(MultiMechanism mm, InstructionHandle ih,
 			LazyMethodGen mg, BcelShadow encl) : 
 		reifyInstr(mm, ih, mg, encl) {
+		
+		if(mg.getEnclosingClass().getType().isAspect() && !handledByMe(mg.getEnclosingClass()))
+			return proceed(mm, ih, mg, encl);
+		
 		if (!isSpecial(ih, mg, encl))
 			return proceed(mm, ih, mg, encl);
 		return reifySpecial(ih, mg, encl);
@@ -186,6 +200,10 @@ public aspect AJWeaver extends AbstractWeaver {
 
 	List<BcelShadow> around(MultiMechanism mm, InstructionList il,
 			LazyMethodGen mg, BcelShadow encl) : reifyIL(mm, il, mg, encl) {
+		
+		if(mg.getEnclosingClass().getType().isAspect() && !handledByMe(mg.getEnclosingClass()))
+			return proceed(mm, il, mg, encl);
+		
 		List<BcelShadow> result = proceed(mm, il, mg, encl);
 		List<BcelShadow> afterShadows = this.getShadowsAfter(mg, encl);
 		if (afterShadows != null)
@@ -202,10 +220,44 @@ public aspect AJWeaver extends AbstractWeaver {
 		List<ShadowMunger> matching = shadowMungers.get(shadow);
 		if (matching != null) {
 			for (ShadowMunger munger : matching)
-				if (munger instanceof BcelAdvice)
-					result.add((BcelAdvice) munger);
+				if (munger instanceof BcelAdvice) {
+					BcelAdvice advice = (BcelAdvice) munger;
+					if(isMyAdvice(advice))
+						result.add(advice);					
+				}
 		}
 		return result;
+	}
+	
+	
+	/**
+	 * The method checks whether the advice is defined in an aspect that
+	 * belongs to the mechanism. Currently the check is based on the name of
+	 * the declaring aspect, if it begins with the mechanism id (CamelCase) then
+	 * we return true. Otherwise we return false unless the mechanism
+	 * is AspectJ (for it no naming convention is required). We
+	 * should change that to an annotation-based check (Currently I can't find how to do
+	 * that).
+	 * @param advice
+	 * @return
+	 */
+	private boolean isMyAdvice(BcelAdvice advice) {
+		//ResolvedType[] annotations = advice.getConcreteAspect().getAnnotationTypes();
+		// currently, if the name of the declaring aspect begins with the mechanism id => true
+		String[] fullAspectName = advice.getDeclaringAspect().getName().split("\\.");
+		String aspectName = fullAspectName[fullAspectName.length - 1];
+		if(aspectName.startsWith(getId()) || aspectName.startsWith(capitalize(getId())))
+			return true;
+		
+		// we do not require a naming convention for AspectJ aspects:
+		if(getId().toLowerCase().equals(ASPECTJ_MECHANISM_ID))
+			return true;
+		else
+			return false;
+	}
+	private String capitalize(String str) {
+		if(str.length() == 0) return str;
+		return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
 	}
 
 	/**
@@ -214,7 +266,7 @@ public aspect AJWeaver extends AbstractWeaver {
 	 * PartialOrder.sort(mungers) method. In case of success (i.e., no circular
 	 * dependencies), the mungers field is reset with the ordered set. very
 	 * simple.
-	 * 
+	 *  
 	 */
 	public List<IEffect> order(BcelShadow shadow, List<IEffect> effects) {
 
@@ -1432,7 +1484,7 @@ public static void transformSynchronizedMethod(
 	 * @param fact
 	 *            an instruction factory for recipient
 	 */
-	static InstructionList genInlineInstructions(AJWeaver AJM,
+	static InstructionList genInlineInstructions(AwesomeMechanism AJM,
 			LazyMethodGen donor, LazyMethodGen recipient, IntMap frameEnv,
 			InstructionFactory fact, boolean keepReturns) {
 		InstructionList footer = new InstructionList();
@@ -1642,7 +1694,7 @@ public static void transformSynchronizedMethod(
 	 *            the instructionHandle in recipient's body holding the call we
 	 *            want to inline.
 	 */
-	public static void inlineMethod(AJWeaver AJM, LazyMethodGen donor,
+	public static void inlineMethod(AwesomeMechanism AJM, LazyMethodGen donor,
 			LazyMethodGen recipient, InstructionHandle call) {
 		// assert recipient.contains(call)
 

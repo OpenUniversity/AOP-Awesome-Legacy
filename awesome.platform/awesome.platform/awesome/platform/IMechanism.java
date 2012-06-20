@@ -16,5 +16,5 @@ public interface IMechanism
 	
 	public PerClause.Kind getPerClause(LazyClassGen aspectClazz);
 	
-	public String getName();
+	public String getId();
 }

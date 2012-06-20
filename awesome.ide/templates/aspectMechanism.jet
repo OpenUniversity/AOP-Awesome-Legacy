@@ -4,70 +4,10 @@
 <%String id = ((String[])argument)[2];%>
 package <%=packageName%>;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Iterator;
-import org.aspectj.weaver.bcel.BcelShadow;
-import org.aspectj.weaver.bcel.LazyClassGen;
-import org.aspectj.weaver.bcel.UnwovenClassFile;
-import org.aspectj.weaver.IClassFileProvider;
-import awesome.platform.*;
+import awesome.platform.AwesomeMechanism;
 
-public aspect <%=aspectName%> extends AbstractWeaver {
-	private static final String NAME = "<%=id%>";
-	private List<AspectClass> aspectClasses = new ArrayList<AspectClass>();
-	
-	@Override
-	public List<IEffect> match(BcelShadow shadow) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<IEffect> order(BcelShadow shadow, List<IEffect> effects) {
-		return effects;
-	}
-	
-	@Override
-	public String getName() {
-		return NAME;
-	}
-	
-	/*
-	 * Implement these two methods for adding debug support
-	 */
-	@Override
-	public List<IEffect> getEffects(LazyClassGen aspectClazz) {
-		return new ArrayList<IEffect>();
-	}
-	@Override
-	public boolean handledByMe(LazyClassGen aspectClazz) {
-		return false;
-	}
-	
-	@Override
-	public void setInputFiles(IClassFileProvider inputClasses) {
-		super.setInputFiles(inputClasses);
-		
-		System.out.println(getName() + ".setInputFiles...");
-		for (Iterator i = inputClasses.getClassFileIterator(); i.hasNext();) {
-			UnwovenClassFile classFile = (UnwovenClassFile) i.next();
-			 	
-			if(!AwesomeCore.hasAspectAnnotation(classFile) || 
-				!AwesomeCore.belongsToAspectMechanism(classFile, getName())) {
-				continue;
-			}
-			System.out.println("Found " + getName() + " aspect class: " + classFile.getClassName() + ".");
-			
-			AspectClass ac = AwesomeCore.create(classFile);
-			
-			aspectClasses.add(ac);
-		}
-		 
-		initializeUserFields();
-	}
-	
-	private void initializeUserFields() {
-		// TODO Add initialization code for user defined fields
+public aspect <%=aspectName%> extends AwesomeMechanism {
+	public String getId() {
+		return "<%=id%>";
 	}
 }
