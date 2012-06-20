@@ -177,9 +177,4 @@ public class MultiMechanismProject extends MechanismProject {
 			if(!result.contains(capitalize(adv.getMechanism()))) result.add(capitalize(adv.getMechanism()));
 		return result;
 	}
-	private String capitalize(String str) {
-		char[] stringArray = str.toCharArray();
-		stringArray[0] = Character.toUpperCase(stringArray[0]);
-		return new String(stringArray);
-	}
 }

@@ -95,8 +95,8 @@ public class AspectMechanismProject extends MechanismProject {
 		
 		// generate an aspect mechanism within the package
 		StringBuffer buffer = new StringBuffer();
-		buffer.append(new AspectMechanismGen().generate(new String[]{packageName, dsalName + "Mechanism", dsalName}));
-		pack.createCompilationUnit(dsalName + "Mechanism" + ".aj", buffer.toString(), false, null);
+		buffer.append(new AspectMechanismGen().generate(new String[]{packageName, capitalize(dsalName) + "Mechanism", dsalName}));
+		pack.createCompilationUnit(capitalize(dsalName) + "Mechanism" + ".aj", buffer.toString(), false, null);
 	}
 	private void createManifestFile(IJavaProject javaProj, String dsalName) {
 		IProject project = javaProj.getProject();
