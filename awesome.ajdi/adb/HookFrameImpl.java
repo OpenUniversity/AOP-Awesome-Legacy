@@ -56,7 +56,6 @@ public class HookFrameImpl implements HookFrame {
 		this.jpd = jpd;
 		this.pas = pas;
 		this.target = target;
-		this.target = target;
 	}
 
 	private ShadowMaster master;

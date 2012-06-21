@@ -58,10 +58,6 @@ public class MethodIdentifier {
 			throw new IllegalArgumentException();
 		this.methodname = methodname;
 		this.methodsig = methodsig;
-		//YA
-		//this.methodname = (methodname == null ? methodname : "<null>");
-		//this.methodsig = (methodsig == null ? methodsig : "<null>");
-		//YA
 	}
 	
 	public void complete(String clazz){

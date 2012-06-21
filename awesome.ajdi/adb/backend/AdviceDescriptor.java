@@ -56,47 +56,8 @@ public class AdviceDescriptor {
 	private String effectType;	
 	private Integer[] sourceLines;
 
-	/*
-	public AdviceDescriptor(int type, String file,int startln, int endln, String aspect,String container, 
-			String methodname, String methodsig, String effectType, Integer[] sourceLines, int[] argIndices,String[] argNames,
-			BindingDescriptor[] bindings) {
-		super();
-		this.type = type;
-		this.location = new SourceLocationDescriptor(file,startln,endln);
-		this.aspect = aspect;
-		this.container = new MethodIdentifier(container,methodname,methodsig);
-		this.bindings = bindings;
-		this.argIndices = argIndices;
-		this.argNames = argNames;
-		
-		//AWDB
-		this.effectType = effectType;
-		this.sourceLines = sourceLines;
-		
-	}
-*/
 
-	/**
-	 * 
-	 * DANGER: INCOMPLETE STATE: NEEDS: ASPECT, CONTAINER
-	 */
-	/*
-	public AdviceDescriptor(int type,String file, int startln, int endln, String methodname, String methodsig, 
-			String effectType, Integer[] sourceLines, int[] argIndices,String[] argNames,BindingDescriptor[] bindings) {
-		super();
-		this.location = new SourceLocationDescriptor(file,startln,endln);
-		this.type = type;
-		this.container = new MethodIdentifier(methodname,methodsig);
-		this.bindings = bindings;
-		this.argIndices = argIndices;
-		this.argNames = argNames;
-		
-		// AWDB
-		this.effectType = effectType;
-		this.sourceLines = sourceLines;
-		
-	}
-*/
+
 	public void complete(String aspect,String container){
 		this.container.complete(container);
 		this.aspect = aspect;
