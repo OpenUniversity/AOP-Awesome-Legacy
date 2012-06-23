@@ -4,7 +4,7 @@
 <%String mechanismId = ((String[])argument)[2];%>
 package <%=packageName%>;
 
-import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.*;
 import awesome.platform.annotations.AwAspectMechanism;
 
 @Aspect

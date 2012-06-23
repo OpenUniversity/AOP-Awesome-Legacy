@@ -15,7 +15,7 @@ public aspect ReifyWeavingTracer {
 
 	pointcut transform(LazyClassGen clazz):
 		execution(boolean MultiMechanism.transform(LazyClassGen)) && args(clazz);
-	pointcut reify(LazyClassGen clazz) :
+	pointcut reify(LazyClassGen clazz) : 
 		execution(List<BcelShadow> MultiMechanism.reify(LazyClassGen)) && args(clazz);
 	
 	// notifying the logger upon entering the weaving process of a new class

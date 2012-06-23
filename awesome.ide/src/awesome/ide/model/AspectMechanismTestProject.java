@@ -13,6 +13,7 @@ import org.eclipse.jdt.core.IJavaProject;
 
 import awesome.ide.Activator;
 import awesome.ide.gen.TestappAspect;
+import awesome.ide.gen.TestappExecuteLaunchGen;
 import awesome.ide.gen.TestappLaunchGen;
 import awesome.ide.gen.TestappMain;
 import awesome.ide.gen.TestappTestCaseGen;
@@ -25,7 +26,8 @@ public class AspectMechanismTestProject extends MechanismProject {
 	private static final String ASPECTS_FOLDER = "aspects";
 	private static final String BASE_FOLDER = "base";
 	private static final String TESTAPP_MAIN = "Main";
-	private static final String TESTAPP_LAUNCH = TESTAPP_PREFIX + TESTAPP_ID + ".weave.launch";
+	private static final String TESTAPP_WEAVE_LAUNCH = TESTAPP_PREFIX + TESTAPP_ID + ".weave.launch";
+	private static final String TESTAPP_EXECUTE_LAUNCH = TESTAPP_PREFIX + TESTAPP_ID + ".execute.launch";
 	private static final String WEAVING_TRACE_FOLDER = "awtrace";
 	private AspectMechanismProject amProj;
 	
@@ -107,9 +109,12 @@ public class AspectMechanismTestProject extends MechanismProject {
 			baseFolder.create(false, true, null);
 			source = toInputStream(new TestappMain().generate(new String[]{BASE_FOLDER}));
 			baseFolder.getFile(TESTAPP_MAIN + ".java").create(source, false, null);
-			// create a launch configuration file
+			// create a weave.launch file
 			source = toInputStream(new TestappLaunchGen().generate(new String[]{getName(), TESTAPP_PREFIX + TESTAPP_ID}));
-			folder.getFile(TESTAPP_LAUNCH).create(source, false, null);
+			folder.getFile(TESTAPP_WEAVE_LAUNCH).create(source, false, null);
+			// create a execute.launch file
+			source = toInputStream(new TestappExecuteLaunchGen().generate(new String[]{getName(), TESTAPP_PREFIX + TESTAPP_ID}));
+			folder.getFile(TESTAPP_EXECUTE_LAUNCH).create(source, false, null);
 			
 		} catch (CoreException e) {
 			throw new RuntimeException(e);
