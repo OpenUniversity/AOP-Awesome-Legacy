@@ -22,9 +22,10 @@ public aspect ReifyWeavingTracer {
 	before(LazyClassGen clazz) : transform(clazz) {
 		///System.out.println("tracing enabled: " + tracingEnabled);
 		if(tracingEnabled) {
-			if(writer == null)
+			if(writer == null) {
 				writer = new WeavingTraceWriter();
-				writer.beginWeaving(clazz.getClassName());			
+			}
+			writer.beginWeaving(clazz.getClassName());			
 		}
 	}
 	// notifying the logger that the weaving ended
@@ -38,6 +39,7 @@ public aspect ReifyWeavingTracer {
 	after(LazyClassGen clazz) returning(List<BcelShadow> shadows) : reify(clazz) {
 		if(tracingEnabled) {
 			writer.numOfReifiedShadows(shadows.size());
+			writer.writeReifiedShadows(shadows);
 		}
 	}
 }

@@ -24,9 +24,9 @@ public class WeavingTraceManager {
 	 * @return
 	 */
 	public static WeavingTrace getTrace(String testapp, String clazz) {
-		File tracefile = new File(WeavingTraceWriter.WEAVING_TRACE_FOLDER + "/" + WeavingTraceWriter.getNameOfTraceFile(testapp));
+		File tracefile = WeavingTraceWriter.getTraceFile(testapp, clazz);
 		if(!tracefile.exists())
-			throw new RuntimeException("Weaving trace file " + WeavingTraceWriter.WEAVING_TRACE_FOLDER + "/" + WeavingTraceWriter.getNameOfTraceFile(testapp) + " does not exist");
+			throw new RuntimeException("Weaving trace file " + WeavingTraceWriter.getTraceFile(testapp, clazz) + " does not exist");
 		
 		return new WeavingTrace(testapp, clazz);
 	}
