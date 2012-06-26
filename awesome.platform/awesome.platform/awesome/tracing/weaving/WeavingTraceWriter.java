@@ -84,7 +84,8 @@ public class WeavingTraceWriter {
 	
 	public void writeReifiedShadows(List<BcelShadow> shadows) {
 		for (BcelShadow bcelShadow : shadows) {
-			buffer.append(REIFIED_SHADOW + bcelShadow.getSignature()).append(NEW_LINE);
+			//buffer.append(REIFIED_SHADOW + bcelShadow.getSignature()).append(NEW_LINE);
+			buffer.append(REIFIED_SHADOW + bcelShadow.getKind()).append(NEW_LINE);
 		}
 		
 	}
