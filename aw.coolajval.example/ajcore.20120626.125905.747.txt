@@ -1,0 +1,630 @@
+---- AspectJ Properties ---
+AspectJ Compiler 1.6.5 built on Thursday Jun 18, 2009 at 03:42:32 GMT
+---- Dump Properties ---
+Dump file: ajcore.20120626.125905.747.txt
+Dump reason: abort
+Dump on exception: true
+Dump at exit condition: abort
+---- System Properties ---
+java.runtime.name=Java(TM) SE Runtime Environment
+sun.boot.library.path=C:\Program Files\Java\jre6\bin
+java.vm.version=19.0-b09
+java.vm.vendor=Sun Microsystems Inc.
+java.vendor.url=http://java.sun.com/
+path.separator=;
+java.vm.name=Java HotSpot(TM) 64-Bit Server VM
+file.encoding.pkg=sun.io
+sun.java.launcher=SUN_STANDARD
+user.country=US
+sun.os.patch.level=
+java.vm.specification.name=Java Virtual Machine Specification
+user.dir=C:\Programs\Eclipse-3.6.2-SDK\eclipse\workspaces\awesome\aw.coolajval.example
+java.runtime.version=1.6.0_23-b05
+java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment
+java.endorsed.dirs=C:\Program Files\Java\jre6\lib\endorsed
+os.arch=amd64
+java.io.tmpdir=C:\Users\Oren\AppData\Local\Temp\
+line.separator=
+
+java.vm.specification.vendor=Sun Microsystems Inc.
+user.variant=
+os.name=Windows 7
+sun.jnu.encoding=Cp1255
+java.library.path=C:\Program Files\Java\jre6\bin;.;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\MiKTeX 2.9\miktex\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\WIDCOMM\Bluetooth Software\;C:\Program Files\WIDCOMM\Bluetooth Software\syswow64;C:\PROGRA~2\cvsnt;C:\Program Files\Java\jdk1.6.0_23\bin;C:\Programs\apache-ant-1.8.2\bin;C:\Program Files\SlikSvn\bin\;C:\Program Files\TortoiseSVN\bin;C:\Ruby193\bin;C:\Program Files (x86)\CVSNT\
+java.specification.name=Java Platform API Specification
+java.class.version=50.0
+sun.management.compiler=HotSpot 64-Bit Server Compiler
+os.version=6.1
+user.home=C:\Users\Oren
+user.timezone=Asia/Jerusalem
+java.awt.printerjob=sun.awt.windows.WPrinterJob
+file.encoding=Cp1252
+java.specification.version=1.6
+java.class.path=C:\Programs\Eclipse-3.6.2-SDK\eclipse\workspaces\awesome\aw.coolajval\bin;C:\Programs\Eclipse-3.6.2-SDK\eclipse\workspaces\awesome\awesome.platform\bin;C:\Programs\Eclipse-3.6.2-SDK\eclipse\plugins\org.junit_4.8.1.v4_8_1_v20100427-1100\junit.jar;C:\Programs\Eclipse-3.6.2-SDK\eclipse\plugins\org.hamcrest.core_1.1.0.v20090501071000.jar;C:\Programs\Eclipse-3.6.2-SDK\eclipse\plugins\org.aspectj.runtime_1.6.11.20110304135300\aspectjrt.jar;C:\Programs\Eclipse-3.6.2-SDK\eclipse\workspaces\awesome\awesome.platform\extmodules\jrockit.jar;C:\Programs\Eclipse-3.6.2-SDK\eclipse\workspaces\awesome\awesome.platform\extmodules\commons.jar;C:\Programs\Eclipse-3.6.2-SDK\eclipse\workspaces\awesome\awesome.platform\extmodules\asm-3.1.jar;C:\Programs\Eclipse-3.6.2-SDK\eclipse\workspaces\awesome\awesome.platform\extmodules\aspectjtools.jar;C:\Programs\Eclipse-3.6.2-SDK\eclipse\workspaces\awesome\aw.coolajval\extmodules\asm-3.1.jar;C:\Programs\Eclipse-3.6.2-SDK\eclipse\workspaces\awesome\aw.coolajval\extmodules\commons.jar;C:\Programs\Eclipse-3.6.2-SDK\eclipse\workspaces\awesome\aw.coolajval\extmodules\jrockit.jar;C:\Programs\Eclipse-3.6.2-SDK\eclipse\workspaces\awesome\aw.coolajval\extmodules\aspectjtools.jar;C:\aop\aspect-1.6.5-src\lib\aspectjrt.jar;C:\aop\aspect-1.6.5-src\lib\aspectjtools.jar
+user.name=Oren
+java.vm.specification.version=1.0
+java.home=C:\Program Files\Java\jre6
+sun.arch.data.model=64
+user.language=en
+java.specification.vendor=Sun Microsystems Inc.
+awt.toolkit=sun.awt.windows.WToolkit
+java.vm.info=mixed mode
+java.version=1.6.0_23
+java.ext.dirs=C:\Program Files\Java\jre6\lib\ext;C:\Windows\Sun\Java\lib\ext
+sun.boot.class.path=C:\Program Files\Java\jre6\lib\resources.jar;C:\Program Files\Java\jre6\lib\rt.jar;C:\Program Files\Java\jre6\lib\sunrsasign.jar;C:\Program Files\Java\jre6\lib\jsse.jar;C:\Program Files\Java\jre6\lib\jce.jar;C:\Program Files\Java\jre6\lib\charsets.jar;C:\Program Files\Java\jre6\lib\modules\jdk.boot.jar;C:\Program Files\Java\jre6\classes
+java.vendor=Sun Microsystems Inc.
+file.separator=\
+java.vendor.url.bug=http://java.sun.com/cgi-bin/bugreport.cgi
+sun.io.unicode.encoding=UnicodeLittle
+sun.cpu.endian=little
+sun.desktop=windows
+sun.cpu.isalist=amd64
+---- Command Line ---
+-1.5
+-outjar
+stack.jar
+src/base/Stack.java
+src/base/BoundedStack.java
+src/aspects/aspectj/LogAllToFile.aj
+src/aspects/cool/BoundedStackCoord.java
+src/aspects/validator/StackValidator.java
+---- Full Classpath ---
+C:\Program Files\Java\jre6\lib\resources.jar(1133382 bytes)
+C:\Program Files\Java\jre6\lib\rt.jar(44704363 bytes)
+C:\Program Files\Java\jre6\lib\sunrsasign.jar(missing)
+C:\Program Files\Java\jre6\lib\jsse.jar(569269 bytes)
+C:\Program Files\Java\jre6\lib\jce.jar(88256 bytes)
+C:\Program Files\Java\jre6\lib\charsets.jar(6695540 bytes)
+C:\Program Files\Java\jre6\lib\modules\jdk.boot.jar(missing)
+C:\Program Files\Java\jre6\classes(missing)
+C:\Program Files\Java\jre6\lib\ext\dnsns.jar(8239 bytes)
+C:\Program Files\Java\jre6\lib\ext\localedata.jar(833261 bytes)
+C:\Program Files\Java\jre6\lib\ext\sunjce_provider.jar(170239 bytes)
+C:\Programs\Eclipse-3.6.2-SDK\eclipse\workspaces\awesome\aw.coolajval\bin(7 entries)
+C:\Programs\Eclipse-3.6.2-SDK\eclipse\workspaces\awesome\awesome.platform\bin(2 entries)
+C:\Programs\Eclipse-3.6.2-SDK\eclipse\plugins\org.junit_4.8.1.v4_8_1_v20100427-1100\junit.jar(220183 bytes)
+C:\Programs\Eclipse-3.6.2-SDK\eclipse\plugins\org.hamcrest.core_1.1.0.v20090501071000.jar(27828 bytes)
+C:\Programs\Eclipse-3.6.2-SDK\eclipse\plugins\org.aspectj.runtime_1.6.11.20110304135300\aspectjrt.jar(116222 bytes)
+C:\Programs\Eclipse-3.6.2-SDK\eclipse\workspaces\awesome\awesome.platform\extmodules\jrockit.jar(1969 bytes)
+C:\Programs\Eclipse-3.6.2-SDK\eclipse\workspaces\awesome\awesome.platform\extmodules\commons.jar(286777 bytes)
+C:\Programs\Eclipse-3.6.2-SDK\eclipse\workspaces\awesome\awesome.platform\extmodules\asm-3.1.jar(43035 bytes)
+C:\Programs\Eclipse-3.6.2-SDK\eclipse\workspaces\awesome\aw.coolajval\extmodules\asm-3.1.jar(43035 bytes)
+C:\Programs\Eclipse-3.6.2-SDK\eclipse\workspaces\awesome\aw.coolajval\extmodules\commons.jar(286777 bytes)
+C:\Programs\Eclipse-3.6.2-SDK\eclipse\workspaces\awesome\aw.coolajval\extmodules\jrockit.jar(1969 bytes)
+C:\aop\aspect-1.6.5-src\lib\aspectjrt.jar(116039 bytes)
+---- Compiler Messages ---
+abort trouble in: 
+public class aspects.aspectj.LogAllToFile extends java.lang.Object:
+  private java.io.PrintStream out
+  private boolean caughtException
+  protected String indent
+  static boolean useAspect
+  private static Throwable ajc$initFailureCause
+  public static final aspects.aspectj.LogAllToFile ajc$perSingletonInstance
+  static void <clinit>():
+    catch java.lang.Throwable -> E0
+    |               ICONST_1   (line 51)
+    |               PUTSTATIC aspects.aspectj.LogAllToFile.useAspect Z
+    |               INVOKESTATIC aspects.aspectj.LogAllToFile.ajc$postClinit ()V   (line 6)
+    catch java.lang.Throwable -> E0
+                    GOTO L0
+                E0: ASTORE_0
+                    ALOAD_0
+                    PUTSTATIC aspects.aspectj.LogAllToFile.ajc$initFailureCause Ljava/lang/Throwable;
+                L0: RETURN
+  end static void <clinit>()
+
+  public void <init>():
+                    ALOAD_0     // Laspects/aspectj/LogAllToFile; this   (line 6)
+                    INVOKESPECIAL java.lang.Object.<init> ()V
+                    ALOAD_0     // Laspects/aspectj/LogAllToFile; this   (line 7)
+                    ACONST_NULL
+                    PUTFIELD aspects.aspectj.LogAllToFile.out Ljava/io/PrintStream;
+                    ALOAD_0     // Laspects/aspectj/LogAllToFile; this   (line 8)
+                    ICONST_0
+                    PUTFIELD aspects.aspectj.LogAllToFile.caughtException Z
+                    ALOAD_0     // Laspects/aspectj/LogAllToFile; this   (line 9)
+                    LDC ""
+                    PUTFIELD aspects.aspectj.LogAllToFile.indent Ljava/lang/String;
+                    RETURN   (line 6)
+  end public void <init>()
+
+  void ajc$pointcut$$scope$e3()    org.aspectj.weaver.MethodDeclarationLineNumber: 11:227
+:
+                    RETURN   (line 11)
+  end void ajc$pointcut$$scope$e3()
+
+  void ajc$pointcut$$scopeBefore$15b()    org.aspectj.weaver.MethodDeclarationLineNumber: 12:347
+:
+                    RETURN   (line 12)
+  end void ajc$pointcut$$scopeBefore$15b()
+
+  void ajc$pointcut$$scopeAround$18f()    org.aspectj.weaver.MethodDeclarationLineNumber: 13:399
+:
+                    RETURN   (line 13)
+  end void ajc$pointcut$$scopeAround$18f()
+
+  void ajc$pointcut$$scopeAfter$1b2()    org.aspectj.weaver.MethodDeclarationLineNumber: 14:434
+:
+                    RETURN   (line 14)
+  end void ajc$pointcut$$scopeAfter$1b2()
+
+  public void ajc$pointcut$$everything$1dd()    org.aspectj.weaver.MethodDeclarationLineNumber: 16:477
+:
+                    RETURN   (line 30)
+  end public void ajc$pointcut$$everything$1dd()
+
+  public void ajc$pointcut$$everythingBefore$395()    org.aspectj.weaver.MethodDeclarationLineNumber: 32:917
+:
+                    RETURN   (line 37)
+  end public void ajc$pointcut$$everythingBefore$395()
+
+  public void ajc$pointcut$$everythingAround$47d()    org.aspectj.weaver.MethodDeclarationLineNumber: 40:1149
+:
+                    RETURN   (line 45)
+  end public void ajc$pointcut$$everythingAround$47d()
+
+  public void ajc$pointcut$$everythingAfter$52e()    org.aspectj.weaver.MethodDeclarationLineNumber: 47:1326
+:
+                    RETURN   (line 49)
+  end public void ajc$pointcut$$everythingAfter$52e()
+
+  public void ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0(org.aspectj.lang.JoinPoint)    AdviceAttribute(before, (everythingBefore() && scopeBefore()), 2, 1425)
+:
+                    ALOAD_0     // Laspects/aspectj/LogAllToFile; this   (line 54)
+                    LDC "before"
+                    ALOAD_1     // Lorg/aspectj/lang/JoinPoint; thisJoinPoint
+                    INVOKEVIRTUAL aspects.aspectj.LogAllToFile.log (Ljava/lang/String;Lorg/aspectj/lang/JoinPoint;)V
+                    RETURN   (line 55)
+  end public void ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0(org.aspectj.lang.JoinPoint)
+
+  public void ajc$after$aspects_aspectj_LogAllToFile$2$44227cde(org.aspectj.lang.JoinPoint)    AdviceAttribute(after, (everythingAfter() && scopeAfter()), 2, 1727)
+:
+                    ALOAD_0     // Laspects/aspectj/LogAllToFile; this   (line 68)
+                    LDC "after"
+                    ALOAD_1     // Lorg/aspectj/lang/JoinPoint; thisJoinPoint
+                    INVOKEVIRTUAL aspects.aspectj.LogAllToFile.log (Ljava/lang/String;Lorg/aspectj/lang/JoinPoint;)V
+                    RETURN   (line 69)
+  end public void ajc$after$aspects_aspectj_LogAllToFile$2$44227cde(org.aspectj.lang.JoinPoint)
+
+  protected void log(String, org.aspectj.lang.JoinPoint)    org.aspectj.weaver.MethodDeclarationLineNumber: 75:1929
+:
+                    ALOAD_0     // Laspects/aspectj/LogAllToFile; this   (line 76)
+                    GETFIELD aspects.aspectj.LogAllToFile.caughtException Z
+                    IFEQ L0
+                    RETURN   (line 77)
+    catch java.lang.Exception -> E0
+    |           L0: ALOAD_0     // Laspects/aspectj/LogAllToFile; this   (line 79)
+    |               GETFIELD aspects.aspectj.LogAllToFile.out Ljava/io/PrintStream;
+    |               IFNONNULL L2
+    |               LDC "logFileName"   (line 80)
+    |               INVOKESTATIC java.lang.System.getProperty (Ljava/lang/String;)Ljava/lang/String;
+    |               ASTORE_3
+    |               ALOAD_3     // Ljava/lang/String; fileName   (line 81)
+    |               IFNONNULL L1
+    |               LDC "logAllToFile.out"   (line 82)
+    |               ASTORE_3     // Ljava/lang/String; fileName
+    |           L1: NEW java.io.FileOutputStream   (line 83)
+    |               DUP
+    |               ALOAD_3     // Ljava/lang/String; fileName
+    |               ICONST_1
+    |               INVOKESPECIAL java.io.FileOutputStream.<init> (Ljava/lang/String;Z)V
+    |               ASTORE 4
+    |               ALOAD_0     // Laspects/aspectj/LogAllToFile; this   (line 84)
+    |               NEW java.io.PrintStream
+    |               DUP
+    |               ALOAD 4     // Ljava/io/FileOutputStream; fout
+    |               INVOKESPECIAL java.io.PrintStream.<init> (Ljava/io/OutputStream;)V
+    |               PUTFIELD aspects.aspectj.LogAllToFile.out Ljava/io/PrintStream;
+    |           L2: ALOAD_0     // Laspects/aspectj/LogAllToFile; this   (line 86)
+    |               GETFIELD aspects.aspectj.LogAllToFile.out Ljava/io/PrintStream;
+    |               NEW java.lang.StringBuilder
+    |               DUP
+    |               ALOAD_0     // Laspects/aspectj/LogAllToFile; this
+    |               GETFIELD aspects.aspectj.LogAllToFile.indent Ljava/lang/String;
+    |               INVOKESTATIC java.lang.String.valueOf (Ljava/lang/Object;)Ljava/lang/String;
+    |               INVOKESPECIAL java.lang.StringBuilder.<init> (Ljava/lang/String;)V
+    |               ALOAD_1     // Ljava/lang/String; advType
+    |               INVOKEVIRTUAL java.lang.StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    |               LDC ": "
+    |               INVOKEVIRTUAL java.lang.StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    |               ALOAD_2     // Lorg/aspectj/lang/JoinPoint; jp
+    |               INVOKEINTERFACE org.aspectj.lang.JoinPoint.toLongString ()Ljava/lang/String;
+    |               INVOKEVIRTUAL java.lang.StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+    |               INVOKEVIRTUAL java.lang.StringBuilder.toString ()Ljava/lang/String;
+    |               INVOKEVIRTUAL java.io.PrintStream.println (Ljava/lang/String;)V
+    |               ALOAD_0     // Laspects/aspectj/LogAllToFile; this   (line 87)
+    |               GETFIELD aspects.aspectj.LogAllToFile.out Ljava/io/PrintStream;
+    |               INVOKEVIRTUAL java.io.PrintStream.flush ()V
+    catch java.lang.Exception -> E0
+                    GOTO L3
+                E0: ASTORE_3   (line 88)
+                    GETSTATIC java.lang.System.err Ljava/io/PrintStream;   (line 89)
+                    NEW java.lang.StringBuilder
+                    DUP
+                    LDC "Error in LogAllToFile: "
+                    INVOKESPECIAL java.lang.StringBuilder.<init> (Ljava/lang/String;)V
+                    ALOAD_3     // Ljava/lang/Exception; e
+                    INVOKEVIRTUAL java.lang.Exception.getMessage ()Ljava/lang/String;
+                    INVOKEVIRTUAL java.lang.StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;
+                    INVOKEVIRTUAL java.lang.StringBuilder.toString ()Ljava/lang/String;
+                    INVOKEVIRTUAL java.io.PrintStream.println (Ljava/lang/String;)V
+                    GETSTATIC java.lang.System.err Ljava/io/PrintStream;   (line 90)
+                    LDC "Logging is disabled!"
+                    INVOKEVIRTUAL java.io.PrintStream.println (Ljava/lang/String;)V
+                    ALOAD_0     // Laspects/aspectj/LogAllToFile; this   (line 91)
+                    ICONST_1
+                    PUTFIELD aspects.aspectj.LogAllToFile.caughtException Z
+                L3: RETURN   (line 93)
+  end protected void log(String, org.aspectj.lang.JoinPoint)
+
+  public static final boolean ajc$if$178()    org.aspectj.weaver.AjAttribute$AjSynthetic@72c743eb
+:
+                    GETSTATIC aspects.aspectj.LogAllToFile.useAspect Z   (line 12)
+                    IRETURN
+  end public static final boolean ajc$if$178()
+
+  public static aspects.aspectj.LogAllToFile aspectOf()    org.aspectj.weaver.AjAttribute$AjSynthetic@30419d05
+:
+                    GETSTATIC aspects.aspectj.LogAllToFile.ajc$perSingletonInstance Laspects/aspectj/LogAllToFile;   (line 1)
+                    IFNONNULL L0
+                    NEW org.aspectj.lang.NoAspectBoundException
+                    DUP
+                    LDC "aspects_aspectj_LogAllToFile"
+                    GETSTATIC aspects.aspectj.LogAllToFile.ajc$initFailureCause Ljava/lang/Throwable;
+                    INVOKESPECIAL org.aspectj.lang.NoAspectBoundException.<init> (Ljava/lang/String;Ljava/lang/Throwable;)V
+                    ATHROW
+                L0: GETSTATIC aspects.aspectj.LogAllToFile.ajc$perSingletonInstance Laspects/aspectj/LogAllToFile;
+                    ARETURN
+  end public static aspects.aspectj.LogAllToFile aspectOf()
+
+  public static boolean hasAspect()    org.aspectj.weaver.AjAttribute$AjSynthetic@221fd5e2
+:
+                    GETSTATIC aspects.aspectj.LogAllToFile.ajc$perSingletonInstance Laspects/aspectj/LogAllToFile;   (line 1)
+                    IFNULL L0
+                    ICONST_1
+                    IRETURN
+                L0: ICONST_0
+                    IRETURN
+  end public static boolean hasAspect()
+
+  private static void ajc$postClinit()    org.aspectj.weaver.AjAttribute$AjSynthetic@6e84cc09
+:
+                    NEW aspects.aspectj.LogAllToFile   (line 1)
+                    DUP
+                    INVOKESPECIAL aspects.aspectj.LogAllToFile.<init> ()V
+                    PUTSTATIC aspects.aspectj.LogAllToFile.ajc$perSingletonInstance Laspects/aspectj/LogAllToFile;
+                    RETURN
+  end private static void ajc$postClinit()
+end public class aspects.aspectj.LogAllToFile
+ -- (NullPointerException) null
+null
+java.lang.NullPointerException
+	at awesome.platform.adb.tagkit.AspectAttribute.<init>(AspectAttribute.java:62)
+	at awesome.platform.MultiMechanism.generateAspectTag(MultiMechanism.java:469)
+	at awesome.platform.MultiMechanism.transform(MultiMechanism.java:500)
+	at org.aspectj.weaver.bcel.BcelWeaver.weave(BcelWeaver.java:1771)
+	at org.aspectj.weaver.bcel.BcelWeaver.weaveWithoutDump(BcelWeaver.java:1729)
+	at org.aspectj.weaver.bcel.BcelWeaver.weaveAndNotify(BcelWeaver.java:1491)
+	at org.aspectj.weaver.bcel.BcelWeaver.weave(BcelWeaver.java:1277)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.weaveQueuedEntries(AjPipeliningCompilerAdapter.java:435)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.queueForWeaving(AjPipeliningCompilerAdapter.java:371)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.afterProcessing(AjPipeliningCompilerAdapter.java:358)
+	at org.aspectj.ajdt.internal.compiler.CompilerAdapter.ajc$after$org_aspectj_ajdt_internal_compiler_CompilerAdapter$5$6b855184(CompilerAdapter.aj:98)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.process(Compiler.java:652)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:392)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performCompilation(AjBuildManager.java:1003)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performBuild(AjBuildManager.java:267)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.batchBuild(AjBuildManager.java:181)
+	at org.aspectj.ajdt.ajc.AjdtCommand.doCommand(AjdtCommand.java:112)
+	at org.aspectj.ajdt.ajc.AjdtCommand.runCommand(AjdtCommand.java:60)
+	at org.aspectj.tools.ajc.Main.run(Main.java:355)
+	at org.aspectj.tools.ajc.Main.runMain(Main.java:234)
+	at org.aspectj.tools.ajc.Main.main(Main.java:84)
+
+abort trouble in: 
+public class aspects.cool.BoundedStackCoord extends java.lang.Object:
+  private int top [RuntimeInvisibleAnnotations]
+  private boolean full [RuntimeInvisibleAnnotations]
+  private boolean empty [RuntimeInvisibleAnnotations]
+  private cool.runtime.MethodState meth_pop_0
+  private cool.runtime.MethodState meth_push_1
+  public void <init>():
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 11)
+                    INVOKESPECIAL java.lang.Object.<init> ()V
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 26)
+                    ICONST_0
+                    PUTFIELD aspects.cool.BoundedStackCoord.top I
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 27)
+                    ICONST_0
+                    PUTFIELD aspects.cool.BoundedStackCoord.full Z
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 28)
+                    ICONST_1
+                    PUTFIELD aspects.cool.BoundedStackCoord.empty Z
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 30)
+                    NEW cool.runtime.MethodState
+                    DUP
+                    INVOKESPECIAL cool.runtime.MethodState.<init> ()V
+                    PUTFIELD aspects.cool.BoundedStackCoord.meth_pop_0 Lcool/runtime/MethodState;
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 31)
+                    NEW cool.runtime.MethodState
+                    DUP
+                    INVOKESPECIAL cool.runtime.MethodState.<init> ()V
+                    PUTFIELD aspects.cool.BoundedStackCoord.meth_push_1 Lcool/runtime/MethodState;
+                    RETURN   (line 11)
+  end public void <init>()
+
+  public synchronized void meth_pop_0_lock(base.BoundedStack)    org.aspectj.weaver.MethodDeclarationLineNumber: 35:1035
+:
+                    GOTO L1   (line 36)
+    catch java.lang.InterruptedException -> E0
+    |           L0: ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 40)
+    |               INVOKEVIRTUAL java.lang.Object.wait ()V
+    catch java.lang.InterruptedException -> E0
+                    GOTO L1
+                E0: POP
+                L1: ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 37)
+                    GETFIELD aspects.cool.BoundedStackCoord.meth_pop_0 Lcool/runtime/MethodState;
+                    INVOKEVIRTUAL cool.runtime.MethodState.isBusyByOtherThread ()Z
+                    IFNE L0
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 38)
+                    GETFIELD aspects.cool.BoundedStackCoord.meth_push_1 Lcool/runtime/MethodState;
+                    INVOKEVIRTUAL cool.runtime.MethodState.isBusyByOtherThread ()Z
+                    IFNE L0
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 39)
+                    INVOKESPECIAL aspects.cool.BoundedStackCoord.requires_pop_33109165_0 ()Z
+                    IFEQ L0   (line 36)
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 41)
+                    ALOAD_1     // Lbase/BoundedStack; thiz
+                    INVOKESPECIAL aspects.cool.BoundedStackCoord.on_entry_pop_33109165_0 (Lbase/BoundedStack;)V
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 42)
+                    GETFIELD aspects.cool.BoundedStackCoord.meth_pop_0 Lcool/runtime/MethodState;
+                    INVOKEVIRTUAL cool.runtime.MethodState.in ()V
+                    RETURN   (line 43)
+  end public synchronized void meth_pop_0_lock(base.BoundedStack)
+
+  public synchronized void meth_pop_0_unlock(base.BoundedStack)    org.aspectj.weaver.MethodDeclarationLineNumber: 47:1483
+:
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 48)
+                    GETFIELD aspects.cool.BoundedStackCoord.meth_pop_0 Lcool/runtime/MethodState;
+                    INVOKEVIRTUAL cool.runtime.MethodState.out ()V
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 49)
+                    ALOAD_1     // Lbase/BoundedStack; thiz
+                    INVOKESPECIAL aspects.cool.BoundedStackCoord.on_exit_pop_33109165_0 (Lbase/BoundedStack;)V
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 50)
+                    INVOKEVIRTUAL java.lang.Object.notifyAll ()V
+                    RETURN   (line 51)
+  end public synchronized void meth_pop_0_unlock(base.BoundedStack)
+
+  public synchronized void meth_push_1_lock(base.BoundedStack)    org.aspectj.weaver.MethodDeclarationLineNumber: 55:1771
+:
+                    GOTO L1   (line 57)
+    catch java.lang.InterruptedException -> E0
+    |           L0: ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 61)
+    |               INVOKEVIRTUAL java.lang.Object.wait ()V
+    catch java.lang.InterruptedException -> E0
+                    GOTO L1
+                E0: POP
+                L1: ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 58)
+                    GETFIELD aspects.cool.BoundedStackCoord.meth_push_1 Lcool/runtime/MethodState;
+                    INVOKEVIRTUAL cool.runtime.MethodState.isBusyByOtherThread ()Z
+                    IFNE L0
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 59)
+                    GETFIELD aspects.cool.BoundedStackCoord.meth_pop_0 Lcool/runtime/MethodState;
+                    INVOKEVIRTUAL cool.runtime.MethodState.isBusyByOtherThread ()Z
+                    IFNE L0
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 60)
+                    INVOKESPECIAL aspects.cool.BoundedStackCoord.requires_push_15789782_0 ()Z
+                    IFEQ L0   (line 57)
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 62)
+                    ALOAD_1     // Lbase/BoundedStack; thiz
+                    INVOKESPECIAL aspects.cool.BoundedStackCoord.on_entry_push_15789782_0 (Lbase/BoundedStack;)V
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 63)
+                    GETFIELD aspects.cool.BoundedStackCoord.meth_push_1 Lcool/runtime/MethodState;
+                    INVOKEVIRTUAL cool.runtime.MethodState.in ()V
+                    RETURN   (line 64)
+  end public synchronized void meth_push_1_lock(base.BoundedStack)
+
+  public synchronized void meth_push_1_unlock(base.BoundedStack)    org.aspectj.weaver.MethodDeclarationLineNumber: 68:2281
+:
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 69)
+                    GETFIELD aspects.cool.BoundedStackCoord.meth_push_1 Lcool/runtime/MethodState;
+                    INVOKEVIRTUAL cool.runtime.MethodState.out ()V
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 70)
+                    ALOAD_1     // Lbase/BoundedStack; thiz
+                    INVOKESPECIAL aspects.cool.BoundedStackCoord.on_exit_push_15789782_0 (Lbase/BoundedStack;)V
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 71)
+                    INVOKEVIRTUAL java.lang.Object.notifyAll ()V
+                    RETURN   (line 72)
+  end public synchronized void meth_push_1_unlock(base.BoundedStack)
+
+  private boolean requires_pop_33109165_0()    org.aspectj.weaver.MethodDeclarationLineNumber: 74:2496
+:
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 75)
+                    GETFIELD aspects.cool.BoundedStackCoord.empty Z
+                    IFEQ L0
+                    ICONST_0
+                    GOTO L1
+                L0: ICONST_1
+                L1: IRETURN
+  end private boolean requires_pop_33109165_0()
+
+  private boolean requires_push_15789782_0()    org.aspectj.weaver.MethodDeclarationLineNumber: 78:2655
+:
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 79)
+                    GETFIELD aspects.cool.BoundedStackCoord.full Z
+                    IFEQ L0
+                    ICONST_0
+                    GOTO L1
+                L0: ICONST_1
+                L1: IRETURN
+  end private boolean requires_push_15789782_0()
+
+  private void on_entry_pop_33109165_0(base.BoundedStack)    org.aspectj.weaver.MethodDeclarationLineNumber: 82:2791
+:
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 83)
+                    DUP
+                    GETFIELD aspects.cool.BoundedStackCoord.top I
+                    ICONST_1
+                    ISUB
+                    PUTFIELD aspects.cool.BoundedStackCoord.top I
+                    RETURN   (line 84)
+  end private void on_entry_pop_33109165_0(base.BoundedStack)
+
+  private void on_entry_push_15789782_0(base.BoundedStack)    org.aspectj.weaver.MethodDeclarationLineNumber: 86:2971
+:
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 87)
+                    DUP
+                    GETFIELD aspects.cool.BoundedStackCoord.top I
+                    ICONST_1
+                    IADD
+                    PUTFIELD aspects.cool.BoundedStackCoord.top I
+                    RETURN   (line 88)
+  end private void on_entry_push_15789782_0(base.BoundedStack)
+
+  private void on_exit_pop_33109165_0(base.BoundedStack)    org.aspectj.weaver.MethodDeclarationLineNumber: 90:3132
+:
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 91)
+                    ICONST_0
+                    PUTFIELD aspects.cool.BoundedStackCoord.full Z
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 92)
+                    GETFIELD aspects.cool.BoundedStackCoord.top I
+                    IFNE L0
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 93)
+                    ICONST_1
+                    PUTFIELD aspects.cool.BoundedStackCoord.empty Z
+                L0: RETURN   (line 94)
+  end private void on_exit_pop_33109165_0(base.BoundedStack)
+
+  private void on_exit_push_15789782_0(base.BoundedStack)    org.aspectj.weaver.MethodDeclarationLineNumber: 97:3373
+:
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 98)
+                    ICONST_0
+                    PUTFIELD aspects.cool.BoundedStackCoord.empty Z
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 99)
+                    GETFIELD aspects.cool.BoundedStackCoord.top I
+                    I2D
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this
+                    ALOAD_1     // Lbase/BoundedStack; thiz
+                    INVOKESPECIAL aspects.cool.BoundedStackCoord._ref0 (Lbase/BoundedStack;)D
+                    DCMPL
+                    IFNE L0
+                    ALOAD_0     // Laspects/cool/BoundedStackCoord; this   (line 100)
+                    ICONST_1
+                    PUTFIELD aspects.cool.BoundedStackCoord.full Z
+                L0: RETURN   (line 103)
+  end private void on_exit_push_15789782_0(base.BoundedStack)
+
+  private double _ref0(base.BoundedStack)    org.aspectj.weaver.MethodDeclarationLineNumber: 105:3629
+:
+                    DCONST_0   (line 106)
+                    DRETURN
+  end private double _ref0(base.BoundedStack)
+end public class aspects.cool.BoundedStackCoord
+ -- (NullPointerException) null
+null
+java.lang.NullPointerException
+	at awesome.platform.adb.tagkit.AspectAttribute.<init>(AspectAttribute.java:62)
+	at awesome.platform.MultiMechanism.generateAspectTag(MultiMechanism.java:469)
+	at awesome.platform.MultiMechanism.transform(MultiMechanism.java:500)
+	at org.aspectj.weaver.bcel.BcelWeaver.weave(BcelWeaver.java:1771)
+	at org.aspectj.weaver.bcel.BcelWeaver.weaveWithoutDump(BcelWeaver.java:1729)
+	at org.aspectj.weaver.bcel.BcelWeaver.weaveAndNotify(BcelWeaver.java:1491)
+	at org.aspectj.weaver.bcel.BcelWeaver.weave(BcelWeaver.java:1277)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.weaveQueuedEntries(AjPipeliningCompilerAdapter.java:435)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.queueForWeaving(AjPipeliningCompilerAdapter.java:371)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.afterProcessing(AjPipeliningCompilerAdapter.java:358)
+	at org.aspectj.ajdt.internal.compiler.CompilerAdapter.ajc$after$org_aspectj_ajdt_internal_compiler_CompilerAdapter$5$6b855184(CompilerAdapter.aj:98)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.process(Compiler.java:652)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:392)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performCompilation(AjBuildManager.java:1003)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performBuild(AjBuildManager.java:267)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.batchBuild(AjBuildManager.java:181)
+	at org.aspectj.ajdt.ajc.AjdtCommand.doCommand(AjdtCommand.java:112)
+	at org.aspectj.ajdt.ajc.AjdtCommand.runCommand(AjdtCommand.java:60)
+	at org.aspectj.tools.ajc.Main.run(Main.java:355)
+	at org.aspectj.tools.ajc.Main.runMain(Main.java:234)
+	at org.aspectj.tools.ajc.Main.main(Main.java:84)
+
+abort trouble in: 
+public class aspects.validator.StackValidator extends java.lang.Object:
+  public void <init>():
+                    ALOAD_0     // Laspects/validator/StackValidator; this   (line 14)
+                    INVOKESPECIAL java.lang.Object.<init> ()V
+                    RETURN
+  end public void <init>()
+
+  public static void validate_Stack(Integer)    org.aspectj.weaver.MethodDeclarationLineNumber: 15:446
+:
+                    ALOAD_0     // Ljava/lang/Integer; capacity   (line 16)
+                    INVOKEVIRTUAL java.lang.Integer.intValue ()I
+                    IFGT L0
+                    NEW java.lang.RuntimeException   (line 17)
+                    DUP
+                    LDC "Input Validation failed for method Stack(int capacity). Cause: !(capacity > 0)"
+                    INVOKESPECIAL java.lang.RuntimeException.<init> (Ljava/lang/String;)V
+                    ATHROW
+                L0: RETURN   (line 19)
+  end public static void validate_Stack(Integer)
+
+  public static void validate_push(Object)    org.aspectj.weaver.MethodDeclarationLineNumber: 20:652
+:
+                    ALOAD_0     // Ljava/lang/Object; obj   (line 22)
+                    INVOKESTATIC awesome.validator.ValidationUtils.string (Ljava/lang/Object;)Z
+                    IFNE L0
+                    NEW java.lang.RuntimeException   (line 23)
+                    DUP
+                    LDC "Input Validation failed for method push(Object obj). Cause: !string(obj)"
+                    INVOKESPECIAL java.lang.RuntimeException.<init> (Ljava/lang/String;)V
+                    ATHROW
+                L0: ALOAD_0     // Ljava/lang/Object; obj   (line 25)
+                    INVOKESTATIC awesome.validator.ValidationUtils.email (Ljava/lang/Object;)Z
+                    IFNE L1
+                    NEW java.lang.RuntimeException   (line 26)
+                    DUP
+                    LDC "Input Validation failed for method push(Object obj). Cause: !email(obj)"
+                    INVOKESPECIAL java.lang.RuntimeException.<init> (Ljava/lang/String;)V
+                    ATHROW
+                L1: RETURN   (line 28)
+  end public static void validate_push(Object)
+end public class aspects.validator.StackValidator
+ -- (NullPointerException) null
+null
+java.lang.NullPointerException
+	at awesome.platform.adb.tagkit.AspectAttribute.<init>(AspectAttribute.java:62)
+	at awesome.platform.MultiMechanism.generateAspectTag(MultiMechanism.java:469)
+	at awesome.platform.MultiMechanism.transform(MultiMechanism.java:500)
+	at org.aspectj.weaver.bcel.BcelWeaver.weave(BcelWeaver.java:1771)
+	at org.aspectj.weaver.bcel.BcelWeaver.weaveWithoutDump(BcelWeaver.java:1729)
+	at org.aspectj.weaver.bcel.BcelWeaver.weaveAndNotify(BcelWeaver.java:1491)
+	at org.aspectj.weaver.bcel.BcelWeaver.weave(BcelWeaver.java:1277)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.weaveQueuedEntries(AjPipeliningCompilerAdapter.java:435)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.queueForWeaving(AjPipeliningCompilerAdapter.java:371)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.afterProcessing(AjPipeliningCompilerAdapter.java:358)
+	at org.aspectj.ajdt.internal.compiler.CompilerAdapter.ajc$after$org_aspectj_ajdt_internal_compiler_CompilerAdapter$5$6b855184(CompilerAdapter.aj:98)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.process(Compiler.java:652)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:392)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performCompilation(AjBuildManager.java:1003)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performBuild(AjBuildManager.java:267)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.batchBuild(AjBuildManager.java:181)
+	at org.aspectj.ajdt.ajc.AjdtCommand.doCommand(AjdtCommand.java:112)
+	at org.aspectj.ajdt.ajc.AjdtCommand.runCommand(AjdtCommand.java:60)
+	at org.aspectj.tools.ajc.Main.run(Main.java:355)
+	at org.aspectj.tools.ajc.Main.runMain(Main.java:234)
+	at org.aspectj.tools.ajc.Main.main(Main.java:84)
+
+warning at C:\Programs\Eclipse-3.6.2-SDK\eclipse\workspaces\awesome\aw.coolajval.example\src\aspects\aspectj\LogAllToFile.aj:67::0 advice defined in aspects.aspectj.LogAllToFile has not been applied [Xlint:adviceDidNotMatch]
+warning at C:\Programs\Eclipse-3.6.2-SDK\eclipse\workspaces\awesome\aw.coolajval.example\src\aspects\aspectj\LogAllToFile.aj:53::0 advice defined in aspects.aspectj.LogAllToFile has not been applied [Xlint:adviceDidNotMatch]
+---- org.aspectj.weaver.bcel.BcelWorld@3d434234 ----
+Shadow mungers:
+(after(extraFlags: 2): ((((((((((!within(aspects.aspectj.LogAllToFile) && !within(aspects.validator.StackValidator)) && !staticinitialization(*.<clinit>())) && !handler(*)) && !preinitialization(new(..))) && !initialization(new(..))) && call(* *(..))) && !concretecflow(org.aspectj.runtime.internal.CFlowCounter aspects.aspectj.LogAllToFile.ajc$cflowCounter$0)) && persingleton(aspects.aspectj.LogAllToFile)) || ((((((((!within(aspects.aspectj.LogAllToFile) && !within(aspects.validator.StackValidator)) && !staticinitialization(*.<clinit>())) && adviceexecution(* *)) && !handler(*)) && !preinitialization(new(..))) && !initialization(new(..))) && !concretecflow(org.aspectj.runtime.internal.CFlowCounter aspects.aspectj.LogAllToFile.ajc$cflowCounter$0)) && persingleton(aspects.aspectj.LogAllToFile))) || ((((((((!within(aspects.aspectj.LogAllToFile) && !within(aspects.validator.StackValidator)) && !staticinitialization(*.<clinit>())) && !handler(*)) && execution(* *(..))) && !preinitialization(new(..))) && !initialization(new(..))) && !concretecflow(org.aspectj.runtime.internal.CFlowCounter aspects.aspectj.LogAllToFile.ajc$cflowCounter$0)) && persingleton(aspects.aspectj.LogAllToFile)))->void aspects.aspectj.LogAllToFile.ajc$after$aspects_aspectj_LogAllToFile$2$44227cde(org.aspectj.lang.JoinPoint))
+(before(extraFlags: 2): (((((((((((!within(aspects.aspectj.LogAllToFile) && !within(aspects.validator.StackValidator)) && !staticinitialization(*.<clinit>())) && adviceexecution(* *)) && !handler(*)) && !preinitialization(new(..))) && !initialization(new(..))) && if(boolean aspects.aspectj.LogAllToFile.ajc$if$178())) && !concretecflow(org.aspectj.runtime.internal.CFlowCounter aspects.aspectj.LogAllToFile.ajc$cflowCounter$0)) && persingleton(aspects.aspectj.LogAllToFile)) || (((((((((!within(aspects.aspectj.LogAllToFile) && !within(aspects.validator.StackValidator)) && !staticinitialization(*.<clinit>())) && !handler(*)) && execution(* *(..))) && !preinitialization(new(..))) && !initialization(new(..))) && if(boolean aspects.aspectj.LogAllToFile.ajc$if$178())) && !concretecflow(org.aspectj.runtime.internal.CFlowCounter aspects.aspectj.LogAllToFile.ajc$cflowCounter$0)) && persingleton(aspects.aspectj.LogAllToFile))) || (((((((((!within(aspects.aspectj.LogAllToFile) && !within(aspects.validator.StackValidator)) && !staticinitialization(*.<clinit>())) && !handler(*)) && !preinitialization(new(..))) && !initialization(new(..))) && call(* *(..))) && if(boolean aspects.aspectj.LogAllToFile.ajc$if$178())) && !concretecflow(org.aspectj.runtime.internal.CFlowCounter aspects.aspectj.LogAllToFile.ajc$cflowCounter$0)) && persingleton(aspects.aspectj.LogAllToFile)))->void aspects.aspectj.LogAllToFile.ajc$before$aspects_aspectj_LogAllToFile$1$2cf740b0(org.aspectj.lang.JoinPoint))
+(cflowEntry: within(aspects.aspectj.LogAllToFile)->org.aspectj.runtime.internal.CFlowCounter aspects.aspectj.LogAllToFile.ajc$cflowCounter$0)
+Type mungers:
+(BcelTypeMunger: CflowField aspects.aspectj.LogAllToFile ajc$cflowCounter$0)
+(BcelTypeMunger null)
+(BcelTypeMunger null)
+(BcelTypeMunger null)
+(BcelTypeMunger null)
+Late Type mungers:
+Empty
