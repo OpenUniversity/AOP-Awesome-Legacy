@@ -1,9 +1,0 @@
-/*
- * This is an example model
- */
-Comprendo PublicPrivateLogger {
-	scope = { "myproj.mypackage.*" };
-	
-	public-executions : summary;
-	private-executions;
-}
