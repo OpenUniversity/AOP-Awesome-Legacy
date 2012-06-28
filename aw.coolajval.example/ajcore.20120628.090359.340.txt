@@ -1,0 +1,439 @@
+---- AspectJ Properties ---
+AspectJ Compiler 1.6.5 built on Thursday Jun 18, 2009 at 03:42:32 GMT
+---- Dump Properties ---
+Dump file: ajcore.20120628.090359.340.txt
+Dump reason: abort
+Dump on exception: true
+Dump at exit condition: abort
+---- System Properties ---
+java.runtime.name=OpenJDK Runtime Environment
+sun.boot.library.path=/usr/lib/jvm/java-6-openjdk/jre/lib/i386
+java.vm.version=20.0-b11
+java.vm.vendor=Sun Microsystems Inc.
+java.vendor.url=http://java.sun.com/
+path.separator=:
+java.vm.name=OpenJDK Server VM
+file.encoding.pkg=sun.io
+sun.java.launcher=SUN_STANDARD
+user.country=US
+sun.os.patch.level=unknown
+java.vm.specification.name=Java Virtual Machine Specification
+user.dir=/home/oren/eclipse/workspaces/awesome/aw.coolajval.example
+java.runtime.version=1.6.0_22-b22
+java.awt.graphicsenv=sun.awt.X11GraphicsEnvironment
+java.endorsed.dirs=/usr/lib/jvm/java-6-openjdk/jre/lib/endorsed
+os.arch=i386
+java.io.tmpdir=/tmp
+line.separator=
+
+java.vm.specification.vendor=Sun Microsystems Inc.
+os.name=Linux
+sun.jnu.encoding=UTF-8
+java.library.path=/usr/lib/jvm/java-6-openjdk/jre/lib/i386/server:/usr/lib/jvm/java-6-openjdk/jre/lib/i386:/usr/lib/jvm/java-6-openjdk/jre/../lib/i386:/usr/lib/jvm/java-6-openjdk/jre/lib/i386/client:/usr/lib/jvm/java-6-openjdk/jre/lib/i386::/usr/java/packages/lib/i386:/usr/lib/i386-linux-gnu/jni:/lib/i386-linux-gnu:/usr/lib/i386-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+java.specification.name=Java Platform API Specification
+java.class.version=50.0
+sun.management.compiler=HotSpot Tiered Compilers
+os.version=2.6.38-15-generic-pae
+user.home=/home/oren
+user.timezone=Asia/Jerusalem
+java.awt.printerjob=sun.print.PSPrinterJob
+file.encoding=UTF-8
+java.specification.version=1.6
+java.class.path=/home/oren/eclipse/workspaces/awesome/aw.coolajval/bin:/home/oren/eclipse/workspaces/awesome/awesome.platform/bin:/opt/eclipse/3.7.1-java/plugins/org.junit_4.8.2.v4_8_2_v20110321-1705/junit.jar:/opt/eclipse/3.7.1-java/plugins/org.hamcrest.core_1.1.0.v20090501071000.jar:/opt/eclipse/3.7.1-java/plugins/org.aspectj.runtime_1.6.12.20110613132200/aspectjrt.jar:/home/oren/eclipse/workspaces/awesome/awesome.platform/extmodules/jrockit.jar:/home/oren/eclipse/workspaces/awesome/awesome.platform/extmodules/commons.jar:/home/oren/eclipse/workspaces/awesome/awesome.platform/extmodules/asm-3.1.jar:/home/oren/eclipse/workspaces/awesome/awesome.platform/extmodules/aspectjtools.jar:/home/oren/eclipse/workspaces/awesome/aw.coolajval/extmodules/asm-3.1.jar:/home/oren/eclipse/workspaces/awesome/aw.coolajval/extmodules/commons.jar:/home/oren/eclipse/workspaces/awesome/aw.coolajval/extmodules/jrockit.jar:/home/oren/eclipse/workspaces/awesome/aw.coolajval/extmodules/aspectjtools.jar:/home/oren/eclipse/workspaces/awesome/aw.coolajval.example/lib/aspectjrt.jar:/home/oren/eclipse/workspaces/awesome/aw.coolajval.example/stack.jar
+user.name=oren
+java.vm.specification.version=1.0
+sun.java.command=org.aspectj.tools.ajc.Main -1.5 -outjar app.jar src/base/Main.java src/base/GoodWriter.java src/base/BadWriter.java
+java.home=/usr/lib/jvm/java-6-openjdk/jre
+sun.arch.data.model=32
+user.language=en
+java.specification.vendor=Sun Microsystems Inc.
+java.vm.info=mixed mode
+java.version=1.6.0_22
+java.ext.dirs=/usr/lib/jvm/java-6-openjdk/jre/lib/ext:/usr/java/packages/lib/ext
+sun.boot.class.path=/usr/lib/jvm/java-6-openjdk/jre/lib/resources.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/rt.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/jsse.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/jce.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/charsets.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/netx.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/plugin.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/rhino.jar:/usr/lib/jvm/java-6-openjdk/jre/lib/modules/jdk.boot.jar:/usr/lib/jvm/java-6-openjdk/jre/classes
+java.vendor=Sun Microsystems Inc.
+file.separator=/
+java.vendor.url.bug=http://java.sun.com/cgi-bin/bugreport.cgi
+sun.io.unicode.encoding=UnicodeLittle
+sun.cpu.endian=little
+sun.desktop=gnome
+sun.cpu.isalist=
+---- Command Line ---
+-1.5
+-outjar
+app.jar
+src/base/Main.java
+src/base/GoodWriter.java
+src/base/BadWriter.java
+---- Full Classpath ---
+/usr/lib/jvm/java-6-openjdk/jre/lib/resources.jar(1053728 bytes)
+/usr/lib/jvm/java-6-openjdk/jre/lib/rt.jar(60042083 bytes)
+/usr/lib/jvm/java-6-openjdk/jre/lib/sunrsasign.jar(missing)
+/usr/lib/jvm/java-6-openjdk/jre/lib/jsse.jar(523793 bytes)
+/usr/lib/jvm/java-6-openjdk/jre/lib/jce.jar(85261 bytes)
+/usr/lib/jvm/java-6-openjdk/jre/lib/charsets.jar(3534509 bytes)
+/usr/lib/jvm/java-6-openjdk/jre/lib/netx.jar(missing)
+/usr/lib/jvm/java-6-openjdk/jre/lib/plugin.jar(missing)
+/usr/lib/jvm/java-6-openjdk/jre/lib/rhino.jar(906649 bytes)
+/usr/lib/jvm/java-6-openjdk/jre/lib/modules/jdk.boot.jar(missing)
+/usr/lib/jvm/java-6-openjdk/jre/classes(missing)
+/usr/lib/jvm/java-6-openjdk/jre/lib/ext/sunpkcs11.jar(243115 bytes)
+/usr/lib/jvm/java-6-openjdk/jre/lib/ext/sunjce_provider.jar(211422 bytes)
+/usr/lib/jvm/java-6-openjdk/jre/lib/ext/gnome-java-bridge.jar(449615 bytes)
+/usr/lib/jvm/java-6-openjdk/jre/lib/ext/pulse-java.jar(70459 bytes)
+/usr/lib/jvm/java-6-openjdk/jre/lib/ext/localedata.jar(497438 bytes)
+/usr/lib/jvm/java-6-openjdk/jre/lib/ext/dnsns.jar(9231 bytes)
+/home/oren/eclipse/workspaces/awesome/aw.coolajval/bin(8 entries)
+/home/oren/eclipse/workspaces/awesome/awesome.platform/bin(2 entries)
+/opt/eclipse/3.7.1-java/plugins/org.junit_4.8.2.v4_8_2_v20110321-1705/junit.jar(220482 bytes)
+/opt/eclipse/3.7.1-java/plugins/org.hamcrest.core_1.1.0.v20090501071000.jar(27827 bytes)
+/opt/eclipse/3.7.1-java/plugins/org.aspectj.runtime_1.6.12.20110613132200/aspectjrt.jar(116222 bytes)
+/home/oren/eclipse/workspaces/awesome/awesome.platform/extmodules/jrockit.jar(1969 bytes)
+/home/oren/eclipse/workspaces/awesome/awesome.platform/extmodules/commons.jar(286777 bytes)
+/home/oren/eclipse/workspaces/awesome/awesome.platform/extmodules/asm-3.1.jar(43035 bytes)
+/home/oren/eclipse/workspaces/awesome/aw.coolajval/extmodules/asm-3.1.jar(43035 bytes)
+/home/oren/eclipse/workspaces/awesome/aw.coolajval/extmodules/commons.jar(286777 bytes)
+/home/oren/eclipse/workspaces/awesome/aw.coolajval/extmodules/jrockit.jar(1969 bytes)
+/home/oren/eclipse/workspaces/awesome/aw.coolajval.example/lib/aspectjrt.jar(116039 bytes)
+/home/oren/eclipse/workspaces/awesome/aw.coolajval.example/stack.jar(11950 bytes)
+---- Compiler Messages ---
+abort trouble in: 
+public class base.Main extends java.lang.Object:
+  base.Stack stack
+  public void <init>():
+                    ALOAD_0     // Lbase/Main; this   (line 3)
+                    INVOKESPECIAL java.lang.Object.<init> ()V
+                    RETURN
+  end public void <init>()
+
+  public void doExample()    org.aspectj.weaver.MethodDeclarationLineNumber: 7:71
+:
+                    ALOAD_0     // Lbase/Main; this   (line 9)
+                    NEW base.BoundedStack
+                    DUP
+                    LDC 50000
+                    INVOKESPECIAL base.BoundedStack.<init> (I)V
+                    PUTFIELD base.Main.stack Lbase/Stack;
+                    NEW base.GoodWriter   (line 10)
+                    DUP
+                    ALOAD_0     // Lbase/Main; this
+                    GETFIELD base.Main.stack Lbase/Stack;
+                    INVOKESPECIAL base.GoodWriter.<init> (Lbase/Stack;)V
+                    ASTORE_1
+                    NEW java.lang.Thread   (line 11)
+                    DUP
+                    ALOAD_1     // Lbase/GoodWriter; gw
+                    LDC "GoodWriter"
+                    INVOKESPECIAL java.lang.Thread.<init> (Ljava/lang/Runnable;Ljava/lang/String;)V
+                    ASTORE_2
+                    ALOAD_2     // Ljava/lang/Thread; t1   (line 12)
+                    INVOKEVIRTUAL java.lang.Thread.start ()V
+                    NEW base.BadWriter   (line 14)
+                    DUP
+                    ALOAD_0     // Lbase/Main; this
+                    GETFIELD base.Main.stack Lbase/Stack;
+                    INVOKESPECIAL base.BadWriter.<init> (Lbase/Stack;)V
+                    ASTORE_3
+                    NEW java.lang.Thread   (line 15)
+                    DUP
+                    ALOAD_3     // Lbase/BadWriter; bw
+                    LDC "BadWriter"
+                    INVOKESPECIAL java.lang.Thread.<init> (Ljava/lang/Runnable;Ljava/lang/String;)V
+                    ASTORE 4
+                    ALOAD 4     // Ljava/lang/Thread; t2   (line 16)
+                    INVOKEVIRTUAL java.lang.Thread.start ()V
+                    RETURN   (line 21)
+  end public void doExample()
+
+  public static void main(String[])    org.aspectj.weaver.MethodDeclarationLineNumber: 23:374
+:
+                    NEW base.Main   (line 25)
+                    DUP
+                    INVOKESPECIAL base.Main.<init> ()V
+                    ASTORE_1
+                    ALOAD_1     // Lbase/Main; m   (line 26)
+                    INVOKEVIRTUAL base.Main.doExample ()V
+                    RETURN   (line 27)
+  end public static void main(String[])
+end public class base.Main
+ -- (NoAspectBoundException) Exception while initializing awesome_tracing_weaving_ReifyWeavingTracer: java.lang.NullPointerException
+Exception while initializing awesome_tracing_weaving_ReifyWeavingTracer: java.lang.NullPointerException
+org.aspectj.lang.NoAspectBoundException: Exception while initializing awesome_tracing_weaving_ReifyWeavingTracer: java.lang.NullPointerException
+	at awesome.tracing.weaving.ReifyWeavingTracer.aspectOf(ReifyWeavingTracer.aj:1)
+	at awesome.platform.MultiMechanism.transform(MultiMechanism.java:496)
+	at org.aspectj.weaver.bcel.BcelWeaver.weave(BcelWeaver.java:1771)
+	at org.aspectj.weaver.bcel.BcelWeaver.weaveWithoutDump(BcelWeaver.java:1729)
+	at org.aspectj.weaver.bcel.BcelWeaver.weaveAndNotify(BcelWeaver.java:1491)
+	at org.aspectj.weaver.bcel.BcelWeaver.weave(BcelWeaver.java:1305)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.weaveQueuedEntries(AjPipeliningCompilerAdapter.java:435)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.queueForWeaving(AjPipeliningCompilerAdapter.java:371)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.afterProcessing(AjPipeliningCompilerAdapter.java:358)
+	at org.aspectj.ajdt.internal.compiler.CompilerAdapter.ajc$after$org_aspectj_ajdt_internal_compiler_CompilerAdapter$5$6b855184(CompilerAdapter.aj:98)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.process(Compiler.java:652)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:392)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performCompilation(AjBuildManager.java:1003)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performBuild(AjBuildManager.java:267)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.batchBuild(AjBuildManager.java:181)
+	at org.aspectj.ajdt.ajc.AjdtCommand.doCommand(AjdtCommand.java:112)
+	at org.aspectj.ajdt.ajc.AjdtCommand.runCommand(AjdtCommand.java:60)
+	at org.aspectj.tools.ajc.Main.run(Main.java:355)
+	at org.aspectj.tools.ajc.Main.runMain(Main.java:234)
+	at org.aspectj.tools.ajc.Main.main(Main.java:84)
+Caused by: java.lang.NullPointerException
+	at awesome.tracing.weaving.ReifyWeavingTracer.<init>(ReifyWeavingTracer.aj:14)
+	at awesome.tracing.weaving.ReifyWeavingTracer.ajc$postClinit(ReifyWeavingTracer.aj:1)
+	at awesome.tracing.weaving.ReifyWeavingTracer.<clinit>(ReifyWeavingTracer.aj:11)
+	... 19 more
+
+abort trouble in: 
+public class base.GoodWriter extends java.lang.Object implements java.lang.Runnable:
+  base.Stack stack
+  private static final String symbols = "abcdefghijklmnopqrstuvwxysz"
+  public void <init>(base.Stack)    org.aspectj.weaver.MethodDeclarationLineNumber: 12:196
+:
+                    ALOAD_0     // Lbase/GoodWriter; this   (line 12)
+                    INVOKESPECIAL java.lang.Object.<init> ()V
+                    ALOAD_0     // Lbase/GoodWriter; this   (line 14)
+                    ALOAD_1     // Lbase/Stack; stack
+                    PUTFIELD base.GoodWriter.stack Lbase/Stack;
+                    RETURN   (line 15)
+  end public void <init>(base.Stack)
+
+  public void run()    org.aspectj.weaver.MethodDeclarationLineNumber: 19:284
+:
+                    GETSTATIC java.lang.System.out Ljava/io/PrintStream;   (line 21)
+                    LDC "GoodWriter start"
+                    INVOKEVIRTUAL java.io.PrintStream.println (Ljava/lang/String;)V
+                    NEW java.lang.StringBuffer   (line 22)
+                    DUP
+                    INVOKESPECIAL java.lang.StringBuffer.<init> ()V
+                    ASTORE_1
+                    NEW java.util.Random   (line 23)
+                    DUP
+                    INVOKESPECIAL java.util.Random.<init> ()V
+                    ASTORE_2
+                    ICONST_0   (line 25)
+                    ISTORE_3
+                    GOTO L5
+                L0: NEW java.lang.StringBuffer   (line 27)
+                    DUP
+                    INVOKESPECIAL java.lang.StringBuffer.<init> ()V
+                    ASTORE_1     // Ljava/lang/StringBuffer; randomString
+                    ICONST_0   (line 30)
+                    ISTORE 4
+                    GOTO L2
+                L1: ALOAD_2     // Ljava/util/Random; r   (line 32)
+                    LDC "abcdefghijklmnopqrstuvwxysz"
+                    INVOKEVIRTUAL java.lang.String.length ()I
+                    INVOKEVIRTUAL java.util.Random.nextInt (I)I
+                    ISTORE 5
+                    ALOAD_1     // Ljava/lang/StringBuffer; randomString   (line 33)
+                    LDC "abcdefghijklmnopqrstuvwxysz"
+                    ILOAD 5     // I ni
+                    INVOKEVIRTUAL java.lang.String.charAt (I)C
+                    INVOKEVIRTUAL java.lang.StringBuffer.append (C)Ljava/lang/StringBuffer;
+                    POP
+                    IINC 4 1     // I j   (line 30)
+                L2: ILOAD 4     // I j
+                    ICONST_5
+                    IF_ICMPLT L1
+                    ALOAD_1     // Ljava/lang/StringBuffer; randomString   (line 36)
+                    BIPUSH 64
+                    INVOKEVIRTUAL java.lang.StringBuffer.append (C)Ljava/lang/StringBuffer;
+                    POP
+                    ICONST_0   (line 38)
+                    ISTORE 4     // I j
+                    GOTO L4
+                L3: ALOAD_2     // Ljava/util/Random; r   (line 40)
+                    LDC "abcdefghijklmnopqrstuvwxysz"
+                    INVOKEVIRTUAL java.lang.String.length ()I
+                    INVOKEVIRTUAL java.util.Random.nextInt (I)I
+                    ISTORE 5
+                    ALOAD_1     // Ljava/lang/StringBuffer; randomString   (line 41)
+                    LDC "abcdefghijklmnopqrstuvwxysz"
+                    ILOAD 5     // I ni
+                    INVOKEVIRTUAL java.lang.String.charAt (I)C
+                    INVOKEVIRTUAL java.lang.StringBuffer.append (C)Ljava/lang/StringBuffer;
+                    POP
+                    IINC 4 1     // I j   (line 38)
+                L4: ILOAD 4     // I j
+                    ICONST_5
+                    IF_ICMPLT L3
+                    ALOAD_0     // Lbase/GoodWriter; this   (line 44)
+                    GETFIELD base.GoodWriter.stack Lbase/Stack;
+                    ALOAD_1     // Ljava/lang/StringBuffer; randomString
+                    INVOKEVIRTUAL java.lang.StringBuffer.toString ()Ljava/lang/String;
+                    INVOKEINTERFACE base.Stack.push (Ljava/lang/Object;)V
+                    IINC_3 1     // I i   (line 25)
+                L5: ILOAD_3     // I i
+                    SIPUSH 10000
+                    IF_ICMPLT L0
+                    GETSTATIC java.lang.System.out Ljava/io/PrintStream;   (line 47)
+                    LDC "GoodWriter end"
+                    INVOKEVIRTUAL java.io.PrintStream.println (Ljava/lang/String;)V
+                    RETURN   (line 49)
+  end public void run()
+end public class base.GoodWriter
+ -- (NoAspectBoundException) Exception while initializing awesome_tracing_weaving_ReifyWeavingTracer: java.lang.NullPointerException
+Exception while initializing awesome_tracing_weaving_ReifyWeavingTracer: java.lang.NullPointerException
+org.aspectj.lang.NoAspectBoundException: Exception while initializing awesome_tracing_weaving_ReifyWeavingTracer: java.lang.NullPointerException
+	at awesome.tracing.weaving.ReifyWeavingTracer.aspectOf(ReifyWeavingTracer.aj:1)
+	at awesome.platform.MultiMechanism.transform(MultiMechanism.java:496)
+	at org.aspectj.weaver.bcel.BcelWeaver.weave(BcelWeaver.java:1771)
+	at org.aspectj.weaver.bcel.BcelWeaver.weaveWithoutDump(BcelWeaver.java:1729)
+	at org.aspectj.weaver.bcel.BcelWeaver.weaveAndNotify(BcelWeaver.java:1491)
+	at org.aspectj.weaver.bcel.BcelWeaver.weave(BcelWeaver.java:1305)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.weaveQueuedEntries(AjPipeliningCompilerAdapter.java:435)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.queueForWeaving(AjPipeliningCompilerAdapter.java:371)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.afterProcessing(AjPipeliningCompilerAdapter.java:358)
+	at org.aspectj.ajdt.internal.compiler.CompilerAdapter.ajc$after$org_aspectj_ajdt_internal_compiler_CompilerAdapter$5$6b855184(CompilerAdapter.aj:98)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.process(Compiler.java:652)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:392)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performCompilation(AjBuildManager.java:1003)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performBuild(AjBuildManager.java:267)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.batchBuild(AjBuildManager.java:181)
+	at org.aspectj.ajdt.ajc.AjdtCommand.doCommand(AjdtCommand.java:112)
+	at org.aspectj.ajdt.ajc.AjdtCommand.runCommand(AjdtCommand.java:60)
+	at org.aspectj.tools.ajc.Main.run(Main.java:355)
+	at org.aspectj.tools.ajc.Main.runMain(Main.java:234)
+	at org.aspectj.tools.ajc.Main.main(Main.java:84)
+Caused by: java.lang.NullPointerException
+	at awesome.tracing.weaving.ReifyWeavingTracer.<init>(ReifyWeavingTracer.aj:14)
+	at awesome.tracing.weaving.ReifyWeavingTracer.ajc$postClinit(ReifyWeavingTracer.aj:1)
+	at awesome.tracing.weaving.ReifyWeavingTracer.<clinit>(ReifyWeavingTracer.aj:11)
+	... 19 more
+
+abort trouble in: 
+public class base.BadWriter extends java.lang.Object implements java.lang.Runnable:
+  base.Stack stack
+  private static final String symbols = "abcdefghijklmnopqrstuvwxysz"
+  public void <init>(base.Stack)    org.aspectj.weaver.MethodDeclarationLineNumber: 13:196
+:
+                    ALOAD_0     // Lbase/BadWriter; this   (line 13)
+                    INVOKESPECIAL java.lang.Object.<init> ()V
+                    ALOAD_0     // Lbase/BadWriter; this   (line 15)
+                    ALOAD_1     // Lbase/Stack; stack
+                    PUTFIELD base.BadWriter.stack Lbase/Stack;
+                    RETURN   (line 16)
+  end public void <init>(base.Stack)
+
+  public void run()    org.aspectj.weaver.MethodDeclarationLineNumber: 19:280
+:
+                    GETSTATIC java.lang.System.out Ljava/io/PrintStream;   (line 21)
+                    LDC "BadWriter start"
+                    INVOKEVIRTUAL java.io.PrintStream.println (Ljava/lang/String;)V
+                    NEW java.lang.StringBuffer   (line 22)
+                    DUP
+                    INVOKESPECIAL java.lang.StringBuffer.<init> ()V
+                    ASTORE_1
+                    NEW java.util.Random   (line 23)
+                    DUP
+                    INVOKESPECIAL java.util.Random.<init> ()V
+                    ASTORE_2
+                    ICONST_0   (line 25)
+                    ISTORE_3
+                    GOTO L6
+                L0: ILOAD_3     // I i   (line 27)
+                    BIPUSH 10
+                    IREM
+                    IFNE L1
+                    ALOAD_2     // Ljava/util/Random; r   (line 29)
+                    LDC "abcdefghijklmnopqrstuvwxysz"
+                    INVOKEVIRTUAL java.lang.String.length ()I
+                    INVOKEVIRTUAL java.util.Random.nextInt (I)I
+                    ISTORE 4
+                    ALOAD_0     // Lbase/BadWriter; this   (line 30)
+                    GETFIELD base.BadWriter.stack Lbase/Stack;
+                    ILOAD 4     // I ni
+                    INVOKESTATIC java.lang.Integer.valueOf (I)Ljava/lang/Integer;
+                    INVOKEINTERFACE base.Stack.push (Ljava/lang/Object;)V
+                L1: ICONST_0   (line 34)
+                    ISTORE 4
+                    GOTO L3
+                L2: ALOAD_2     // Ljava/util/Random; r   (line 36)
+                    LDC "abcdefghijklmnopqrstuvwxysz"
+                    INVOKEVIRTUAL java.lang.String.length ()I
+                    INVOKEVIRTUAL java.util.Random.nextInt (I)I
+                    ISTORE 5
+                    ALOAD_1     // Ljava/lang/StringBuffer; randomString   (line 37)
+                    LDC "abcdefghijklmnopqrstuvwxysz"
+                    ILOAD 5     // I ni
+                    INVOKEVIRTUAL java.lang.String.charAt (I)C
+                    INVOKEVIRTUAL java.lang.StringBuffer.append (C)Ljava/lang/StringBuffer;
+                    POP
+                    IINC 4 1     // I j   (line 34)
+                L3: ILOAD 4     // I j
+                    ICONST_5
+                    IF_ICMPLT L2
+                    ALOAD_1     // Ljava/lang/StringBuffer; randomString   (line 40)
+                    BIPUSH 64
+                    INVOKEVIRTUAL java.lang.StringBuffer.append (C)Ljava/lang/StringBuffer;
+                    POP
+                    ICONST_0   (line 42)
+                    ISTORE 4     // I j
+                    GOTO L5
+                L4: ALOAD_2     // Ljava/util/Random; r   (line 44)
+                    LDC "abcdefghijklmnopqrstuvwxysz"
+                    INVOKEVIRTUAL java.lang.String.length ()I
+                    INVOKEVIRTUAL java.util.Random.nextInt (I)I
+                    ISTORE 5
+                    ALOAD_1     // Ljava/lang/StringBuffer; randomString   (line 45)
+                    LDC "abcdefghijklmnopqrstuvwxysz"
+                    ILOAD 5     // I ni
+                    INVOKEVIRTUAL java.lang.String.charAt (I)C
+                    INVOKEVIRTUAL java.lang.StringBuffer.append (C)Ljava/lang/StringBuffer;
+                    POP
+                    IINC 4 1     // I j   (line 42)
+                L5: ILOAD 4     // I j
+                    ICONST_5
+                    IF_ICMPLT L4
+                    ALOAD_0     // Lbase/BadWriter; this   (line 48)
+                    GETFIELD base.BadWriter.stack Lbase/Stack;
+                    ALOAD_1     // Ljava/lang/StringBuffer; randomString
+                    INVOKEINTERFACE base.Stack.push (Ljava/lang/Object;)V
+                    IINC_3 1     // I i   (line 25)
+                L6: ILOAD_3     // I i
+                    SIPUSH 10000
+                    IF_ICMPLT L0
+                    GETSTATIC java.lang.System.out Ljava/io/PrintStream;   (line 51)
+                    LDC "BadWriter end"
+                    INVOKEVIRTUAL java.io.PrintStream.println (Ljava/lang/String;)V
+                    RETURN   (line 53)
+  end public void run()
+end public class base.BadWriter
+ -- (NoAspectBoundException) Exception while initializing awesome_tracing_weaving_ReifyWeavingTracer: java.lang.NullPointerException
+Exception while initializing awesome_tracing_weaving_ReifyWeavingTracer: java.lang.NullPointerException
+org.aspectj.lang.NoAspectBoundException: Exception while initializing awesome_tracing_weaving_ReifyWeavingTracer: java.lang.NullPointerException
+	at awesome.tracing.weaving.ReifyWeavingTracer.aspectOf(ReifyWeavingTracer.aj:1)
+	at awesome.platform.MultiMechanism.transform(MultiMechanism.java:496)
+	at org.aspectj.weaver.bcel.BcelWeaver.weave(BcelWeaver.java:1771)
+	at org.aspectj.weaver.bcel.BcelWeaver.weaveWithoutDump(BcelWeaver.java:1729)
+	at org.aspectj.weaver.bcel.BcelWeaver.weaveAndNotify(BcelWeaver.java:1491)
+	at org.aspectj.weaver.bcel.BcelWeaver.weave(BcelWeaver.java:1305)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.weaveQueuedEntries(AjPipeliningCompilerAdapter.java:435)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.queueForWeaving(AjPipeliningCompilerAdapter.java:371)
+	at org.aspectj.ajdt.internal.compiler.AjPipeliningCompilerAdapter.afterProcessing(AjPipeliningCompilerAdapter.java:358)
+	at org.aspectj.ajdt.internal.compiler.CompilerAdapter.ajc$after$org_aspectj_ajdt_internal_compiler_CompilerAdapter$5$6b855184(CompilerAdapter.aj:98)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.process(Compiler.java:652)
+	at org.aspectj.org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:392)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performCompilation(AjBuildManager.java:1003)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.performBuild(AjBuildManager.java:267)
+	at org.aspectj.ajdt.internal.core.builder.AjBuildManager.batchBuild(AjBuildManager.java:181)
+	at org.aspectj.ajdt.ajc.AjdtCommand.doCommand(AjdtCommand.java:112)
+	at org.aspectj.ajdt.ajc.AjdtCommand.runCommand(AjdtCommand.java:60)
+	at org.aspectj.tools.ajc.Main.run(Main.java:355)
+	at org.aspectj.tools.ajc.Main.runMain(Main.java:234)
+	at org.aspectj.tools.ajc.Main.main(Main.java:84)
+Caused by: java.lang.NullPointerException
+	at awesome.tracing.weaving.ReifyWeavingTracer.<init>(ReifyWeavingTracer.aj:14)
+	at awesome.tracing.weaving.ReifyWeavingTracer.ajc$postClinit(ReifyWeavingTracer.aj:1)
+	at awesome.tracing.weaving.ReifyWeavingTracer.<clinit>(ReifyWeavingTracer.aj:11)
+	... 19 more
+
+---- org.aspectj.weaver.bcel.BcelWorld@95c083 ----
+Shadow mungers:
+Empty
+Type mungers:
+Empty
+Late Type mungers:
+Empty

@@ -4,7 +4,11 @@
 	<classpathentry kind="src" path="aw.aj"/>
 	<classpathentry kind="src" path="aw.validate"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/awesome.platform"/>
+	<classpathentry exported="true" kind="src" path="/awesome.platform">
+		<attributes>
+			<attribute name="org.eclipse.ajdt.inpath" value="org.eclipse.ajdt.inpath"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.ajdt.core.ASPECTJRT_CONTAINER"/>
 	<classpathentry kind="lib" path="extmodules/asm-3.1.jar"/>
 	<classpathentry kind="lib" path="extmodules/commons.jar"/>
