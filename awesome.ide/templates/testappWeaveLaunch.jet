@@ -15,6 +15,6 @@
 <mapEntry key="TEST_APP" value="<%=testapp%>"/>
 </mapAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.aspectj.tools.ajc.Main"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-1.5 -sourceroots <%=testapp%> -outjar <%=testapp%>.jar"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-1.5 -sourceroots <%=testapp%> -outjar <%=testapp%>/<%=testapp%>.jar"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="<%=projectName%>"/>
 </launchConfiguration>
