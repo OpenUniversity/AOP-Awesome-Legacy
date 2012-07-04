@@ -1,4 +1,4 @@
-<%@ jet package="awesome.ide.gen" class="TestappLaunchGen" %>
+<%@ jet package="awesome.ide.gen" class="TestappWeaveLaunchGen" %>
 <% String projectName = ((String[])argument)[0]; %>
 <% String testapp = ((String[])argument)[1]; %>
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -15,6 +15,6 @@
 <mapEntry key="TEST_APP" value="<%=testapp%>"/>
 </mapAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.aspectj.tools.ajc.Main"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-1.5 -outjar <%=testapp%>.jar&#13;&#10;<%=testapp%>/aspects/* <%=testapp%>/base/*"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-1.5 -sourceroots <%=testapp%> -outjar <%=testapp%>.jar"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="<%=projectName%>"/>
 </launchConfiguration>

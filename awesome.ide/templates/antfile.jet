@@ -1,0 +1,7 @@
+<%@ jet package="awesome.ide.gen" class="AntFileGen" %>
+<% String projectName = ((String[])argument)[0]; %>
+<project name="<%=projectName%>" basedir=".">	
+	<target name="jar">
+		<jar destfile="<%=projectName%>.jar" basedir="bin"></jar>
+	</target>
+</project>

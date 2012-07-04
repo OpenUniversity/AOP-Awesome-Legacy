@@ -13,12 +13,14 @@ import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.JavaModelException;
 
 import awesome.ide.Activator;
+import awesome.ide.gen.AntFileGen;
 import awesome.ide.gen.AspectMechanismGen;
 import awesome.ide.gen.ManifestGen;
 
 public class AspectMechanismProject extends MechanismProject {
 	private static final String PROJ_PREFIX = "awm";
 	private static final String SRC_FOLDER = "src";
+	private static final String ANT_FILE = "build.xml";
 	private String dsalName;
 	
 	public class Manifest {
@@ -56,6 +58,7 @@ public class AspectMechanismProject extends MechanismProject {
 		amProj.createSrcFolder(javaProj);
 		amProj.createDSALPackage(javaProj, dsalName);
 		amProj.createManifestFile(javaProj, dsalName);
+		amProj.createAntFile(javaProj, dsalName);
 		
 		if(monitor != null)
 			monitor.worked(1);
@@ -105,10 +108,20 @@ public class AspectMechanismProject extends MechanismProject {
 		try {
 			project.getFile(this.new Manifest().getName()).create(toInputStream(content), true, null);
 		} catch (CoreException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			 throw new RuntimeException("Failed to create manifest file in aspect mechanism project");
 		}
 	}
+	private void createAntFile(IJavaProject javaProj, String dsalName) {
+		IProject project = javaProj.getProject();
+		String content;
+		content = new AntFileGen().generate(new String[]{project.getName()});
+		try {
+			project.getFile(ANT_FILE).create(toInputStream(content), true, null);
+		} catch (CoreException e) {
+			 throw new RuntimeException("Failed to create ant file in aspect mechanism project");
+		}
+	}
+	
 	
 	/**
 	 * @return the package where the source files of the mechanism reside.

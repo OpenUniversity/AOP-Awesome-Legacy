@@ -14,7 +14,7 @@ import org.eclipse.jdt.core.IJavaProject;
 import awesome.ide.Activator;
 import awesome.ide.gen.TestappAspect;
 import awesome.ide.gen.TestappExecuteLaunchGen;
-import awesome.ide.gen.TestappLaunchGen;
+import awesome.ide.gen.TestappWeaveLaunchGen;
 import awesome.ide.gen.TestappMain;
 import awesome.ide.gen.TestappTestCaseGen;
 
@@ -110,7 +110,7 @@ public class AspectMechanismTestProject extends MechanismProject {
 			source = toInputStream(new TestappMain().generate(new String[]{BASE_FOLDER}));
 			baseFolder.getFile(TESTAPP_MAIN + ".java").create(source, false, null);
 			// create a weave.launch file
-			source = toInputStream(new TestappLaunchGen().generate(new String[]{getName(), TESTAPP_PREFIX + TESTAPP_ID}));
+			source = toInputStream(new TestappWeaveLaunchGen().generate(new String[]{getName(), TESTAPP_PREFIX + TESTAPP_ID}));
 			folder.getFile(TESTAPP_WEAVE_LAUNCH).create(source, false, null);
 			// create a execute.launch file
 			source = toInputStream(new TestappExecuteLaunchGen().generate(new String[]{getName(), TESTAPP_PREFIX + TESTAPP_ID}));
