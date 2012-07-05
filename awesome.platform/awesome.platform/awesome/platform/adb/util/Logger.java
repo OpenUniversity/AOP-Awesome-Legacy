@@ -1,6 +1,6 @@
-package awesome.platform.adb.util.log;
+package awesome.platform.adb.util;
 
-public class logger 
+public class Logger 
 {
 	private static boolean isLogOn()
 	{

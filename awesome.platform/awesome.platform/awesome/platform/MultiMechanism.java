@@ -326,7 +326,7 @@ public class MultiMechanism
 	 */
 	private void genereteAllJPsTag(LazyClassGen clazz)
 	{
-		awesome.platform.adb.util.log.logger.logLn("generating AllJPsTag for " + 
+		awesome.platform.adb.util.Logger.logLn("generating AllJPsTag for " + 
 				clazz.getName());
 		
 		List<LazyMethodGen> methods = clazz.getMethodGens();
@@ -374,7 +374,7 @@ public class MultiMechanism
 		
 		List<LazyMethodGen> methods = clazz.getMethodGens();
 		
-		awesome.platform.adb.util.log.logger.logLn("generating cross cutting tag for " + 
+		awesome.platform.adb.util.Logger.logLn("generating cross cutting tag for " + 
 				clazz.getName());
 		
 		for(LazyMethodGen m : methods)
@@ -382,7 +382,7 @@ public class MultiMechanism
 			if(m.isAbstract())
 				continue;
 		
-			awesome.platform.adb.util.log.logger.logLn("generating cross cutting tag for " + 
+			awesome.platform.adb.util.Logger.logLn("generating cross cutting tag for " + 
 					m.getName());
 			
 			List<EffectApplication> effectList = methodNameToEffect.get(m.getName());
@@ -492,7 +492,7 @@ public class MultiMechanism
 	
 	public boolean transform(LazyClassGen clazz) 
 	{
-		awesome.platform.adb.util.log.logger.logLn("transforming class: " + clazz);
+		awesome.platform.adb.util.Logger.logLn("transforming class: " + clazz);
 		
 		boolean isChanged = false;
 		
@@ -505,7 +505,7 @@ public class MultiMechanism
         List<BcelShadow> shadows = reify(clazz);
         for (BcelShadow shadow:shadows)
         {        	              
-        	awesome.platform.adb.util.log.logger.logLn("\ttransforming shadow: " + 
+        	awesome.platform.adb.util.Logger.logLn("\ttransforming shadow: " + 
         			shadow.getEnclosingMethod().getName() + " line " + shadow.getSourceLine() + 
         			" kind " + shadow.getKind());
         	if (transform(shadow)) 

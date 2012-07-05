@@ -39,7 +39,7 @@ public class CrossCuttingAttribute extends AjAttribute
 	
 	public CrossCuttingAttribute(List<EffectApplication> effectList)
 	{
-		awesome.platform.adb.util.log.logger.logLn("number of effects =  " + 
+		awesome.platform.adb.util.Logger.logLn("number of effects =  " + 
 				effectList.size());
 		
 		for (EffectApplication effect : effectList) 
@@ -128,7 +128,7 @@ public class CrossCuttingAttribute extends AjAttribute
 		
 		
 		
-		awesome.platform.adb.util.log.logger.logLn("shadow " + shadow + " startPosShadow " + startPosShadow + 
+		awesome.platform.adb.util.Logger.logLn("shadow " + shadow + " startPosShadow " + startPosShadow + 
 				" endPosShadow " + endPosShadow + " startRange " + startRange + " endRange " + endRange);
 		
 		JoinPointDescriptor jpd = new JoinPointDescriptor(shadow.getID(),
@@ -223,7 +223,7 @@ public class CrossCuttingAttribute extends AjAttribute
 	private void makeApplication(BcelShadow shadow, int type, int slnr, int elnr,
 			IEffect application) 
 	{
-		awesome.platform.adb.util.log.logger.logLn("Making application for " + 
+		awesome.platform.adb.util.Logger.logLn("Making application for " + 
 				application);
 				
 		JoinPointDescriptor jpd = getJPD(type, slnr, elnr, shadow);
