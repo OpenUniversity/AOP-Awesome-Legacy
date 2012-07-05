@@ -465,8 +465,7 @@ public class MultiMechanism
 		{
 			IMechanism m = getHandlingMechanism(clazz);
 						
-			Attribute aspectAttribute;
-			aspectAttribute = Utility.bcelAttribute(new awesome.platform.adb.tagkit.AspectAttribute(world, m, clazz), 
+			Attribute aspectAttribute = Utility.bcelAttribute(new awesome.platform.adb.tagkit.AspectAttribute(world, m, clazz), 
 					clazz.getConstantPool());
 							
 			clazz.addAttribute(aspectAttribute);
