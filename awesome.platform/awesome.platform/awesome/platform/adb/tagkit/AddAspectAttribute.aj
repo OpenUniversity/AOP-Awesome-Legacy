@@ -13,9 +13,7 @@ import org.aspectj.weaver.bcel.Utility;
  * @author oren
  *
  */
-public aspect AddAspectAttribute {
-	pointcut transform(LazyClassGen clazz): 
-		execution(* MultiMechanism.transform(LazyClassGen)) && args(clazz);
+public aspect AddAspectAttribute extends AddAttribute {
 	
 	before(LazyClassGen clazz): transform(clazz) {
 		generateAspectAttribute(clazz);
@@ -30,7 +28,7 @@ public aspect AddAspectAttribute {
 		if(clazz.getType().isAspect()) {
 			IMechanism m = getHandlingMechanism(clazz);
 						
-			Attribute aspectAttribute = Utility.bcelAttribute(new awesome.platform.adb.tagkit.AspectAttribute(MultiMechanism.getInstance().getWorld(), m, clazz), 
+			Attribute aspectAttribute = Utility.bcelAttribute(new AspectAttribute(MultiMechanism.getInstance().getWorld(), m, clazz), 
 					clazz.getConstantPool());
 							
 			clazz.addAttribute(aspectAttribute);
@@ -44,8 +42,7 @@ public aspect AddAspectAttribute {
 	 * @param clazz
 	 * @return
 	 */
-	private IMechanism getHandlingMechanism(LazyClassGen clazz)
-	{
+	private IMechanism getHandlingMechanism(LazyClassGen clazz) {
 		IMechanism m =  null;
 		for(IMechanism m2 : MultiMechanism.getInstance().getMechanisms())
 		{

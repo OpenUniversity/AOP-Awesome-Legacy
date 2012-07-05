@@ -10,7 +10,6 @@ import org.aspectj.apache.bcel.Constants;
 import org.aspectj.apache.bcel.classfile.Attribute;
 import org.aspectj.apache.bcel.classfile.Code;
 import org.aspectj.apache.bcel.classfile.ConstantPool;
-import org.aspectj.apache.bcel.classfile.Method;
 import org.aspectj.apache.bcel.generic.FieldInstruction;
 import org.aspectj.apache.bcel.generic.Instruction;
 import org.aspectj.apache.bcel.generic.InstructionHandle;
@@ -33,10 +32,11 @@ import org.aspectj.weaver.bcel.LazyMethodGen;
 import org.aspectj.weaver.bcel.Utility;
 
 import awesome.config.spec.FeatureInteractions;
-import awesome.platform.adb.tagkit.JoinPointGranularityAttribute;
 import awesome.platform.adb.tagkit.CrossCuttingAttribute;
 import awesome.platform.adb.tagkit.EffectApplication;
+import awesome.platform.adb.tagkit.FieldLineNumberAttribute;
 import awesome.platform.adb.tagkit.JoinPointDescriptor;
+import awesome.platform.adb.tagkit.JoinPointGranularityAttribute;
 import awesome.platform.adb.tagkit.ShadowAttribute;
 public class MultiMechanism 
 {
@@ -58,7 +58,7 @@ public class MultiMechanism
 	
 	/////// End debug info fields
 	
-	public static MultiMechanism getInstance(BcelWorld world) {
+	public static MultiMechanism createInstance(BcelWorld world) {
 		if(mm != null)
 			return mm;
 		else
@@ -432,22 +432,6 @@ public class MultiMechanism
 		}
 	}
 	
-	/**
-	 * generates the FieldNumber Attribute
-	 * @param clazz
-	 */
-	protected void generateFieldNumberTag(LazyClassGen clazz) 
-	{		
-			if(clazz.isAbstract())
-				return;
-			
-			Attribute fieldLineNoAttribute;
-			fieldLineNoAttribute = Utility.bcelAttribute(new awesome.platform.adb.tagkit.FieldLineNumberAttribute(getWorld(), clazz), 
-					clazz.getConstantPool());
-							
-			clazz.addAttribute(fieldLineNoAttribute);
-	}
-
 	// Debug Info generation END
 	
 	public boolean transform(LazyClassGen clazz) 
@@ -469,14 +453,11 @@ public class MultiMechanism
         	if (transform(shadow)) 
         		isChanged=true;     	
         }
-               
+         
         genereteAllJPsTag(clazz);
-        
         // call after the transformation
         generateCrossCuttingTag(clazz);
-        //printAttributes(clazz);
-        generateFieldNumberTag(clazz);
-		
+        //printAttributes(clazz);		
 		return isChanged;
 	}
 

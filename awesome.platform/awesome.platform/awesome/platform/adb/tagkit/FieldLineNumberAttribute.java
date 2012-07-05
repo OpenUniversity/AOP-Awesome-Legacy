@@ -1,12 +1,7 @@
 package awesome.platform.adb.tagkit;
 
-import java.io.DataOutputStream;
-import java.io.IOException;
 import java.util.Iterator;
-import java.util.List;
 
-import org.aspectj.bridge.ISourceLocation;
-import org.aspectj.weaver.AjAttribute;
 import org.aspectj.weaver.Member;
 import org.aspectj.weaver.bcel.BcelWorld;
 import org.aspectj.weaver.bcel.LazyClassGen;
