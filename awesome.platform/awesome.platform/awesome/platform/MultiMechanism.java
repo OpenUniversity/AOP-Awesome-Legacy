@@ -20,7 +20,6 @@ import org.aspectj.apache.bcel.generic.InvokeInstruction;
 import org.aspectj.apache.bcel.generic.MULTIANEWARRAY;
 import org.aspectj.bridge.context.CompilationAndWeavingContext;
 import org.aspectj.bridge.context.ContextToken;
-import org.aspectj.weaver.AjAttribute;
 import org.aspectj.weaver.IClassFileProvider;
 import org.aspectj.weaver.Member;
 import org.aspectj.weaver.NameMangler;
@@ -46,6 +45,7 @@ public class MultiMechanism
 	private List<IMechanism> mechanisms;
 	private List<String> names = null;
 	private Map<LazyMethodGen, List<BcelShadow>> methodShadows = new HashMap<LazyMethodGen, List<BcelShadow>>();
+	private static MultiMechanism mm;
 
 
 	// The following fields are used for debug info generation
@@ -58,11 +58,24 @@ public class MultiMechanism
 	
 	/////// End debug info fields
 	
+	public static MultiMechanism getInstance(BcelWorld world) {
+		if(mm != null)
+			return mm;
+		else
+			return new MultiMechanism(world);
+	}
+	public static MultiMechanism getInstance() {
+		if(mm != null)
+			return mm;
+		else
+			throw new RuntimeException("MultiMechanism.mm is not initialized. Try calling getInstance(BcelWorld) instead.");
+	}
 	
-	public MultiMechanism(BcelWorld world) {
+	private MultiMechanism(BcelWorld world) {
 		System.out.println("MultiMechanism: "+this);
 		this.world = world;
 		this.mechanisms = new ArrayList<IMechanism>();
+		mm = this;
 	}
 	
 	public List<String> getNames()
@@ -79,6 +92,9 @@ public class MultiMechanism
 		return names;
 	}
 	
+	public List<IMechanism> getMechanisms() {
+		return mechanisms;
+	}
 
 	public void setInputFiles(IClassFileProvider input) {
 		for (IMechanism mech:mechanisms) 
@@ -115,16 +131,16 @@ public class MultiMechanism
 			// we don't walk bodies of things where it's a wrong constructor
 			// thingie
 			if (superOrThisCall == null) return null;
-			enclosingShadow = BcelShadow.makeConstructorExecution(world, mg, superOrThisCall);
+			enclosingShadow = BcelShadow.makeConstructorExecution(getWorld(), mg, superOrThisCall);
 			// TODO:I'm not sure what this statement does. Should it be here?
 			if (mg.getEffectiveSignature() != null)
 				enclosingShadow.setMatchingSignature(mg.getEffectiveSignature()
 						.getEffectiveSignature());
 		} else if (mg.getName().equals("<clinit>")) {
-			enclosingShadow = BcelShadow.makeStaticInitialization(world, mg);
+			enclosingShadow = BcelShadow.makeStaticInitialization(getWorld(), mg);
 			// System.err.println(enclosingShadow);
 		} else {
-			enclosingShadow = BcelShadow.makeMethodExecution(world, mg, false);
+			enclosingShadow = BcelShadow.makeMethodExecution(getWorld(), mg, false);
 		}
 		List<BcelShadow> result = reify(mg.getBody(), mg, enclosingShadow);
 		enclosingShadow.init();
@@ -192,17 +208,17 @@ public class MultiMechanism
 			FieldInstruction fi = (FieldInstruction) i;
 			
 			Member field = BcelWorld.makeFieldJoinPointSignature(clazz, fi);
-			ResolvedMember resolvedField = field.resolve(world);
+			ResolvedMember resolvedField = field.resolve(getWorld());
 			
 			if (resolvedField == null) {
 				// we can't find the field, so it's not a join point.
 				return null;
 			}				
 			if (fi.opcode == Constants.PUTFIELD || fi.opcode == Constants.PUTSTATIC) {
-				result.add(BcelShadow.makeFieldSet(world, resolvedField, mg, ih,
+				result.add(BcelShadow.makeFieldSet(getWorld(), resolvedField, mg, ih,
 						enclosingShadow));
 			} else {
-				BcelShadow bs = BcelShadow.makeFieldGet(world, mg, ih,
+				BcelShadow bs = BcelShadow.makeFieldGet(getWorld(), mg, ih,
 						enclosingShadow);
 				
 				//bs.setOriginalPositions();
@@ -218,10 +234,10 @@ public class MultiMechanism
 		} else if (i instanceof InvokeInstruction) {
 			InvokeInstruction ii = (InvokeInstruction) i;
 			if (ii.getMethodName(clazz.getConstantPool()).equals("<init>")) {
-				result.add(BcelShadow.makeConstructorCall(world, mg, ih,
+				result.add(BcelShadow.makeConstructorCall(getWorld(), mg, ih,
 						enclosingShadow));
 			} else
-				result.add(BcelShadow.makeMethodCall(world, mg, ih,
+				result.add(BcelShadow.makeMethodCall(getWorld(), mg, ih,
 						enclosingShadow));
 		} else
 		// TODO: I need to make it shared amongst all the mechanisms,
@@ -229,15 +245,15 @@ public class MultiMechanism
 		// world.isJoinpointArrayConstructionEnabled() &&
 		// if ((i instanceof NEWARRAY || i instanceof ANEWARRAY || i instanceof
 		// MULTIANEWARRAY)) {
-		if (i.opcode == Constants.ANEWARRAY && world.isJoinpointArrayConstructionEnabled()) {
-			//System.out.println("CREATING AN ARRAY CONSTRUCTOR CALL!, isJPARRCONSTRENABLED?="+world.isJoinpointArrayConstructionEnabled());
-			result.add(BcelShadow.makeArrayConstructorCall(world, mg, ih,
+		if (i.opcode == Constants.ANEWARRAY && getWorld().isJoinpointArrayConstructionEnabled()) {
+			//System.out.println("CREATING AN ARRAY CONSTRUCTOR CALL!, isJPARRCONSTRENABLED?="+getWorld().isJoinpointArrayConstructionEnabled());
+			result.add(BcelShadow.makeArrayConstructorCall(getWorld(), mg, ih,
 					enclosingShadow));
-		} else if (i.opcode == Constants.NEWARRAY && world.isJoinpointArrayConstructionEnabled()) {
-			result.add(BcelShadow.makeArrayConstructorCall(world, mg, ih,
+		} else if (i.opcode == Constants.NEWARRAY && getWorld().isJoinpointArrayConstructionEnabled()) {
+			result.add(BcelShadow.makeArrayConstructorCall(getWorld(), mg, ih,
 					enclosingShadow));
-		} else if (i instanceof MULTIANEWARRAY && world.isJoinpointArrayConstructionEnabled()) {
-			result.add(BcelShadow.makeArrayConstructorCall(world, mg, ih,
+		} else if (i instanceof MULTIANEWARRAY && getWorld().isJoinpointArrayConstructionEnabled()) {
+			result.add(BcelShadow.makeArrayConstructorCall(getWorld(), mg, ih,
 					enclosingShadow));
 		}
 		// }
@@ -259,7 +275,7 @@ public class MultiMechanism
 						continue;
 					if (isInitFailureHandler(ih, mg))
 						return result;
-					result.add(BcelShadow.makeExceptionHandler(world, er, mg,
+					result.add(BcelShadow.makeExceptionHandler(getWorld(), er, mg,
 							ih, enclosingShadow));
 				}
 			}
@@ -417,62 +433,6 @@ public class MultiMechanism
 	}
 	
 	/**
-	 * If clazz is an aspect class, returns the which mechanism this aspect is handled by
-	 * @param clazz
-	 * @return
-	 */
-	private IMechanism getHandlingMechanism(LazyClassGen clazz)
-	{
-		IMechanism m =  null;
-		for(IMechanism m2 : mechanisms)
-		{
-			if(m2.getClass().getName().compareTo("AJWeaver")==0)
-			{
-				continue;
-			}
-			
-			if(m2.handledByMe(clazz))
-			{				
-				m = m2;
-				break;
-			}
-		}
-		
-		if(m == null)
-		{
-			for(IMechanism m2 : mechanisms)
-			{
-				if(m2.getClass().getName().compareTo("AJWeaver")==0);
-				{
-					m = m2;
-					break;
-				}
-			}
-			
-		}
-			
-		return m;		
-	}
-	
-	/**
-	 * generates the Aspect Attribute
-	 * @param clazz The class to generate the attribute for 
-	 */
-	protected void generateAspectTag(LazyClassGen clazz) 
-	{		
-		
-		if(clazz.getType().isAspect())
-		{
-			IMechanism m = getHandlingMechanism(clazz);
-						
-			Attribute aspectAttribute = Utility.bcelAttribute(new awesome.platform.adb.tagkit.AspectAttribute(world, m, clazz), 
-					clazz.getConstantPool());
-							
-			clazz.addAttribute(aspectAttribute);
-		}		
-	}
-	
-	/**
 	 * generates the FieldNumber Attribute
 	 * @param clazz
 	 */
@@ -482,7 +442,7 @@ public class MultiMechanism
 				return;
 			
 			Attribute fieldLineNoAttribute;
-			fieldLineNoAttribute = Utility.bcelAttribute(new awesome.platform.adb.tagkit.FieldLineNumberAttribute(world, clazz), 
+			fieldLineNoAttribute = Utility.bcelAttribute(new awesome.platform.adb.tagkit.FieldLineNumberAttribute(getWorld(), clazz), 
 					clazz.getConstantPool());
 							
 			clazz.addAttribute(fieldLineNoAttribute);
@@ -495,8 +455,6 @@ public class MultiMechanism
 		awesome.platform.adb.util.Logger.logLn("transforming class: " + clazz);
 		
 		boolean isChanged = false;
-		
-		generateAspectTag(clazz);		
 
 		 // need to prepare a list of effects for each method
 		methodNameToEffect = new HashMap<String, List<EffectApplication>>();	

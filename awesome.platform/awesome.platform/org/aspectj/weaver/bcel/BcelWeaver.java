@@ -123,7 +123,7 @@ public class BcelWeaver {
 			trace.enter("<init>", this, world);
 		this.world = world;
 		this.xcutSet = world.getCrosscuttingMembersSet();
-		this.MM = new MultiMechanism(world);
+		this.MM = MultiMechanism.getInstance(world);
 
 		if (trace.isTraceEnabled())
 			trace.exit("<init>");
