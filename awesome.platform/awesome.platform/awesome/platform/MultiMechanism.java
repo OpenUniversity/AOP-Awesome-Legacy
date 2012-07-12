@@ -53,7 +53,7 @@ public class MultiMechanism
 	// Maps each method to a list of effects that are applied to it
 	private Map<String, List<EffectApplication>> methodNameToEffect;
 	// Maps each method to a list of shadows it contains
-	private Map<String, List<BcelShadow>> allShadows;
+	//private Map<String, List<BcelShadow>> allShadows;
 	
 	
 	/////// End debug info fields
@@ -336,54 +336,54 @@ public class MultiMechanism
 		}
 	}
 	
-	/**
-	 * generate the "all joinpoints" attribute
-	 * @param clazz
-	 */
-	private void genereteAllJPsTag(LazyClassGen clazz)
-	{
-		awesome.platform.adb.util.Logger.logLn("generating AllJPsTag for " + 
-				clazz.getName());
-		
-		List<LazyMethodGen> methods = clazz.getMethodGens();
-		
-		for(LazyMethodGen m : methods)
-		{
-			if(m.isAbstract() )
-				continue;
-			
-			List<BcelShadow> shadowList = allShadows.get(m.getName());
-			if(null == shadowList)
-				continue;
-			
-			JoinPointGranularityAttribute ajpa = new JoinPointGranularityAttribute(this, shadowList);
-			
-			Attribute ccAttribute;
-			ccAttribute = Utility.bcelAttribute(ajpa, 
-							clazz.getConstantPool());
-					
-			Attribute[] ats = m.getMethod().getAttributes();
-			for(Attribute a : ats)
-			{
-				if(a instanceof Code)
-				{
-					Code c = (Code) a;
-					Attribute[] attrs = c.getAttributes();
-					Attribute[] extAttrs = new Attribute[attrs.length+1];
-					System.arraycopy(attrs, 0, extAttrs, 0, attrs.length);
-					extAttrs[attrs.length] = ccAttribute;	
-					c.setAttributes(extAttrs);
-				}				
-			}
-		}
-		
-	}
+//	/**
+//	 * generate the "all joinpoints" attribute
+//	 * @param clazz
+//	 */
+//	private void genereteGranularityAttribute(LazyClassGen clazz)
+//	{
+//		awesome.platform.adb.util.Logger.logLn("generating AllJPsTag for " + 
+//				clazz.getName());
+//		
+//		List<LazyMethodGen> methods = clazz.getMethodGens();
+//		
+//		for(LazyMethodGen m : methods)
+//		{
+//			if(m.isAbstract() )
+//				continue;
+//			
+//			List<BcelShadow> shadowList = allShadows.get(m.getName());
+//			if(null == shadowList)
+//				continue;
+//			
+//			JoinPointGranularityAttribute ajpa = new JoinPointGranularityAttribute(this, shadowList);
+//			
+//			Attribute ccAttribute;
+//			ccAttribute = Utility.bcelAttribute(ajpa, 
+//							clazz.getConstantPool());
+//					
+//			Attribute[] ats = m.getMethod().getAttributes();
+//			for(Attribute a : ats)
+//			{
+//				if(a instanceof Code)
+//				{
+//					Code c = (Code) a;
+//					Attribute[] attrs = c.getAttributes();
+//					Attribute[] extAttrs = new Attribute[attrs.length+1];
+//					System.arraycopy(attrs, 0, extAttrs, 0, attrs.length);
+//					extAttrs[attrs.length] = ccAttribute;	
+//					c.setAttributes(extAttrs);
+//				}				
+//			}
+//		}
+//		
+//	}
 	
 	/**
 	 * generate the cross cutting attribute
 	 * @param clazz
 	 */
-	protected void generateCrossCuttingTag(LazyClassGen clazz)
+	protected void generateCrosscuttingAndShadowAttribute(LazyClassGen clazz)
 	{
 		if(clazz.isInterface())
 			return;
@@ -442,7 +442,7 @@ public class MultiMechanism
 
 		 // need to prepare a list of effects for each method
 		methodNameToEffect = new HashMap<String, List<EffectApplication>>();	
-		allShadows = new HashMap<String, List<BcelShadow>>();
+		//allShadows = new HashMap<String, List<BcelShadow>>();
 		
         List<BcelShadow> shadows = reify(clazz);
         for (BcelShadow shadow:shadows)
@@ -454,13 +454,41 @@ public class MultiMechanism
         		isChanged=true;     	
         }
          
-        genereteAllJPsTag(clazz);
+        addAspectAttribute(clazz);
+        addGranularityAttribute(clazz);
+        addCrosscuttingAndShadowAttribute(clazz);
+        generateCrosscuttingAndShadowAttribute(clazz);
+        addFieldLineNumberAttribute(clazz);
+        //genereteGranularityAttribute(clazz);
         // call after the transformation
-        generateCrossCuttingTag(clazz);
         //printAttributes(clazz);		
 		return isChanged;
 	}
-
+	/**
+	 * A stub method. A hook for the aspect AddAspectAttribute
+	 * that actually inserts the attribute.
+	 * @param clazz
+	 */
+	private void addAspectAttribute(LazyClassGen clazz) {}
+	/**
+	 * A stub method. A hook for the aspect AddGranularityAttribute
+	 * that actually inserts the attribute.
+	 * @param clazz
+	 */
+	private void addGranularityAttribute(LazyClassGen clazz) {}
+	/**
+	 * A stub method. A hook for the aspect addCrosscuttingAndShadowAttribute
+	 * that actually inserts the attributes.
+	 * @param clazz
+	 */
+	private void addCrosscuttingAndShadowAttribute(LazyClassGen clazz) {}
+	/**
+	 * A stub method. A hook for the aspect addFieldLineNumberAttribute
+	 * that actually inserts the attribute.
+	 * @param clazz
+	 */
+	private void addFieldLineNumberAttribute(LazyClassGen clazz) {}
+	
 	public boolean transform(BcelShadow shadow) 
 	{
 		//System.out.println("Transforming a shadow:"+shadow+", "+shadow.getSourceLocation());
@@ -470,17 +498,17 @@ public class MultiMechanism
 				CompilationAndWeavingContext.IMPLEMENTING_ON_SHADOW, shadow);
 		
 		// check if the shadow is in the emergent granularity
-		if(FeatureInteractions.instance().isInEMJPG(shadow.getKind().getName()))
-    	{
-			List<BcelShadow> shadowList = allShadows.get(shadow.getEnclosingMethod().getName());
-			if(null == shadowList)
-			{
-				shadowList = new ArrayList<BcelShadow>();
-				allShadows.put(shadow.getEnclosingMethod().getName(), shadowList);
-			}
-			
-			shadowList.add(shadow);
-    	}
+//		if(FeatureInteractions.instance().isInEMJPG(shadow.getKind().getName()))
+//    	{
+//			List<BcelShadow> shadowList = allShadows.get(shadow.getEnclosingMethod().getName());
+//			if(null == shadowList)
+//			{
+//				shadowList = new ArrayList<BcelShadow>();
+//				allShadows.put(shadow.getEnclosingMethod().getName(), shadowList);
+//			}
+//			
+//			shadowList.add(shadow);
+//    	}
 		
 		List<List<IEffect>> multiEffects = match(shadow);
 		List<IEffect> effects = multiOrder(multiEffects, shadow);

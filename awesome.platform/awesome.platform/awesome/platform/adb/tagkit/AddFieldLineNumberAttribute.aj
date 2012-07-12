@@ -7,7 +7,9 @@ import org.aspectj.weaver.bcel.Utility;
 import awesome.platform.MultiMechanism;
 
 public aspect AddFieldLineNumberAttribute extends AddAttribute {
-	after(LazyClassGen clazz) : transform(clazz) {
+	before(LazyClassGen clazz) : 
+		execution(* MultiMechanism.addFieldLineNumberAttribute(LazyClassGen))
+			&& args(clazz) {
 		generateFieldLineNumberAttribute(clazz);
 	}
 	/**
