@@ -37,7 +37,7 @@ public aspect AddGranularityAttribute extends AddAttribute {
     	}
 	}
 	before(LazyClassGen clazz) : 
-		execution(* MultiMechanism.addGranularityAttribute(LazyClassGen))
+		call(* MultiMechanism.addGranularityAttribute(LazyClassGen))
 			&& args(clazz) {
 		genereteGranularityAttribute(clazz);
 	}

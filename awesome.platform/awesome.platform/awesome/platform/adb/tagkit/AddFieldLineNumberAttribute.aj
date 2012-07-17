@@ -8,7 +8,7 @@ import awesome.platform.MultiMechanism;
 
 public aspect AddFieldLineNumberAttribute extends AddAttribute {
 	before(LazyClassGen clazz) : 
-		execution(* MultiMechanism.addFieldLineNumberAttribute(LazyClassGen))
+		call(* MultiMechanism.addFieldLineNumberAttribute(LazyClassGen))
 			&& args(clazz) {
 		generateFieldLineNumberAttribute(clazz);
 	}

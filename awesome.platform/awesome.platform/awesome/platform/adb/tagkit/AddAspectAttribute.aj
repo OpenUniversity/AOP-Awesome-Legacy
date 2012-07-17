@@ -16,7 +16,7 @@ import org.aspectj.weaver.bcel.Utility;
 public aspect AddAspectAttribute extends AddAttribute {
 	
 	before(LazyClassGen clazz): 
-		execution(* MultiMechanism.addAspectAttribute(LazyClassGen))
+		call(* MultiMechanism.addAspectAttribute(LazyClassGen))
 			&& args(clazz) {
 		generateAspectAttribute(clazz);
 	}
