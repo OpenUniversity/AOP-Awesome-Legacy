@@ -16,6 +16,7 @@ import awesome.config.spec.FeatureInteractions;
 import awesome.platform.MultiMechanism;
 
 public aspect AddGranularityAttribute extends AddAttribute {
+	// Maps each method to a list of shadows it contains
 	private Map<String, List<BcelShadow>> allShadows;
 	
 	// maintaining allShadows

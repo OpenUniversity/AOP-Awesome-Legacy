@@ -38,8 +38,18 @@ import awesome.platform.adb.tagkit.FieldLineNumberAttribute;
 import awesome.platform.adb.tagkit.JoinPointDescriptor;
 import awesome.platform.adb.tagkit.JoinPointGranularityAttribute;
 import awesome.platform.adb.tagkit.ShadowAttribute;
-public class MultiMechanism 
-{
+
+/**
+ * Note: on 18.7.12 Oren performed a refactoring operation whose goal was
+ * to extract all the code dealing with debug attributes to external aspects.
+ * All refactoring is done but AddCrosscuttingAndShadowAttribute. We are facing a very very weird situation: 
+ * if we add an aspect (any aspect) to the package (or to the project) we get a different AttributeTester's output! 
+ * clearly, when we add the AddCrosscuttingAndShadowAttribute aspect, then the output changes as well. 
+ * Hence currently, we stop the refactoring until we talk to Yoav.
+ * @author oren
+ *
+ */
+public class MultiMechanism {
 	
 	private BcelWorld world;
 	private List<IMechanism> mechanisms;
@@ -47,17 +57,9 @@ public class MultiMechanism
 	private Map<LazyMethodGen, List<BcelShadow>> methodShadows = new HashMap<LazyMethodGen, List<BcelShadow>>();
 	private static MultiMechanism mm;
 
-
-	// The following fields are used for debug info generation
-	
-	// Maps each method to a list of effects that are applied to it
+	// Maps each method to a list of effects that are applied to it, used for debug info
 	private Map<String, List<EffectApplication>> methodNameToEffect;
-	// Maps each method to a list of shadows it contains
-	//private Map<String, List<BcelShadow>> allShadows;
-	
-	
-	/////// End debug info fields
-	
+		
 	public static MultiMechanism createInstance(BcelWorld world) {
 		if(mm != null)
 			return mm;
@@ -282,10 +284,7 @@ public class MultiMechanism
 		}
 		return result;
 	}
-		
-	
-	// Debug Info generation BEGIN
-	
+			
 	
 	/**
 	 * Create the shadow attribute for a method
@@ -335,49 +334,6 @@ public class MultiMechanism
 			codeAttribute.setAttributes(extAttrs);			
 		}
 	}
-	
-//	/**
-//	 * generate the "all joinpoints" attribute
-//	 * @param clazz
-//	 */
-//	private void genereteGranularityAttribute(LazyClassGen clazz)
-//	{
-//		awesome.platform.adb.util.Logger.logLn("generating AllJPsTag for " + 
-//				clazz.getName());
-//		
-//		List<LazyMethodGen> methods = clazz.getMethodGens();
-//		
-//		for(LazyMethodGen m : methods)
-//		{
-//			if(m.isAbstract() )
-//				continue;
-//			
-//			List<BcelShadow> shadowList = allShadows.get(m.getName());
-//			if(null == shadowList)
-//				continue;
-//			
-//			JoinPointGranularityAttribute ajpa = new JoinPointGranularityAttribute(this, shadowList);
-//			
-//			Attribute ccAttribute;
-//			ccAttribute = Utility.bcelAttribute(ajpa, 
-//							clazz.getConstantPool());
-//					
-//			Attribute[] ats = m.getMethod().getAttributes();
-//			for(Attribute a : ats)
-//			{
-//				if(a instanceof Code)
-//				{
-//					Code c = (Code) a;
-//					Attribute[] attrs = c.getAttributes();
-//					Attribute[] extAttrs = new Attribute[attrs.length+1];
-//					System.arraycopy(attrs, 0, extAttrs, 0, attrs.length);
-//					extAttrs[attrs.length] = ccAttribute;	
-//					c.setAttributes(extAttrs);
-//				}				
-//			}
-//		}
-//		
-//	}
 	
 	/**
 	 * generate the cross cutting attribute
@@ -434,15 +390,13 @@ public class MultiMechanism
 	
 	// Debug Info generation END
 	
-	public boolean transform(LazyClassGen clazz) 
-	{
+	public boolean transform(LazyClassGen clazz) {
 		awesome.platform.adb.util.Logger.logLn("transforming class: " + clazz);
 		
 		boolean isChanged = false;
 
 		 // need to prepare a list of effects for each method
 		methodNameToEffect = new HashMap<String, List<EffectApplication>>();	
-		//allShadows = new HashMap<String, List<BcelShadow>>();
 		
         List<BcelShadow> shadows = reify(clazz);
         for (BcelShadow shadow:shadows)
@@ -456,14 +410,16 @@ public class MultiMechanism
          
         addAspectAttribute(clazz);
         addGranularityAttribute(clazz);
-        addCrosscuttingAndShadowAttribute(clazz);
+        //addCrosscuttingAndShadowAttribute(clazz);
         generateCrosscuttingAndShadowAttribute(clazz);
         addFieldLineNumberAttribute(clazz);
-        //genereteGranularityAttribute(clazz);
-        // call after the transformation
-        //printAttributes(clazz);		
+        
 		return isChanged;
 	}
+	// Why we added these stub methods? first we applied the aspects AFTER
+	// transform(clazz) butit doesn't work well probably because incorrect advice order.
+	// So we added the stubs to have the same order as before. We can probably try again
+	// sometime to remove the stubs and set this order using declare precedence.
 	/**
 	 * A stub method. A hook for the aspect AddAspectAttribute
 	 * that actually inserts the attribute.
@@ -489,26 +445,12 @@ public class MultiMechanism
 	 */
 	private void addFieldLineNumberAttribute(LazyClassGen clazz) {}
 	
-	public boolean transform(BcelShadow shadow) 
-	{
+	public boolean transform(BcelShadow shadow) {
 		//System.out.println("Transforming a shadow:"+shadow+", "+shadow.getSourceLocation());
 		
 		boolean isChanged = false;
 		ContextToken tok = CompilationAndWeavingContext.enteringPhase(
 				CompilationAndWeavingContext.IMPLEMENTING_ON_SHADOW, shadow);
-		
-		// check if the shadow is in the emergent granularity
-//		if(FeatureInteractions.instance().isInEMJPG(shadow.getKind().getName()))
-//    	{
-//			List<BcelShadow> shadowList = allShadows.get(shadow.getEnclosingMethod().getName());
-//			if(null == shadowList)
-//			{
-//				shadowList = new ArrayList<BcelShadow>();
-//				allShadows.put(shadow.getEnclosingMethod().getName(), shadowList);
-//			}
-//			
-//			shadowList.add(shadow);
-//    	}
 		
 		List<List<IEffect>> multiEffects = match(shadow);
 		List<IEffect> effects = multiOrder(multiEffects, shadow);
