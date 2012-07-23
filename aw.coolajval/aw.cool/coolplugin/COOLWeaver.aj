@@ -252,7 +252,7 @@ public privileged aspect COOLWeaver extends AbstractWeaver {
 	}
 
 	/**
-	 * clazz is an aspect class. For such a type, COOL mechanism takes control
+	 * clazz is an aspect class (i.e., a coordinator). For such a type, COOL mechanism takes control
 	 * over the reify process and this method handles that process.
 	 * <p>The methods of the aspect class are retrieved and iterated:
 	 * <ul>
