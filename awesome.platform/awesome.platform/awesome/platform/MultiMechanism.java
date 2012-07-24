@@ -31,13 +31,11 @@ import org.aspectj.weaver.bcel.LazyClassGen;
 import org.aspectj.weaver.bcel.LazyMethodGen;
 import org.aspectj.weaver.bcel.Utility;
 
-import awesome.config.spec.FeatureInteractions;
 import awesome.platform.adb.tagkit.CrossCuttingAttribute;
 import awesome.platform.adb.tagkit.EffectApplication;
-import awesome.platform.adb.tagkit.FieldLineNumberAttribute;
 import awesome.platform.adb.tagkit.JoinPointDescriptor;
-import awesome.platform.adb.tagkit.JoinPointGranularityAttribute;
 import awesome.platform.adb.tagkit.ShadowAttribute;
+import awesome.platform.annotations.AwSuppressReify;
 
 /**
  * Note: on 18.7.12 Oren performed a refactoring operation whose goal was
@@ -108,13 +106,14 @@ public class MultiMechanism {
 	}
 	
 	public List<BcelShadow> reify(LazyClassGen clazz) {
-		List<LazyMethodGen> methods = new ArrayList(clazz.getMethodGens());
 		List<BcelShadow> result = new ArrayList<BcelShadow>();
+		if(AwesomeCore.hasAnnotation(clazz, AwesomeCore.SUPPRESS_REIFY_ANNOTATION, "value", AwSuppressReify.ALL))
+			return result;
+		
+		List<LazyMethodGen> methods = new ArrayList(clazz.getMethodGens());
 		for (LazyMethodGen mg : methods) {
-			// continue if method has @AwSuppressReify annotation:
-			if(AwesomeCore.hasAnnotation(mg, "awesome.platform.annotations.AwSuppressReify"))
+			if(AwesomeCore.hasAnnotation(mg, AwesomeCore.SUPPRESS_REIFY_ANNOTATION, "value", AwSuppressReify.ALL))
 				continue;
-			
 			List<BcelShadow> methShadows = null;
 			methShadows = reify(mg);
 			if (methShadows != null) {
@@ -144,9 +143,17 @@ public class MultiMechanism {
 		} else {
 			enclosingShadow = BcelShadow.makeMethodExecution(getWorld(), mg, false);
 		}
-		List<BcelShadow> result = reify(mg.getBody(), mg, enclosingShadow);
+		List<BcelShadow> result = new LinkedList<BcelShadow>();
 		enclosingShadow.init();
-		result.add(enclosingShadow);
+		// now we take into account the suppress reify annotation
+		if(AwesomeCore.hasAnnotation(mg, AwesomeCore.SUPPRESS_REIFY_ANNOTATION, "value", AwSuppressReify.WITHIN))
+			result.add(enclosingShadow);
+		else {
+			result = reify(mg.getBody(), mg, enclosingShadow);
+			if(!AwesomeCore.hasAnnotation(mg, AwesomeCore.SUPPRESS_REIFY_ANNOTATION, "value", AwSuppressReify.EXECUTION_SHADOW))
+				result.add(enclosingShadow);				
+		}
+			
 		return result;
 	}
 

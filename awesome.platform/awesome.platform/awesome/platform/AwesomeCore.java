@@ -3,6 +3,7 @@ package awesome.platform;
 import org.aspectj.apache.bcel.classfile.JavaClass;
 import org.aspectj.apache.bcel.classfile.annotation.AnnotationGen;
 import org.aspectj.apache.bcel.classfile.annotation.ElementNameValuePairGen;
+import org.aspectj.weaver.AnnotationAJ;
 import org.aspectj.weaver.bcel.LazyClassGen;
 import org.aspectj.weaver.bcel.LazyMethodGen;
 import org.aspectj.weaver.bcel.UnwovenClassFile;
@@ -10,6 +11,7 @@ import org.aspectj.weaver.bcel.UnwovenClassFile;
 public class AwesomeCore {
 	private static final String AJ_ANNOTATION = "org.aspectj.lang.annotation.Aspect";
 	public static final String ASPECT_MECHANISM_ANNOTATION = "awesome.platform.annotations.AwAspectMechanism";
+	public static final String SUPPRESS_REIFY_ANNOTATION = "awesome.platform.annotations.AwSuppressReify";
 	
 	/**
 	 * 
@@ -54,10 +56,37 @@ public class AwesomeCore {
 		return result;
 	}
 
-	public static boolean hasAnnotation(LazyMethodGen mg, String annotName) {
-		AnnotationGen[] annotations = mg.getMethod().getAnnotations();
+	/**
+	 * @return true if the method has the specified annotation
+	 * @param method
+	 * @param annotation e.g., AwesomeCore.SUPPRESS_REIFY_ANNOTATION
+	 */
+	public static boolean hasAnnotation(LazyMethodGen method, String annotation) {
+		AnnotationGen[] annotations = method.getMethod().getAnnotations();
 		for(AnnotationGen annot : annotations){
-			if(annot.getTypeName().equals(annotName))
+			if(annot.getTypeName().equals(annotation))
+				return true;
+		}	
+		return false;
+	}
+	/**
+	 * @return true if the annotation exists and it has an element with the specified name and value.
+	 */
+	public static boolean hasAnnotation(LazyMethodGen method, String annotation, String name, String value) {
+		AnnotationGen[] annotations = method.getMethod().getAnnotations();
+		for(AnnotationGen annot : annotations){
+			if(annot.getTypeName().equals(annotation) && annot.hasNameValuePair(name, value))
+				return true;
+		}	
+		return false;
+	}
+	/**
+	 * @return true if the annotation exists and it has an element with the specified name and value.
+	 */
+	public static boolean hasAnnotation(LazyClassGen clazz, String annotation, String name, String value) {
+		AnnotationAJ[] annotations = clazz.getType().getAnnotations();
+		for(AnnotationAJ annot : annotations){
+			if(annot.getTypeName().equals(annotation) && annot.hasNameValuePair(name, value))
 				return true;
 		}	
 		return false;
