@@ -108,12 +108,12 @@ public class MultiMechanism {
 	
 	public List<BcelShadow> reify(LazyClassGen clazz) {
 		List<BcelShadow> result = new ArrayList<BcelShadow>();
-		if(AwesomeCore.getReifyStrategy(clazz).equals(ReifyStrategy.SUPPRESS))
+		if(AwesomeCore.getReifyStrategy(clazz).equals(ReifyStrategy.SUPPRESS_ALL))
 			return result;
 		
 		List<LazyMethodGen> methods = new ArrayList(clazz.getMethodGens());
 		for (LazyMethodGen mg : methods) {
-			if(AwesomeCore.getReifyStrategy(mg).equals(ReifyStrategy.SUPPRESS))
+			if(AwesomeCore.getReifyStrategy(mg).equals(ReifyStrategy.SUPPRESS_ALL))
 				continue;
 			List<BcelShadow> methShadows = null;
 			methShadows = reify(mg);

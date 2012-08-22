@@ -12,7 +12,7 @@ public class ReifyStrategy {
 	 * Applicable for all types (classes, methods, constructors and fields).
 	 * Suppresses reify of all shadows: those in the type's level and below (if exists).
 	 */
-	public static final String SUPPRESS = "1";
+	public static final String SUPPRESS_ALL = "1";
 	/**
 	 * Applicable for methods and constructors.
 	 * Suppresses reify of shadow within the body only.

@@ -198,9 +198,10 @@ public abstract aspect AwesomeMechanism extends AbstractWeaver {
 		if(AwesomeCore.getReifyStrategy(mg).equals(ReifyStrategy.SUPPRESS_WITHIN))
 			result.add(enclosing);
 		else {
-			result = mm.reify(mg.getBody(), mg, enclosing);
-			if(!AwesomeCore.getReifyStrategy(mg).equals(ReifyStrategy.SUPPRESS_EXECUTION_SHADOW))
+			if(!AwesomeCore.getReifyStrategy(mg).equals(ReifyStrategy.SUPPRESS_EXECUTION_SHADOW)) {
+				result = mm.reify(mg.getBody(), mg, enclosing);
 				result.add(enclosing);				
+			}
 		}
 			
 		return result;
