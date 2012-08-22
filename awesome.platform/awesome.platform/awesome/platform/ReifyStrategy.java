@@ -24,4 +24,9 @@ public class ReifyStrategy {
 	 * or a constructor-execution shadows. Shadows within the body are exposed. 
 	 */
 	public static final String SUPPRESS_EXECUTION_SHADOW = "3";
+	/**
+	 * Applicable for classes. Suppresses reify of the
+	 * staticinitialization shadow (the shadow and within).
+	 */
+	public static final String SUPPRESS_STATICINITIALIZATION = "4";
 }

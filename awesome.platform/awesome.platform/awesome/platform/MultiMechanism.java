@@ -115,6 +115,8 @@ public class MultiMechanism {
 		for (LazyMethodGen mg : methods) {
 			if(AwesomeCore.getReifyStrategy(mg).equals(ReifyStrategy.SUPPRESS_ALL))
 				continue;
+			if(mg.getName().equals("<clinit>") && AwesomeCore.getReifyStrategy(clazz).equals(ReifyStrategy.SUPPRESS_STATICINITIALIZATION))
+				continue;
 			List<BcelShadow> methShadows = null;
 			methShadows = reify(mg);
 			if (methShadows != null) {
