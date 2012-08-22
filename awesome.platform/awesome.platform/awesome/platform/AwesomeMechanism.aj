@@ -2,19 +2,18 @@ package awesome.platform;
 
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
 import java.util.Set;
 
 import org.aspectj.apache.bcel.Constants;
 import org.aspectj.apache.bcel.classfile.ConstantPool;
-import org.aspectj.apache.bcel.generic.Instruction;
-import org.aspectj.apache.bcel.generic.FieldInstruction;
-
 import org.aspectj.apache.bcel.generic.FieldGen;
+import org.aspectj.apache.bcel.generic.FieldInstruction;
+import org.aspectj.apache.bcel.generic.Instruction;
 import org.aspectj.apache.bcel.generic.InstructionBranch;
 import org.aspectj.apache.bcel.generic.InstructionCP;
 import org.aspectj.apache.bcel.generic.InstructionConstants;
@@ -37,7 +36,6 @@ import org.aspectj.util.PartialOrder;
 import org.aspectj.weaver.AdviceKind;
 import org.aspectj.weaver.AjAttribute;
 import org.aspectj.weaver.AjcMemberMaker;
-import org.aspectj.weaver.AnnotationAJ;
 import org.aspectj.weaver.BCException;
 import org.aspectj.weaver.ConcreteTypeMunger;
 import org.aspectj.weaver.IntMap;
@@ -50,11 +48,18 @@ import org.aspectj.weaver.Shadow;
 import org.aspectj.weaver.ShadowMunger;
 import org.aspectj.weaver.UnresolvedType;
 import org.aspectj.weaver.WeaverMessages;
+import org.aspectj.weaver.bcel.BcelAdvice;
+import org.aspectj.weaver.bcel.BcelClassWeaver;
 import org.aspectj.weaver.bcel.BcelClassWeaver.IfaceInitList;
-import org.aspectj.weaver.bcel.*;
-
+import org.aspectj.weaver.bcel.BcelShadow;
+import org.aspectj.weaver.bcel.BcelWorld;
+import org.aspectj.weaver.bcel.ExceptionRange;
+import org.aspectj.weaver.bcel.LazyClassGen;
+import org.aspectj.weaver.bcel.LazyMethodGen;
+import org.aspectj.weaver.bcel.Range;
+import org.aspectj.weaver.bcel.ShadowRange;
+import org.aspectj.weaver.bcel.Utility;
 import org.aspectj.weaver.patterns.PerClause;
-import awesome.platform.*;
 
 import com.sun.org.apache.bcel.internal.generic.IndexedInstruction;
 
@@ -141,6 +146,15 @@ public abstract aspect AwesomeMechanism extends AbstractWeaver {
 		return itdWeaver.weaveLateITDs(result);
 	}
 
+	/**
+	 * This advice takes control on the reify process in case that the method
+	 * is an AspectJ produced method (e.g., advice method). The method is (probably)
+	 * exposed an as advice execution shadow while exposing the inner shadows as well.
+	 * We added the code handling the 'suppress reify' feature also here.
+	 * @param mm
+	 * @param mg
+	 * @return
+	 */
 	List<BcelShadow> around(MultiMechanism mm, LazyMethodGen mg) :
 		reifyMethod(mm, mg) {
 		
@@ -178,12 +192,28 @@ public abstract aspect AwesomeMechanism extends AbstractWeaver {
 		if (enclosing == null)
 			return null;
 
-		List<BcelShadow> result = mm.reify(mg.getBody(), mg, enclosing);
-		if (result == null)
-			result = new ArrayList<BcelShadow>();
+		List<BcelShadow> result = new ArrayList<BcelShadow>();
 		enclosing.init();
-		result.add(enclosing);
+		// now we take into account the suppress reify annotation
+		if(AwesomeCore.getReifyStrategy(mg).equals(ReifyStrategy.SUPPRESS_WITHIN))
+			result.add(enclosing);
+		else {
+			result = mm.reify(mg.getBody(), mg, enclosing);
+			if(!AwesomeCore.getReifyStrategy(mg).equals(ReifyStrategy.SUPPRESS_EXECUTION_SHADOW))
+				result.add(enclosing);				
+		}
+			
 		return result;
+		
+		
+		
+// this code was replaced with the code above that takes into account the suppress reify annotations.
+//		List<BcelShadow> result = mm.reify(mg.getBody(), mg, enclosing);
+//		if (result == null)
+//			result = new ArrayList<BcelShadow>();
+//		enclosing.init();
+//		result.add(enclosing);
+//		return result;
 	}
 
 	List<BcelShadow> around(MultiMechanism mm, InstructionHandle ih,

@@ -35,7 +35,6 @@ import awesome.platform.adb.tagkit.CrossCuttingAttribute;
 import awesome.platform.adb.tagkit.EffectApplication;
 import awesome.platform.adb.tagkit.JoinPointDescriptor;
 import awesome.platform.adb.tagkit.ShadowAttribute;
-import awesome.platform.annotations.AwSuppressReify;
 
 /**
  * Note: on 18.7.12 Oren performed a refactoring operation whose goal was
@@ -44,6 +43,8 @@ import awesome.platform.annotations.AwSuppressReify;
  * if we add an aspect (any aspect) to the package (or to the project) we get a different AttributeTester's output! 
  * clearly, when we add the AddCrosscuttingAndShadowAttribute aspect, then the output changes as well. 
  * Hence currently, we stop the refactoring until we talk to Yoav.
+ * Yoav said that the output looks the same. So basically we can perform the refactoring even
+ * though the test fails.
  * @author oren
  *
  */
@@ -107,12 +108,12 @@ public class MultiMechanism {
 	
 	public List<BcelShadow> reify(LazyClassGen clazz) {
 		List<BcelShadow> result = new ArrayList<BcelShadow>();
-		if(AwesomeCore.hasAnnotation(clazz, AwesomeCore.SUPPRESS_REIFY_ANNOTATION, "value", AwSuppressReify.ALL))
+		if(AwesomeCore.getReifyStrategy(clazz).equals(ReifyStrategy.SUPPRESS))
 			return result;
 		
 		List<LazyMethodGen> methods = new ArrayList(clazz.getMethodGens());
 		for (LazyMethodGen mg : methods) {
-			if(AwesomeCore.hasAnnotation(mg, AwesomeCore.SUPPRESS_REIFY_ANNOTATION, "value", AwSuppressReify.ALL))
+			if(AwesomeCore.getReifyStrategy(mg).equals(ReifyStrategy.SUPPRESS))
 				continue;
 			List<BcelShadow> methShadows = null;
 			methShadows = reify(mg);
@@ -144,14 +145,16 @@ public class MultiMechanism {
 			enclosingShadow = BcelShadow.makeMethodExecution(getWorld(), mg, false);
 		}
 		List<BcelShadow> result = new LinkedList<BcelShadow>();
+		
 		enclosingShadow.init();
 		// now we take into account the suppress reify annotation
-		if(AwesomeCore.hasAnnotation(mg, AwesomeCore.SUPPRESS_REIFY_ANNOTATION, "value", AwSuppressReify.WITHIN))
-			result.add(enclosingShadow);
+		if(AwesomeCore.getReifyStrategy(mg).equals(ReifyStrategy.SUPPRESS_WITHIN))
+	 		result.add(enclosingShadow);
 		else {
-			result = reify(mg.getBody(), mg, enclosingShadow);
-			if(!AwesomeCore.hasAnnotation(mg, AwesomeCore.SUPPRESS_REIFY_ANNOTATION, "value", AwSuppressReify.EXECUTION_SHADOW))
-				result.add(enclosingShadow);				
+			if(!AwesomeCore.getReifyStrategy(mg).equals(ReifyStrategy.SUPPRESS_EXECUTION_SHADOW)) {
+				result = reify(mg.getBody(), mg, enclosingShadow);
+				result.add(enclosingShadow);
+			}
 		}
 			
 		return result;

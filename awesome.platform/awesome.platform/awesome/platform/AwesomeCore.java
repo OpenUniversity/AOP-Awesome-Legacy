@@ -11,7 +11,7 @@ import org.aspectj.weaver.bcel.UnwovenClassFile;
 public class AwesomeCore {
 	private static final String AJ_ANNOTATION = "org.aspectj.lang.annotation.Aspect";
 	public static final String ASPECT_MECHANISM_ANNOTATION = "awesome.platform.annotations.AwAspectMechanism";
-	public static final String SUPPRESS_REIFY_ANNOTATION = "awesome.platform.annotations.AwSuppressReify";
+	private static final String AW_REIFY_ANNOTATION = "awesome.platform.annotations.AwReify";
 	
 	/**
 	 * 
@@ -69,28 +69,6 @@ public class AwesomeCore {
 		}	
 		return false;
 	}
-	/**
-	 * @return true if the annotation exists and it has an element with the specified name and value.
-	 */
-	public static boolean hasAnnotation(LazyMethodGen method, String annotation, String name, String value) {
-		AnnotationGen[] annotations = method.getMethod().getAnnotations();
-		for(AnnotationGen annot : annotations){
-			if(annot.getTypeName().equals(annotation) && annot.hasNameValuePair(name, value))
-				return true;
-		}	
-		return false;
-	}
-	/**
-	 * @return true if the annotation exists and it has an element with the specified name and value.
-	 */
-	public static boolean hasAnnotation(LazyClassGen clazz, String annotation, String name, String value) {
-		AnnotationAJ[] annotations = clazz.getType().getAnnotations();
-		for(AnnotationAJ annot : annotations){
-			if(annot.getTypeName().equals(annotation) && annot.hasNameValuePair(name, value))
-				return true;
-		}	
-		return false;
-	}
 	public static boolean hasAnnotation(JavaClass clazz, String annotName) {
 		AnnotationGen[] annotations = clazz.getAnnotations();
 		for(AnnotationGen annot : annotations){
@@ -98,5 +76,39 @@ public class AwesomeCore {
 				return true;
 		}	
 		return false;
+	}
+	public static String getReifyStrategy(LazyClassGen clazz) {
+		String value = getAnnotationValue(clazz, AW_REIFY_ANNOTATION);
+		if(value == null)
+			return ReifyStrategy.NONE;
+		else
+			return value;
+	}
+	public static String getReifyStrategy(LazyMethodGen method) {
+		String value = getAnnotationValue(method, AW_REIFY_ANNOTATION);
+		if(value == null)
+			return ReifyStrategy.NONE;
+		else
+			return value;
+	}
+	private static String getAnnotationValue(LazyMethodGen method, String annotation) {
+		AnnotationGen[] annotations = method.getMethod().getAnnotations();
+		for(AnnotationGen annot : annotations){
+			if(annot.getTypeName().equals(annotation)) {
+				String res = ((ElementNameValuePairGen) annot.getValues().get(0)).getValue().stringifyValue();
+				return res;
+			}
+		}	
+		return null;
+	}
+	private static String getAnnotationValue(LazyClassGen clazz, String annotation) {
+		AnnotationAJ[] annotations = clazz.getType().getAnnotations();
+		for(AnnotationAJ annot : annotations){
+			if(annot.getTypeName().equals(annotation)) {
+				String res = annot.getStringFormOfValue("value"); 
+				return res;
+			}
+		}	
+		return null;
 	}
 }
