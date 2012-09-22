@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="aw.cool"/>
+	<classpathentry kind="src" path="aw.aj"/>
+	<classpathentry kind="src" path="aw.validate"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="src" path="/awesome.platform">
+		<attributes>
+			<attribute name="org.eclipse.ajdt.inpath" value="org.eclipse.ajdt.inpath"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.ajdt.core.ASPECTJRT_CONTAINER"/>
+	<classpathentry kind="lib" path="extmodules/asm-3.1.jar"/>
+	<classpathentry kind="lib" path="extmodules/commons.jar"/>
+	<classpathentry kind="lib" path="extmodules/jrockit.jar"/>
+	<classpathentry kind="lib" path="extmodules/aspectjtools.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

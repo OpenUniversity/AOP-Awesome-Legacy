@@ -1,0 +1,64 @@
+Index: src/adb/backend/bcel/spi/StackFilterDelegate.java
+===================================================================
+--- src/adb/backend/bcel/spi/StackFilterDelegate.java	(revision 244)
++++ src/adb/backend/bcel/spi/StackFilterDelegate.java	(working copy)
+@@ -262,7 +262,7 @@
+ 		 * 	-and executing (subchain?,top) 
+ 		 * 	-and not executing (subchain?,not top, around: Shadow/Entry [around] [Shadow/Taget] )
+ 		 * 
+-		 * -gone (fell back to target (no next frame, no proceed (not around | no next)); part of erased subchain (chain on non around))
++		 * -gone (fell back to target (top); part of erased subchain (chain on non around);before|after and (not last or top))
+ 		 **/
+ 		
+ 		
+@@ -268,7 +268,7 @@
+ 		
+ 		
+ 		if (!frames.hasPrevious()) {
+-			// on top of the stack, advice is gone
++			// on top of the stack, advice is gone: before or after or (arround and no proceed)
+ 			pas.add(new PastAdviceImpl(aapl, ai, 
+ 					Collections.<Value> emptyList(), 
+ 					Collections.<StackFrame> emptyList()));
+@@ -273,10 +273,6 @@
+ 					Collections.<Value> emptyList(), 
+ 					Collections.<StackFrame> emptyList()));
+ 			
+-			//assert fell back to target (no proceed (not around | no next))
+-			if(!aapl.advice().isAround() && !lastInChain)
+-				throw new InternalDebuggerException("should not occur");
+-			
+ 			return;
+ 		}
+ 		
+@@ -285,7 +281,7 @@
+ 		 * 	-and executing (subchain?,top) 
+ 		 * 	-and not executing (subchain?,not top, around: Shadow/Entry [around] [Shadow/Target] )
+ 		 * 
+-		 * -gone part of erased subchain (chain on non around))
++		 * -gone (part of erased subchain (chain on non around)); before|after and not last)
+ 		 **/
+ 		
+ 		if(depth.size() > 1 && !depth.peek().advice().isAround()){
+@@ -299,6 +295,21 @@
+ 		 * -still on stack(subchain?, next frame)
+ 		 * 	-and executing (subchain?,top) 
+ 		 * 	-and not executing (subchain?,not top, around: Shadow/Entry [around] [Shadow/Target] )
++		 * 
++		 * -gone (before|after and not last)
++		 **/
++		
++		if((aapl.advice().isBefore() || aapl.advice().isAfter()) && !lastRan ){
++			pas.add(new PastAdviceImpl(aapl, ai, 
++					Collections.<Value> emptyList(), 
++					Collections.<StackFrame> emptyList()));
++			return;
++		}
++		
++		/**
++		 * -still on stack(subchain?, next frame)
++		 * 	-and executing (subchain?,top) 
++		 * 	-and not executing (subchain?,not top, around: Shadow/Entry [around] [Shadow/Target] )
+ 		 **/
+ 		
+ 		com.sun.jdi.StackFrame current = frames.previous();

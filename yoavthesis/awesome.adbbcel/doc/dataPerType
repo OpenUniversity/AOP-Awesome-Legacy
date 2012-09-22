@@ -1,0 +1,40 @@
+	: in master tag
+*	: 0..n in master tag
+%	: tag pressent
+$	: specific tag
+X	: not supported
+
+Aspect	AspectTag
+isAspect				%AspectTag	formats
+per						int			ajdi.Aspect
+Advices In Aspect		*AdviceTag	formats
+SourceLocation			int int		StartLine EndLine
+isDynamic				X
+
+Container
+isAdviceContainer		X
+Advices In Container	X
+
+Advice AdviceTag
+type					int						adb.backend.AdviceDescriptor
+sourceLocation			String int int			FilePath StartLine EndLine
+aspect					X						
+pointcut				String					X
+container				X
+method					String String			MethodName MethodSig
+args					*(String int)			ArgName ArgIndex
+
+CCI
+Jp per method			$short*JoinPointTag			n formats
+JP per class			X
+JP for					X
+
+AdviceApplication	AdviceAplicationSection
+advice					AdviceSection/UTF 					
+residue					String/UTF					X
+Joinpoint				X			
+
+JoinPoint
+type					short							adb.backend.JoinPointDescriptor
+Location				short short						StartLine CodeIndex
+AdvAppls				short*AdviceAplicationSection	n AdviceAplicationTag	

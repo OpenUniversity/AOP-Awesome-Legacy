@@ -1,0 +1,49 @@
+Preinitialisation
+  in: getExecutionJoinPoints
+  class: _
+  method: <init>(_)
+  loc.infile: class.infile
+  loc.lnr: method.lnr
+  loc.class: class
+  loc.method: method
+  lic.cid:_
+  
+Initialisation
+  in: getExecutionJoinPoints
+  class: _
+  method: <init>(_)
+  loc.infile: class.infile
+  loc.lnr: method.lnr
+  loc.class: class
+  loc.method: method
+  lic.cid:_  
+  
+StaticInitialisation
+  in: getExecutionJoinPoint
+  class: _
+  method: <clinit> ()V
+  loc.infile: class.infile
+  loc.lnr: class.lnr
+  loc.class: class
+  loc.method: method
+  lic.cid:_
+  
+Statement
+  in: getContainedJoinPoints
+  class: _
+  method: _
+  loc.infile: class.infile
+  loc.lnr: _
+  loc.class: class
+  loc.method: method
+  lic.cid:_
+  
+MethodExecution
+  in: getExecutionJoinPoint
+  class: _
+  method: _
+  loc.infile: class.infile
+  loc.lnr: method.lnr
+  loc.class: class
+  loc.method: method
+  lic.cid:_

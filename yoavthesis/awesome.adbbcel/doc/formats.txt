@@ -1,0 +1,89 @@
+->	: format is
+--> : binary format
+:=	: section is
+:== : binary section is
+[xx]: include String terminal
+[Xx]: include non terminal 
+'xx': include Binary terminal 
+'Xx': include Binary non terminal
+   * : repeat 0..*
+  (n): repeat n
+    : String literal
+{  }: Binary literal 
+<  >: Name
+-  -: Part of line
+
+MethodSection :=
+	[methodname] [methodsig]
+	
+FullMethodSection :=
+	[classname] [MethodSection]
+
+
+CIDSection :==
+	'rangeB' 'rangeE'
+
+SourceLineContainingFormat ->
+	[Header]
+	[Body]
+
+Header := 
+	*F
+	[FileSection]
+	*B
+	
+FileSection := 
+	[fid] [filename]
+ |
+	+ [fid] [filename]
+	[filepath]
+	
+LinePart :=
+	-[fid]:[lnr]-
+ |
+ 	-[lnr]-
+ 	
+FieldLineNumberFormat extends SourceLineContainingFormat
+
+Body :=
+	[FieldPart]*
+	
+FieldPart :=
+	[fieldname] [LinePart]
+
+	
+AspectFormat extends SourceLineContainingFormat !-- with full filepath
+
+Body :=
+	[perId] [LinePart]<slnr> [LinePart]<elnr>
+	[AdviceFormat]*	
+	
+AdviceFormat extends SourceLineContainingFormat
+
+Body :=	
+	[typeID] [LinePart]<slnr> [LinePart]<elnr> [MethodSection] [pointcut] [ArgsSection]*
+
+ArgSection :=
+	[name] [index]
+	
+AdviceSection :=
+	[FullMethodSection]
+	
+CrossCuttingFormat -->
+	'n'
+	'JoinPointSection'(n)
+
+AdviceAplicationSection :==
+	'AdviceSection' 'residue'
+	
+JoinPointSection :== 
+	'uid' 'typeID' 'slnr' 'elnr' 'CIDSection'<range> 'MethodSection'<shadowMethod> 'n'
+	'AdviceAplicationSection'(n)
+
+ShadowFormat -->
+	[FullMethodSection]<from> 'n'
+	'ShadowSection'(n)
+	
+ShadowSection :==
+	'uid' 'CIDSection'<range>
+	
