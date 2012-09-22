@@ -15,7 +15,7 @@ public aspect LogAllToFile {
 
 	public pointcut everything() :
 		( (call(* *.*(..)) ||
-		 execution(* *.*(..)) ||
+		 execution(* *.*(..)) || 
 		 //get(* *.*) ||
 		 //set(* *.*) ||
 		 //call(*.new(..)) ||
