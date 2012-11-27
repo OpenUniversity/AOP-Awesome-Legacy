@@ -284,6 +284,7 @@ public abstract class Shadow {
 	public static String SYNCHRONIZATION_LOCK = "lock";
 	public static String SYNCHRONIZATION_UNLOCK = "unlock";
 	public static String ADVICE_EXECUTION = "adviceexecution";
+	public static String DIV_OPERATION = "divoperation";
 
 	/**
 	 * These names are the ones that will be returned by thisJoinPoint.getKind() Those need to be documented somewhere
@@ -301,6 +302,7 @@ public abstract class Shadow {
 	public static final Kind ExceptionHandler = new Kind(EXCEPTION_HANDLER, 11, true);
 	public static final Kind SynchronizationLock = new Kind(SYNCHRONIZATION_LOCK, 12, true);
 	public static final Kind SynchronizationUnlock = new Kind(SYNCHRONIZATION_UNLOCK, 13, true);
+	public static final Kind DivOperation = new Kind(DIV_OPERATION, 14, true);
 
 	// Bits here are 1<<(Kind.getKey()) - and unfortunately keys didn't start at zero so bits here start at 2
 	public static final int MethodCallBit = 0x002;
@@ -457,6 +459,8 @@ public abstract class Shadow {
 				return SynchronizationLock;
 			case 13:
 				return SynchronizationUnlock;
+			case 14:
+				return DivOperation;
 			}
 			throw new BCException("unknown kind: " + key);
 		}

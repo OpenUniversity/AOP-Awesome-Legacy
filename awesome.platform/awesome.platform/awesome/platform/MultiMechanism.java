@@ -1,6 +1,7 @@
 package awesome.platform;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -218,6 +219,9 @@ public class MultiMechanism {
 		ConstantPool cpg = clazz.getConstantPool();
 
 		Instruction i = ih.getInstruction();
+//		System.out.println("Instruction class: " + i.getClass());
+//		System.out.println("Instruction name: " + i.getName());
+//		System.out.println("Instruction enc shadow: " + enclosingShadow);
 		if ((i instanceof FieldInstruction)) {
 			FieldInstruction fi = (FieldInstruction) i;
 			
@@ -245,7 +249,13 @@ public class MultiMechanism {
 					bs.setActualTargetType(cname);
 				result.add(bs);
 			}
-		} else if (i instanceof InvokeInstruction) {
+		}
+		// start div op (ddiv, fdiv, idiv, ldiv)
+		else if (Arrays.asList(new String[]{"ddiv", "fdiv", "idiv", "ldiv"}).contains(i.getName())) {
+			result.add(BcelShadow.makeDivOperation(getWorld(), mg, ih, enclosingShadow));
+		}
+		// end div op
+		else if (i instanceof InvokeInstruction) {
 			InvokeInstruction ii = (InvokeInstruction) i;
 			if (ii.getMethodName(clazz.getConstantPool()).equals("<init>")) {
 				result.add(BcelShadow.makeConstructorCall(getWorld(), mg, ih,
@@ -429,7 +439,7 @@ public class MultiMechanism {
 		return isChanged;
 	}
 	// Why we added these stub methods? first we applied the aspects AFTER
-	// transform(clazz) butit doesn't work well probably because incorrect advice order.
+	// transform(clazz) but this didn't work well probably because incorrect advice order.
 	// So we added the stubs to have the same order as before. We can probably try again
 	// sometime to remove the stubs and set this order using declare precedence.
 	/**

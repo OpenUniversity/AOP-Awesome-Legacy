@@ -3,6 +3,7 @@ package base;
 public class BoundedStack implements Stack {
 
 	protected Object[] buffer;
+	int x;
 
 	private int usedSlots = 0;
 
@@ -20,6 +21,9 @@ public class BoundedStack implements Stack {
 	public void push(Object obj) {
 		buffer[usedSlots] = obj;
 		usedSlots++;
+	}
+	public int div() {
+		return x/5;
 	}
 
 }

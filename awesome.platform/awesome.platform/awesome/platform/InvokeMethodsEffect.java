@@ -21,6 +21,19 @@ import org.aspectj.weaver.bcel.Utility;
 
 import awesome.platform.MethodParameter.Type;
 
+/**
+ * Use this class if you are interested in defining an advice (effect) that
+ * consists of a sequence of method calls. The methods are defined within an aspect
+ * class that is provided in the constructor. For instance, if we have an aspect class
+ * with two methods adv1 adv2, this class helps to define an effect that calls adv1
+ * and adv2 sequentially. You should first call the constructor and then call  addMethodInvocation
+ * for each aspect class' method you would like to invoke. Note that a method may be augmented
+ * with MethodParameter objects. Each such parameter is actually a bytecode instruction that is
+ * added before the invocation of the advice method. This causes to push values to the stack which
+ * are then used as the parameters of the advice method.
+ * @author oren
+ *
+ */
 public class InvokeMethodsEffect extends AwesomeEffect {
 	private List<LazyMethodGen> methods = new ArrayList<LazyMethodGen>();
 	private List<List<MethodParameter>> allParameters = new ArrayList<List<MethodParameter>>();
@@ -93,6 +106,12 @@ public class InvokeMethodsEffect extends AwesomeEffect {
 				}
 				if (param.getType() == Type.ALOAD1) {
 					il.append(InstructionFactory.createALOAD(1));				
+				}
+				if (param.getType() == Type.DUP) {
+					il.append(InstructionFactory.createDup(1));				
+				}
+				if (param.getType() == Type.DUP2) {
+					il.append(InstructionFactory.createDup(2));				
 				}
 				
 			}

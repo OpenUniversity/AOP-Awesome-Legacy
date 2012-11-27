@@ -9,7 +9,8 @@ public class MethodParameter {
 		EnclosingMethodName,
 		Primitive,
 		ALOAD1,
-		ALOAD0
+		ALOAD0, 
+		DUP, DUP2
 	}
 	public MethodParameter(MethodParameter.Type type) {
 		this.type = type;
