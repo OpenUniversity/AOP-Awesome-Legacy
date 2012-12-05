@@ -113,6 +113,10 @@ public class InvokeMethodsEffect extends AwesomeEffect {
 				if (param.getType() == Type.DUP2) {
 					il.append(InstructionFactory.createDup(2));				
 				}
+				// see example in AwesomeMechanism
+//				if (param.getType() == Type.AspectOf) {
+//					il.append(fact.createInvoke(ac.getName(), "aspectOf", type, ));				
+//				}
 				
 			}
 			il.append(Utility.createInvoke(shadow.getFactory(), method));

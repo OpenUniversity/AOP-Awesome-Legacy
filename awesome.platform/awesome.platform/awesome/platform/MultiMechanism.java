@@ -250,11 +250,6 @@ public class MultiMechanism {
 				result.add(bs);
 			}
 		}
-		// start div op (ddiv, fdiv, idiv, ldiv)
-		else if (Arrays.asList(new String[]{"ddiv", "fdiv", "idiv", "ldiv"}).contains(i.getName())) {
-			result.add(BcelShadow.makeDivOperation(getWorld(), mg, ih, enclosingShadow));
-		}
-		// end div op
 		else if (i instanceof InvokeInstruction) {
 			InvokeInstruction ii = (InvokeInstruction) i;
 			if (ii.getMethodName(clazz.getConstantPool()).equals("<init>")) {

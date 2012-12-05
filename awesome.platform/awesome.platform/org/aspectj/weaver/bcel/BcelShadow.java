@@ -1013,16 +1013,6 @@ public class BcelShadow extends Shadow {
 		retargetAllBranches(callHandle, r.getStart());
 		return s;
 	}
-	public static BcelShadow makeDivOperation(BcelWorld world, LazyMethodGen enclosingMethod, InstructionHandle divHandle,
-			BcelShadow enclosingShadow) {
-		final InstructionList body = enclosingMethod.getBody();
-		BcelShadow s = new BcelShadow(world, DivOperation, null, enclosingMethod, enclosingShadow);
-		ShadowRange r = new ShadowRange(body);
-		r.associateWithShadow(s);
-		r.associateWithTargets(Range.genStart(body, divHandle), Range.genEnd(body, divHandle));
-		retargetAllBranches(divHandle, r.getStart());
-		return s;
-	}
 
 	public static BcelShadow makeShadowForMethodCall(BcelWorld world, LazyMethodGen enclosingMethod, InstructionHandle callHandle,
 			BcelShadow enclosingShadow, Kind kind, ResolvedMember sig) {

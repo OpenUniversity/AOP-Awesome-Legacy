@@ -270,6 +270,12 @@ public class MemberImpl implements Member {
 				Modifier.STATIC, ResolvedType.VOID, "<unlock>",
 				UnresolvedType.ARRAY_WITH_JUST_OBJECT);
 	}
+	// added by Oren Mishali, to produce a simple signature for a newly added shadow
+	public static MemberImpl getSimpleSignature(String signature) {
+		return new MemberImpl(Member.FIELD, UnresolvedType.OBJECT,
+				Modifier.PUBLIC, ResolvedType.VOID, signature,
+				null);
+	}
 
 	public static Member pointcut(UnresolvedType declaring, String name,
 			String signature) {
