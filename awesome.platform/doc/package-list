@@ -1,0 +1,8 @@
+awesome.config.spec
+awesome.platform
+awesome.platform.adb.tagkit
+awesome.platform.adb.util
+awesome.platform.annotations
+awesome.platform.shadows
+awesome.platform.utils
+awesome.tracing.weaving

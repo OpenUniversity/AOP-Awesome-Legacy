@@ -1,0 +1,7 @@
+<%@ jet package="awesome.platform.shadows" class="AddShadowGen" %>
+<% String id = ((ShadowSpec)argument).getId(); %>
+package awesome.platform.shadows;
+
+public aspect <%=AddShadowWriter.getAspectName(id)%> {
+
+}
