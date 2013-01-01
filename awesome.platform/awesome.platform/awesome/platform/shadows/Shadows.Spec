@@ -1,5 +1,5 @@
-ID: Division1Op
+ID: ZaziOp
 INSTRUCTION_SET: { ddiv, fdiv, idiv, ldiv }
 
-ID: Division2Op
+ID: MikoOp
 INSTRUCTION_SET: { ddiv, fdiv }

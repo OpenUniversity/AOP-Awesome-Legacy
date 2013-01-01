@@ -5,16 +5,22 @@ import java.util.ArrayList;
 import java.util.List;
 import awesome.platform.utils.TextFile;
 
+/**
+ * The main class that generates the aspects based on the shadow specifications.
+ * @author oren
+ *
+ */
 public class AddShadow {
 	public static final String SHADOW_SPEC_FILE = "Shadows.Spec";
 	public static final String MY_PACKAGE_PATH = "awesome.platform/awesome/platform/shadows/";
+	public static final String GEN_PACKAGE_PATH = MY_PACKAGE_PATH + "gen/";
 	public static final String ID_PREFIX = "ID:";
 	public static final String INSTRUCTION_SET_PREFIX = "INSTRUCTION_SET:";
 	
 	
 	/**
 	 * For each of the shadow specifications found in SHADOW_SPEC_FILE,
-	 * produces an aspect that adds the shadow. The aspects are stored in this package.
+	 * produces an aspect that adds the shadow. The aspects are stored the package awesome.platform.shadows.gen.
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -49,6 +55,10 @@ public class AddShadow {
 		for(ShadowSpec spec : shadowSpecs) {
 			new AddShadowWriter(spec).write();
 		}
+	}
+	// TODO Implement!
+	public static int getIndex(String shadowId) {
+		return 14;
 	}
 
 }

@@ -2,6 +2,11 @@ package awesome.platform.shadows;
 
 import java.util.List;
 
+/**
+ * A shadow specification.
+ * @author oren
+ *
+ */
 public class ShadowSpec {
 	private String id;
 	private List<String> opcodes;

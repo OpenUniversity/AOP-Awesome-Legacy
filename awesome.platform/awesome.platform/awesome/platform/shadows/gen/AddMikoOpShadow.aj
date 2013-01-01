@@ -1,6 +1,3 @@
-<%@ jet package="awesome.platform.shadows" class="AddShadowGen" imports="java.util.List" %>
-<% String id = ((ShadowSpec)argument).getId(); %>
-<% List<String> opcodes = ((ShadowSpec)argument).getOpcodes(); %>
 package awesome.platform.shadows.gen;
 
 import java.io.DataInputStream;
@@ -22,26 +19,26 @@ import org.aspectj.weaver.bcel.ShadowRange;
 import awesome.platform.MultiMechanism;
 
 /**
-* This aspect introduces Awesome with a new shadow: <%=id%> 
+* This aspect introduces Awesome with a new shadow: MikoOp 
 */
-public aspect <%=AddShadowWriter.getAspectName(id)%> {
+public aspect AddMikoOpShadow {
 	// first, constants and related utilities are added to class org.aspectj.weaver.Shadow
-	public static final String Shadow._<%=id%> = "<%=id%>";
-	public static final Kind Shadow.<%=id%> = new Kind(_<%=id%>, <%=AddShadow.getIndex(id)%>, true);
+	public static final String Shadow._MikoOp = "MikoOp";
+	public static final Kind Shadow.MikoOp = new Kind(_MikoOp, 14, true);
 	// Ignore the 'not applied' warning... (why do we get it?)
 	Shadow.Kind around(DataInputStream is) throws IOException: 
 		execution(public static Kind Shadow.read(DataInputStream)) && args(is) {
 		int key = is.readByte();
-		if(key == <%=AddShadow.getIndex(id)%>)
-			return Shadow.<%=id%>;
+		if(key == 14)
+			return Shadow.MikoOp;
 		else return proceed(is);
 	}
 	
 	// Second, we add a method to BcelShadow that creates our new shadow
-	public static BcelShadow BcelShadow.make<%=id%>(BcelWorld world, LazyMethodGen enclosingMethod, InstructionHandle handle,
+	public static BcelShadow BcelShadow.makeMikoOp(BcelWorld world, LazyMethodGen enclosingMethod, InstructionHandle handle,
 			BcelShadow enclosingShadow) {
 		final InstructionList body = enclosingMethod.getBody();
-		BcelShadow s = new BcelShadow(world, <%=id%>, MemberImpl.getSimpleSignature("<%=id%>"), enclosingMethod, enclosingShadow);
+		BcelShadow s = new BcelShadow(world, MikoOp, MemberImpl.getSimpleSignature("MikoOp"), enclosingMethod, enclosingShadow);
 		ShadowRange r = new ShadowRange(body);
 		r.associateWithShadow(s);
 		r.associateWithTargets(Range.genStart(body, handle), Range.genEnd(body, handle));
@@ -54,10 +51,13 @@ public aspect <%=AddShadowWriter.getAspectName(id)%> {
 		execution(List<BcelShadow> MultiMechanism.reify(InstructionHandle, LazyMethodGen, BcelShadow))
 			&& args(ih, mg, enclosingShadow) {
 		Instruction i = ih.getInstruction();
-		<% for(String opcode : opcodes ) { %>
-			if( i.getName().equals("<%=opcode%>") )
-				result.add(BcelShadow.make<%=id%>(MultiMechanism.getInstance().getWorld(), mg, ih, enclosingShadow));
-		<%}%>
+		
+			if( i.getName().equals("ddiv") )
+				result.add(BcelShadow.makeMikoOp(MultiMechanism.getInstance().getWorld(), mg, ih, enclosingShadow));
+		
+			if( i.getName().equals("fdiv") )
+				result.add(BcelShadow.makeMikoOp(MultiMechanism.getInstance().getWorld(), mg, ih, enclosingShadow));
+		
 		// Alternative implementations:
 		// (1) if (Arrays.asList(new String[]{"ddiv", "fdiv", "idiv", "ldiv"}).contains(i.getName()))...
 		// (2) short opcode = i.getOpcode(); if( opcode == Constants.DDIV || opcode == Constants.FDIV ...
