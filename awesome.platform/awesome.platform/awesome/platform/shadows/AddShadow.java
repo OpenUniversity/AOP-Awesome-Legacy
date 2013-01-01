@@ -16,6 +16,8 @@ public class AddShadow {
 	public static final String GEN_PACKAGE_PATH = MY_PACKAGE_PATH + "gen/";
 	public static final String ID_PREFIX = "ID:";
 	public static final String INSTRUCTION_SET_PREFIX = "INSTRUCTION_SET:";
+	public static final int NUM_OF_AJ_SHADOWS = 13;
+	public static int SHADOW_INDEX = NUM_OF_AJ_SHADOWS + 1;
 	
 	
 	/**
@@ -56,9 +58,16 @@ public class AddShadow {
 			new AddShadowWriter(spec).write();
 		}
 	}
-	// TODO Implement!
-	public static int getIndex(String shadowId) {
-		return 14;
+	
+	/**
+	 * Important Note: this method should be called only once per new shadow!!!<br/>
+	 * Returns the serial number of the new shadow. To be used by the (ITD refining the)
+	 * method Shadow.Kind.read. The idea is simple: the static field SHADOW_INDEX is initially
+	 * set to NUM_OF_AJ_SHADOWS + 1. Upon each call of this method it is incermented by one.
+	 * @return
+	 */
+	public static int getShadowIndex() {
+		return SHADOW_INDEX++;
 	}
 
 }

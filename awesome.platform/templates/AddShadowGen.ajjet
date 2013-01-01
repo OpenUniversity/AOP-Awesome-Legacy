@@ -1,6 +1,7 @@
 <%@ jet package="awesome.platform.shadows" class="AddShadowGen" imports="java.util.List" %>
 <% String id = ((ShadowSpec)argument).getId(); %>
 <% List<String> opcodes = ((ShadowSpec)argument).getOpcodes(); %>
+<% int shadowIndex = AddShadow.getShadowIndex(); %>
 package awesome.platform.shadows.gen;
 
 import java.io.DataInputStream;
@@ -27,12 +28,12 @@ import awesome.platform.MultiMechanism;
 public aspect <%=AddShadowWriter.getAspectName(id)%> {
 	// first, constants and related utilities are added to class org.aspectj.weaver.Shadow
 	public static final String Shadow._<%=id%> = "<%=id%>";
-	public static final Kind Shadow.<%=id%> = new Kind(_<%=id%>, <%=AddShadow.getIndex(id)%>, true);
+	public static final Kind Shadow.<%=id%> = new Kind(_<%=id%>, <%=shadowIndex%>, true);
 	// Ignore the 'not applied' warning... (why do we get it?)
 	Shadow.Kind around(DataInputStream is) throws IOException: 
 		execution(public static Kind Shadow.read(DataInputStream)) && args(is) {
 		int key = is.readByte();
-		if(key == <%=AddShadow.getIndex(id)%>)
+		if(key == <%=shadowIndex%>)
 			return Shadow.<%=id%>;
 		else return proceed(is);
 	}

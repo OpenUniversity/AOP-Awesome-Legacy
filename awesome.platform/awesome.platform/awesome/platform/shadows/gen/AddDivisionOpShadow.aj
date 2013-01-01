@@ -19,26 +19,26 @@ import org.aspectj.weaver.bcel.ShadowRange;
 import awesome.platform.MultiMechanism;
 
 /**
-* This aspect introduces Awesome with a new shadow: ZaziOp 
+* This aspect introduces Awesome with a new shadow: DivisionOp 
 */
-public aspect AddZaziOpShadow {
+public aspect AddDivisionOpShadow {
 	// first, constants and related utilities are added to class org.aspectj.weaver.Shadow
-	public static final String Shadow._ZaziOp = "ZaziOp";
-	public static final Kind Shadow.ZaziOp = new Kind(_ZaziOp, 14, true);
+	public static final String Shadow._DivisionOp = "DivisionOp";
+	public static final Kind Shadow.DivisionOp = new Kind(_DivisionOp, 14, true);
 	// Ignore the 'not applied' warning... (why do we get it?)
 	Shadow.Kind around(DataInputStream is) throws IOException: 
 		execution(public static Kind Shadow.read(DataInputStream)) && args(is) {
 		int key = is.readByte();
 		if(key == 14)
-			return Shadow.ZaziOp;
+			return Shadow.DivisionOp;
 		else return proceed(is);
 	}
 	
 	// Second, we add a method to BcelShadow that creates our new shadow
-	public static BcelShadow BcelShadow.makeZaziOp(BcelWorld world, LazyMethodGen enclosingMethod, InstructionHandle handle,
+	public static BcelShadow BcelShadow.makeDivisionOp(BcelWorld world, LazyMethodGen enclosingMethod, InstructionHandle handle,
 			BcelShadow enclosingShadow) {
 		final InstructionList body = enclosingMethod.getBody();
-		BcelShadow s = new BcelShadow(world, ZaziOp, MemberImpl.getSimpleSignature("ZaziOp"), enclosingMethod, enclosingShadow);
+		BcelShadow s = new BcelShadow(world, DivisionOp, MemberImpl.getSimpleSignature("DivisionOp"), enclosingMethod, enclosingShadow);
 		ShadowRange r = new ShadowRange(body);
 		r.associateWithShadow(s);
 		r.associateWithTargets(Range.genStart(body, handle), Range.genEnd(body, handle));
@@ -53,16 +53,16 @@ public aspect AddZaziOpShadow {
 		Instruction i = ih.getInstruction();
 		
 			if( i.getName().equals("ddiv") )
-				result.add(BcelShadow.makeZaziOp(MultiMechanism.getInstance().getWorld(), mg, ih, enclosingShadow));
+				result.add(BcelShadow.makeDivisionOp(MultiMechanism.getInstance().getWorld(), mg, ih, enclosingShadow));
 		
 			if( i.getName().equals("fdiv") )
-				result.add(BcelShadow.makeZaziOp(MultiMechanism.getInstance().getWorld(), mg, ih, enclosingShadow));
+				result.add(BcelShadow.makeDivisionOp(MultiMechanism.getInstance().getWorld(), mg, ih, enclosingShadow));
 		
 			if( i.getName().equals("idiv") )
-				result.add(BcelShadow.makeZaziOp(MultiMechanism.getInstance().getWorld(), mg, ih, enclosingShadow));
+				result.add(BcelShadow.makeDivisionOp(MultiMechanism.getInstance().getWorld(), mg, ih, enclosingShadow));
 		
 			if( i.getName().equals("ldiv") )
-				result.add(BcelShadow.makeZaziOp(MultiMechanism.getInstance().getWorld(), mg, ih, enclosingShadow));
+				result.add(BcelShadow.makeDivisionOp(MultiMechanism.getInstance().getWorld(), mg, ih, enclosingShadow));
 		
 		// Alternative implementations:
 		// (1) if (Arrays.asList(new String[]{"ddiv", "fdiv", "idiv", "ldiv"}).contains(i.getName()))...

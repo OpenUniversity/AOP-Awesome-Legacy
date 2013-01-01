@@ -37,6 +37,7 @@ public class AddShadowGen
     final StringBuffer stringBuffer = new StringBuffer();
      String id = ((ShadowSpec)argument).getId(); 
      List<String> opcodes = ((ShadowSpec)argument).getOpcodes(); 
+     int shadowIndex = AddShadow.getShadowIndex(); 
     stringBuffer.append(TEXT_1);
     stringBuffer.append(id);
     stringBuffer.append(TEXT_2);
@@ -50,9 +51,9 @@ public class AddShadowGen
     stringBuffer.append(TEXT_6);
     stringBuffer.append(id);
     stringBuffer.append(TEXT_7);
-    stringBuffer.append(AddShadow.getIndex(id));
+    stringBuffer.append(shadowIndex);
     stringBuffer.append(TEXT_8);
-    stringBuffer.append(AddShadow.getIndex(id));
+    stringBuffer.append(shadowIndex);
     stringBuffer.append(TEXT_9);
     stringBuffer.append(id);
     stringBuffer.append(TEXT_10);
