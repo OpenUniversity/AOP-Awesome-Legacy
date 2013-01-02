@@ -19,7 +19,7 @@ import org.eclipse.swt.widgets.Text;
  */
 
 public class AspectMechanismProjectWizardPage extends WizardPage {
-	private static final String XTEXT_SUPPORT_LABEL = "XText Support";
+	private static final String XTEXT_SUPPORT_LABEL = "Xtext support";
 	
 	private Text dsalName;
 	private Button isXtext;

@@ -97,9 +97,7 @@ public abstract class MechanismProject {
 		//add libs to project class path. should be changed to append!
 		javaProject.setRawClasspath(entries.toArray(new IClasspathEntry[entries.size()]), null);
 	}
-	private void addEntriesToClasspath(IJavaProject javaProj, List<IClasspathEntry> entries) {
-		// move redundant code here...
-	}
+
 	protected void createLibFolder(IJavaProject javaProject, String[] jars) throws CoreException {
 		Bundle bundle = Platform.getBundle(Activator.PLUGIN_ID);
 		
@@ -186,14 +184,6 @@ public abstract class MechanismProject {
 		IPackageFragmentRoot proot = javaProj.getPackageFragmentRoot(folder);
 		IClasspathEntry entry = JavaCore.newSourceEntry(proot.getPath());
 		addEntryToClasspath(javaProj, entry);
-		
-		//IFolder folder = javaProj.getProject().getFolder(folderName);
-		//IPackageFragmentRoot proot = javaProj.getPackageFragmentRoot(folder);
-//		IClasspathEntry[] oldEntries = javaProj.getRawClasspath();
-//		IClasspathEntry[] newEntries = new IClasspathEntry[oldEntries.length + 1];
-//		System.arraycopy(oldEntries, 0, newEntries, 0, oldEntries.length);
-//		newEntries[oldEntries.length] = JavaCore.newSourceEntry(proot.getPath());
-//		javaProj.setRawClasspath(newEntries, null);
 	}
 	protected void addContainerToClasspath(IJavaProject javaProj, IPath containerPath) {
 		IClasspathEntry entry =  JavaCore.newContainerEntry(containerPath, false);
