@@ -1,6 +1,7 @@
 <%@ jet package="awesome.ide.gen" class="TestappWeaveLaunchGen" %>
 <% String projectName = ((String[])argument)[0]; %>
 <% String testapp = ((String[])argument)[1]; %>
+<% Boolean isXtext = new Boolean(((String[])argument)[2]);%>
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
 <stringAttribute key="bad_container_name" value="\<%=projectName%>\testapp"/>
@@ -15,6 +16,6 @@
 <mapEntry key="TEST_APP" value="<%=testapp%>"/>
 </mapAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.aspectj.tools.ajc.Main"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-1.5 -sourceroots <%=testapp%> -outjar <%=testapp%>/<%=testapp%>.jar"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-1.5 -sourceroots <%=testapp%><%if(isXtext){%>:src-gen<%}%> -outjar <%=testapp%>/<%=testapp%>.jar"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="<%=projectName%>"/>
 </launchConfiguration>

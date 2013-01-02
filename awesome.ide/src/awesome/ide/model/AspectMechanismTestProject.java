@@ -40,7 +40,7 @@ public class AspectMechanismTestProject extends MechanismProject {
 		return amProj.getName() + ".tests";
 	}
 
-	public static AspectMechanismTestProject create(AspectMechanismProject amProj, IProgressMonitor monitor) throws Exception {
+	public static AspectMechanismTestProject create(AspectMechanismProject amProj, boolean isXtextSupport, IProgressMonitor monitor) throws Exception {
 		AspectMechanismTestProject amtProj = new AspectMechanismTestProject(amProj);
 		
 		// return in case that the project already exists in the workspace
@@ -72,8 +72,11 @@ public class AspectMechanismTestProject extends MechanismProject {
 		// create the source folder
 		amtProj.createSrcFolder(javaProj);
 		
+		if(isXtextSupport)
+			amtProj.createSrcGenFolder(javaProj);
+		
 		// create a single testapp folder
-		amtProj.createTestappFolder(javaProj, TESTAPP_PREFIX + TESTAPP_ID);
+		amtProj.createTestappFolder(javaProj, TESTAPP_PREFIX + TESTAPP_ID, isXtextSupport);
 		
 		// create a 'awtrace' folder to hold the weaving trace files
 		amtProj.createWeavingTraceFolder(javaProj);
@@ -94,7 +97,7 @@ public class AspectMechanismTestProject extends MechanismProject {
 		}
 	}
 
-	private void createTestappFolder(IJavaProject javaProj, String folderName) {
+	private void createTestappFolder(IJavaProject javaProj, String folderName, Boolean isXtext) {
 		try {
 			IProject project = javaProj.getProject();
 			IFolder folder = project.getFolder(folderName);
@@ -110,7 +113,7 @@ public class AspectMechanismTestProject extends MechanismProject {
 			source = toInputStream(new TestappMain().generate(new String[]{BASE_FOLDER}));
 			baseFolder.getFile(TESTAPP_MAIN + ".java").create(source, false, null);
 			// create a weave.launch file
-			source = toInputStream(new TestappWeaveLaunchGen().generate(new String[]{getName(), TESTAPP_PREFIX + TESTAPP_ID}));
+			source = toInputStream(new TestappWeaveLaunchGen().generate(new String[]{getName(), TESTAPP_PREFIX + TESTAPP_ID, isXtext.toString()}));
 			folder.getFile(TESTAPP_WEAVE_LAUNCH).create(source, false, null);
 			// create a execute.launch file
 			source = toInputStream(new TestappExecuteLaunchGen().generate(new String[]{getName(), TESTAPP_PREFIX + TESTAPP_ID}));

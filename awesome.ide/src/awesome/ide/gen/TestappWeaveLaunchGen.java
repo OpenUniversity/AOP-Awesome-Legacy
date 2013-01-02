@@ -16,17 +16,19 @@ public class TestappWeaveLaunchGen
   protected final String TEXT_2 = "\\testapp\"/>" + NL + "<listAttribute key=\"org.eclipse.debug.core.MAPPED_RESOURCE_PATHS\">" + NL + "<listEntry value=\"/";
   protected final String TEXT_3 = "/lib/aspectjtools.jar\"/>" + NL + "</listAttribute>" + NL + "<listAttribute key=\"org.eclipse.debug.core.MAPPED_RESOURCE_TYPES\">" + NL + "<listEntry value=\"1\"/>" + NL + "</listAttribute>" + NL + "<mapAttribute key=\"org.eclipse.debug.core.environmentVariables\">" + NL + "<mapEntry key=\"ENABLE_WEAVING_TRACE\" value=\"1\"/>" + NL + "<mapEntry key=\"TEST_APP\" value=\"";
   protected final String TEXT_4 = "\"/>" + NL + "</mapAttribute>" + NL + "<stringAttribute key=\"org.eclipse.jdt.launching.MAIN_TYPE\" value=\"org.aspectj.tools.ajc.Main\"/>" + NL + "<stringAttribute key=\"org.eclipse.jdt.launching.PROGRAM_ARGUMENTS\" value=\"-1.5 -sourceroots ";
-  protected final String TEXT_5 = " -outjar ";
-  protected final String TEXT_6 = "/";
-  protected final String TEXT_7 = ".jar\"/>" + NL + "<stringAttribute key=\"org.eclipse.jdt.launching.PROJECT_ATTR\" value=\"";
-  protected final String TEXT_8 = "\"/>" + NL + "</launchConfiguration>";
-  protected final String TEXT_9 = NL;
+  protected final String TEXT_5 = ":src-gen";
+  protected final String TEXT_6 = " -outjar ";
+  protected final String TEXT_7 = "/";
+  protected final String TEXT_8 = ".jar\"/>" + NL + "<stringAttribute key=\"org.eclipse.jdt.launching.PROJECT_ATTR\" value=\"";
+  protected final String TEXT_9 = "\"/>" + NL + "</launchConfiguration>";
+  protected final String TEXT_10 = NL;
 
   public String generate(Object argument)
   {
     final StringBuffer stringBuffer = new StringBuffer();
      String projectName = ((String[])argument)[0]; 
      String testapp = ((String[])argument)[1]; 
+     Boolean isXtext = new Boolean(((String[])argument)[2]);
     stringBuffer.append(TEXT_1);
     stringBuffer.append(projectName);
     stringBuffer.append(TEXT_2);
@@ -35,14 +37,17 @@ public class TestappWeaveLaunchGen
     stringBuffer.append(testapp);
     stringBuffer.append(TEXT_4);
     stringBuffer.append(testapp);
+    if(isXtext){
     stringBuffer.append(TEXT_5);
-    stringBuffer.append(testapp);
+    }
     stringBuffer.append(TEXT_6);
     stringBuffer.append(testapp);
     stringBuffer.append(TEXT_7);
-    stringBuffer.append(projectName);
+    stringBuffer.append(testapp);
     stringBuffer.append(TEXT_8);
+    stringBuffer.append(projectName);
     stringBuffer.append(TEXT_9);
+    stringBuffer.append(TEXT_10);
     return stringBuffer.toString();
   }
 }

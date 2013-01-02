@@ -64,7 +64,7 @@ public class AspectMechanismProject extends MechanismProject {
 			monitor.worked(1);
 		
 		// Create the 'lib' folder, and put the jars in it. This should be done before AJ deps so it comes first in the build order
-		String[] jars = {Activator.ASM_JAR, Activator.AWESOME_JAR, Activator.COMMONS_JAR, Activator.JROCKIT_JAR};
+		String[] jars = {Activator.ASM_JAR, Activator.AWESOME_JAR, Activator.COMMONS_JAR, Activator.JROCKIT_JAR, Activator.ASPECTJTOOLS_JAR};
 		amProj.createLibFolder(javaProj, jars);
 		
 		// convert to AspectJ

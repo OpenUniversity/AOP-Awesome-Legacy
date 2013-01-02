@@ -7,6 +7,7 @@ import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
@@ -18,12 +19,11 @@ import org.eclipse.swt.widgets.Text;
  */
 
 public class AspectMechanismProjectWizardPage extends WizardPage {
-//	private Text projectNameText;
-
+	private static final String XTEXT_SUPPORT_LABEL = "XText Support";
+	
 	private Text dsalName;
-
-//	private Text dsal2NameText;
-
+	private Button isXtext;
+	
 	public AspectMechanismProjectWizardPage() {
 		super("wizardPage");
 		setTitle("New Aspect Mechanism Project");
@@ -43,19 +43,6 @@ public class AspectMechanismProjectWizardPage extends WizardPage {
 		Label label = new Label(container, SWT.NULL);
 		label.setText("&DSAL Name:");
 
-//		projectNameText = new Text(container, SWT.BORDER | SWT.SINGLE);
-//		GridData gd = new GridData(GridData.FILL_HORIZONTAL);
-//		projectNameText.setLayoutData(gd);
-//		projectNameText.addModifyListener(new ModifyListener() {
-//			public void modifyText(ModifyEvent e) {
-//				dialogChanged();
-//			}
-//		});
-
-
-//		label = new Label(container, SWT.NULL);
-//		label.setText("&First DSAL Name:");
-
 		dsalName = new Text(container, SWT.BORDER | SWT.SINGLE);
 		GridData gd = new GridData(GridData.FILL_HORIZONTAL);
 		dsalName.setLayoutData(gd);
@@ -64,13 +51,10 @@ public class AspectMechanismProjectWizardPage extends WizardPage {
 				dialogChanged();
 			}
 		});
-		
-//		label = new Label(container, SWT.NULL);
-//		label.setText("&Second DSAL Name (Optional):");
-//		
-//		dsal2NameText = new Text(container, SWT.BORDER | SWT.SINGLE);
-//		gd = new GridData(GridData.FILL_HORIZONTAL);
-//		dsal2NameText.setLayoutData(gd);
+
+		isXtext = new Button(container, SWT.CHECK);
+		isXtext.setText(XTEXT_SUPPORT_LABEL);
+		isXtext.setSelection(true);
 		
 		dialogChanged();
 		setControl(container);
@@ -79,10 +63,6 @@ public class AspectMechanismProjectWizardPage extends WizardPage {
 	private void dialogChanged() {
 		String dsalName = getDsalName();
 
-//		if (getProjectName().length() == 0) {
-//			updateStatus("Project name must be specified");
-//			return;
-//		}
 		if (dsalName.length() == 0) {
 			updateStatus("A name for the DSAL must be specified");
 			return;
@@ -100,14 +80,12 @@ public class AspectMechanismProjectWizardPage extends WizardPage {
 		setPageComplete(message == null);
 	}
 
-//	public String getProjectName() {
-//		return projectNameText.getText();
-//	}
-
 	public String getDsalName() {
 		return dsalName.getText();
 	}
-//	public String getSecondDsalName() {
-//		return dsal2NameText.getText();
-//	}
+	
+	public boolean isXtextSupport() {
+		return isXtext.getSelection();
+	}
+	
 }

@@ -42,11 +42,12 @@ public class AspectMechanismProjectWizard extends Wizard implements INewWizard {
 	 */
 	public boolean performFinish() {
 		final String dsalName = page.getDsalName();
+		final boolean isXtext = page.isXtextSupport();
 		
 		IRunnableWithProgress op = new IRunnableWithProgress() {
 			public void run(IProgressMonitor monitor) throws InvocationTargetException {
 				try {
-					doFinish(dsalName, monitor);
+					doFinish(dsalName, isXtext, monitor);
 				} catch (Exception e) {
 					throw new InvocationTargetException(e);
 				} finally {
@@ -66,10 +67,10 @@ public class AspectMechanismProjectWizard extends Wizard implements INewWizard {
 		return true;
 	}
 	
-	private void doFinish(String dsalName, IProgressMonitor monitor) 
+	private void doFinish(String dsalName, boolean isXtext, IProgressMonitor monitor) 
 		throws Exception {
 		AspectMechanismProject amProj = AspectMechanismProject.create(dsalName, monitor);
-		AspectMechanismTestProject.create(amProj, monitor);
+		AspectMechanismTestProject.create(amProj, isXtext, monitor);
 	}
 	/**
 	 * @see IWorkbenchWizard#init(IWorkbench, IStructuredSelection)
