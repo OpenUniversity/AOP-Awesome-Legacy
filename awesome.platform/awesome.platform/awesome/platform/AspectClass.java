@@ -50,4 +50,7 @@ public class AspectClass {
 		}
 		return null;
 	}
+	public String getFullName() {
+		return classFile.getClassName();
+	}
 }

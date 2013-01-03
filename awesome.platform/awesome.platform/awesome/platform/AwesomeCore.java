@@ -30,23 +30,27 @@ public class AwesomeCore {
 	}
 	
 	/**
-	 * @param classFile
-	 * @param aspectMechanismId
-	 * @return true if the given class has an @AwAspectMechanism annotation with
-	 * value id=aspectMechanismId 
+	 * Returns true if the given aspect has an @AwAspectMechanism annotation with
+	 * value id=aspectMechanismId, or if @AwAspectMechanism is not present but the
+	 * mechanism is AspectJ.
+	 * @param classFile Assumed to be an aspect!
+	 * @param mechId 
 	 */
-	public static boolean belongsToAspectMechanism(JavaClass classFile, String aspectMechanismId) {
+	public static boolean belongsToAspectMechanism(JavaClass classFile, String mechId) {
 		AnnotationGen[] annotations = classFile.getAnnotations();
-				
+		boolean awAnnotation = false;
+		
 		for(AnnotationGen annot : annotations)
 			if(annot.getTypeName().equals(ASPECT_MECHANISM_ANNOTATION)){
+				awAnnotation = true;
 				ElementNameValuePairGen elem = (ElementNameValuePairGen) annot.getValues().get(0);
 				String id = elem.getValue().stringifyValue();
-				if(id.equals(aspectMechanismId))
+				if(id.equals(mechId))
 					return true;
-				else
-					return false;
 			}
+		// AspectJ check
+		if(!awAnnotation && mechId.equals(AwesomeMechanism.ASPECTJ_MECHANISM_ID))
+			return true;
 		
 		return false;
 	}
