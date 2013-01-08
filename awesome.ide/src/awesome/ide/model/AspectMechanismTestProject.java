@@ -30,6 +30,7 @@ public class AspectMechanismTestProject extends MechanismProject {
 	private static final String TESTAPP_EXECUTE_LAUNCH_SUFFIX = TESTAPP_PREFIX + TESTAPP_ID + ".execute.launch";
 	private static final String WEAVING_TRACE_FOLDER = "awtrace";
 	private AspectMechanismProject amProj;
+	private IJavaProject javaProj;
 	
 	private AspectMechanismTestProject(AspectMechanismProject amProj) {
 		this.amProj = amProj;
@@ -51,35 +52,35 @@ public class AspectMechanismTestProject extends MechanismProject {
 			monitor.beginTask("Creating Aspect Mechanism Test Project...", 3);
 		
 		// create a Java project
-		IJavaProject javaProj = amtProj.createJavaProject(amtProj.getName());
+		amtProj.javaProj = amtProj.createJavaProject(amtProj.getName());
 
 		// add the am project to the classpath. This should be done before AJ deps so it comes first in the build order
-		amtProj.addProjectToClassPath(javaProj, amProj.getName());
+		amtProj.addProjectToClassPath(amProj.getName());
 		
 		// convert to AspectJ project
-		AspectJUIPlugin.convertToAspectJProject(javaProj.getProject());
-		AspectJUIPlugin.addAjrtToBuildPath(javaProj.getProject());
+		AspectJUIPlugin.convertToAspectJProject(amtProj.javaProj.getProject());
+		AspectJUIPlugin.addAjrtToBuildPath(amtProj.javaProj.getProject());
 		
 		monitor.worked(1);
 		
 		// create the lib folder with the required jars
 		String[] jars = {Activator.ASPECTJRT_JAR, Activator.ASPECTJTOOLS_JAR};
-		amtProj.createLibFolder(javaProj, jars);
+		amtProj.createLibFolder(jars);
 		
 		// configure classpath
-		amtProj.addContainerToClasspath(javaProj, JUNIT4_CONTAINER_PATH);
+		amtProj.addContainerToClasspath(JUNIT4_CONTAINER_PATH);
 		
 		// create the source folder
-		amtProj.createSrcFolder(javaProj);
+		amtProj.createSrcFolder(MechanismProject.SRC_FOLDER);
 		
 		if(isXtextSupport)
-			amtProj.createSrcGenFolder(javaProj);
+			amtProj.createSrcGenFolder();
 		
 		// create a single testapp folder
-		amtProj.createTestappFolder(javaProj, TESTAPP_PREFIX + TESTAPP_ID, isXtextSupport);
+		amtProj.createTestappFolder(TESTAPP_PREFIX + TESTAPP_ID, isXtextSupport);
 		
 		// create a 'awtrace' folder to hold the weaving trace files
-		amtProj.createWeavingTraceFolder(javaProj);
+		amtProj.createWeavingTraceFolder();
 		
 		if(monitor != null)
 			monitor.worked(2);
@@ -87,7 +88,7 @@ public class AspectMechanismTestProject extends MechanismProject {
 		return amtProj;
 	}
 	
-	private void createWeavingTraceFolder(IJavaProject javaProj) {
+	private void createWeavingTraceFolder() {
 		IProject project = javaProj.getProject();
 		IFolder folder = project.getFolder(WEAVING_TRACE_FOLDER);
 		try {
@@ -97,7 +98,7 @@ public class AspectMechanismTestProject extends MechanismProject {
 		}
 	}
 
-	private void createTestappFolder(IJavaProject javaProj, String folderName, Boolean isXtext) {
+	private void createTestappFolder(String folderName, Boolean isXtext) {
 		try {
 			IProject project = javaProj.getProject();
 			IFolder folder = project.getFolder(folderName);
@@ -125,8 +126,8 @@ public class AspectMechanismTestProject extends MechanismProject {
 	}
 
 	@Override
-	protected IFolder createSrcFolder(IJavaProject javaProj) throws CoreException {
-		IFolder srcFolder = super.createSrcFolder(javaProj);
+	protected IFolder createSrcFolder(String name) throws CoreException {
+		IFolder srcFolder = super.createSrcFolder(name);
 		IFolder pack = srcFolder.getFolder(TESTAPP_PACKAGE);
 		pack.create(false, true, null);
 		// create a JUnit test case for the testapp
@@ -138,6 +139,11 @@ public class AspectMechanismTestProject extends MechanismProject {
 	}
 	private String getTestAppAspectName() {
 		return capitalize(amProj.getDsalName()) + "Aspect";
+	}
+
+	@Override
+	public IJavaProject getJavaProject() {
+		return javaProj;
 	}
 
 }

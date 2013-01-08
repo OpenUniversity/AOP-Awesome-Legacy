@@ -1,6 +1,7 @@
 package awesome.ide.model;
 
 import java.io.InputStream;
+
 import org.eclipse.ajdt.ui.AspectJUIPlugin;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
@@ -8,20 +9,14 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jdt.core.IPackageFragment;
-import org.eclipse.jdt.core.IPackageFragmentRoot;
-import org.eclipse.jdt.core.JavaModelException;
 
 import awesome.ide.Activator;
-import awesome.ide.gen.AntFileGen;
-import awesome.ide.gen.AspectMechanismGen;
 import awesome.ide.gen.ManifestGen;
 
 public class AspectMechanismProject extends MechanismProject {
-	private static final String PROJ_PREFIX = "awm";
-	private static final String SRC_FOLDER = "src";
-	private static final String ANT_FILE = "build.xml";
+	public static final String PROJ_PREFIX = "awm";
 	private String dsalName;
+	private IJavaProject javaProj;
 	
 	public class Manifest {
 		public String getName() {
@@ -54,22 +49,22 @@ public class AspectMechanismProject extends MechanismProject {
 		if(monitor != null)
 			monitor.beginTask("Creating Aspect Mechanism Project...", 2);
 		
-		IJavaProject javaProj = amProj.createJavaProject(amProj.getName());
-		amProj.createSrcFolder(javaProj);
-		amProj.createDSALPackage(javaProj, dsalName);
-		amProj.createManifestFile(javaProj, dsalName);
-		amProj.createAntFile(javaProj, dsalName);
+		amProj.javaProj = amProj.createJavaProject(amProj.getName());
+		amProj.createSrcFolder(MechanismProject.SRC_FOLDER);
+		amProj.createAspectMechanism(amProj.javaProj.getProject().getName(), dsalName);
+		amProj.createManifestFile(dsalName);
+		amProj.createAntFile();
 		
 		if(monitor != null)
 			monitor.worked(1);
 		
 		// Create the 'lib' folder, and put the jars in it. This should be done before AJ deps so it comes first in the build order
 		String[] jars = {Activator.ASM_JAR, Activator.AWESOME_JAR, Activator.COMMONS_JAR, Activator.JROCKIT_JAR, Activator.ASPECTJTOOLS_JAR};
-		amProj.createLibFolder(javaProj, jars);
+		amProj.createLibFolder(jars);
 		
 		// convert to AspectJ
-		AspectJUIPlugin.convertToAspectJProject(javaProj.getProject());
-		AspectJUIPlugin.addAjrtToBuildPath(javaProj.getProject());
+		AspectJUIPlugin.convertToAspectJProject(amProj.javaProj.getProject());
+		AspectJUIPlugin.addAjrtToBuildPath(amProj.javaProj.getProject());
 		
 		
 		if(monitor != null)
@@ -78,30 +73,13 @@ public class AspectMechanismProject extends MechanismProject {
 		return amProj;
 	}
 	
+	
 	@Override
 	public String getName() {
 		return PROJ_PREFIX + "." + dsalName.toLowerCase();
 	}
 
-	/**
-	 * Create a DSAL package (same name as project name) and generates an aspect mechanism inside it.
-	 * @param project
-	 * @param packageName
-	 * @throws JavaModelException
-	 */
-	private void createDSALPackage(IJavaProject project, String dsalName) throws JavaModelException {
-		// create the package
-		IFolder srcFolder = project.getProject().getFolder(SRC_FOLDER);
-		IPackageFragmentRoot src = project.getPackageFragmentRoot(srcFolder);
-		String packageName = project.getProject().getName();
-		IPackageFragment pack = src.createPackageFragment(packageName, false, null);
-		
-		// generate an aspect mechanism within the package
-		StringBuffer buffer = new StringBuffer();
-		buffer.append(new AspectMechanismGen().generate(new String[]{packageName, capitalize(dsalName) + "Mechanism", dsalName}));
-		pack.createCompilationUnit(capitalize(dsalName) + "Mechanism" + ".aj", buffer.toString(), false, null);
-	}
-	private void createManifestFile(IJavaProject javaProj, String dsalName) {
+	private void createManifestFile(String dsalName) {
 		IProject project = javaProj.getProject();
 		String content;
 		content = new ManifestGen().generate(new String[]{dsalName});
@@ -109,16 +87,6 @@ public class AspectMechanismProject extends MechanismProject {
 			project.getFile(this.new Manifest().getName()).create(toInputStream(content), true, null);
 		} catch (CoreException e) {
 			 throw new RuntimeException("Failed to create manifest file in aspect mechanism project");
-		}
-	}
-	private void createAntFile(IJavaProject javaProj, String dsalName) {
-		IProject project = javaProj.getProject();
-		String content;
-		content = new AntFileGen().generate(new String[]{project.getName()});
-		try {
-			project.getFile(ANT_FILE).create(toInputStream(content), true, null);
-		} catch (CoreException e) {
-			 throw new RuntimeException("Failed to create ant file in aspect mechanism project");
 		}
 	}
 	
@@ -132,6 +100,10 @@ public class AspectMechanismProject extends MechanismProject {
 	}
 	public String getDsalName() {
 		return dsalName;
+	}
+	@Override
+	public IJavaProject getJavaProject() {
+		return javaProj;
 	}
 
 }

@@ -5,12 +5,8 @@
 package <%=packageName%>;
 
 import awesome.platform.*;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import org.aspectj.weaver.IClassFileProvider;
 import org.aspectj.weaver.bcel.BcelShadow;
-import org.aspectj.weaver.bcel.UnwovenClassFile;
 
 /**
  * <p>Every aspect mechanism extends <b>awesome.platform.AwesomeMechanism</b>. By that, your mechanism may reuse the
@@ -35,7 +31,7 @@ import org.aspectj.weaver.bcel.UnwovenClassFile;
 public aspect <%=aspectName%> extends AwesomeMechanism {
 	
 	public String getId() {
-		return "<%=id%>";
+		return "<%=id.toLowerCase()%>";
 	}
 	
 	@Override

@@ -10,9 +10,13 @@ import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+
+import awesome.ide.model.AspectMechanismProject;
+import awesome.ide.model.MultiMechanismProject;
 
 /**
  * The "New" wizard page allows setting the container for the new file as well
@@ -21,8 +25,20 @@ import org.eclipse.swt.widgets.Text;
  */
 
 public class MultiMechanismProjectWizardPage extends WizardPage {
-	private Text projectNameText;
-	private Text dsalsText;
+	/**
+	 * A text field where the name of the project should be provided
+	 */
+	private Text projectName;
+	/**
+	 * A text field holding the names of the DSALs that should be included in the project
+	 */
+	private Text dsalNames;
+	/**
+	 * A checkbox indicating whether an AspectJ
+	 * mechanism should be included in the generated project
+	 */
+	private Button includeAJ;
+	private static final String ASPECTJ_SUPPORT_LABEL = "Include AspectJ mechanism";
 
 	public MultiMechanismProjectWizardPage() {
 		super("wizardPage");
@@ -42,10 +58,10 @@ public class MultiMechanismProjectWizardPage extends WizardPage {
 		
 		Label label = new Label(container, SWT.NULL);
 		label.setText("&Project Name:");
-		projectNameText = new Text(container, SWT.BORDER | SWT.SINGLE);
+		projectName = new Text(container, SWT.BORDER | SWT.SINGLE);
 		GridData gd = new GridData(GridData.FILL_HORIZONTAL);
-		projectNameText.setLayoutData(gd);
-		projectNameText.addModifyListener(new ModifyListener() {
+		projectName.setLayoutData(gd);
+		projectName.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
 				dialogChanged();
 			}
@@ -55,14 +71,18 @@ public class MultiMechanismProjectWizardPage extends WizardPage {
 		label = new Label(container, SWT.NULL);
 		label.setText("&DSALs (Comma Separated):");
 
-		dsalsText = new Text(container, SWT.BORDER | SWT.SINGLE);
+		dsalNames = new Text(container, SWT.BORDER | SWT.SINGLE);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
-		dsalsText.setLayoutData(gd);
-		dsalsText.addModifyListener(new ModifyListener() {
+		dsalNames.setLayoutData(gd);
+		dsalNames.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
 				dialogChanged();
 			}
 		});
+		
+		includeAJ = new Button(container, SWT.CHECK);
+		includeAJ.setText(ASPECTJ_SUPPORT_LABEL);
+		includeAJ.setSelection(true);
 		
 		dialogChanged();
 		setControl(container);
@@ -73,10 +93,6 @@ public class MultiMechanismProjectWizardPage extends WizardPage {
 
 		if(getProjectName().length() == 0) {
 			updateStatus("A name for the project must be specified");
-			return;
-		}
-		if(!getProjectName().startsWith("awmm.")) {
-			updateStatus("Project name should have the prefix 'awmm.'");
 			return;
 		}
 		// list of DSALs should not contains spaces
@@ -92,9 +108,9 @@ public class MultiMechanismProjectWizardPage extends WizardPage {
 		String[] dsals = dsalsText.split(",");
 		for(String dsal : dsals) {
 			IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-			IProject project = root.getProject("awm." + dsal.toLowerCase());
+			IProject project = root.getProject(AspectMechanismProject.PROJ_PREFIX + "." + dsal.toLowerCase());
 			if(!project.exists()) {
-				updateStatus("Aspect mechanism project " + "awm." + dsal.toLowerCase() + " does not exist in the workspace");
+				updateStatus("Aspect mechanism project " + AspectMechanismProject.PROJ_PREFIX + "." + dsal.toLowerCase() + " does not exist in the workspace");
 				return;
 			}
 		}
@@ -108,16 +124,19 @@ public class MultiMechanismProjectWizardPage extends WizardPage {
 	}
 
 	public String getProjectName() {
-		return projectNameText.getText();
+		return MultiMechanismProject.PROJ_PREFIX + "." + projectName.getText();
 	}
 
 	/**
 	 * @return the dsals to be composed that were entered by the user
 	 */
 	private String getDsalsText() {
-		return dsalsText.getText();
+		return dsalNames.getText();
 	}
 	public String[] getDsalNames() {
 		return getDsalsText().split(",");
+	}
+	public boolean isAspectJIncluded() {
+		return includeAJ.getSelection();
 	}
 }

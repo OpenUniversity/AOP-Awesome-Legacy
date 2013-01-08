@@ -7,22 +7,27 @@ import org.eclipse.ajdt.ui.AspectJUIPlugin;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.JavaCore;
+
 import awesome.ide.Activator;
 import awesome.ide.gen.AdviceOrderConfigGen;
 import awesome.ide.model.manifests.Advice;
 import awesome.ide.model.manifests.CSManifest;
 
 public class MultiMechanismProject extends MechanismProject {
+	public static final String PROJ_PREFIX = "awmm";
 	public static final String SPEC_FOLDER = "spec";
 	public static final String COMP_SPEC_FILE = "composition.spec";
 	public static final String CONFIG_FOLDER = "config";
+	private static final String ASPECTJ_ID = "aspectj";
+	private static final String AJ_FOLDER_NAME = ASPECTJ_ID + "Src";
 	
 	private IJavaProject javaProj;
 	private String name;
@@ -54,9 +59,8 @@ public class MultiMechanismProject extends MechanismProject {
 	 * @return
 	 * @throws Exception
 	 */
-	public static MultiMechanismProject create(String projectName, String[] dsalNames, IProgressMonitor monitor) throws Exception {
+	public static MultiMechanismProject create(String projectName, String[] dsalNames, boolean includeAJ, IProgressMonitor monitor) throws Exception {
 		MultiMechanismProject mmProj = new MultiMechanismProject(projectName);
-		
 		if(monitor != null)
 			monitor.beginTask("Creating Multi-Mechanism Project...", 2);
 		
@@ -68,15 +72,25 @@ public class MultiMechanismProject extends MechanismProject {
 		AspectJUIPlugin.convertToAspectJProject(mmProj.javaProj.getProject());
 		AspectJUIPlugin.addAjrtToBuildPath(mmProj.javaProj.getProject());
 		
-		mmProj.createSourceFolders(dsalNames);
-		mmProj.addSourceFoldersToBuildPath(dsalNames);
-		 
-		// Create a folder with the dependent jars
-		String[] jars = {Activator.ASM_JAR, Activator.AWESOME_JAR, Activator.COMMONS_JAR, Activator.JROCKIT_JAR};
-		mmProj.createLibFolder(mmProj.javaProj, jars);
+		// Create a lib folder with the dependent jars
+		String[] jars = {Activator.ASM_JAR, Activator.AWESOME_JAR, Activator.COMMONS_JAR, Activator.JROCKIT_JAR, Activator.ASPECTJTOOLS_JAR};
+		mmProj.createLibFolder(jars);
 		
+		// Create links to the source folders of the different DSALs
+		mmProj.linkMechanismSourceFolders(dsalNames);
+		
+		// Generate the AspectJ mechanism if desired
+		if(includeAJ) {
+			mmProj.createSrcFolder(AJ_FOLDER_NAME);
+			mmProj.createAspectMechanism(AJ_FOLDER_NAME, "awm.aspectj", ASPECTJ_ID);			
+		}
+		
+		mmProj.createAntFile();
+		
+		
+		mmProj.createAspectConfigurationFolder();
 		mmProj.createSpecFolder(dsalNames);
-		
+				
 		if(monitor != null)
 			monitor.worked(1);
 		
@@ -84,20 +98,35 @@ public class MultiMechanismProject extends MechanismProject {
 	}
 	
 	/**
-	 * For each aspect mechanism, its source folder is copied from its project.
-	 * In addition, a folder is generated for holding the generated configuration aspects. 
+	 * Create within the project linked source folders pointing to the
+	 * source folders of the aspect mechanisms.
+	 * @param dsalNames
+	 */
+	private void linkMechanismSourceFolders(String[] dsalNames) {
+		for(String name : dsalNames) {
+			IFolder srcFolder = javaProj.getProject().getFolder(name + "Src");
+			try {
+				srcFolder.createLink(new Path("WORKSPACE_LOC/" + AspectMechanismProject.PROJ_PREFIX + "." +
+						name.toLowerCase() + "/src"), IResource.NONE, null);
+			} catch (CoreException e) {
+				throw new RuntimeException(e);
+			}
+			
+			IClasspathEntry entry = JavaCore.newSourceEntry(new Path(javaProj.getProject().getName() + "/" + srcFolder.getName()).makeAbsolute());
+			addEntryToClasspath(javaProj, entry);
+		}
+	}
+
+	/**
+	 * A folder is generated for holding the generated configuration aspects. 
 	 * @throws Exception
 	 */
-	private void createSourceFolders(String[] dsalNames) throws Exception {
-		for(String dsalName : dsalNames) {
-			AspectMechanismProject amProj = AspectMechanismProject.create(dsalName, null);
-			IFolder amSrc = amProj.getSrcFolder();
-			// source folder is copied under a folder with the name of the am project
-			amSrc.copy(new Path(javaProj.getProject().getFullPath() + "/" + amProj.getName()), true, null);
+	private void createAspectConfigurationFolder() {
+		try {
+			javaProj.getProject().getFolder(CONFIG_FOLDER).create(false, true, null);
+		} catch (CoreException e) {
+			throw new RuntimeException(e);
 		}
-		
-		// create a folder for the configuration aspects
-		javaProj.getProject().getFolder(CONFIG_FOLDER).create(false, true, null);
 	}
 
 	/**
@@ -123,19 +152,6 @@ public class MultiMechanismProject extends MechanismProject {
 		
 		// create a composition specification file
 		javaProj.getProject().getFile(new Path(SPEC_FOLDER + "/" + COMP_SPEC_FILE)).create(toInputStream(""), true, null);
-	}
-	
-	private void addSourceFoldersToBuildPath(String[] folders) throws Exception {
-		for(String folder: folders){
-			AspectMechanismProject amProj = AspectMechanismProject.create(folder, null);
-			IFolder dsalSourceFolder = javaProj.getProject().getFolder(amProj.getName());
-			IPackageFragmentRoot proot = javaProj.getPackageFragmentRoot(dsalSourceFolder);
-			IClasspathEntry[] oldEntries = javaProj.getRawClasspath();
-			IClasspathEntry[] newEntries = new IClasspathEntry[oldEntries.length + 1];
-			System.arraycopy(oldEntries, 0, newEntries, 0, oldEntries.length);
-			newEntries[oldEntries.length] = JavaCore.newSourceEntry(proot.getPath());
-			javaProj.setRawClasspath(newEntries, null);
-		}
 	}
 
 	@Override
@@ -176,5 +192,10 @@ public class MultiMechanismProject extends MechanismProject {
 		for(Advice adv : advice)
 			if(!result.contains(capitalize(adv.getMechanism()))) result.add(capitalize(adv.getMechanism()));
 		return result;
+	}
+
+	@Override
+	public IJavaProject getJavaProject() {
+		return javaProj;
 	}
 }

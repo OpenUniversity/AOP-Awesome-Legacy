@@ -42,11 +42,12 @@ public class MultiMechanismProjectWizard extends Wizard implements INewWizard {
 	public boolean performFinish() {
 		final String projectName = page.getProjectName();
 		final String[] dsalNames = page.getDsalNames();
+		final boolean includeAJ = page.isAspectJIncluded();
 		
 		IRunnableWithProgress op = new IRunnableWithProgress() {
 			public void run(IProgressMonitor monitor) throws InvocationTargetException {
 				try {
-					doFinish(projectName, dsalNames, monitor);
+					doFinish(projectName, dsalNames, includeAJ, monitor);
 				} catch (Exception e) {
 					throw new InvocationTargetException(e);
 				} finally {
@@ -66,9 +67,9 @@ public class MultiMechanismProjectWizard extends Wizard implements INewWizard {
 		return true;
 	}
 	
-	private void doFinish(String projectName, String[] dsalNames, IProgressMonitor monitor) 
+	private void doFinish(String projectName, String[] dsalNames, boolean includeAJ, IProgressMonitor monitor) 
 		throws Exception {
-		MultiMechanismProject.create(projectName, dsalNames, monitor);
+		MultiMechanismProject.create(projectName, dsalNames, includeAJ, monitor);
 	}
 	/**
 	 * @see IWorkbenchWizard#init(IWorkbench, IStructuredSelection)
