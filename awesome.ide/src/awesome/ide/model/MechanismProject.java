@@ -157,20 +157,6 @@ public abstract class MechanismProject {
 			throw new RuntimeException(e);
 		}
 	}
-	/**
-	 * Creates a folder and add it to the build path.
-	 * @param project
-	 * @return
-	 * @throws CoreException
-	 */
-	protected IFolder createSrcFolder(String name) throws CoreException {
-		IJavaProject project = getJavaProject();
-		IFolder srcFolder = project.getProject().getFolder(name);
-		srcFolder.create(false, true, null);
-		addFolderToClasspath(project, name);
-		
-		return srcFolder;
-	}
 	public abstract IJavaProject getJavaProject();
 
 	/**
@@ -200,8 +186,8 @@ public abstract class MechanismProject {
 			pack = src.createPackageFragment(packageName, false, null);
 			// generate an aspect mechanism within the package
 			StringBuffer buffer = new StringBuffer();
-			buffer.append(new AspectMechanismGen().generate(new String[]{packageName, capitalize(dsalId) + "Mechanism", dsalId}));
-			pack.createCompilationUnit(capitalize(dsalId) + "Mechanism" + ".aj", buffer.toString(), false, null);
+			buffer.append(new AspectMechanismGen().generate(new String[]{packageName, Utils.capitalize(dsalId) + "Mechanism", dsalId}));
+			pack.createCompilationUnit(Utils.capitalize(dsalId) + "Mechanism" + ".aj", buffer.toString(), false, null);
 		} catch (JavaModelException e) {
 			throw new RuntimeException(e);
 		}
@@ -230,44 +216,26 @@ public abstract class MechanismProject {
 		IJavaProject javaProj = getJavaProject();
 		IFolder srcFolder = javaProj.getProject().getFolder(SRC_GEN_FOLDER);
 		srcFolder.create(false, true, null);
-		addFolderToClasspath(javaProj, SRC_GEN_FOLDER);
+		Utils.addFolderToClasspath(javaProj, SRC_GEN_FOLDER);
 		
 		return srcFolder;
 	}
-	private void addFolderToClasspath(IJavaProject javaProj, String folderName) throws JavaModelException {
-		IFolder folder = javaProj.getProject().getFolder(folderName);
-		IPackageFragmentRoot proot = javaProj.getPackageFragmentRoot(folder);
-		IClasspathEntry entry = JavaCore.newSourceEntry(proot.getPath());
-		addEntryToClasspath(javaProj, entry);
-	}
-	protected void addContainerToClasspath(IPath containerPath) {
-		IJavaProject javaProj = getJavaProject();
-		IClasspathEntry entry =  JavaCore.newContainerEntry(containerPath, false);
-		addEntryToClasspath(javaProj, entry);
-	}
-	protected void addProjectToClassPath(String projectName) {
-		IJavaProject javaProj = getJavaProject();
-		IClasspathEntry entry = JavaCore.newProjectEntry(new Path("/" + projectName), true);
-		addEntryToClasspath(javaProj, entry);
-	}
-	protected void addEntryToClasspath(IJavaProject javaProj, IClasspathEntry entry) {
-		try {
-			IClasspathEntry[] oldEntries = javaProj.getRawClasspath();
-			IClasspathEntry[] newEntries = new IClasspathEntry[oldEntries.length + 1];
-			System.arraycopy(oldEntries, 0, newEntries, 0, oldEntries.length);
-			newEntries[oldEntries.length] = entry;
-			javaProj.setRawClasspath(newEntries, null);
-		} catch(JavaModelException e) {
-			throw new RuntimeException(e);
-		}
-	}
-	/**
-	 * @param str e.g., "heLLO"
-	 * @return "Hello"
-	 */
-	protected String capitalize(String str) {
-		if(str == null || str.length() == 0)
-			return str;
-		return str.substring(0,1).toUpperCase() + str.substring(1).toLowerCase();
-	}
+//	protected void addFolderToClasspath(IJavaProject javaProj, String folderName) {
+//		IFolder folder = javaProj.getProject().getFolder(folderName);
+//		IPackageFragmentRoot proot = javaProj.getPackageFragmentRoot(folder);
+//		IClasspathEntry entry = JavaCore.newSourceEntry(proot.getPath());
+//		addEntryToClasspath(javaProj, entry);
+//	}
+//	protected void addEntryToClasspath(IJavaProject javaProj, IClasspathEntry entry) {
+//		try {
+//			IClasspathEntry[] oldEntries = javaProj.getRawClasspath();
+//			IClasspathEntry[] newEntries = new IClasspathEntry[oldEntries.length + 1];
+//			System.arraycopy(oldEntries, 0, newEntries, 0, oldEntries.length);
+//			newEntries[oldEntries.length] = entry;
+//			javaProj.setRawClasspath(newEntries, null);
+//		} catch(JavaModelException e) {
+//			throw new RuntimeException(e);
+//		}
+//	}
+
 }

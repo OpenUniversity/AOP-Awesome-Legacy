@@ -13,14 +13,16 @@
             icon="icons/mm.png"
             category="awesome.ide"
             class="awesome.ide.wizards.MultiMechanismProjectWizard"
-            id="awesome.ide.wizards.NewAwesomeProjectWizard">
+            id="awesome.ide.wizards.NewAwesomeProjectWizard"
+            project="true">
       </wizard>
       <wizard
             category="awesome.ide"
             class="awesome.ide.wizards.AspectMechanismProjectWizard"
             icon="icons/am.png"
             id="awesome.ide.wizards.AspectMechanismProjectWizard"
-            name="Aspect Mechanism Project">
+            name="Aspect Mechanism Project"
+            project="true">
       </wizard>
    </extension>
    <extension

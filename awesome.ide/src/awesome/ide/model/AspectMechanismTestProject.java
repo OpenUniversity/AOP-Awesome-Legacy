@@ -1,24 +1,73 @@
 package awesome.ide.model;
 
-import java.io.InputStream;
-
 import org.eclipse.ajdt.ui.AspectJUIPlugin;
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jdt.core.IJavaProject;
 
 import awesome.ide.Activator;
 import awesome.ide.gen.TestappAspect;
 import awesome.ide.gen.TestappExecuteLaunchGen;
-import awesome.ide.gen.TestappWeaveLaunchGen;
 import awesome.ide.gen.TestappMain;
 import awesome.ide.gen.TestappTestCaseGen;
+import awesome.ide.gen.TestappWeaveLaunchGen;
 
 public class AspectMechanismTestProject extends MechanismProject {
+	public class TestAppFolder {
+		private String folderName;
+		private Boolean isXtext;
+		public TestAppFolder(String folderName, boolean isXtext) {
+			this.folderName = folderName;
+			this.isXtext = isXtext;
+		}
+		public String getFolderName() {
+			return folderName;
+		}
+		public boolean isXtext() {
+			return isXtext;
+		}
+		public void commit() {
+			IFolder folder = Utils.createFolder(getJavaProject(), folderName);
+			
+			IFolder aspectsFolder = Utils.createSubFolder(folder, ASPECTS_FOLDER);
+			Utils.createFileInFolder(aspectsFolder, getTestAppAspectName() + ".java", 
+					new TestappAspect().generate(new String[]{ASPECTS_FOLDER, getTestAppAspectName(), amProj.getDsalName()}));
+			
+			IFolder baseFolder = Utils.createSubFolder(folder, BASE_FOLDER);
+			Utils.createFileInFolder(baseFolder, TESTAPP_MAIN + ".java", new TestappMain().generate(new String[]{BASE_FOLDER}));
+			
+			// create a weave.launch file
+			Utils.createFileInFolder(folder, amProj.getDsalName() + "." + TESTAPP_WEAVE_LAUNCH_SUFFIX, 
+					new TestappWeaveLaunchGen().generate(new String[]{getName(), TESTAPP_PREFIX + TESTAPP_ID, isXtext.toString()}));
+			
+			// create a execute.launch file
+			Utils.createFileInFolder(folder, amProj.getDsalName() + "." +  TESTAPP_EXECUTE_LAUNCH_SUFFIX, 
+					new TestappExecuteLaunchGen().generate(new String[]{getName(), TESTAPP_PREFIX + TESTAPP_ID}));
+		}
+	}
+	public class AMTSrcFolder extends SrcFolder {
+		private String testcaseName;
+		
+		public AMTSrcFolder(String name, String packageName, String testcaseName) {
+			super(name, packageName);
+			this.testcaseName = testcaseName;
+		}
+		/**
+		 * Creates a src folder within the project, with a package that holds
+		 * a single test case.
+		 */
+		public void commit() {
+			// super creates the folder and the package
+			super.commit(getJavaProject());
+			
+			// generate a test case within the package
+			StringBuffer buffer = new StringBuffer();
+			buffer.append(new TestappTestCaseGen().generate(new String[]{getPackageName(), TESTAPP_ID, getTestAppAspectName()}));
+			addCompilationUnit(testcaseName + ".java", buffer.toString());				
+		}
+	}
+
 	private static final String TESTAPP_PACKAGE = "testapps";
 	private static final String TESTAPP_ID = "1";
 	private static final String TESTCASE_PREFIX = "Testapp";
@@ -31,116 +80,72 @@ public class AspectMechanismTestProject extends MechanismProject {
 	private static final String WEAVING_TRACE_FOLDER = "awtrace";
 	private AspectMechanismProject amProj;
 	private IJavaProject javaProj;
+	private AMTSrcFolder src;
+	private SrcFolder srcgen;
+	private LibFolder lib;
+	private TestAppFolder testapp;
 	
-	private AspectMechanismTestProject(AspectMechanismProject amProj) {
+	private AspectMechanismTestProject(AspectMechanismProject amProj, boolean isXtext) {
 		this.amProj = amProj;
+		src = new AMTSrcFolder(SRC_FOLDER, TESTAPP_PACKAGE,  TESTCASE_PREFIX + TESTAPP_ID);
+		if(isXtext) srcgen = new SrcFolder(SRC_GEN_FOLDER, null);
+		lib = new LibFolder(new String[]{Activator.ASPECTJRT_JAR, Activator.ASPECTJTOOLS_JAR});
+		testapp = new TestAppFolder(TESTAPP_PREFIX + TESTAPP_ID, isXtext);
 	}
 	
 	@Override
 	public String getName() {
 		return amProj.getName() + ".tests";
 	}
-
-	public static AspectMechanismTestProject create(AspectMechanismProject amProj, boolean isXtextSupport, IProgressMonitor monitor) throws Exception {
-		AspectMechanismTestProject amtProj = new AspectMechanismTestProject(amProj);
-		
-		// return in case that the project already exists in the workspace
-		if(ResourcesPlugin.getWorkspace().getRoot().getProject(amtProj.getName()).exists())
-			return amtProj;
-		
-		if(monitor != null)
-			monitor.beginTask("Creating Aspect Mechanism Test Project...", 3);
-		
-		// create a Java project
-		amtProj.javaProj = amtProj.createJavaProject(amtProj.getName());
-
-		// add the am project to the classpath. This should be done before AJ deps so it comes first in the build order
-		amtProj.addProjectToClassPath(amProj.getName());
-		
-		// convert to AspectJ project
-		AspectJUIPlugin.convertToAspectJProject(amtProj.javaProj.getProject());
-		AspectJUIPlugin.addAjrtToBuildPath(amtProj.javaProj.getProject());
-		
-		monitor.worked(1);
-		
-		// create the lib folder with the required jars
-		String[] jars = {Activator.ASPECTJRT_JAR, Activator.ASPECTJTOOLS_JAR};
-		amtProj.createLibFolder(jars);
-		
-		// configure classpath
-		amtProj.addContainerToClasspath(JUNIT4_CONTAINER_PATH);
-		
-		// create the source folder
-		amtProj.createSrcFolder(MechanismProject.SRC_FOLDER);
-		
-		if(isXtextSupport)
-			amtProj.createSrcGenFolder();
-		
-		// create a single testapp folder
-		amtProj.createTestappFolder(TESTAPP_PREFIX + TESTAPP_ID, isXtextSupport);
-		
-		// create a 'awtrace' folder to hold the weaving trace files
-		amtProj.createWeavingTraceFolder();
-		
-		if(monitor != null)
-			monitor.worked(2);
-		
-		return amtProj;
-	}
 	
-	private void createWeavingTraceFolder() {
-		IProject project = javaProj.getProject();
-		IFolder folder = project.getFolder(WEAVING_TRACE_FOLDER);
+	public void commit(IProgressMonitor monitor) {
+		// return in case that the project already exists in the workspace
+		if(ResourcesPlugin.getWorkspace().getRoot().getProject(getName()).exists())
+			return;
+		
 		try {
-			folder.create(false, true, null);
-		} catch (CoreException e) {
-			throw new RuntimeException("Creation of folder " + WEAVING_TRACE_FOLDER + " failed");
-		}
-	}
-
-	private void createTestappFolder(String folderName, Boolean isXtext) {
-		try {
-			IProject project = javaProj.getProject();
-			IFolder folder = project.getFolder(folderName);
-			folder.create(false, true, null);
-			// create the ASPECTS folder:
-			IFolder aspectsFolder = folder.getFolder(ASPECTS_FOLDER);
-			aspectsFolder.create(false, true, null);
-			InputStream source = toInputStream(new TestappAspect().generate(new String[]{ASPECTS_FOLDER, getTestAppAspectName(), amProj.getDsalName()}));
-			aspectsFolder.getFile(getTestAppAspectName() + ".java").create(source, false, null);
-			// create the BASE folder:
-			IFolder baseFolder = folder.getFolder(BASE_FOLDER);
-			baseFolder.create(false, true, null);
-			source = toInputStream(new TestappMain().generate(new String[]{BASE_FOLDER}));
-			baseFolder.getFile(TESTAPP_MAIN + ".java").create(source, false, null);
-			// create a weave.launch file
-			source = toInputStream(new TestappWeaveLaunchGen().generate(new String[]{getName(), TESTAPP_PREFIX + TESTAPP_ID, isXtext.toString()}));
-			folder.getFile(amProj.getDsalName() + "." + TESTAPP_WEAVE_LAUNCH_SUFFIX).create(source, false, null);
-			// create a execute.launch file
-			source = toInputStream(new TestappExecuteLaunchGen().generate(new String[]{getName(), TESTAPP_PREFIX + TESTAPP_ID}));
-			folder.getFile(amProj.getDsalName() + "." +  TESTAPP_EXECUTE_LAUNCH_SUFFIX).create(source, false, null);
+			if(monitor != null)
+				monitor.beginTask("Creating Aspect Mechanism Test Project...", 3);
 			
-		} catch (CoreException e) {
+			javaProj = createJavaProject(getName());
+			lib.commit(getJavaProject());
+			src.commit();
+			srcgen.commit(getJavaProject());
+			
+			if(monitor != null)
+				monitor.worked(1);
+			
+			// add the am project to the classpath. This should be done before AJ deps so it comes first in the build order
+			Utils.addProjectToClassPath(getJavaProject(), amProj.getName());
+			
+			Utils.addContainerToClasspath(getJavaProject(), JUNIT4_CONTAINER_PATH);
+			
+			// create a single testapp folder
+			testapp.commit();
+			
+			if(monitor != null)
+				monitor.worked(2);
+			
+			// create a 'awtrace' folder to hold the weaving trace files
+			Utils.createFolder(getJavaProject(), WEAVING_TRACE_FOLDER);
+			
+			// convert to AspectJ project
+			AspectJUIPlugin.convertToAspectJProject(getJavaProject().getProject());
+			AspectJUIPlugin.addAjrtToBuildPath(getJavaProject().getProject());
+			
+			if(monitor != null)
+				monitor.done();
+		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
-
-	@Override
-	protected IFolder createSrcFolder(String name) throws CoreException {
-		IFolder srcFolder = super.createSrcFolder(name);
-		IFolder pack = srcFolder.getFolder(TESTAPP_PACKAGE);
-		pack.create(false, true, null);
-		// create a JUnit test case for the testapp
-		IFile testcase = pack.getFile(TESTCASE_PREFIX + TESTAPP_ID + ".java");
-		String contents = new TestappTestCaseGen().generate(new String[]{TESTAPP_PACKAGE, TESTAPP_ID, getTestAppAspectName()});
-		testcase.create(toInputStream(contents), true, null);
-		
-		return srcFolder;
+	public static AspectMechanismTestProject create(AspectMechanismProject amProj, boolean isXtextSupport) throws Exception {
+		AspectMechanismTestProject amtProj = new AspectMechanismTestProject(amProj, isXtextSupport);				
+		return amtProj;
 	}
 	private String getTestAppAspectName() {
-		return capitalize(amProj.getDsalName()) + "Aspect";
+		return Utils.capitalize(amProj.getDsalName()) + "Aspect";
 	}
-
 	@Override
 	public IJavaProject getJavaProject() {
 		return javaProj;

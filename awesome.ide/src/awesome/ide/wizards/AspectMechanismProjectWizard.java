@@ -69,8 +69,10 @@ public class AspectMechanismProjectWizard extends Wizard implements INewWizard {
 	
 	private void doFinish(String dsalName, boolean isXtext, IProgressMonitor monitor) 
 		throws Exception {
-		AspectMechanismProject amProj = AspectMechanismProject.create(dsalName, monitor);
-		AspectMechanismTestProject.create(amProj, isXtext, monitor);
+		AspectMechanismProject amProj = AspectMechanismProject.create(dsalName);
+		amProj.commit(monitor);
+		AspectMechanismTestProject amtProj = AspectMechanismTestProject.create(amProj, isXtext);
+		amtProj.commit(monitor);
 	}
 	/**
 	 * @see IWorkbenchWizard#init(IWorkbench, IStructuredSelection)

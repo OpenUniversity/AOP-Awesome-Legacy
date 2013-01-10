@@ -81,7 +81,7 @@ public class MultiMechanismProject extends MechanismProject {
 		
 		// Generate the AspectJ mechanism if desired
 		if(includeAJ) {
-			mmProj.createSrcFolder(AJ_FOLDER_NAME);
+			Utils.createSrcFolder(mmProj.getJavaProject(), AJ_FOLDER_NAME);
 			mmProj.createAspectMechanism(AJ_FOLDER_NAME, "awm.aspectj", ASPECTJ_ID);			
 		}
 		
@@ -113,7 +113,7 @@ public class MultiMechanismProject extends MechanismProject {
 			}
 			
 			IClasspathEntry entry = JavaCore.newSourceEntry(new Path(javaProj.getProject().getName() + "/" + srcFolder.getName()).makeAbsolute());
-			addEntryToClasspath(javaProj, entry);
+			Utils.addEntryToClasspath(javaProj, entry);
 		}
 	}
 
@@ -142,8 +142,8 @@ public class MultiMechanismProject extends MechanismProject {
 		
 		// get the project of each dsal and extract the manifest file
 		for(String dsalName : dsalNames) {
-			AspectMechanismProject amProj = AspectMechanismProject.create(dsalName, null);
-			AspectMechanismProject.Manifest manifest = amProj.new Manifest();
+			AspectMechanismProject amProj = AspectMechanismProject.create(dsalName);
+			AspectMechanismProject.ManifestFile manifest = amProj.new ManifestFile();
 			
 			// create the manifest in the multi-mechanism project
 			IFile newManifest = javaProj.getProject().getFile(new Path(SPEC_FOLDER + "/" + manifest.getName()));
@@ -190,7 +190,7 @@ public class MultiMechanismProject extends MechanismProject {
 	private List<String> getMechanismsCapitalized(List<Advice> advice) {
 		List<String> result = new LinkedList<String>();
 		for(Advice adv : advice)
-			if(!result.contains(capitalize(adv.getMechanism()))) result.add(capitalize(adv.getMechanism()));
+			if(!result.contains(Utils.capitalize(adv.getMechanism()))) result.add(Utils.capitalize(adv.getMechanism()));
 		return result;
 	}
 
