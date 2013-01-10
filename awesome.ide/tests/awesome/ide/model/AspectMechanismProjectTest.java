@@ -19,7 +19,7 @@ public class AspectMechanismProjectTest {
 		AspectMechanismProject project = AspectMechanismProject.create("Comprendo");
 		
 		// test src folder
-		AspectMechanismProject.AMSrcFolder src = project.getSrcFolder();
+		MechanismSrcFolder src = project.getSrcFolder();
 		assertEquals("src", src.getName());
 		assertEquals("awm.comprendo", src.getPackageName());
 		

@@ -38,7 +38,7 @@ public abstract class AwesomeManifest {
 	public List<ManifestEntry> getEntries() throws Exception {
 		// if the content of the file was changed, we update reader
 		if(dirty) {
-			InputStream is = ResourcesPlugin.getWorkspace().getRoot().getProject(project.getName()).getFile(getPath()).getContents();
+			InputStream is = ResourcesPlugin.getWorkspace().getRoot().getProject(project.getProjectName()).getFile(getPath()).getContents();
 			reader = new BufferedReader(new InputStreamReader(is));
 			dirty = false;
 		}
@@ -68,7 +68,7 @@ public abstract class AwesomeManifest {
 		if(keyIsNotKnown(key))
 			throw new Exception("Provided key " + key + " is unknown");
 		// add the new entry to the manifest file
-		IProject proj = ResourcesPlugin.getWorkspace().getRoot().getProject(project.getName());
+		IProject proj = ResourcesPlugin.getWorkspace().getRoot().getProject(project.getProjectName());
 		IFile manifest = proj.getFile(getPath());
 		manifest.appendContents(toInputStream(key + ": " + value), true, false, null);
 		// mark that the content of the file is modified

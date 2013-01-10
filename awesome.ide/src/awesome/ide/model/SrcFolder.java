@@ -18,8 +18,8 @@ public class SrcFolder {
 	private String packageName;
 	private IPackageFragment pack;
 	
-	public SrcFolder(String name, String packageName) {
-		this.name = name;
+	public SrcFolder(String folderName, String packageName) {
+		this.name = folderName;
 		this.packageName = packageName;
 	}
 	/**
@@ -39,19 +39,7 @@ public class SrcFolder {
 			} catch (Exception e) {
 				throw new RuntimeException(e);
 			}
-			//IPackageFragment pack;
 		}
-		
-//		try {
-//			pack = root.createPackageFragment(packageName, false, null);
-//			// generate an aspect mechanism within the package
-//			StringBuffer buffer = new StringBuffer();
-//			buffer.append(new AspectMechanismGen().generate(new String[]{packageName, aspectMechanismName, getDsalName()}));
-//			pack.createCompilationUnit(aspectMechanismName + ".aj", buffer.toString(), false, null);
-//		} catch (JavaModelException e) {
-//			throw new RuntimeException(e);
-//		}
-		
 	}
 	/**
 	 * Adds a compilation unit (e.g., A.java, B.aj) to the package

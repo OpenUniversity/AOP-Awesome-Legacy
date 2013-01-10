@@ -33,7 +33,7 @@ public class TestGenerationOfAdviceOrderConfigAspects {
 	@Before
 	public void setUp() throws Exception {
 		// step 1: creating a multi-mechanism project
-		mmProj = MultiMechanismProject.create("coolajval", new String[]{"aspectj", "cool", "validate"}, false, null);
+		mmProj = MultiMechanismProject.create("coolajval", new String[]{"aspectj", "cool", "validate"}, false);
 	}
 	@Test
 	public void theTest() throws Exception {
@@ -47,7 +47,7 @@ public class TestGenerationOfAdviceOrderConfigAspects {
 		mmProj.generateConfigurationAspects();
 		
 		// now check that the config folder contains a single file: BeforeAdviceOrderConfig.aj
-		IFolder folder = ResourcesPlugin.getWorkspace().getRoot().getProject(mmProj.getName()).getFolder(MultiMechanismProject.CONFIG_FOLDER); 
+		IFolder folder = ResourcesPlugin.getWorkspace().getRoot().getProject(mmProj.getProjectName()).getFolder(MultiMechanismProject.CONFIG_FOLDER); 
 		assertTrue(folder.getFile("BeforeAdviceOrderConfig.aj").exists());
 	}
 	@After

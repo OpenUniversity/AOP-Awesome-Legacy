@@ -69,7 +69,7 @@ public class MultiMechanismProjectWizard extends Wizard implements INewWizard {
 	
 	private void doFinish(String projectName, String[] dsalNames, boolean includeAJ, IProgressMonitor monitor) 
 		throws Exception {
-		MultiMechanismProject.create(projectName, dsalNames, includeAJ, monitor);
+		MultiMechanismProject.create(projectName, dsalNames, includeAJ).commit(monitor);
 	}
 	/**
 	 * @see IWorkbenchWizard#init(IWorkbench, IStructuredSelection)

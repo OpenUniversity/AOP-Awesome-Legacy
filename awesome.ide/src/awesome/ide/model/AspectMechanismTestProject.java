@@ -39,11 +39,11 @@ public class AspectMechanismTestProject extends MechanismProject {
 			
 			// create a weave.launch file
 			Utils.createFileInFolder(folder, amProj.getDsalName() + "." + TESTAPP_WEAVE_LAUNCH_SUFFIX, 
-					new TestappWeaveLaunchGen().generate(new String[]{getName(), TESTAPP_PREFIX + TESTAPP_ID, isXtext.toString()}));
+					new TestappWeaveLaunchGen().generate(new String[]{getProjectName(), TESTAPP_PREFIX + TESTAPP_ID, isXtext.toString()}));
 			
 			// create a execute.launch file
 			Utils.createFileInFolder(folder, amProj.getDsalName() + "." +  TESTAPP_EXECUTE_LAUNCH_SUFFIX, 
-					new TestappExecuteLaunchGen().generate(new String[]{getName(), TESTAPP_PREFIX + TESTAPP_ID}));
+					new TestappExecuteLaunchGen().generate(new String[]{getProjectName(), TESTAPP_PREFIX + TESTAPP_ID}));
 		}
 	}
 	public class AMTSrcFolder extends SrcFolder {
@@ -68,6 +68,10 @@ public class AspectMechanismTestProject extends MechanismProject {
 		}
 	}
 
+	public static AspectMechanismTestProject create(AspectMechanismProject amProj, boolean isXtextSupport) throws Exception {
+		AspectMechanismTestProject amtProj = new AspectMechanismTestProject(amProj, isXtextSupport);				
+		return amtProj;
+	}
 	private static final String TESTAPP_PACKAGE = "testapps";
 	private static final String TESTAPP_ID = "1";
 	private static final String TESTCASE_PREFIX = "Testapp";
@@ -94,20 +98,20 @@ public class AspectMechanismTestProject extends MechanismProject {
 	}
 	
 	@Override
-	public String getName() {
-		return amProj.getName() + ".tests";
+	public String getProjectName() {
+		return amProj.getProjectName() + ".tests";
 	}
 	
 	public void commit(IProgressMonitor monitor) {
 		// return in case that the project already exists in the workspace
-		if(ResourcesPlugin.getWorkspace().getRoot().getProject(getName()).exists())
+		if(ResourcesPlugin.getWorkspace().getRoot().getProject(getProjectName()).exists())
 			return;
 		
 		try {
 			if(monitor != null)
 				monitor.beginTask("Creating Aspect Mechanism Test Project...", 3);
 			
-			javaProj = createJavaProject(getName());
+			javaProj = Utils.createJavaProject(getProjectName());
 			lib.commit(getJavaProject());
 			src.commit();
 			srcgen.commit(getJavaProject());
@@ -116,7 +120,7 @@ public class AspectMechanismTestProject extends MechanismProject {
 				monitor.worked(1);
 			
 			// add the am project to the classpath. This should be done before AJ deps so it comes first in the build order
-			Utils.addProjectToClassPath(getJavaProject(), amProj.getName());
+			Utils.addProjectToClassPath(getJavaProject(), amProj.getProjectName());
 			
 			Utils.addContainerToClasspath(getJavaProject(), JUNIT4_CONTAINER_PATH);
 			
@@ -138,10 +142,6 @@ public class AspectMechanismTestProject extends MechanismProject {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-	}
-	public static AspectMechanismTestProject create(AspectMechanismProject amProj, boolean isXtextSupport) throws Exception {
-		AspectMechanismTestProject amtProj = new AspectMechanismTestProject(amProj, isXtextSupport);				
-		return amtProj;
 	}
 	private String getTestAppAspectName() {
 		return Utils.capitalize(amProj.getDsalName()) + "Aspect";
