@@ -13,7 +13,7 @@ public abstract class MechanismProject {
 	public static final IPath JRE_CONTAINER_PATH = new Path("org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6");
 
 	public abstract String getProjectName();
-	
+	public abstract String getDsalName();
 	/**
 	 * @param busyWait try to delete again and again in case of failure (note infinite loop danger). This option is
 	 * for testing purposes only. Otherwise use busyWait=false.

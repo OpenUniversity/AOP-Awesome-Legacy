@@ -1,0 +1,17 @@
+<%@ jet package="awesome.ide.gen" class="AMReadmeGen" imports="awesome.ide.model.*"%>
+<% MechanismProject mechProj = (MechanismProject)argument; %>
+Here we explain the different components of the aspect mechanism project.
+Note also the README for the corresponding test project.
+
+src/<%=mechProj.getProjectName()%>
+	This is the package where the source files of the aspect mechanism should
+	reside. Initially, there exist a single file representing the aspect mechanism.
+	See its javadoc for details. You may add more files if needed.
+lib/
+	Jar files required by Awesome.
+build.xml
+	Ant file that packs the class files of the mechanism and the platform into
+	a single jar file (created within the project, may require a 'refresh'). This
+	is actually your mechanism weaver.
+<%=mechProj.getDsalName()%>.manifest
+	A manifest describing the aspect mechanism (to be used in future versions).

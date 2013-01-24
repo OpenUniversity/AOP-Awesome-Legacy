@@ -14,6 +14,23 @@ import awesome.ide.gen.TestappTestCaseGen;
 import awesome.ide.gen.TestappWeaveLaunchGen;
 
 public class AspectMechanismTestProject extends MechanismProject {
+	private static final String TESTAPP_PACKAGE = "testapps";
+	private static final String TESTAPP_ID = "1";
+	private static final String TESTCASE_PREFIX = "Testapp";
+	private static final String TESTAPP_PREFIX = "testapp";
+	private static final String ASPECTS_FOLDER = "aspects";
+	private static final String BASE_FOLDER = "base";
+	private static final String TESTAPP_MAIN = "Main";
+	private static final String TESTAPP_WEAVE_LAUNCH_SUFFIX = TESTAPP_PREFIX + TESTAPP_ID + ".weave.launch";
+	private static final String TESTAPP_EXECUTE_LAUNCH_SUFFIX = TESTAPP_PREFIX + TESTAPP_ID + ".execute.launch";
+	private static final String WEAVING_TRACE_FOLDER = "awtrace";
+	private AspectMechanismProject amProj;
+	private IJavaProject javaProj;
+	private AMTSrcFolder src;
+	private SrcFolder srcgen;
+	private LibFolder lib;
+	private ReadmeFile readme;
+	private TestAppFolder testapp;
 	public class TestAppFolder {
 		private String folderName;
 		private Boolean isXtext;
@@ -72,22 +89,7 @@ public class AspectMechanismTestProject extends MechanismProject {
 		AspectMechanismTestProject amtProj = new AspectMechanismTestProject(amProj, isXtextSupport);				
 		return amtProj;
 	}
-	private static final String TESTAPP_PACKAGE = "testapps";
-	private static final String TESTAPP_ID = "1";
-	private static final String TESTCASE_PREFIX = "Testapp";
-	private static final String TESTAPP_PREFIX = "testapp";
-	private static final String ASPECTS_FOLDER = "aspects";
-	private static final String BASE_FOLDER = "base";
-	private static final String TESTAPP_MAIN = "Main";
-	private static final String TESTAPP_WEAVE_LAUNCH_SUFFIX = TESTAPP_PREFIX + TESTAPP_ID + ".weave.launch";
-	private static final String TESTAPP_EXECUTE_LAUNCH_SUFFIX = TESTAPP_PREFIX + TESTAPP_ID + ".execute.launch";
-	private static final String WEAVING_TRACE_FOLDER = "awtrace";
-	private AspectMechanismProject amProj;
-	private IJavaProject javaProj;
-	private AMTSrcFolder src;
-	private SrcFolder srcgen;
-	private LibFolder lib;
-	private TestAppFolder testapp;
+
 	
 	private AspectMechanismTestProject(AspectMechanismProject amProj, boolean isXtext) {
 		this.amProj = amProj;
@@ -95,6 +97,7 @@ public class AspectMechanismTestProject extends MechanismProject {
 		if(isXtext) srcgen = new SrcFolder(SRC_GEN_FOLDER, null);
 		lib = new LibFolder(new String[]{Activator.ASPECTJRT_JAR, Activator.ASPECTJTOOLS_JAR});
 		testapp = new TestAppFolder(TESTAPP_PREFIX + TESTAPP_ID, isXtext);
+		readme = new ReadmeFile();
 	}
 	
 	@Override
@@ -115,6 +118,7 @@ public class AspectMechanismTestProject extends MechanismProject {
 			lib.commit(getJavaProject());
 			src.commit();
 			srcgen.commit(getJavaProject());
+			readme.commit(this);
 			
 			if(monitor != null)
 				monitor.worked(1);
@@ -149,6 +153,10 @@ public class AspectMechanismTestProject extends MechanismProject {
 	@Override
 	public IJavaProject getJavaProject() {
 		return javaProj;
+	}
+	@Override
+	public String getDsalName() {
+		return amProj.getDsalName();
 	}
 
 }

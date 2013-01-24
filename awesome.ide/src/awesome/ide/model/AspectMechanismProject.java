@@ -19,6 +19,7 @@ public class AspectMechanismProject extends MechanismProject {
 	private MechanismSrcFolder src;
 	private LibFolder lib;
 	private AntFile ant;
+	private ReadmeFile readme;
 	private ManifestFile manifest;
 	
 	private AspectMechanismProject(String dsalName) {
@@ -26,29 +27,9 @@ public class AspectMechanismProject extends MechanismProject {
 		src = new MechanismSrcFolder(SRC_FOLDER, dsalName);
 		lib = new LibFolder(new String[]{Activator.ASM_JAR, Activator.AWESOME_JAR, Activator.COMMONS_JAR, Activator.JROCKIT_JAR, Activator.ASPECTJTOOLS_JAR});
 		ant = new AntFile();
+		readme = new ReadmeFile();
 		manifest = new ManifestFile();
 	}
-//	public class AMSrcFolder extends SrcFolder {
-//		private String aspectMechanismName;
-//		
-//		public AMSrcFolder(String name, String packageName, String aspectMechanismName) {
-//			super(name, packageName);
-//			this.aspectMechanismName = aspectMechanismName;
-//		}
-//		/**
-//		 * Creates a src folder within the project, with a package that holds
-//		 * a single aspect mechanism class.
-//		 */
-//		public void commit() {
-//			// super creates the src folder and the package
-//			super.commit(getJavaProject());
-//			
-//			// generate an aspect mechanism within the package
-//			StringBuffer buffer = new StringBuffer();
-//			buffer.append(new AspectMechanismGen().generate(new String[]{getPackageName(), aspectMechanismName, getDsalName()}));
-//			addCompilationUnit(aspectMechanismName + ".aj", buffer.toString());
-//		}
-//	}
 	
 	public class ManifestFile {
 		public String getName() {
@@ -105,8 +86,8 @@ public class AspectMechanismProject extends MechanismProject {
 				monitor.worked(1);
 			
 			ant.commit(javaProj);
-			
 			lib.commit(javaProj);
+			readme.commit(this);
 			
 			// convert to AspectJ
 			AspectJUIPlugin.convertToAspectJProject(javaProj.getProject());
@@ -125,7 +106,7 @@ public class AspectMechanismProject extends MechanismProject {
 	public String getProjectName() {
 		return PROJ_PREFIX + "." + dsalName.toLowerCase();
 	}
-
+	@Override
 	public String getDsalName() {
 		return dsalName;
 	}

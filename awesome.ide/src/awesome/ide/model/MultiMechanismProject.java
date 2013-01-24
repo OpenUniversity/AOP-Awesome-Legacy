@@ -208,4 +208,10 @@ public class MultiMechanismProject extends MechanismProject {
 	public IJavaProject getJavaProject() {
 		return javaProj;
 	}
+
+	@Override
+	public String getDsalName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
