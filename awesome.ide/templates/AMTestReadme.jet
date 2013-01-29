@@ -1,15 +1,20 @@
 <%@ jet package="awesome.ide.gen" class="AMTestReadmeGen" imports="awesome.ide.model.*"%>
 <% MechanismProject mechProj = (MechanismProject)argument; %>
-Here we explain the different components of the aspect mechanism test project. In
-this project you test your aspect mechanism by defining a test application, passing
-it to the weaver and verify the results.
+Write Awesome tests!
+
+An aspect mechanism project has an associated test project. 
+In this test project you make sure that your aspect mechanism works as expected.
+It is done by defining a test application (a base system and some example aspects), 
+passing the application to the weaver, and verify the results. The components of this
+test project are listed below.
 
 lib/
-	Jar files required by Awesome.
+	Jar files required by Awesome. Don't touch...
 testapp1/
-	Here you create your test application that consists of a base system (in base/)
+	Here you create your test application that usually consists of a base system (in base/)
 	and additional aspects (aspects/). We have created a Main file and an initial aspect
-	as a starting point. After defining the application, use first weave.launch to
-	weave the application (refresh) and then execute.launch.
+	as a starting point. Note that other aspects you choose to add should have the same
+	class-level annotations. After defining the application, (1) execute weave.launch to
+	weave the application (2) refresh, and (3) run execute.launch.
 src/testapps
 	Use the enclosing JUnit test case to verify that the results are as expected.
