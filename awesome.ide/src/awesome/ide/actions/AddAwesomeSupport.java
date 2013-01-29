@@ -46,6 +46,8 @@ public class AddAwesomeSupport implements IObjectActionDelegate {
 	    // Open Dialog and save result of selection
 	    String weaverJar = fileDialog.open();
 	    
+	    if(weaverJar == null) return;
+	    
 		IJavaProject project = getJavaProject();
 		String projectName = project.getProject().getName();
 		Utils.createSrcFolder(project, XTEXT_FOLDER);
