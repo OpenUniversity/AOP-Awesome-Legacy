@@ -116,6 +116,10 @@ public class AspectMechanismTestProject extends MechanismProject {
 				monitor.beginTask("Creating Aspect Mechanism Test Project...", 3);
 			
 			javaProj = Utils.createJavaProject(getProjectName());
+			
+			// add the am project to the classpath. This should be done before AJ deps (in lib) so it comes first in the build order
+			Utils.addProjectToClassPath(getJavaProject(), amProj.getProjectName());
+
 			lib.commit(getJavaProject());
 			src.commit();
 			srcgen.commit(getJavaProject());
@@ -124,8 +128,6 @@ public class AspectMechanismTestProject extends MechanismProject {
 			if(monitor != null)
 				monitor.worked(1);
 			
-			// add the am project to the classpath. This should be done before AJ deps so it comes first in the build order
-			Utils.addProjectToClassPath(getJavaProject(), amProj.getProjectName());
 			
 			Utils.addContainerToClasspath(getJavaProject(), JUNIT4_CONTAINER_PATH);
 			
