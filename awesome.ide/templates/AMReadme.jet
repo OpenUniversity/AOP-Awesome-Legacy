@@ -1,17 +1,22 @@
 <%@ jet package="awesome.ide.gen" class="AMReadmeGen" imports="awesome.ide.model.*"%>
 <% MechanismProject mechProj = (MechanismProject)argument; %>
-Here we explain the different components of the aspect mechanism project.
-Note also the README for the corresponding test project.
+Welcome to Awesome!
+
+You have asked to create an aspect mechanism project (so here we are...).
+Within this project resides the weaver (mechanism) of your new DSAL. In some
+cases, the default mechanism will answer your needs. Otherwise, the mechanism
+should be refined. To get started, review the different components of the project,
+and don't forget to read the README of the corresponding test project as well.
 
 src/<%=mechProj.getProjectName()%>
-	This is the package where the source files of the aspect mechanism should
-	reside. Initially, there exist a single file representing the aspect mechanism.
-	See its javadoc for details. You may add more files if needed.
+	This is the package where the implementation of the mechanism resides.
+	Initially, there exist a single file of the default aspect mechanism.
+	See its javadoc for details. You may add other auxiliary files if needed.
 lib/
-	Jar files required by Awesome.
+	Jar files required by Awesome. Don't touch them please.
 build.xml
-	Ant file that packs the class files of the mechanism and the platform into
+	An ant file that packs the class files of the mechanism and the platform into
 	a single jar file (created within the project, may require a 'refresh'). This
-	is actually your mechanism weaver.
+	is actually the weaver you will use for deployment.
 <%=mechProj.getDsalName()%>.manifest
-	A manifest describing the aspect mechanism (to be used in future versions).
+	A manifest describing the aspect mechanism (currently not in use, a future feature).
