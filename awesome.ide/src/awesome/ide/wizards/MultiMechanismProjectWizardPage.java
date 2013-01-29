@@ -100,10 +100,10 @@ public class MultiMechanismProjectWizardPage extends WizardPage {
 			updateStatus("The list of DSALs should not contains spaces");
 			return;
 		}
-		if(dsalsText.indexOf(',') == -1 || dsalsText.split(",").length < 2) {
-			updateStatus("At least two DSALs should be specified");
-			return;
-		}
+//		if(dsalsText.indexOf(',') == -1 || dsalsText.split(",").length < 2) {
+//			updateStatus("At least two DSALs should be specified");
+//			return;
+//		}
 		// the corresponding project of each DSAL should exist in the workspace
 		String[] dsals = dsalsText.split(",");
 		for(String dsal : dsals) {
