@@ -91,7 +91,7 @@ public class MultiMechanismProjectWizardPage extends WizardPage {
 	private void dialogChanged() {
 		String dsalsText = getDsalsText();
 
-		if(getProjectName().length() == 0) {
+		if(getProjectNameText().length() == 0) {
 			updateStatus("A name for the project must be specified");
 			return;
 		}
@@ -105,13 +105,15 @@ public class MultiMechanismProjectWizardPage extends WizardPage {
 //			return;
 //		}
 		// the corresponding project of each DSAL should exist in the workspace
-		String[] dsals = dsalsText.split(",");
-		for(String dsal : dsals) {
-			IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-			IProject project = root.getProject(AspectMechanismProject.PROJ_PREFIX + "." + dsal.toLowerCase());
-			if(!project.exists()) {
-				updateStatus("Aspect mechanism project " + AspectMechanismProject.PROJ_PREFIX + "." + dsal.toLowerCase() + " does not exist in the workspace");
-				return;
+		if(dsalsText.length() > 0) {
+			String[] dsals = dsalsText.split(",");
+			for(String dsal : dsals) {
+				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+				IProject project = root.getProject(AspectMechanismProject.PROJ_PREFIX + "." + dsal.toLowerCase());
+				if(!project.exists()) {
+					updateStatus("Aspect mechanism project " + AspectMechanismProject.PROJ_PREFIX + "." + dsal.toLowerCase() + " does not exist in the workspace");
+					return;
+				}
 			}
 		}
 	
@@ -126,7 +128,9 @@ public class MultiMechanismProjectWizardPage extends WizardPage {
 	public String getProjectName() {
 		return MultiMechanismProject.PROJ_PREFIX + "." + projectName.getText();
 	}
-
+	private String getProjectNameText() {
+		return projectName.getText();
+	}
 	/**
 	 * @return the dsals to be composed that were entered by the user
 	 */
