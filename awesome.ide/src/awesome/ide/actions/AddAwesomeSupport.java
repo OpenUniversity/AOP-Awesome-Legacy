@@ -11,15 +11,22 @@ import org.eclipse.ui.IWorkbenchPart;
 
 import awesome.ide.Activator;
 import awesome.ide.gen.EndUserExecuteLaunchGen;
+import awesome.ide.gen.EndUserReadmeGen;
 import awesome.ide.gen.EndUserWeaveLaunchGen;
 import awesome.ide.model.LibFolder;
 import awesome.ide.model.Utils;
 
+/**
+ * This action adds Awesome support to a Java project.
+ * @author oren
+ *
+ */
 public class AddAwesomeSupport implements IObjectActionDelegate {
 	public static final String AWESOME_FOLDER = "awesome";
 	public static final String XTEXT_FOLDER = "src-gen";
-	public static final String AW_WEAVE_FILE = "awesome.weave.launch";
-	public static final String AW_EXECUTE_FILE = "awesome.execute.launch";
+	public static final String AW_WEAVE_FILE_SUFFIX = ".weave.launch";
+	public static final String AW_EXECUTE_FILE_SUFFIX = ".execute.launch";
+	private static final String AW_README_FILE = "README";
 	private ISelection selection;
 	private Shell shell;
 	
@@ -40,6 +47,7 @@ public class AddAwesomeSupport implements IObjectActionDelegate {
 	    String weaverJar = fileDialog.open();
 	    
 		IJavaProject project = getJavaProject();
+		String projectName = project.getProject().getName();
 		Utils.createSrcFolder(project, XTEXT_FOLDER);
 		// create a lib folder with dependent jars. Important! the jar of the weaver
 		// must come before ASPECTJTOOLS_JAR in the build order. This is guaranteed by
@@ -51,10 +59,13 @@ public class AddAwesomeSupport implements IObjectActionDelegate {
 		lib.commit(project);
 		// create weave.launch
 		Utils.createFileInFolder(Utils.getFolder(project, lib.getName()), 
-				AW_WEAVE_FILE, new EndUserWeaveLaunchGen().generate(project.getProject().getName()));
+				projectName + AW_WEAVE_FILE_SUFFIX, new EndUserWeaveLaunchGen().generate(projectName));
 		// create weave.execute
 		Utils.createFileInFolder(Utils.getFolder(project, lib.getName()), 
-				AW_EXECUTE_FILE, new EndUserExecuteLaunchGen().generate(project.getProject().getName()));
+				projectName + AW_EXECUTE_FILE_SUFFIX, new EndUserExecuteLaunchGen().generate(projectName));
+		// create a README file
+		Utils.createFileInFolder(Utils.getFolder(project, lib.getName()), 
+				AW_README_FILE, new EndUserReadmeGen().generate(projectName));
 	}
 
 	@Override
