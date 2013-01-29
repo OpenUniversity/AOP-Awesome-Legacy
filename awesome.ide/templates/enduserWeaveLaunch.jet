@@ -1,0 +1,17 @@
+<%@ jet package="awesome.ide.gen" class="EndUserWeaveLaunchGen" imports="awesome.ide.actions.AddAwesomeSupport"%>
+<% String projectName = (String)(argument);%>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/<%=projectName%>/awesome/aspectjtools.jar"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<mapAttribute key="org.eclipse.debug.core.environmentVariables">
+<mapEntry key="ENABLE_WEAVING_TRACE" value="0"/>
+</mapAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.aspectj.tools.ajc.Main"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-1.5 -sourceroots src:src-gen -outjar <%=AddAwesomeSupport.AWESOME_FOLDER%>/<%=projectName%>.jar"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="<%=projectName%>"/>
+</launchConfiguration>

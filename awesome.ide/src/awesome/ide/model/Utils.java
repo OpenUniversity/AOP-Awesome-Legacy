@@ -36,31 +36,32 @@ import awesome.ide.Activator;
  */
 public class Utils {
 	public static void addJarsToBuildPath(IJavaProject javaProject, String libFolder, String[] jars) {	
+		for(String jar : jars)
+			addJarToBuildPath(javaProject, libFolder, jar);
+	}
+	public static void addJarToBuildPath(IJavaProject javaProject, String libFolder, String jar) {	
 		IClasspathEntry[] originalCP;
 		try {
-			for(String jar : jars){
-				originalCP = javaProject.getRawClasspath();
-				IPath path = new Path(javaProject.getPath() + "/" + libFolder + "/" + jar);
-				
-				IClasspathEntry lib;
-				// add awesome.platform.jar to inpath (we saw in our eyes the value needed)
-				if(jar.equals(Activator.AWESOME_JAR)){
-					IClasspathAttribute att = JavaCore.newClasspathAttribute("org.eclipse.ajdt.inpath", "org.eclipse.ajdt.inpath");
-					lib = JavaCore.newLibraryEntry(path, null, null, null, new IClasspathAttribute[]{att}, true);
-				} else {
-					lib = JavaCore.newLibraryEntry(path, null, null);
-				}
-				
-				int originalCPLength = originalCP.length;
-				IClasspathEntry[] newCP = new IClasspathEntry[originalCPLength + 1];
-				System.arraycopy(originalCP, 0, newCP, 0, originalCPLength);
-				newCP[originalCPLength] = lib;
-				javaProject.setRawClasspath(newCP, new NullProgressMonitor());
+			originalCP = javaProject.getRawClasspath();
+			IPath path = new Path(javaProject.getPath() + "/" + libFolder + "/" + jar);
+			
+			IClasspathEntry lib;
+			// add awesome.platform.jar to inpath (we saw in our eyes the value needed)
+			if(jar.equals(Activator.AWESOME_JAR)){
+				IClasspathAttribute att = JavaCore.newClasspathAttribute("org.eclipse.ajdt.inpath", "org.eclipse.ajdt.inpath");
+				lib = JavaCore.newLibraryEntry(path, null, null, null, new IClasspathAttribute[]{att}, true);
+			} else {
+				lib = JavaCore.newLibraryEntry(path, null, null);
 			}
 			
+			int originalCPLength = originalCP.length;
+			IClasspathEntry[] newCP = new IClasspathEntry[originalCPLength + 1];
+			System.arraycopy(originalCP, 0, newCP, 0, originalCPLength);
+			newCP[originalCPLength] = lib;
+			javaProject.setRawClasspath(newCP, new NullProgressMonitor());
+				
 		} catch (JavaModelException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 	}
 	public static InputStream toInputStream(String str) {
@@ -138,6 +139,14 @@ public class Utils {
 			throw new RuntimeException(e);
 		}
 		return folder;
+	}
+	public static IFolder getFolder(IJavaProject javaProject, String folderName) {
+		IProject project = javaProject.getProject();
+		IFolder folder = project.getFolder(folderName);
+		if(!folder.exists())
+			return null;
+		else
+			return folder;
 	}
 	public static IFolder createSubFolder(IFolder folder, String subfolderName) {
 		IFolder subfolder = folder.getFolder(subfolderName);

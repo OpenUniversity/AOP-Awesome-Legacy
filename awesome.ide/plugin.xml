@@ -29,7 +29,7 @@
          point="org.eclipse.ui.popupMenus">
       <objectContribution
             adaptable="true"
-            id="awesome.ide.objectContribution"
+            id="awesome.ide.objectContribution1"
             nameFilter="awmm.*"
             objectClass="org.eclipse.core.resources.IProject">
          <menu
@@ -47,6 +47,26 @@
                label="Generate from Specification"
                menubarPath="awesome.ide.menu.awesome/group1">
          </action>
+      </objectContribution>
+      <objectContribution
+            adaptable="true"
+            id="awesome.ide.objectContribution2"
+            objectClass="org.eclipse.jdt.core.IJavaProject">
+         <action
+               class="awesome.ide.actions.AddAwesomeSupport"
+               enablesFor="1"
+               id="awesome.ide.action.addawsupport"
+               label="Add Awesome Support"
+               menubarPath="awesome.ide.menu.awesome/group1">
+         </action>
+         <menu
+               id="awesome.ide.menu.awesome"
+               label="Awesome"
+               path="additions">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
       </objectContribution>
    </extension>
 

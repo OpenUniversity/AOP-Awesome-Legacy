@@ -418,9 +418,9 @@ public class MultiMechanism {
         List<BcelShadow> shadows = reify(clazz);
         for (BcelShadow shadow:shadows)
         {        	
-        	awesome.platform.adb.util.Logger.logLn("\ttransforming shadow: " + 
-        			shadow.getEnclosingMethod().getName() + " line " + shadow.getSourceLine() + 
-        			" kind " + shadow.getKind());
+        	//awesome.platform.adb.util.Logger.logLn("\ttransforming shadow: " + 
+        	//		shadow.getEnclosingMethod().getName() + " line " + shadow.getSourceLine() + 
+        	//		" kind " + shadow.getKind());
         	if (transform(shadow)) 
         		isChanged=true;     	
         }

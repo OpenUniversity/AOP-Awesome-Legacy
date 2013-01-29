@@ -39,7 +39,8 @@ public class MultiMechanismProject extends MechanismProject {
 	
 	private MultiMechanismProject(String projectName, String[] dsalNames, boolean includeAJ) {
 		this.name = projectName;
-		lib = new LibFolder(new String[]{Activator.ASM_JAR, Activator.AWESOME_JAR, 
+		lib = new LibFolder();
+		lib.setLocalJars(new String[]{Activator.ASM_JAR, Activator.AWESOME_JAR, 
 				Activator.COMMONS_JAR, Activator.JROCKIT_JAR, Activator.ASPECTJTOOLS_JAR});
 		this.dsalNames = dsalNames;
 		this.includeAJ = includeAJ;

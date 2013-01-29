@@ -95,7 +95,8 @@ public class AspectMechanismTestProject extends MechanismProject {
 		this.amProj = amProj;
 		src = new AMTSrcFolder(SRC_FOLDER, TESTAPP_PACKAGE,  TESTCASE_PREFIX + TESTAPP_ID);
 		if(isXtext) srcgen = new SrcFolder(SRC_GEN_FOLDER, null);
-		lib = new LibFolder(new String[]{Activator.ASPECTJRT_JAR, Activator.ASPECTJTOOLS_JAR});
+		lib = new LibFolder();
+		lib.setLocalJars(new String[]{Activator.ASPECTJRT_JAR, Activator.ASPECTJTOOLS_JAR});
 		testapp = new TestAppFolder(TESTAPP_PREFIX + TESTAPP_ID, isXtext);
 		readme = new ReadmeFile();
 	}

@@ -25,7 +25,8 @@ public class AspectMechanismProject extends MechanismProject {
 	private AspectMechanismProject(String dsalName) {
 		this.dsalName = dsalName;
 		src = new MechanismSrcFolder(SRC_FOLDER, dsalName);
-		lib = new LibFolder(new String[]{Activator.ASM_JAR, Activator.AWESOME_JAR, Activator.COMMONS_JAR, Activator.JROCKIT_JAR, Activator.ASPECTJTOOLS_JAR});
+		lib = new LibFolder();
+		lib.setLocalJars(new String[]{Activator.ASM_JAR, Activator.AWESOME_JAR, Activator.COMMONS_JAR, Activator.JROCKIT_JAR, Activator.ASPECTJTOOLS_JAR});
 		ant = new AntFile();
 		readme = new ReadmeFile();
 		manifest = new ManifestFile();
