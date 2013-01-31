@@ -9,7 +9,6 @@
 <listEntry value="1"/>
 </listAttribute>
 <mapAttribute key="org.eclipse.debug.core.environmentVariables">
-<mapEntry key="ENABLE_WEAVING_TRACE" value="0"/>
 </mapAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.aspectj.tools.ajc.Main"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-1.5 -sourceroots src:src-gen -outjar <%=AddAwesomeSupport.AWESOME_FOLDER%>/<%=projectName%>.jar"/>

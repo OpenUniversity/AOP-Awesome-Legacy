@@ -14,7 +14,7 @@ public class TestappWeaveLaunchGen
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>" + NL + "<launchConfiguration type=\"org.eclipse.jdt.launching.localJavaApplication\">" + NL + "<stringAttribute key=\"bad_container_name\" value=\"\\";
   protected final String TEXT_2 = "\\testapp\"/>" + NL + "<listAttribute key=\"org.eclipse.debug.core.MAPPED_RESOURCE_PATHS\">" + NL + "<listEntry value=\"/";
-  protected final String TEXT_3 = "/lib/aspectjtools.jar\"/>" + NL + "</listAttribute>" + NL + "<listAttribute key=\"org.eclipse.debug.core.MAPPED_RESOURCE_TYPES\">" + NL + "<listEntry value=\"1\"/>" + NL + "</listAttribute>" + NL + "<mapAttribute key=\"org.eclipse.debug.core.environmentVariables\">" + NL + "<mapEntry key=\"ENABLE_WEAVING_TRACE\" value=\"1\"/>" + NL + "<mapEntry key=\"TEST_APP\" value=\"";
+  protected final String TEXT_3 = "/lib/aspectjtools.jar\"/>" + NL + "</listAttribute>" + NL + "<listAttribute key=\"org.eclipse.debug.core.MAPPED_RESOURCE_TYPES\">" + NL + "<listEntry value=\"1\"/>" + NL + "</listAttribute>" + NL + "<mapAttribute key=\"org.eclipse.debug.core.environmentVariables\">" + NL + "<mapEntry key=\"TEST_APP\" value=\"";
   protected final String TEXT_4 = "\"/>" + NL + "</mapAttribute>" + NL + "<stringAttribute key=\"org.eclipse.jdt.launching.MAIN_TYPE\" value=\"org.aspectj.tools.ajc.Main\"/>" + NL + "<stringAttribute key=\"org.eclipse.jdt.launching.PROGRAM_ARGUMENTS\" value=\"-1.5 -sourceroots ";
   protected final String TEXT_5 = ":src-gen";
   protected final String TEXT_6 = " -outjar ";

@@ -23,7 +23,7 @@ public class AspectMechanismTestProject extends MechanismProject {
 	private static final String TESTAPP_MAIN = "Main";
 	private static final String TESTAPP_WEAVE_LAUNCH_SUFFIX = TESTAPP_PREFIX + TESTAPP_ID + ".weave.launch";
 	private static final String TESTAPP_EXECUTE_LAUNCH_SUFFIX = TESTAPP_PREFIX + TESTAPP_ID + ".execute.launch";
-	private static final String WEAVING_TRACE_FOLDER = "awtrace";
+	private static final String WEAVING_INFO_FOLDER = "weaving-info";
 	private AspectMechanismProject amProj;
 	private IJavaProject javaProj;
 	private AMTSrcFolder src;
@@ -138,7 +138,7 @@ public class AspectMechanismTestProject extends MechanismProject {
 				monitor.worked(2);
 			
 			// create a 'awtrace' folder to hold the weaving trace files
-			Utils.createFolder(getJavaProject(), WEAVING_TRACE_FOLDER);
+			Utils.createFolder(getJavaProject(), WEAVING_INFO_FOLDER);
 			
 			// convert to AspectJ project
 			AspectJUIPlugin.convertToAspectJProject(getJavaProject().getProject());

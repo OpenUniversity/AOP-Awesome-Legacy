@@ -12,7 +12,6 @@
 <listEntry value="1"/>
 </listAttribute>
 <mapAttribute key="org.eclipse.debug.core.environmentVariables">
-<mapEntry key="ENABLE_WEAVING_TRACE" value="1"/>
 <mapEntry key="TEST_APP" value="<%=testapp%>"/>
 </mapAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.aspectj.tools.ajc.Main"/>
