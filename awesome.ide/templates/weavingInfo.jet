@@ -1,0 +1,26 @@
+<%@ jet class="WeavingInfoGen" package="awesome.ide.gen" %>
+<% String projectName = (String)argument; %>
+package <%=projectName%>;
+
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class WeavingInfo implements Serializable {
+	private static final long serialVersionUID = 1L;
+	/**
+	 * Holds for each class (the key) a list of its reified shadows
+	 */
+	private Map<String, List<String>> refiedShadows = new HashMap<String, List<String>>();
+	
+	public void collectReifiedShadows(String className, List<String> shadows) {
+		refiedShadows.put(className, shadows);
+	}
+	public void printReifiedShadows() {
+		System.out.println("Reified Shadows:");
+		for (String key : refiedShadows.keySet()) {
+			System.out.println("Class " + key + ": " + refiedShadows.get(key));			
+		}
+	}
+}

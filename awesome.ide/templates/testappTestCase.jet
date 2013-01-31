@@ -1,19 +1,29 @@
-<%@jet package="awesome.ide.gen" class="TestappTestCaseGen" %>
+<%@jet package="awesome.ide.gen" class="TestappTestCaseGen" imports="awesome.ide.model.*" %>
 <% String packageName = ((String[])argument)[0]; %>
 <% String testappId = ((String[])argument)[1]; %>
 <% String aspectName = ((String[])argument)[2]; %>
+<% String amProjectName = ((String[])argument)[3]; %>
 package <%=packageName%>;
 
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import awesome.tracing.weaving.WeavingTraceManager;
-import awesome.tracing.weaving.WeavingTrace;
+import <%=amProjectName%>.WeavingInfo;
 
 public class Testapp<%=testappId%> {
 	@Test
 	public void test() {
-		WeavingTrace atrace = WeavingTraceManager.getTrace("testapp<%=testappId%>", "aspects.<%=aspectName%>");
-		WeavingTrace ctrace = WeavingTraceManager.getTrace("testapp<%=testappId%>", "base.Main");
-		// define rest of the test here...
+		WeavingInfo info = getWeavingInfo();
+		// now start to test using the weaving information...
 	}
+	private WeavingInfo getWeavingInfo() {
+		try {
+			ObjectInputStream in = new ObjectInputStream(
+			new FileInputStream("<%=AspectMechanismTestProject.WEAVING_INFO_FOLDER%>/WeavingInfo.out"));
+			return (WeavingInfo)in.readObject();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}	
 }

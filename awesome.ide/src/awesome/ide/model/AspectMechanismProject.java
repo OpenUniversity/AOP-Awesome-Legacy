@@ -11,15 +11,37 @@ import org.eclipse.jdt.core.IJavaProject;
 
 import awesome.ide.Activator;
 import awesome.ide.gen.ManifestGen;
+import awesome.ide.gen.WeavingInfoCollectorGen;
+import awesome.ide.gen.WeavingInfoGen;
 
 public class AspectMechanismProject extends MechanismProject {
 	public static final String PROJ_PREFIX = "awm";
+	public static final String SRC_DEV = "src-dev";
 	private String dsalName;
 	private IJavaProject javaProj;
+	/**
+	 * a source folder holding the mechanism aspect.
+	 */
 	private MechanismSrcFolder src;
+	/**
+	 * a source folder for development only, holds utilities that collect weaving info.
+	 */
+	private SrcFolder srcdev;
+	/**
+	 * a folder holding required jars.
+	 */
 	private LibFolder lib;
+	/**
+	 * an ant buil.xml file for packaging the weaver.
+	 */
 	private AntFile ant;
+	/**
+	 * a README file explaining the content and basic usage of the project.
+	 */
 	private ReadmeFile readme;
+	/**
+	 * a manifest describing basic properties of the mechanism (currently not in use).
+	 */
 	private ManifestFile manifest;
 	
 	private AspectMechanismProject(String dsalName) {
@@ -30,6 +52,7 @@ public class AspectMechanismProject extends MechanismProject {
 		ant = new AntFile();
 		readme = new ReadmeFile();
 		manifest = new ManifestFile();
+		srcdev = new SrcFolder(SRC_DEV, getProjectName());
 	}
 	
 	public class ManifestFile {
@@ -81,6 +104,7 @@ public class AspectMechanismProject extends MechanismProject {
 		try {
 			javaProj = Utils.createJavaProject(getProjectName());
 			src.commit(getJavaProject());
+			commitSrcDev();
 			manifest.commit();
 			
 			if(monitor != null)
@@ -103,6 +127,12 @@ public class AspectMechanismProject extends MechanismProject {
 		}
 	}
 	
+	private void commitSrcDev() {
+		srcdev.commit(getJavaProject());
+		srcdev.addCompilationUnit("WeavingInfo.java", new WeavingInfoGen().generate(getProjectName()));
+		srcdev.addCompilationUnit("WeavingInfoCollector.aj", new WeavingInfoCollectorGen().generate(getProjectName()));
+	}
+
 	@Override
 	public String getProjectName() {
 		return PROJ_PREFIX + "." + dsalName.toLowerCase();

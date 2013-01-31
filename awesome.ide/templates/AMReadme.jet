@@ -12,6 +12,10 @@ src/<%=mechProj.getProjectName()%>
 	This is the package where the implementation of the mechanism resides.
 	Initially, there exist a single file of the default aspect mechanism.
 	See its javadoc for details. You may add other auxiliary files if needed.
+src-dev/
+	This source folder is for development purposes only. It contains utilities
+	for collecting weaving info during weaving, that will help you in testing your
+	aspect mechanism.
 lib/
 	Jar files required by Awesome. Don't touch them please.
 build.xml

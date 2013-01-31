@@ -16,5 +16,8 @@ testapp1/
 	as a starting point. Note that other aspects you choose to add should have the same
 	class-level annotations. After defining the application, (1) execute weave.launch to
 	weave the application (2) refresh, and (3) run execute.launch.
+weaving-info/
+	Holds information collected during the weaving of the test application. The info is
+	in binary form, and is deserialized by the test case mentioned below.
 src/testapps
 	Use the enclosing JUnit test case to verify that the results are as expected.

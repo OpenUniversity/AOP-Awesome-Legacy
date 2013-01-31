@@ -23,7 +23,7 @@ public class AspectMechanismTestProject extends MechanismProject {
 	private static final String TESTAPP_MAIN = "Main";
 	private static final String TESTAPP_WEAVE_LAUNCH_SUFFIX = TESTAPP_PREFIX + TESTAPP_ID + ".weave.launch";
 	private static final String TESTAPP_EXECUTE_LAUNCH_SUFFIX = TESTAPP_PREFIX + TESTAPP_ID + ".execute.launch";
-	private static final String WEAVING_INFO_FOLDER = "weaving-info";
+	public static final String WEAVING_INFO_FOLDER = "weaving-info";
 	private AspectMechanismProject amProj;
 	private IJavaProject javaProj;
 	private AMTSrcFolder src;
@@ -80,7 +80,7 @@ public class AspectMechanismTestProject extends MechanismProject {
 			
 			// generate a test case within the package
 			StringBuffer buffer = new StringBuffer();
-			buffer.append(new TestappTestCaseGen().generate(new String[]{getPackageName(), TESTAPP_ID, getTestAppAspectName()}));
+			buffer.append(new TestappTestCaseGen().generate(new String[]{getPackageName(), TESTAPP_ID, getTestAppAspectName(), amProj.getProjectName()}));
 			addCompilationUnit(testcaseName + ".java", buffer.toString());				
 		}
 	}

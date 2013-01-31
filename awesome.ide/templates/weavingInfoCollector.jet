@@ -1,0 +1,49 @@
+<%@ jet class="WeavingInfoCollectorGen" package="awesome.ide.gen" imports="awesome.ide.model.*" %>
+<% String projectName = (String)argument; %>
+package <%=projectName%>;
+
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
+import org.aspectj.weaver.bcel.LazyClassGen;
+import org.aspectj.weaver.bcel.BcelShadow;
+import awesome.platform.MultiMechanism;
+
+public aspect WeavingInfoCollector {
+	private WeavingInfo winfo = new WeavingInfo();
+	/**
+	 * Collecting the shadows being reified from each class.
+	 * @param clazz
+	 * @param shadows
+	 */
+	after(LazyClassGen clazz) returning(List<BcelShadow> shadows):
+		execution(List<BcelShadow> MultiMechanism.reify(LazyClassGen)) && args(clazz) {
+		List<String> result = new ArrayList<String>();
+		for(BcelShadow shadow : shadows)
+			result.add(shadow.getKind().toString());
+		
+		winfo.collectReifiedShadows(clazz.getName(), result);
+	}
+	
+	/**
+	 * Serializing WeavingInfo when weaving is complete.
+	 */
+	after() : execution(* org.aspectj.weaver.bcel.BcelWeaver.allWeavingComplete()) {
+		serialize();
+	}
+	/**
+	 * Note: object is serialized to the test project.
+	 */
+	private void serialize() {
+		ObjectOutputStream out;
+		try {
+			out = new ObjectOutputStream(
+					new FileOutputStream("<%=AspectMechanismTestProject.WEAVING_INFO_FOLDER%>/WeavingInfo.out"));
+			out.writeObject(winfo);
+			out.close(); // Also flushes output
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		} 
+	}
+}
