@@ -1,7 +1,6 @@
 package awesome.platform;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -381,10 +380,7 @@ public class MultiMechanism {
 	    	}
 	    							
 	    	CrossCuttingAttribute xctAttr = new CrossCuttingAttribute(effectList);
-			Attribute ccAttribute;
-			ccAttribute = Utility.bcelAttribute(xctAttr, 
-							clazz.getConstantPool());
-					
+			Attribute ccAttribute = Utility.bcelAttribute(xctAttr, clazz.getConstantPool());
 			
 			Attribute[] ats = m.getMethod().getAttributes();
 			for(Attribute a : ats)

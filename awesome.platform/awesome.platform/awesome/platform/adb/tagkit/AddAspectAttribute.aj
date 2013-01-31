@@ -8,7 +8,7 @@ import org.aspectj.weaver.bcel.LazyClassGen;
 import org.aspectj.weaver.bcel.Utility;
 
 /**
- * This aspect add the debug attribute AspectAttribute to a class file
+ * This aspect adds the debug attribute AspectAttribute to a class file
  * during the Awesome weaving process.
  * @author oren
  *

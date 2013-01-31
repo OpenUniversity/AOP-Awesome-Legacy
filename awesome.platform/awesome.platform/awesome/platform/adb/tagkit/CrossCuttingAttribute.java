@@ -14,7 +14,6 @@ import org.aspectj.apache.bcel.Constants;
 import org.aspectj.weaver.Member;
 import org.aspectj.weaver.Shadow;
 import org.aspectj.weaver.ast.Test;
-import org.aspectj.weaver.bcel.BcelAdvice;
 import org.aspectj.weaver.bcel.BcelShadow;
 import org.aspectj.weaver.bcel.LazyMethodGen;
 
