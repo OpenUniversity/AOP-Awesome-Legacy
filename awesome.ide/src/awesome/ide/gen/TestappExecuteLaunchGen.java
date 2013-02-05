@@ -1,5 +1,7 @@
 package awesome.ide.gen;
 
+import awesome.ide.model.*;
+
 public class TestappExecuteLaunchGen
 {
   protected static String nl;
@@ -17,9 +19,11 @@ public class TestappExecuteLaunchGen
   protected final String TEXT_3 = "&quot;/&gt;&#13;&#10;&lt;/runtimeClasspathEntry&gt;&#13;&#10;\"/>" + NL + "<listEntry value=\"&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#13;&#10;&lt;runtimeClasspathEntry internalArchive=&quot;/";
   protected final String TEXT_4 = "/";
   protected final String TEXT_5 = "/";
-  protected final String TEXT_6 = ".jar&quot; path=&quot;3&quot; type=&quot;2&quot;/&gt;&#13;&#10;\"/>" + NL + "</listAttribute>" + NL + "<booleanAttribute key=\"org.eclipse.jdt.launching.DEFAULT_CLASSPATH\" value=\"false\"/>" + NL + "<stringAttribute key=\"org.eclipse.jdt.launching.MAIN_TYPE\" value=\"base.Main\"/>" + NL + "<stringAttribute key=\"org.eclipse.jdt.launching.PROJECT_ATTR\" value=\"";
-  protected final String TEXT_7 = "\"/>" + NL + "</launchConfiguration>";
-  protected final String TEXT_8 = NL;
+  protected final String TEXT_6 = ".jar&quot; path=&quot;3&quot; type=&quot;2&quot;/&gt;&#13;&#10;\"/>" + NL + "</listAttribute>" + NL + "<booleanAttribute key=\"org.eclipse.jdt.launching.DEFAULT_CLASSPATH\" value=\"false\"/>" + NL + "<stringAttribute key=\"org.eclipse.jdt.launching.MAIN_TYPE\" value=\"";
+  protected final String TEXT_7 = ".";
+  protected final String TEXT_8 = "\"/>" + NL + "<stringAttribute key=\"org.eclipse.jdt.launching.PROJECT_ATTR\" value=\"";
+  protected final String TEXT_9 = "\"/>" + NL + "</launchConfiguration>";
+  protected final String TEXT_10 = NL;
 
   public String generate(Object argument)
   {
@@ -37,9 +41,13 @@ public class TestappExecuteLaunchGen
     stringBuffer.append(TEXT_5);
     stringBuffer.append(testapp);
     stringBuffer.append(TEXT_6);
-    stringBuffer.append(projectName);
+    stringBuffer.append(AspectMechanismTestProject.BASE_FOLDER);
     stringBuffer.append(TEXT_7);
+    stringBuffer.append(AspectMechanismTestProject.TESTAPP_MAIN);
     stringBuffer.append(TEXT_8);
+    stringBuffer.append(projectName);
+    stringBuffer.append(TEXT_9);
+    stringBuffer.append(TEXT_10);
     return stringBuffer.toString();
   }
 }

@@ -1,9 +1,9 @@
-<%@ jet package="awesome.ide.gen" class="TestappMain"%>
+<%@ jet package="awesome.ide.gen" class="TestappMain" imports="awesome.ide.model.*"%>
 <%String packageName = ((String[])argument)[0];%>
 package <%=packageName%>;
 
-public class Main {
+public class <%=AspectMechanismTestProject.TESTAPP_MAIN%> {
 	public static void main(String[] args) {
-		// Define you base application here...
+		System.out.println("Executing main...");
 	}
 }

@@ -1,14 +1,32 @@
-<%@ jet package="awesome.ide.gen" class="TestappAspect"%>
+<%@ jet package="awesome.ide.gen" class="TestappAspect" imports="awesome.ide.model.*"%>
 <%String packageName = ((String[])argument)[0];%>
 <%String aspectName = ((String[])argument)[1];%>
 <%String mechanismId = ((String[])argument)[2];%>
 package <%=packageName%>;
 
 import org.aspectj.lang.annotation.*;
+
+import awesome.platform.ReifyStrategy;
 import awesome.platform.annotations.AwAspectMechanism;
+import awesome.platform.annotations.AwReify;
 
 @Aspect
 @AwAspectMechanism(id="<%=mechanismId%>")
-public class <%=aspectName%> {
-	// define your aspect here...
+@AwReify(ReifyStrategy.SUPPRESS_STATICINITIALIZATION)
+public class MyAspect {
+	
+	@AwReify(ReifyStrategy.SUPPRESS_ALL)
+	public MyAspect() {}
+	
+	@AwReify(ReifyStrategy.SUPPRESS_WITHIN)
+	@Before("execution(* <%=AspectMechanismTestProject.BASE_FOLDER%>.<%=AspectMechanismTestProject.TESTAPP_MAIN%>.main(..))")
+	public void <%=mechanismId%>Before() {
+		System.out.println("Before main...");
+	}
+	
+	@AwReify(ReifyStrategy.SUPPRESS_WITHIN)
+	@After("execution(* <%=AspectMechanismTestProject.BASE_FOLDER%>.<%=AspectMechanismTestProject.TESTAPP_MAIN%>.main(..))")
+	public void <%=mechanismId%>After() {
+		System.out.println("After main...");
+	}
 }

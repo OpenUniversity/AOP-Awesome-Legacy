@@ -1,4 +1,4 @@
-<%@ jet package="awesome.ide.gen" class="TestappExecuteLaunchGen" %>
+<%@ jet package="awesome.ide.gen" class="TestappExecuteLaunchGen" imports="awesome.ide.model.*"%>
 <% String projectName = ((String[])argument)[0]; %>
 <% String testapp = ((String[])argument)[1]; %>
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -14,6 +14,6 @@
 <listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#13;&#10;&lt;runtimeClasspathEntry internalArchive=&quot;/<%=projectName%>/<%=testapp%>/<%=testapp%>.jar&quot; path=&quot;3&quot; type=&quot;2&quot;/&gt;&#13;&#10;"/>
 </listAttribute>
 <booleanAttribute key="org.eclipse.jdt.launching.DEFAULT_CLASSPATH" value="false"/>
-<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="base.Main"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="<%=AspectMechanismTestProject.BASE_FOLDER%>.<%=AspectMechanismTestProject.TESTAPP_MAIN%>"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="<%=projectName%>"/>
 </launchConfiguration>

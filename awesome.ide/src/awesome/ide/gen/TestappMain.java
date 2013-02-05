@@ -1,5 +1,7 @@
 package awesome.ide.gen;
 
+import awesome.ide.model.*;
+
 public class TestappMain
 {
   protected static String nl;
@@ -13,7 +15,8 @@ public class TestappMain
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = "package ";
-  protected final String TEXT_2 = ";" + NL + "" + NL + "public class Main {" + NL + "\tpublic static void main(String[] args) {" + NL + "\t\t// Define you base application here..." + NL + "\t}" + NL + "}";
+  protected final String TEXT_2 = ";" + NL + "" + NL + "public class ";
+  protected final String TEXT_3 = " {" + NL + "\tpublic static void main(String[] args) {" + NL + "\t\tSystem.out.println(\"Executing main...\");" + NL + "\t}" + NL + "}";
 
   public String generate(Object argument)
   {
@@ -22,6 +25,8 @@ public class TestappMain
     stringBuffer.append(TEXT_1);
     stringBuffer.append(packageName);
     stringBuffer.append(TEXT_2);
+    stringBuffer.append(AspectMechanismTestProject.TESTAPP_MAIN);
+    stringBuffer.append(TEXT_3);
     return stringBuffer.toString();
   }
 }

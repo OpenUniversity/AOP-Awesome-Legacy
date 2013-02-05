@@ -1,30 +1,76 @@
 <%@jet package="awesome.ide.gen" class="TestappTestCaseGen" imports="awesome.ide.model.*" %>
 <% String packageName = ((String[])argument)[0]; %>
-<% String testappId = ((String[])argument)[1]; %>
-<% String aspectName = ((String[])argument)[2]; %>
-<% String amProjectName = ((String[])argument)[3]; %>
+<% String amProjectName = ((String[])argument)[1]; %>
+<% String mechanismId = ((String[])argument)[2]; %>
 package <%=packageName%>;
 
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+
 import <%=amProjectName%>.WeavingInfo;
 import static <%=amProjectName%>.WeavingInfo.*;
 
-public class Testapp<%=testappId%> {
+/**
+ * Here you test your example application (Of course, you may define other test cases as well).<br/>
+ * The testing approach is as follows:<br/>
+ * <ul>
+ * <li>During the weaving of your application, weaving information is being collected,
+ * and serialized to a file in the folder <b>weaving-info</b>.</li>
+ * <li>The <b>setup</b> method reads that file to the <b>info</b> field, which is available to
+ * all test methods.</li>
+ * <li>A test method may verify (via <b>info</b>) that a particular aspect of the weaving
+ * , e.g., the <b>match</b> process, was handled as expected.</li>
+ * <li>Don't forget to re-weave your application after each change so the weaving info will
+ * be re-collected.</li>
+ * <li>The tests method generated below hold example tests that also introduce
+ * the {@link WeavingInfo}'s API.</li> 
+ * </ul>
+ * @author oren
+ */
+public class <%=AspectMechanismTestProject.TESTCASE_NAME%> {
+	private WeavingInfo info;
+	
+	@Before
+	public void setup() {
+		info = getWeavingInfo();
+	}
+	/**
+	 * An example test for the reify process
+	 */
 	@Test
-	public void test() {
-		WeavingInfo info = getWeavingInfo();
-		// now start to test using the weaving information...
+	public void testReify() {
+		// test reify of <%=AspectMechanismTestProject.BASE_FOLDER%>.<%=AspectMechanismTestProject.TESTAPP_MAIN%>
+		List<String> shadows = info.getRefiedShadows("<%=AspectMechanismTestProject.BASE_FOLDER%>.<%=AspectMechanismTestProject.TESTAPP_MAIN%>");
+		List<String> expected = Arrays.asList(CONSTRUCTOR_EXECUTION,
+				FIELD_GET, METHOD_CALL, METHOD_EXECUTION, STATICINITIALIZATION);
+		assertEquals(expected, shadows);
+		//test reify of <%=AspectMechanismTestProject.ASPECTS_FOLDER%>.<%=AspectMechanismTestProject.TESTAPP_ASPECT%>
+		shadows = info.getRefiedShadows("<%=AspectMechanismTestProject.ASPECTS_FOLDER%>.<%=AspectMechanismTestProject.TESTAPP_ASPECT%>");
+		expected = Arrays.asList(ADVICE_EXECUTION, ADVICE_EXECUTION);
+		assertEquals(expected, shadows);
+	}
+	/**
+	 * An example test for the match process
+	 */
+	@Test
+	public void testMatch() {
+		List<String> advice = info.getMatchedAdvice("<%=AspectMechanismTestProject.BASE_FOLDER%>.<%=AspectMechanismTestProject.TESTAPP_MAIN%>.main");
+		assertEquals("<%=mechanismId%>.before", advice.get(0));
+		assertEquals("<%=mechanismId%>.after", advice.get(1));
 	}
 	private WeavingInfo getWeavingInfo() {
 		try {
 			ObjectInputStream in = new ObjectInputStream(
-			new FileInputStream("<%=AspectMechanismTestProject.WEAVING_INFO_FOLDER%>/WeavingInfo.out"));
+			new FileInputStream("weaving-info/WeavingInfo.out"));
 			return (WeavingInfo)in.readObject();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-	}	
+	}
 }

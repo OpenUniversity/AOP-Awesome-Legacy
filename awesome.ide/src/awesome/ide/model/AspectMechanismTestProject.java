@@ -16,11 +16,12 @@ import awesome.ide.gen.TestappWeaveLaunchGen;
 public class AspectMechanismTestProject extends MechanismProject {
 	private static final String TESTAPP_PACKAGE = "testapps";
 	private static final String TESTAPP_ID = "1";
-	private static final String TESTCASE_PREFIX = "Testapp";
 	private static final String TESTAPP_PREFIX = "testapp";
-	private static final String ASPECTS_FOLDER = "aspects";
-	private static final String BASE_FOLDER = "base";
-	private static final String TESTAPP_MAIN = "Main";
+	public static final String TESTCASE_NAME = "MyTests";
+	public static final String ASPECTS_FOLDER = "aspects";
+	public static final String BASE_FOLDER = "base";
+	public static final String TESTAPP_MAIN = "MyBase";
+	public static final String TESTAPP_ASPECT = "MyAspect";
 	private static final String TESTAPP_WEAVE_LAUNCH_SUFFIX = TESTAPP_PREFIX + TESTAPP_ID + ".weave.launch";
 	private static final String TESTAPP_EXECUTE_LAUNCH_SUFFIX = TESTAPP_PREFIX + TESTAPP_ID + ".execute.launch";
 	public static final String WEAVING_INFO_FOLDER = "weaving-info";
@@ -48,8 +49,8 @@ public class AspectMechanismTestProject extends MechanismProject {
 			IFolder folder = Utils.createFolder(getJavaProject(), folderName);
 			
 			IFolder aspectsFolder = Utils.createSubFolder(folder, ASPECTS_FOLDER);
-			Utils.createFileInFolder(aspectsFolder, getTestAppAspectName() + ".java", 
-					new TestappAspect().generate(new String[]{ASPECTS_FOLDER, getTestAppAspectName(), amProj.getDsalName()}));
+			Utils.createFileInFolder(aspectsFolder, TESTAPP_ASPECT + ".java", 
+					new TestappAspect().generate(new String[]{ASPECTS_FOLDER, TESTAPP_ASPECT, amProj.getDsalName()}));
 			
 			IFolder baseFolder = Utils.createSubFolder(folder, BASE_FOLDER);
 			Utils.createFileInFolder(baseFolder, TESTAPP_MAIN + ".java", new TestappMain().generate(new String[]{BASE_FOLDER}));
@@ -80,7 +81,7 @@ public class AspectMechanismTestProject extends MechanismProject {
 			
 			// generate a test case within the package
 			StringBuffer buffer = new StringBuffer();
-			buffer.append(new TestappTestCaseGen().generate(new String[]{getPackageName(), TESTAPP_ID, getTestAppAspectName(), amProj.getProjectName()}));
+			buffer.append(new TestappTestCaseGen().generate(new String[]{getPackageName(), amProj.getProjectName(), amProj.getDsalName()}));
 			addCompilationUnit(testcaseName + ".java", buffer.toString());				
 		}
 	}
@@ -93,7 +94,7 @@ public class AspectMechanismTestProject extends MechanismProject {
 	
 	private AspectMechanismTestProject(AspectMechanismProject amProj, boolean isXtext) {
 		this.amProj = amProj;
-		src = new AMTSrcFolder(SRC_FOLDER, TESTAPP_PACKAGE,  TESTCASE_PREFIX + TESTAPP_ID);
+		src = new AMTSrcFolder(SRC_FOLDER, TESTAPP_PACKAGE,  TESTCASE_NAME);
 		if(isXtext) srcgen = new SrcFolder(SRC_GEN_FOLDER, null);
 		lib = new LibFolder();
 		lib.setLocalJars(new String[]{Activator.ASPECTJRT_JAR, Activator.ASPECTJTOOLS_JAR});
@@ -149,9 +150,6 @@ public class AspectMechanismTestProject extends MechanismProject {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-	}
-	private String getTestAppAspectName() {
-		return Utils.capitalize(amProj.getDsalName()) + "Aspect";
 	}
 	@Override
 	public IJavaProject getJavaProject() {

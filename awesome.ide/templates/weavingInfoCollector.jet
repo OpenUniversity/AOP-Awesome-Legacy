@@ -6,9 +6,14 @@ import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.aspectj.weaver.ResolvedType;
 import org.aspectj.weaver.bcel.LazyClassGen;
 import org.aspectj.weaver.bcel.BcelShadow;
+
+import awesome.platform.IEffect;
 import awesome.platform.MultiMechanism;
+import awesome.platform.AwesomeCore;
 
 public aspect WeavingInfoCollector {
 	private WeavingInfo winfo = new WeavingInfo();
