@@ -16,9 +16,10 @@ public class TestappTestCaseGen
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = "package ";
   protected final String TEXT_2 = ";" + NL + "" + NL + "import java.io.FileInputStream;" + NL + "import java.io.ObjectInputStream;" + NL + "import org.junit.Test;" + NL + "import static org.junit.Assert.*;" + NL + "import ";
-  protected final String TEXT_3 = ".WeavingInfo;" + NL + "" + NL + "public class Testapp";
-  protected final String TEXT_4 = " {" + NL + "\t@Test" + NL + "\tpublic void test() {" + NL + "\t\tWeavingInfo info = getWeavingInfo();" + NL + "\t\t// now start to test using the weaving information..." + NL + "\t}" + NL + "\tprivate WeavingInfo getWeavingInfo() {" + NL + "\t\ttry {" + NL + "\t\t\tObjectInputStream in = new ObjectInputStream(" + NL + "\t\t\tnew FileInputStream(\"";
-  protected final String TEXT_5 = "/WeavingInfo.out\"));" + NL + "\t\t\treturn (WeavingInfo)in.readObject();" + NL + "\t\t} catch (Exception e) {" + NL + "\t\t\tthrow new RuntimeException(e);" + NL + "\t\t}" + NL + "\t}\t" + NL + "}";
+  protected final String TEXT_3 = ".WeavingInfo;" + NL + "import static ";
+  protected final String TEXT_4 = ".WeavingInfo.*;" + NL + "" + NL + "public class Testapp";
+  protected final String TEXT_5 = " {" + NL + "\t@Test" + NL + "\tpublic void test() {" + NL + "\t\tWeavingInfo info = getWeavingInfo();" + NL + "\t\t// now start to test using the weaving information..." + NL + "\t}" + NL + "\tprivate WeavingInfo getWeavingInfo() {" + NL + "\t\ttry {" + NL + "\t\t\tObjectInputStream in = new ObjectInputStream(" + NL + "\t\t\tnew FileInputStream(\"";
+  protected final String TEXT_6 = "/WeavingInfo.out\"));" + NL + "\t\t\treturn (WeavingInfo)in.readObject();" + NL + "\t\t} catch (Exception e) {" + NL + "\t\t\tthrow new RuntimeException(e);" + NL + "\t\t}" + NL + "\t}\t" + NL + "}";
 
   public String generate(Object argument)
   {
@@ -32,10 +33,12 @@ public class TestappTestCaseGen
     stringBuffer.append(TEXT_2);
     stringBuffer.append(amProjectName);
     stringBuffer.append(TEXT_3);
-    stringBuffer.append(testappId);
+    stringBuffer.append(amProjectName);
     stringBuffer.append(TEXT_4);
-    stringBuffer.append(AspectMechanismTestProject.WEAVING_INFO_FOLDER);
+    stringBuffer.append(testappId);
     stringBuffer.append(TEXT_5);
+    stringBuffer.append(AspectMechanismTestProject.WEAVING_INFO_FOLDER);
+    stringBuffer.append(TEXT_6);
     return stringBuffer.toString();
   }
 }

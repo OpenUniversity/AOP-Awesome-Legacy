@@ -28,23 +28,28 @@ public class WeavingInfo implements Serializable {
 	 * Holds for each class (the key) a list of its reified shadows
 	 */
 	private Map<String, List<String>> refiedShadows = new HashMap<String, List<String>>();
+	private Map<String, List<String>> matchedAdvice = new HashMap<String, List<String>>();
 	
 	public void collectReifiedShadows(String className, List<String> shadows) {
 		Collections.sort(shadows);
 		refiedShadows.put(className, shadows);
 	}
-	public void printReifiedShadows() {
-		System.out.println("Reified Shadows:");
-		for (String key : refiedShadows.keySet()) {
-			System.out.println("Class " + key + ": " + refiedShadows.get(key));			
-		}
+	public void collectMatchedAdvice(String method, List<String> advices) {
+		matchedAdvice.put(method, advices);
 	}
 	/**
-	 * Note that the shadows are alphabetically sorted.
-	 * @param className
-	 * @return
+	 * The shadows are alphabetically sorted.
 	 */
 	public List<String> getRefiedShadows(String className) {
 		return refiedShadows.get(className);
+	}
+	/**
+	 * Only advice applied at method-execution shadows are collected.
+	 * The advice are retrieved in the order in which they are applied.
+	 * @return each element in the list is in the form {mechanism_id}.{advice_kind},
+	 * e.g., cool.before, validate.after.
+	 */
+	public List<String> getMatchedAdvice(String method) {
+		return matchedAdvice.get(method);
 	}
 }

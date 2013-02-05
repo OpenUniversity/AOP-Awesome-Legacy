@@ -10,6 +10,7 @@ import java.io.ObjectInputStream;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import <%=amProjectName%>.WeavingInfo;
+import static <%=amProjectName%>.WeavingInfo.*;
 
 public class Testapp<%=testappId%> {
 	@Test

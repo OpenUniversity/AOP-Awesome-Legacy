@@ -4,6 +4,7 @@ import org.aspectj.apache.bcel.classfile.JavaClass;
 import org.aspectj.apache.bcel.classfile.annotation.AnnotationGen;
 import org.aspectj.apache.bcel.classfile.annotation.ElementNameValuePairGen;
 import org.aspectj.weaver.AnnotationAJ;
+import org.aspectj.weaver.ResolvedType;
 import org.aspectj.weaver.bcel.LazyClassGen;
 import org.aspectj.weaver.bcel.LazyMethodGen;
 import org.aspectj.weaver.bcel.UnwovenClassFile;
@@ -82,7 +83,7 @@ public class AwesomeCore {
 		return false;
 	}
 	public static String getReifyStrategy(LazyClassGen clazz) {
-		String value = getAnnotationValue(clazz, AW_REIFY_ANNOTATION);
+		String value = getAnnotationValue(clazz.getType(), AW_REIFY_ANNOTATION, "value");
 		if(value == null)
 			return ReifyStrategy.NONE;
 		else
@@ -105,14 +106,17 @@ public class AwesomeCore {
 		}	
 		return null;
 	}
-	private static String getAnnotationValue(LazyClassGen clazz, String annotation) {
-		AnnotationAJ[] annotations = clazz.getType().getAnnotations();
+	private static String getAnnotationValue(ResolvedType type, String annotation, String val) {
+		AnnotationAJ[] annotations = type.getAnnotations();
 		for(AnnotationAJ annot : annotations){
 			if(annot.getTypeName().equals(annotation)) {
-				String res = annot.getStringFormOfValue("value"); 
+				String res = annot.getStringFormOfValue(val); 
 				return res;
 			}
 		}	
 		return null;
+	}
+	public static String getMechanismId(ResolvedType type) {
+		return getAnnotationValue(type, ASPECT_MECHANISM_ANNOTATION, "id");
 	}
 }
