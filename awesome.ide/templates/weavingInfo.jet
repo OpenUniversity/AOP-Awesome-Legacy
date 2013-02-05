@@ -3,18 +3,34 @@
 package <%=projectName%>;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.aspectj.weaver.Shadow;
+
 public class WeavingInfo implements Serializable {
 	private static final long serialVersionUID = 1L;
+	public static final String ADVICE_EXECUTION = Shadow.ADVICE_EXECUTION;
+	public static final String CONSTRUCTOR_CALL = Shadow.CONSTRUCTOR_CALL;
+	public static final String CONSTRUCTOR_EXECUTION = Shadow.CONSTRUCTOR_EXECUTION;
+	public static final String EXCEPTION_HANDLER = Shadow.EXCEPTION_HANDLER;
+	public static final String FIELD_GET = Shadow.FIELD_GET;
+	public static final String FIELD_SET = Shadow.FIELD_SET;
+	public static final String INITIALIZATION = Shadow.INITIALIZATION;
+	public static final String METHOD_CALL = Shadow.METHOD_CALL;
+	public static final String METHOD_EXECUTION = Shadow.METHOD_EXECUTION;
+	public static final String PREINITIALIZATION = Shadow.PREINITIALIZATION;
+	public static final String STATICINITIALIZATION = Shadow.STATICINITIALIZATION;
+	
 	/**
 	 * Holds for each class (the key) a list of its reified shadows
 	 */
 	private Map<String, List<String>> refiedShadows = new HashMap<String, List<String>>();
 	
 	public void collectReifiedShadows(String className, List<String> shadows) {
+		Collections.sort(shadows);
 		refiedShadows.put(className, shadows);
 	}
 	public void printReifiedShadows() {
@@ -22,5 +38,13 @@ public class WeavingInfo implements Serializable {
 		for (String key : refiedShadows.keySet()) {
 			System.out.println("Class " + key + ": " + refiedShadows.get(key));			
 		}
+	}
+	/**
+	 * Note that the shadows are alphabetically sorted.
+	 * @param className
+	 * @return
+	 */
+	public List<String> getRefiedShadows(String className) {
+		return refiedShadows.get(className);
 	}
 }

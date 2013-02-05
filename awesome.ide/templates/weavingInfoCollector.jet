@@ -24,7 +24,7 @@ public aspect WeavingInfoCollector {
 			result.add(shadow.getKind().toString());
 		
 		winfo.collectReifiedShadows(clazz.getName(), result);
-	}
+	}	
 	
 	/**
 	 * Serializing WeavingInfo when weaving is complete.
