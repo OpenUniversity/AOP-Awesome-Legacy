@@ -21,7 +21,7 @@ import org.eclipse.swt.widgets.Text;
 public class AspectMechanismProjectWizardPage extends WizardPage {
 	private static final String XTEXT_SUPPORT_LABEL = "Xtext support";
 	
-	private Text dsalName;
+	private Text mechanismName;
 	private Button isXtext;
 	
 	public AspectMechanismProjectWizardPage() {
@@ -41,12 +41,12 @@ public class AspectMechanismProjectWizardPage extends WizardPage {
 		layout.verticalSpacing = 9;
 
 		Label label = new Label(container, SWT.NULL);
-		label.setText("&DSAL Name:");
+		label.setText("&Mechanism Name:");
 
-		dsalName = new Text(container, SWT.BORDER | SWT.SINGLE);
+		mechanismName = new Text(container, SWT.BORDER | SWT.SINGLE);
 		GridData gd = new GridData(GridData.FILL_HORIZONTAL);
-		dsalName.setLayoutData(gd);
-		dsalName.addModifyListener(new ModifyListener() {
+		mechanismName.setLayoutData(gd);
+		mechanismName.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
 				dialogChanged();
 			}
@@ -61,14 +61,14 @@ public class AspectMechanismProjectWizardPage extends WizardPage {
 	}
 
 	private void dialogChanged() {
-		String dsalName = getDsalName();
+		String mechName = getMechanismName();
 
-		if (dsalName.length() == 0) {
-			updateStatus("A name for the DSAL must be specified");
+		if (mechName.length() == 0) {
+			updateStatus("A name for the aspect mechanism must be specified");
 			return;
 		}
-		if (dsalName.contains(" ")) {
-			updateStatus("The name of the DSAL cannot contain spaces");
+		if (mechName.contains(" ")) {
+			updateStatus("The name of the aspect mechanism cannot contain spaces");
 			return;
 		}
 		
@@ -80,8 +80,8 @@ public class AspectMechanismProjectWizardPage extends WizardPage {
 		setPageComplete(message == null);
 	}
 
-	public String getDsalName() {
-		return dsalName.getText();
+	public String getMechanismName() {
+		return mechanismName.getText();
 	}
 	
 	public boolean isXtextSupport() {

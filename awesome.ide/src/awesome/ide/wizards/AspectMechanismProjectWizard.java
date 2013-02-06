@@ -41,7 +41,7 @@ public class AspectMechanismProjectWizard extends Wizard implements INewWizard {
 	 * the wizard.
 	 */
 	public boolean performFinish() {
-		final String dsalName = page.getDsalName();
+		final String dsalName = page.getMechanismName();
 		final boolean isXtext = page.isXtextSupport();
 		
 		IRunnableWithProgress op = new IRunnableWithProgress() {
