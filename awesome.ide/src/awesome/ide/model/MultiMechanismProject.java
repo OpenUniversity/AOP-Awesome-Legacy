@@ -31,7 +31,7 @@ public class MultiMechanismProject extends MechanismProject {
 	private LibFolder lib;
 	private AntFile ant;
 	private MechanismSrcFolder ajFolder;
-	
+	private SrcDevFolder srcdev;
 	private IJavaProject javaProj;
 	private String name;
 	private String[] dsalNames;
@@ -45,8 +45,9 @@ public class MultiMechanismProject extends MechanismProject {
 		this.dsalNames = dsalNames;
 		this.includeAJ = includeAJ;
 		ant = new AntFile();
-		if(includeAJ)
-			ajFolder = new MechanismSrcFolder(AJ_FOLDER_NAME, ASPECTJ_ID);
+		if(includeAJ) ajFolder = new MechanismSrcFolder(AJ_FOLDER_NAME, ASPECTJ_ID);
+		srcdev = new SrcDevFolder(getProjectName());
+		
 	}
 	
 	/**
@@ -76,6 +77,7 @@ public class MultiMechanismProject extends MechanismProject {
 		lib.commit(getJavaProject());
 		ant.commit(getJavaProject());
 		if(includeAJ) ajFolder.commit(getJavaProject());
+		srcdev.commit(getJavaProject());
 		
 		if(monitor != null)
 			monitor.worked(1);
