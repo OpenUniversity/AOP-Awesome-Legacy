@@ -62,13 +62,17 @@ public class AspectMechanismProjectWizardPage extends WizardPage {
 
 	private void dialogChanged() {
 		String mechName = getMechanismName();
-
-		if (mechName.length() == 0) {
+		
+		if(mechName.length() == 0) {
 			updateStatus("A name for the aspect mechanism must be specified");
 			return;
 		}
-		if (mechName.contains(" ")) {
+		if(mechName.contains(" ")) {
 			updateStatus("The name of the aspect mechanism cannot contain spaces");
+			return;
+		}
+		if(!mechName.equals(mechName.toLowerCase())) {
+			updateStatus("Uppercased letters are not allowed");
 			return;
 		}
 		
