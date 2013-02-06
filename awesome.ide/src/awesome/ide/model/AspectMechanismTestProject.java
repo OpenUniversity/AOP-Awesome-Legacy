@@ -14,7 +14,6 @@ import awesome.ide.gen.TestappTestCaseGen;
 import awesome.ide.gen.TestappWeaveLaunchGen;
 
 public class AspectMechanismTestProject extends MechanismProject {
-	private static final String TESTAPP_PACKAGE = "testapps";
 	private static final String TESTAPP_ID = "1";
 	private static final String TESTAPP_PREFIX = "testapp";
 	public static final String TESTCASE_NAME = "MyTests";
@@ -82,7 +81,7 @@ public class AspectMechanismTestProject extends MechanismProject {
 			// generate a test case within the package
 			StringBuffer buffer = new StringBuffer();
 			buffer.append(new TestappTestCaseGen().generate(new String[]{getPackageName(), amProj.getProjectName(), amProj.getDsalName()}));
-			addCompilationUnit(testcaseName + ".java", buffer.toString());				
+			addCompilationUnit(testcaseName + ".java", buffer.toString());
 		}
 	}
 
@@ -94,7 +93,7 @@ public class AspectMechanismTestProject extends MechanismProject {
 	
 	private AspectMechanismTestProject(AspectMechanismProject amProj, boolean isXtext) {
 		this.amProj = amProj;
-		src = new AMTSrcFolder(SRC_FOLDER, TESTAPP_PACKAGE,  TESTCASE_NAME);
+		src = new AMTSrcFolder(SRC_FOLDER, getProjectName(),  TESTCASE_NAME);
 		if(isXtext) srcgen = new SrcFolder(SRC_GEN_FOLDER, null);
 		lib = new LibFolder();
 		lib.setLocalJars(new String[]{Activator.ASPECTJRT_JAR, Activator.ASPECTJTOOLS_JAR});
