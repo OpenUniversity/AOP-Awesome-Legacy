@@ -13,20 +13,20 @@ import awesome.platform.annotations.AwReify;
 @Aspect
 @AwAspectMechanism(id="<%=mechanismId%>")
 @AwReify(ReifyStrategy.SUPPRESS_STATICINITIALIZATION)
-public class MyAspect {
+public class <%=aspectName%> {
 	
 	@AwReify(ReifyStrategy.SUPPRESS_ALL)
-	public MyAspect() {}
+	public <%=aspectName%>() {}
 	
 	@AwReify(ReifyStrategy.SUPPRESS_WITHIN)
 	@Before("execution(* <%=AspectMechanismTestProject.BASE_FOLDER%>.<%=AspectMechanismTestProject.TESTAPP_MAIN%>.main(..))")
 	public void <%=mechanismId%>Before() {
-		System.out.println("Before main...");
+		System.out.println("Before main... (<%=aspectName%>)");
 	}
 	
 	@AwReify(ReifyStrategy.SUPPRESS_WITHIN)
 	@After("execution(* <%=AspectMechanismTestProject.BASE_FOLDER%>.<%=AspectMechanismTestProject.TESTAPP_MAIN%>.main(..))")
 	public void <%=mechanismId%>After() {
-		System.out.println("After main...");
+		System.out.println("After main... (<%=aspectName%>)");
 	}
 }

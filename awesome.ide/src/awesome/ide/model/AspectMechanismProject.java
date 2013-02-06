@@ -57,12 +57,12 @@ public class AspectMechanismProject extends MechanismProject {
 	
 	public class ManifestFile {
 		public String getName() {
-			return getDsalName().toLowerCase() + ".manifest";
+			return getMechanismNames()[0].toLowerCase() + ".manifest";
 		}
 		public void commit() {
 			IProject project = javaProj.getProject();
 			String content;
-			content = new ManifestGen().generate(new String[]{getDsalName()});
+			content = new ManifestGen().generate(new String[]{getMechanismNames()[0]});
 			try {
 				project.getFile(getName()).create(Utils.toInputStream(content), true, null);
 			} catch (CoreException e) {
@@ -132,8 +132,8 @@ public class AspectMechanismProject extends MechanismProject {
 		return PROJ_PREFIX + "." + dsalName.toLowerCase();
 	}
 	@Override
-	public String getDsalName() {
-		return dsalName;
+	public String[] getMechanismNames() {
+		return new String[]{dsalName};
 	}
 
 	@Override

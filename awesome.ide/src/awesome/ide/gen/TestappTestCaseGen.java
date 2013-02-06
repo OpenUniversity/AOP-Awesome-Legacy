@@ -22,11 +22,11 @@ public class TestappTestCaseGen
   protected final String TEXT_6 = ".";
   protected final String TEXT_7 = NL + "\t\tList<String> shadows = info.getRefiedShadows(\"";
   protected final String TEXT_8 = ".";
-  protected final String TEXT_9 = "\");" + NL + "\t\tList<String> expected = Arrays.asList(CONSTRUCTOR_EXECUTION," + NL + "\t\t\t\tFIELD_GET, METHOD_CALL, METHOD_EXECUTION, STATICINITIALIZATION);" + NL + "\t\tassertEquals(expected, shadows);" + NL + "\t\t//test reify of ";
-  protected final String TEXT_10 = ".";
-  protected final String TEXT_11 = NL + "\t\tshadows = info.getRefiedShadows(\"";
-  protected final String TEXT_12 = ".";
-  protected final String TEXT_13 = "\");" + NL + "\t\texpected = Arrays.asList(ADVICE_EXECUTION, ADVICE_EXECUTION);" + NL + "\t\tassertEquals(expected, shadows);" + NL + "\t}" + NL + "\t/**" + NL + "\t * An example test for the match process" + NL + "\t */" + NL + "\t@Test" + NL + "\tpublic void testMatch() {" + NL + "\t\tList<String> advice = info.getMatchedAdvice(\"";
+  protected final String TEXT_9 = "\");" + NL + "\t\tList<String> expected = Arrays.asList(CONSTRUCTOR_EXECUTION," + NL + "\t\t\t\tFIELD_GET, METHOD_CALL, METHOD_EXECUTION, STATICINITIALIZATION);" + NL + "\t\tassertEquals(expected, shadows);" + NL + "\t\t// test reify of ";
+  protected final String TEXT_10 = ".My";
+  protected final String TEXT_11 = "Aspect" + NL + "\t\tshadows = info.getRefiedShadows(\"";
+  protected final String TEXT_12 = ".My";
+  protected final String TEXT_13 = "Aspect\");" + NL + "\t\texpected = Arrays.asList(ADVICE_EXECUTION, ADVICE_EXECUTION);" + NL + "\t\tassertEquals(expected, shadows);" + NL + "\t}" + NL + "\t/**" + NL + "\t * An example test for the match process" + NL + "\t */" + NL + "\t@Test" + NL + "\tpublic void testMatch() {" + NL + "\t\tList<String> advice = info.getMatchedAdvice(\"";
   protected final String TEXT_14 = ".";
   protected final String TEXT_15 = ".main\");" + NL + "\t\tassertEquals(\"";
   protected final String TEXT_16 = ".before\", advice.get(0));" + NL + "\t\tassertEquals(\"";
@@ -35,9 +35,9 @@ public class TestappTestCaseGen
   public String generate(Object argument)
   {
     final StringBuffer stringBuffer = new StringBuffer();
-     String packageName = ((String[])argument)[0]; 
-     String amProjectName = ((String[])argument)[1]; 
-     String mechanismId = ((String[])argument)[2]; 
+     String packageName = (String)(((Object[])argument)[0]); 
+     String amProjectName = (String)(((Object[])argument)[1]); 
+     String[] mechanismNames = (String[])(((Object[])argument)[2]); 
     stringBuffer.append(TEXT_1);
     stringBuffer.append(packageName);
     stringBuffer.append(TEXT_2);
@@ -57,19 +57,19 @@ public class TestappTestCaseGen
     stringBuffer.append(TEXT_9);
     stringBuffer.append(AspectMechanismTestProject.ASPECTS_FOLDER);
     stringBuffer.append(TEXT_10);
-    stringBuffer.append(AspectMechanismTestProject.TESTAPP_ASPECT);
+    stringBuffer.append(Utils.capitalize(mechanismNames[0]));
     stringBuffer.append(TEXT_11);
     stringBuffer.append(AspectMechanismTestProject.ASPECTS_FOLDER);
     stringBuffer.append(TEXT_12);
-    stringBuffer.append(AspectMechanismTestProject.TESTAPP_ASPECT);
+    stringBuffer.append(Utils.capitalize(mechanismNames[0]));
     stringBuffer.append(TEXT_13);
     stringBuffer.append(AspectMechanismTestProject.BASE_FOLDER);
     stringBuffer.append(TEXT_14);
     stringBuffer.append(AspectMechanismTestProject.TESTAPP_MAIN);
     stringBuffer.append(TEXT_15);
-    stringBuffer.append(mechanismId);
+    stringBuffer.append(mechanismNames[0]);
     stringBuffer.append(TEXT_16);
-    stringBuffer.append(mechanismId);
+    stringBuffer.append(mechanismNames[0]);
     stringBuffer.append(TEXT_17);
     return stringBuffer.toString();
   }

@@ -1,7 +1,7 @@
-<%@jet package="awesome.ide.gen" class="TestappTestCaseGen" imports="awesome.ide.model.*" %>
-<% String packageName = ((String[])argument)[0]; %>
-<% String amProjectName = ((String[])argument)[1]; %>
-<% String mechanismId = ((String[])argument)[2]; %>
+<%@jet package="awesome.ide.gen" class="TestappTestCaseGen" imports="awesome.ide.model.* " %>
+<% String packageName = (String)(((Object[])argument)[0]); %>
+<% String amProjectName = (String)(((Object[])argument)[1]); %>
+<% String[] mechanismNames = (String[])(((Object[])argument)[2]); %>
 package <%=packageName%>;
 
 import java.io.FileInputStream;
@@ -50,8 +50,8 @@ public class <%=AspectMechanismTestProject.TESTCASE_NAME%> {
 		List<String> expected = Arrays.asList(CONSTRUCTOR_EXECUTION,
 				FIELD_GET, METHOD_CALL, METHOD_EXECUTION, STATICINITIALIZATION);
 		assertEquals(expected, shadows);
-		//test reify of <%=AspectMechanismTestProject.ASPECTS_FOLDER%>.<%=AspectMechanismTestProject.TESTAPP_ASPECT%>
-		shadows = info.getRefiedShadows("<%=AspectMechanismTestProject.ASPECTS_FOLDER%>.<%=AspectMechanismTestProject.TESTAPP_ASPECT%>");
+		// test reify of <%=AspectMechanismTestProject.ASPECTS_FOLDER%>.My<%=Utils.capitalize(mechanismNames[0])%>Aspect
+		shadows = info.getRefiedShadows("<%=AspectMechanismTestProject.ASPECTS_FOLDER%>.My<%=Utils.capitalize(mechanismNames[0])%>Aspect");
 		expected = Arrays.asList(ADVICE_EXECUTION, ADVICE_EXECUTION);
 		assertEquals(expected, shadows);
 	}
@@ -61,8 +61,8 @@ public class <%=AspectMechanismTestProject.TESTCASE_NAME%> {
 	@Test
 	public void testMatch() {
 		List<String> advice = info.getMatchedAdvice("<%=AspectMechanismTestProject.BASE_FOLDER%>.<%=AspectMechanismTestProject.TESTAPP_MAIN%>.main");
-		assertEquals("<%=mechanismId%>.before", advice.get(0));
-		assertEquals("<%=mechanismId%>.after", advice.get(1));
+		assertEquals("<%=mechanismNames[0]%>.before", advice.get(0));
+		assertEquals("<%=mechanismNames[0]%>.after", advice.get(1));
 	}
 	private WeavingInfo getWeavingInfo() {
 		try {

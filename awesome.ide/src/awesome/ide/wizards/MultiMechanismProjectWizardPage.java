@@ -38,7 +38,13 @@ public class MultiMechanismProjectWizardPage extends WizardPage {
 	 * mechanism should be included in the generated project
 	 */
 	private Button includeAJ;
+	/**
+	 * Whether Xtext support should be added to the test project.
+	 */
+	private Button isXtext;
+
 	private static final String ASPECTJ_SUPPORT_LABEL = "Include AspectJ mechanism";
+	private static final String XTEXT_SUPPORT_LABEL = "Xtext support";;
 
 	public MultiMechanismProjectWizardPage() {
 		super("wizardPage");
@@ -83,6 +89,10 @@ public class MultiMechanismProjectWizardPage extends WizardPage {
 		includeAJ = new Button(container, SWT.CHECK);
 		includeAJ.setText(ASPECTJ_SUPPORT_LABEL);
 		includeAJ.setSelection(true);
+		
+		isXtext = new Button(container, SWT.CHECK);
+		isXtext.setText(XTEXT_SUPPORT_LABEL);
+		isXtext.setSelection(true);
 		
 		dialogChanged();
 		setControl(container);
@@ -142,5 +152,8 @@ public class MultiMechanismProjectWizardPage extends WizardPage {
 	}
 	public boolean isAspectJIncluded() {
 		return includeAJ.getSelection();
+	}
+	public boolean isXtextSupport() {
+		return isXtext.getSelection();
 	}
 }

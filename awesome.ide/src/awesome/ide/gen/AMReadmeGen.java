@@ -27,7 +27,7 @@ public class AMReadmeGen
     stringBuffer.append(mechProj.getProjectName());
     stringBuffer.append(TEXT_2);
     stringBuffer.append(TEXT_3);
-    stringBuffer.append(mechProj.getDsalName());
+    stringBuffer.append(mechProj.getMechanismNames()[0]);
     stringBuffer.append(TEXT_4);
     return stringBuffer.toString();
   }

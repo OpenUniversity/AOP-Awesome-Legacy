@@ -213,8 +213,7 @@ public class MultiMechanismProject extends MechanismProject {
 	}
 
 	@Override
-	public String getDsalName() {
-		// TODO Auto-generated method stub
-		return null;
+	public String[] getMechanismNames() {
+		return dsalNames;
 	}
 }

@@ -13,6 +13,11 @@ import awesome.ide.gen.TestappMain;
 import awesome.ide.gen.TestappTestCaseGen;
 import awesome.ide.gen.TestappWeaveLaunchGen;
 
+/**
+ * A test project for both aspect mechanism and multi-mechanism project.
+ * @author oren
+ *
+ */
 public class AspectMechanismTestProject extends MechanismProject {
 	public static final String TESTAPP_FOLDER = "myapp";
 	public static final String TESTCASE_NAME = "MyTests";
@@ -23,16 +28,18 @@ public class AspectMechanismTestProject extends MechanismProject {
 	private static final String TESTAPP_WEAVE_LAUNCH_SUFFIX = TESTAPP_FOLDER + ".weave.launch";
 	private static final String TESTAPP_EXECUTE_LAUNCH_SUFFIX = TESTAPP_FOLDER + ".execute.launch";
 	public static final String WEAVING_INFO_FOLDER = "weaving-info";
-	private AspectMechanismProject amProj;
+	private MechanismProject mProj;
 	private IJavaProject javaProj;
 	private AMTSrcFolder src;
 	private SrcFolder srcgen;
 	private LibFolder lib;
 	private ReadmeFile readme;
 	private TestAppFolder testapp;
+	
 	public class TestAppFolder {
 		private String folderName;
 		private Boolean isXtext;
+		
 		public TestAppFolder(String folderName, boolean isXtext) {
 			this.folderName = folderName;
 			this.isXtext = isXtext;
@@ -47,18 +54,26 @@ public class AspectMechanismTestProject extends MechanismProject {
 			IFolder folder = Utils.createFolder(getJavaProject(), folderName);
 			
 			IFolder aspectsFolder = Utils.createSubFolder(folder, ASPECTS_FOLDER);
-			Utils.createFileInFolder(aspectsFolder, TESTAPP_ASPECT + ".java", 
-					new TestappAspect().generate(new String[]{ASPECTS_FOLDER, TESTAPP_ASPECT, amProj.getDsalName()}));
+			
+			// create an example aspect for each DSAL
+			for(String mech : mProj.getMechanismNames()) {
+				String aspectName = "My" + Utils.capitalize(mech) + "Aspect";
+				Utils.createFileInFolder(aspectsFolder, aspectName + ".java", 
+						new TestappAspect().generate(new String[]{ASPECTS_FOLDER, aspectName, mech}));
+			}
+			
+			// for a multi-mechanism project we also create an AspectJ aspect
+			// TODO
 			
 			IFolder baseFolder = Utils.createSubFolder(folder, BASE_FOLDER);
 			Utils.createFileInFolder(baseFolder, TESTAPP_MAIN + ".java", new TestappMain().generate(new String[]{BASE_FOLDER}));
 			
 			// create a weave.launch file
-			Utils.createFileInFolder(folder, amProj.getDsalName() + "." + TESTAPP_WEAVE_LAUNCH_SUFFIX, 
+			Utils.createFileInFolder(folder, TESTAPP_WEAVE_LAUNCH_SUFFIX, 
 					new TestappWeaveLaunchGen().generate(new String[]{getProjectName(), TESTAPP_FOLDER, isXtext.toString()}));
 			
 			// create a execute.launch file
-			Utils.createFileInFolder(folder, amProj.getDsalName() + "." +  TESTAPP_EXECUTE_LAUNCH_SUFFIX, 
+			Utils.createFileInFolder(folder, TESTAPP_EXECUTE_LAUNCH_SUFFIX, 
 					new TestappExecuteLaunchGen().generate(new String[]{getProjectName(), TESTAPP_FOLDER}));
 		}
 	}
@@ -79,19 +94,19 @@ public class AspectMechanismTestProject extends MechanismProject {
 			
 			// generate a test case within the package
 			StringBuffer buffer = new StringBuffer();
-			buffer.append(new TestappTestCaseGen().generate(new String[]{getPackageName(), amProj.getProjectName(), amProj.getDsalName()}));
+			buffer.append(new TestappTestCaseGen().generate(new Object[]{getPackageName(), mProj.getProjectName(), mProj.getMechanismNames()}));
 			addCompilationUnit(testcaseName + ".java", buffer.toString());
 		}
 	}
 
-	public static AspectMechanismTestProject create(AspectMechanismProject amProj, boolean isXtextSupport) throws Exception {
-		AspectMechanismTestProject amtProj = new AspectMechanismTestProject(amProj, isXtextSupport);				
+	public static AspectMechanismTestProject create(MechanismProject mProj, boolean isXtextSupport) throws Exception {
+		AspectMechanismTestProject amtProj = new AspectMechanismTestProject(mProj, isXtextSupport);				
 		return amtProj;
 	}
 
 	
-	private AspectMechanismTestProject(AspectMechanismProject amProj, boolean isXtext) {
-		this.amProj = amProj;
+	private AspectMechanismTestProject(MechanismProject amProj, boolean isXtext) {
+		this.mProj = amProj;
 		src = new AMTSrcFolder(SRC_FOLDER, getProjectName(),  TESTCASE_NAME);
 		if(isXtext) srcgen = new SrcFolder(SRC_GEN_FOLDER, null);
 		lib = new LibFolder();
@@ -102,7 +117,7 @@ public class AspectMechanismTestProject extends MechanismProject {
 	
 	@Override
 	public String getProjectName() {
-		return amProj.getProjectName() + ".tests";
+		return mProj.getProjectName() + ".tests";
 	}
 	
 	public void commit(IProgressMonitor monitor) {
@@ -117,7 +132,7 @@ public class AspectMechanismTestProject extends MechanismProject {
 			javaProj = Utils.createJavaProject(getProjectName());
 			
 			// add the am project to the classpath. This should be done before AJ deps (in lib) so it comes first in the build order
-			Utils.addProjectToClassPath(getJavaProject(), amProj.getProjectName());
+			Utils.addProjectToClassPath(getJavaProject(), mProj.getProjectName());
 
 			lib.commit(getJavaProject());
 			src.commit();
@@ -154,8 +169,8 @@ public class AspectMechanismTestProject extends MechanismProject {
 		return javaProj;
 	}
 	@Override
-	public String getDsalName() {
-		return amProj.getDsalName();
+	public String[] getMechanismNames() {
+		return mProj.getMechanismNames();
 	}
 
 }
