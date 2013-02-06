@@ -72,7 +72,7 @@ public class AspectMechanismProjectWizardPage extends WizardPage {
 			return;
 		}
 		if(!mechName.equals(mechName.toLowerCase())) {
-			updateStatus("Uppercased letters are not allowed");
+			updateStatus("Uppercase letters are not allowed");
 			return;
 		}
 		
