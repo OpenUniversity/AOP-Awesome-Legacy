@@ -10,7 +10,7 @@ test project are listed below.
 
 lib/
 	Jar files required by Awesome. Don't touch...
-testapp1/
+<%=AspectMechanismTestProject.TESTAPP_FOLDER%>/
 	Here you create your test application that usually consists of a base system (in base/)
 	and additional aspects (aspects/). We have created a Main file and an initial aspect
 	as a starting point. Note that other aspects you choose to add should have the same

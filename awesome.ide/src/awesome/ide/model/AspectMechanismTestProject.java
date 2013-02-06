@@ -14,15 +14,14 @@ import awesome.ide.gen.TestappTestCaseGen;
 import awesome.ide.gen.TestappWeaveLaunchGen;
 
 public class AspectMechanismTestProject extends MechanismProject {
-	private static final String TESTAPP_ID = "1";
-	private static final String TESTAPP_PREFIX = "testapp";
+	public static final String TESTAPP_FOLDER = "myapp";
 	public static final String TESTCASE_NAME = "MyTests";
 	public static final String ASPECTS_FOLDER = "aspects";
 	public static final String BASE_FOLDER = "base";
 	public static final String TESTAPP_MAIN = "MyBase";
 	public static final String TESTAPP_ASPECT = "MyAspect";
-	private static final String TESTAPP_WEAVE_LAUNCH_SUFFIX = TESTAPP_PREFIX + TESTAPP_ID + ".weave.launch";
-	private static final String TESTAPP_EXECUTE_LAUNCH_SUFFIX = TESTAPP_PREFIX + TESTAPP_ID + ".execute.launch";
+	private static final String TESTAPP_WEAVE_LAUNCH_SUFFIX = TESTAPP_FOLDER + ".weave.launch";
+	private static final String TESTAPP_EXECUTE_LAUNCH_SUFFIX = TESTAPP_FOLDER + ".execute.launch";
 	public static final String WEAVING_INFO_FOLDER = "weaving-info";
 	private AspectMechanismProject amProj;
 	private IJavaProject javaProj;
@@ -56,11 +55,11 @@ public class AspectMechanismTestProject extends MechanismProject {
 			
 			// create a weave.launch file
 			Utils.createFileInFolder(folder, amProj.getDsalName() + "." + TESTAPP_WEAVE_LAUNCH_SUFFIX, 
-					new TestappWeaveLaunchGen().generate(new String[]{getProjectName(), TESTAPP_PREFIX + TESTAPP_ID, isXtext.toString()}));
+					new TestappWeaveLaunchGen().generate(new String[]{getProjectName(), TESTAPP_FOLDER, isXtext.toString()}));
 			
 			// create a execute.launch file
 			Utils.createFileInFolder(folder, amProj.getDsalName() + "." +  TESTAPP_EXECUTE_LAUNCH_SUFFIX, 
-					new TestappExecuteLaunchGen().generate(new String[]{getProjectName(), TESTAPP_PREFIX + TESTAPP_ID}));
+					new TestappExecuteLaunchGen().generate(new String[]{getProjectName(), TESTAPP_FOLDER}));
 		}
 	}
 	public class AMTSrcFolder extends SrcFolder {
@@ -97,7 +96,7 @@ public class AspectMechanismTestProject extends MechanismProject {
 		if(isXtext) srcgen = new SrcFolder(SRC_GEN_FOLDER, null);
 		lib = new LibFolder();
 		lib.setLocalJars(new String[]{Activator.ASPECTJRT_JAR, Activator.ASPECTJTOOLS_JAR});
-		testapp = new TestAppFolder(TESTAPP_PREFIX + TESTAPP_ID, isXtext);
+		testapp = new TestAppFolder(TESTAPP_FOLDER, isXtext);
 		readme = new ReadmeFile();
 	}
 	
