@@ -1,5 +1,7 @@
 package awesome.ide.model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -26,7 +28,7 @@ public class MultiMechanismProject extends MechanismProject {
 	public static final String SPEC_FOLDER = "spec";
 	public static final String COMP_SPEC_FILE = "composition.spec";
 	public static final String CONFIG_FOLDER = "config";
-	private static final String ASPECTJ_ID = "aspectj";
+	public static final String ASPECTJ_ID = "aspectj";
 	private static final String AJ_FOLDER_NAME = ASPECTJ_ID + "Src";
 	private LibFolder lib;
 	private AntFile ant;
@@ -34,20 +36,27 @@ public class MultiMechanismProject extends MechanismProject {
 	private SrcDevFolder srcdev;
 	private IJavaProject javaProj;
 	private String name;
-	private String[] dsalNames;
+	private String[] mechanismNames;
 	boolean includeAJ;
 	
-	private MultiMechanismProject(String projectName, String[] dsalNames, boolean includeAJ) {
+	private MultiMechanismProject(String projectName, String[] mechanismNames, boolean includeAJ) {
 		this.name = projectName;
 		lib = new LibFolder();
 		lib.setLocalJars(new String[]{Activator.ASM_JAR, Activator.AWESOME_JAR, 
 				Activator.COMMONS_JAR, Activator.JROCKIT_JAR, Activator.ASPECTJTOOLS_JAR});
-		this.dsalNames = dsalNames;
 		this.includeAJ = includeAJ;
+		if(includeAJ) {
+			List<String> mechanisms = new ArrayList<String>(Arrays.asList(mechanismNames));
+			mechanisms.add(ASPECTJ_ID);
+			this.mechanismNames = mechanisms.toArray(new String[mechanisms.size()]);
+		} else {			
+			this.mechanismNames = mechanismNames;
+		}
+		//this.mechanismNames = mechanismNames;
+		
 		ant = new AntFile();
 		if(includeAJ) ajFolder = new MechanismSrcFolder(AJ_FOLDER_NAME, ASPECTJ_ID);
 		srcdev = new SrcDevFolder(getProjectName());
-		
 	}
 	
 	/**
@@ -77,7 +86,7 @@ public class MultiMechanismProject extends MechanismProject {
 		// a matter or build order, otherwise we get weave-time errors. 
 		if(includeAJ) ajFolder.commit(getJavaProject());
 		srcdev.commit(getJavaProject());
-		linkToSourceFoldersOfMechanisms(dsalNames);
+		linkToSourceFoldersOfMechanisms(mechanismNames);
 		
 		lib.commit(getJavaProject());
 		ant.commit(getJavaProject());
@@ -87,7 +96,7 @@ public class MultiMechanismProject extends MechanismProject {
 		
 		// one day, these two should be made classes...
 		createAspectConfigurationFolder();
-		createSpecFolder(dsalNames);
+		createSpecFolder(mechanismNames);
 		
 		try {
 			AspectJUIPlugin.convertToAspectJProject(getJavaProject().getProject());
@@ -103,13 +112,13 @@ public class MultiMechanismProject extends MechanismProject {
 	/**
 	 * Creates a new multi-mechanism project
 	 * @param projectName
-	 * @param dsalNames
+	 * @param mechanismNames
 	 * @param monitor
 	 * @return
 	 * @throws Exception
 	 */
-	public static MultiMechanismProject create(String projectName, String[] dsalNames, boolean includeAJ) throws Exception {
-		MultiMechanismProject mmProj = new MultiMechanismProject(projectName, dsalNames, includeAJ);		
+	public static MultiMechanismProject create(String projectName, String[] mechanismNames, boolean includeAJ) throws Exception {
+		MultiMechanismProject mmProj = new MultiMechanismProject(projectName, mechanismNames, includeAJ);		
 		return mmProj;
 	}
 	
@@ -120,6 +129,7 @@ public class MultiMechanismProject extends MechanismProject {
 	 */
 	private void linkToSourceFoldersOfMechanisms(String[] dsalNames) {
 		for(String name : dsalNames) {
+			if(name.equals(ASPECTJ_ID)) continue;
 			IFolder srcFolder = javaProj.getProject().getFolder(name + "Src");
 			try {
 				srcFolder.createLink(new Path("WORKSPACE_LOC/" + AspectMechanismProject.PROJ_PREFIX + "." +
@@ -145,16 +155,17 @@ public class MultiMechanismProject extends MechanismProject {
 	 * Creates a spec folder within the multi-mechanism project. The folder
 	 * contains the manifest of the composed mechanisms and a composition specification file.
 	 * @param javaProject
-	 * @param dsalNames
+	 * @param mechanismNames
 	 * @throws Exception
 	 */
-	private void createSpecFolder(String[] dsalNames) {
+	private void createSpecFolder(String[] mechanismNames) {
 		try {
 			Utils.createFolder(getJavaProject(), SPEC_FOLDER);
 
 			// get the project of each dsal and extract the manifest file
-			for(String dsalName : dsalNames) {
-				AspectMechanismProject amProj = AspectMechanismProject.create(dsalName);
+			for(String mech : mechanismNames) {
+				if(mech.equals(ASPECTJ_ID)) continue;
+				AspectMechanismProject amProj = AspectMechanismProject.create(mech);
 				AspectMechanismProject.ManifestFile manifest = amProj.new ManifestFile();
 
 				// create the manifest in the multi-mechanism project
@@ -216,6 +227,6 @@ public class MultiMechanismProject extends MechanismProject {
 
 	@Override
 	public String[] getMechanismNames() {
-		return dsalNames;
+		return mechanismNames;
 	}
 }

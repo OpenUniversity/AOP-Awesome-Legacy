@@ -42,14 +42,14 @@ public class MultiMechanismProjectWizard extends Wizard implements INewWizard {
 	 */
 	public boolean performFinish() {
 		final String projectName = page.getProjectName();
-		final String[] dsalNames = page.getDsalNames();
+		final String[] mechanismNames = page.getMechanismNames();
 		final boolean includeAJ = page.isAspectJIncluded();
 		final boolean isXtext = page.isXtextSupport();
 		
 		IRunnableWithProgress op = new IRunnableWithProgress() {
 			public void run(IProgressMonitor monitor) throws InvocationTargetException {
 				try {
-					doFinish(projectName, dsalNames, includeAJ, isXtext, monitor);
+					doFinish(projectName, mechanismNames, includeAJ, isXtext, monitor);
 				} catch (Exception e) {
 					throw new InvocationTargetException(e);
 				} finally {
@@ -69,9 +69,9 @@ public class MultiMechanismProjectWizard extends Wizard implements INewWizard {
 		return true;
 	}
 	
-	private void doFinish(String projectName, String[] dsalNames, boolean includeAJ, boolean isXtext, IProgressMonitor monitor) 
+	private void doFinish(String projectName, String[] mechanismNames, boolean includeAJ, boolean isXtext, IProgressMonitor monitor) 
 		throws Exception {
-		MultiMechanismProject mmProj = MultiMechanismProject.create(projectName, dsalNames, includeAJ);
+		MultiMechanismProject mmProj = MultiMechanismProject.create(projectName, mechanismNames, includeAJ);
 		mmProj.commit(monitor);
 		AspectMechanismTestProject amtProj = AspectMechanismTestProject.create(mmProj, isXtext);
 		amtProj.commit(monitor);

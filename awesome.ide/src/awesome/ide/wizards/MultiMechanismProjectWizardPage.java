@@ -147,7 +147,7 @@ public class MultiMechanismProjectWizardPage extends WizardPage {
 	private String getDsalsText() {
 		return dsalNames.getText();
 	}
-	public String[] getDsalNames() {
+	public String[] getMechanismNames() {
 		return getDsalsText().split(",");
 	}
 	public boolean isAspectJIncluded() {

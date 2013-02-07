@@ -11,7 +11,7 @@ import awesome.platform.annotations.AwAspectMechanism;
 import awesome.platform.annotations.AwReify;
 
 @Aspect
-@AwAspectMechanism(id="<%=mechanismId%>")
+<%if(!mechanismId.equals(MultiMechanismProject.ASPECTJ_ID)) {%>@AwAspectMechanism(id="<%=mechanismId%>")<%}%>
 @AwReify(ReifyStrategy.SUPPRESS_STATICINITIALIZATION)
 public class <%=aspectName%> {
 	
