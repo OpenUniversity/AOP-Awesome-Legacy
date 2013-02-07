@@ -116,7 +116,15 @@ public class AwesomeCore {
 		}	
 		return null;
 	}
+	/**
+	 * Returns the id of the mechanism as specified by the @AwAspectMechanism annotation.
+	 * In case the annotation is not present, the aspect is reported as belonging
+	 * to "aspectj".
+	 * @param type assumed to be an aspect type.
+	 * @return
+	 */
 	public static String getMechanismId(ResolvedType type) {
-		return getAnnotationValue(type, ASPECT_MECHANISM_ANNOTATION, "id");
+		String result = getAnnotationValue(type, ASPECT_MECHANISM_ANNOTATION, "id");
+		return (result!=null)? result : "aspectj";
 	}
 }
