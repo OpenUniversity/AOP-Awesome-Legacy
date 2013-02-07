@@ -25,8 +25,8 @@ public class AspectMechanismTestProject extends MechanismProject {
 	public static final String BASE_FOLDER = "base";
 	public static final String TESTAPP_MAIN = "MyBase";
 	public static final String TESTAPP_ASPECT = "MyAspect";
-	private static final String TESTAPP_WEAVE_LAUNCH_SUFFIX = TESTAPP_FOLDER + ".weave.launch";
-	private static final String TESTAPP_EXECUTE_LAUNCH_SUFFIX = TESTAPP_FOLDER + ".execute.launch";
+	private static final String TESTAPP_WEAVE_LAUNCH_SUFFIX = "weave.launch";
+	private static final String TESTAPP_EXECUTE_LAUNCH_SUFFIX = "execute.launch";
 	public static final String WEAVING_INFO_FOLDER = "weaving-info";
 	private MechanismProject mProj;
 	private IJavaProject javaProj;
@@ -69,11 +69,11 @@ public class AspectMechanismTestProject extends MechanismProject {
 			Utils.createFileInFolder(baseFolder, TESTAPP_MAIN + ".java", new TestappMain().generate(new String[]{BASE_FOLDER}));
 			
 			// create a weave.launch file
-			Utils.createFileInFolder(folder, Utils.concat(getMechanismNames()) + "." + TESTAPP_WEAVE_LAUNCH_SUFFIX, 
+			Utils.createFileInFolder(folder, getProjectName() + "." + TESTAPP_WEAVE_LAUNCH_SUFFIX, 
 					new TestappWeaveLaunchGen().generate(new String[]{getProjectName(), TESTAPP_FOLDER, isXtext.toString()}));
 			
 			// create a execute.launch file
-			Utils.createFileInFolder(folder, Utils.concat(getMechanismNames()) + "." +  TESTAPP_EXECUTE_LAUNCH_SUFFIX, 
+			Utils.createFileInFolder(folder, getProjectName() + "." +  TESTAPP_EXECUTE_LAUNCH_SUFFIX, 
 					new TestappExecuteLaunchGen().generate(new String[]{getProjectName(), TESTAPP_FOLDER}));
 		}
 	}
