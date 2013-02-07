@@ -2,22 +2,23 @@
 <% MechanismProject mechProj = (MechanismProject)argument; %>
 Write Awesome tests!
 
-An aspect mechanism project has an associated test project. 
-In this test project you make sure that your aspect mechanism works as expected.
+In this test project you make sure that your aspect mechanism works as expected
+(or that the composition of multiple mechanisms is well functioning in the multi-mechanism case).
 It is done by defining a test application (a base system and some example aspects), 
-passing the application to the weaver, and verify the results. The components of this
-test project are listed below.
+passing the application to the weaver, and verify the results. The project's components
+are listed below.
 
 lib/
 	Jar files required by Awesome. Don't touch...
 <%=AspectMechanismTestProject.TESTAPP_FOLDER%>/
 	Here you create your test application that usually consists of a base system (in base/)
-	and additional aspects (aspects/). We have created a Main file and an initial aspect
-	as a starting point. Note that other aspects you choose to add should have the same
-	class-level annotations. After defining the application, (1) execute weave.launch to
+	and additional aspects (in aspects/). We have created a Main file and initial aspects,
+	one for each mechanism, as a starting point. Note that other aspects you choose to add
+	have appropriate class-level annotations. After defining the application, (1) execute weave.launch to
 	weave the application (2) refresh, and (3) run execute.launch.
 weaving-info/
 	Holds information collected during the weaving of the test application. The info is
-	in binary form, and is deserialized by the test case mentioned below.
+	in binary form, and is used by the test case mentioned below.
 src/testapps
-	Use the enclosing JUnit test case to verify that the results are as expected.
+	Use the enclosing JUnit test case to verify that the results are as expected. See
+	its Javadoc for more details.
