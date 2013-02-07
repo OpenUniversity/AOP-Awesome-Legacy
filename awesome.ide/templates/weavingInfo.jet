@@ -3,6 +3,7 @@
 package <%=projectName%>;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -29,13 +30,33 @@ public class WeavingInfo implements Serializable {
 	 */
 	private Map<String, List<String>> refiedShadows = new HashMap<String, List<String>>();
 	private Map<String, List<String>> matchedAdvice = new HashMap<String, List<String>>();
+	private Map<String, List<String>> matchedBeforeAdvice = new HashMap<String, List<String>>();
+	private Map<String, List<String>> matchedAfterAdvice = new HashMap<String, List<String>>();
 	
 	public void collectReifiedShadows(String className, List<String> shadows) {
 		Collections.sort(shadows);
 		refiedShadows.put(className, shadows);
 	}
-	public void collectMatchedAdvice(String method, List<String> advices) {
-		matchedAdvice.put(method, advices);
+	public void collectMatchedAdvice(String method, List<String> advice) {
+		// we first distinguish between before and after advice
+		List<String> beforeAdvice = new ArrayList<String>();
+		List<String> afterAdvice = new ArrayList<String>();
+		for(String adv : advice) {
+			if(adv.endsWith(".before"))
+				beforeAdvice.add(adv);
+			else if(adv.endsWith(".after"))
+				afterAdvice.add(adv);
+		}
+		Collections.reverse(beforeAdvice); // so they will be kept in the order in which they are executed.
+		matchedBeforeAdvice.put(method, beforeAdvice);
+		matchedAfterAdvice.put(method, afterAdvice);
+		
+		// want to save all before advice and then all after.
+		// originally, they are sorted by the mechanisms.
+		List<String> allAdvice = new ArrayList<String>();
+		allAdvice.addAll(beforeAdvice);
+		allAdvice.addAll(afterAdvice);
+		matchedAdvice.put(method, allAdvice);
 	}
 	/**
 	 * The shadows are alphabetically sorted.
@@ -45,11 +66,29 @@ public class WeavingInfo implements Serializable {
 	}
 	/**
 	 * Only advice applied at method-execution shadows are collected.
-	 * The advice are retrieved in the order in which they are applied.
+	 * The advice are sorted according to the order in which they are executed.
 	 * @return each element in the list is in the form {mechanism_id}.{advice_kind},
 	 * e.g., cool.before, validate.after.
 	 */
 	public List<String> getMatchedAdvice(String method) {
 		return matchedAdvice.get(method);
+	}
+	/**
+	 * Only advice applied at method-execution shadows are collected.
+	 * The advice are sorted according to the order in which they are executed.
+	 * @return each element in the list is in the form {mechanism_id}.{advice_kind},
+	 * e.g., cool.before, validate.before.
+	 */
+	public List<String> getMatchedBeforeAdvice(String method) {
+		return matchedBeforeAdvice.get(method);
+	}
+	/**
+	 * Only advice applied at method-execution shadows are collected.
+	 * The advice are sorted according to the order in which they are executed.
+	 * @return each element in the list is in the form {mechanism_id}.{advice_kind},
+	 * e.g., cool.after, validate.after.
+	 */
+	public List<String> getMatchedAfterAdvice(String method) {
+		return matchedAfterAdvice.get(method);
 	}
 }

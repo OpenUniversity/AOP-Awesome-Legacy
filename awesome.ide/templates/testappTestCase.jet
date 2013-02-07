@@ -41,7 +41,7 @@ public class <%=AspectMechanismTestProject.TESTCASE_NAME%> {
 		info = getWeavingInfo();
 	}
 	/**
-	 * An example test for the reify process
+	 * A test for the reify process.
 	 */
 	@Test
 	public void testReify() {
@@ -56,13 +56,34 @@ public class <%=AspectMechanismTestProject.TESTCASE_NAME%> {
 		assertEquals(expected, shadows);
 	}
 	/**
-	 * An example test for the match process
+	 * A test for the match process.
 	 */
-	@Test
 	public void testMatch() {
 		List<String> advice = info.getMatchedAdvice("<%=AspectMechanismTestProject.BASE_FOLDER%>.<%=AspectMechanismTestProject.TESTAPP_MAIN%>.main");
-		assertEquals("<%=mechanismNames[0]%>.before", advice.get(0));
-		assertEquals("<%=mechanismNames[0]%>.after", advice.get(1));
+		System.out.println(advice);
+		assertEquals(6, advice.size());
+	}
+	/**
+	 * A test for the match process (before advice).
+	 */
+	@Test
+	public void testMatchBefore() {
+		List<String> advice = info.getMatchedBeforeAdvice("<%=AspectMechanismTestProject.BASE_FOLDER%>.<%=AspectMechanismTestProject.TESTAPP_MAIN%>.main");
+		System.out.println(advice);
+		assertEquals(3, advice.size());
+		// note that by default there is no guarantee for a specific advice order<%for(String mech : mechanismNames) {%>
+		assertTrue(advice.contains("<%=mech%>.before"));<%}%>
+	}
+	/**
+	 * A test for the match process (after advice).
+	 */
+	@Test
+	public void testMatchAfter() {
+		List<String> advice = info.getMatchedAfterAdvice("base.MyBase.main");
+		System.out.println(advice);
+		assertEquals(3, advice.size());
+		// note that by default there is no guarantee for a specific advice order<%for(String mech : mechanismNames) {%>
+		assertTrue(advice.contains("<%=mech%>.after"));<%}%>
 	}
 	private WeavingInfo getWeavingInfo() {
 		try {
