@@ -73,16 +73,18 @@ public class MultiMechanismProject extends MechanismProject {
 			monitor.beginTask("Creating Multi-Mechanism Project...", 2);
 		
 		javaProj = Utils.createJavaProject(getProjectName());
+		// note: creation of source folders MUST precede lib.commit.
+		// a matter or build order, otherwise we get weave-time errors. 
+		if(includeAJ) ajFolder.commit(getJavaProject());
+		srcdev.commit(getJavaProject());
+		linkToSourceFoldersOfMechanisms(dsalNames);
 		
 		lib.commit(getJavaProject());
 		ant.commit(getJavaProject());
-		if(includeAJ) ajFolder.commit(getJavaProject());
-		srcdev.commit(getJavaProject());
 		
 		if(monitor != null)
 			monitor.worked(1);
 		
-		linkToSourceFoldersOfMechanisms(dsalNames);
 		// one day, these two should be made classes...
 		createAspectConfigurationFolder();
 		createSpecFolder(dsalNames);
