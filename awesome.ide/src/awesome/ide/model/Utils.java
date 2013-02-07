@@ -206,4 +206,16 @@ public class Utils {
 		//add libs to project class path. should be changed to append!
 		javaProject.setRawClasspath(entries.toArray(new IClasspathEntry[entries.size()]), null);
 	}
+	/**
+	 * Concatenates all the string elements into a single string.
+	 * @param array
+	 * @return
+	 */
+	public static String concat(String[] array) {
+		StringBuffer buffer = new StringBuffer();
+		for(String str : array)
+			buffer.append(str);
+		
+		return buffer.toString();
+	}
 }

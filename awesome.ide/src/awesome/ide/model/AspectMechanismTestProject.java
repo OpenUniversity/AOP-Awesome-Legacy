@@ -69,11 +69,11 @@ public class AspectMechanismTestProject extends MechanismProject {
 			Utils.createFileInFolder(baseFolder, TESTAPP_MAIN + ".java", new TestappMain().generate(new String[]{BASE_FOLDER}));
 			
 			// create a weave.launch file
-			Utils.createFileInFolder(folder, TESTAPP_WEAVE_LAUNCH_SUFFIX, 
+			Utils.createFileInFolder(folder, Utils.concat(getMechanismNames()) + "." + TESTAPP_WEAVE_LAUNCH_SUFFIX, 
 					new TestappWeaveLaunchGen().generate(new String[]{getProjectName(), TESTAPP_FOLDER, isXtext.toString()}));
 			
 			// create a execute.launch file
-			Utils.createFileInFolder(folder, TESTAPP_EXECUTE_LAUNCH_SUFFIX, 
+			Utils.createFileInFolder(folder, Utils.concat(getMechanismNames()) + "." +  TESTAPP_EXECUTE_LAUNCH_SUFFIX, 
 					new TestappExecuteLaunchGen().generate(new String[]{getProjectName(), TESTAPP_FOLDER}));
 		}
 	}
