@@ -23,8 +23,7 @@ public class GenerateFromSpecificationAction implements IObjectActionDelegate {
 		try {
 			mmProj.generateConfigurationAspects();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 	}
 

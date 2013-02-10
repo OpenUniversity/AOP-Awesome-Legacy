@@ -22,4 +22,5 @@ public aspect BeforeAdviceOrderConfig {
 <%}%>
 
 			return result;
+	}
 }

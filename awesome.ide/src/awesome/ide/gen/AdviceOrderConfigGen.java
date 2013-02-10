@@ -26,7 +26,7 @@ public class AdviceOrderConfigGen
   protected final String TEXT_9 = NL + NL + "\t\t\t// setting the desired advice order";
   protected final String TEXT_10 = NL + "\t\t\tresult.addAll(";
   protected final String TEXT_11 = "Effects);";
-  protected final String TEXT_12 = NL + NL + "\t\t\treturn result;" + NL + "}";
+  protected final String TEXT_12 = NL + NL + "\t\t\treturn result;" + NL + "\t}" + NL + "}";
 
   public String generate(Object argument)
   {

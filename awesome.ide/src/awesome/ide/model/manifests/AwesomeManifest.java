@@ -2,8 +2,6 @@ package awesome.ide.model.manifests;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
-import java.io.FileReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringReader;
@@ -46,6 +44,7 @@ public abstract class AwesomeManifest {
 		String line;
 		List<ManifestEntry> result = new LinkedList<ManifestEntry>();
 		while( (line = reader.readLine()) != null ) {
+			if(line.equals("")) continue;
 			String key = line.split(":")[0];
 			String value = line.split(":")[1].trim();
 			ManifestEntry entry = new ManifestEntry();
