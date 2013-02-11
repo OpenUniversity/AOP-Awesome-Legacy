@@ -5,6 +5,7 @@ import org.aspectj.apache.bcel.classfile.annotation.AnnotationGen;
 import org.aspectj.apache.bcel.classfile.annotation.ElementNameValuePairGen;
 import org.aspectj.weaver.AnnotationAJ;
 import org.aspectj.weaver.ResolvedType;
+import org.aspectj.weaver.UnresolvedType;
 import org.aspectj.weaver.bcel.LazyClassGen;
 import org.aspectj.weaver.bcel.LazyMethodGen;
 import org.aspectj.weaver.bcel.UnwovenClassFile;
@@ -125,6 +126,11 @@ public class AwesomeCore {
 	 */
 	public static String getMechanismId(ResolvedType type) {
 		String result = getAnnotationValue(type, ASPECT_MECHANISM_ANNOTATION, "id");
+		return (result!=null)? result : "aspectj";
+	}
+	public static String getMechanismId(UnresolvedType type) {
+		ResolvedType resType = MultiMechanism.getInstance().getWorld().resolve(type);
+		String result = getAnnotationValue(resType, ASPECT_MECHANISM_ANNOTATION, "id");
 		return (result!=null)? result : "aspectj";
 	}
 }

@@ -36,8 +36,8 @@ public aspect WeavingInfoCollector {
 	 * @param shadow
 	 * @param effects
 	 */
-	after(BcelShadow shadow) returning(List<IEffect> effects):
-		execution(List<IEffect> MultiMechanism.multiOrder(..)) && args(..,shadow) {
+	before(List<IEffect> effects, BcelShadow shadow):
+		execution(void MultiMechanism.mix(List<IEffect>, BcelShadow)) && args(effects, shadow) {
 		
 		if(shadow.getKind() == BcelShadow.MethodExecution && effects.size() > 0) {
 			String method = shadow.getEnclosingType().getName() + "." + shadow.getEnclosingMethod().getName();
