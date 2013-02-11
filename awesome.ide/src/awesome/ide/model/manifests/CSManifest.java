@@ -1,5 +1,6 @@
 package awesome.ide.model.manifests;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -53,8 +54,13 @@ public class CSManifest extends AwesomeManifest {
 		
 		for(String value : values) {
 			Advice advice = new Advice();
-			advice.setMechanism(value.split("\\.")[0]);
-			advice.setType(value.split("\\.")[1]);
+			String[] subValues = value.split("\\.");
+			if(subValues.length == 2) {	// the advice type is optional, i.e., "before-advice-order: aspectj cool" is legal
+				advice.setMechanism(subValues[0]);
+				advice.setType(subValues[1]);				
+			} else if(subValues.length == 1) {
+				advice.setMechanism(subValues[0]);
+			}
 			result.add(advice);
 		}
 		

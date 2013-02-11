@@ -1,0 +1,40 @@
+<%@ jet package="awesome.ide.gen" class="EffectComparatorGen" imports="awesome.ide.model.*"%>
+package <%=MultiMechanismProject.CONFIG_FOLDER%>;
+
+import java.util.Comparator;
+import java.util.List;
+
+import org.aspectj.weaver.AdviceKind;
+
+import awesome.platform.AwesomeCore;
+import awesome.platform.IEffect;
+
+
+public class EffectComparator implements Comparator<IEffect> {
+
+	private AdviceKind advKind;
+	private List<String> mechanismOrder;
+	
+	public EffectComparator(AdviceKind advKind, List<String> mechanismOrder) {
+		this.advKind = advKind;
+		this.mechanismOrder = mechanismOrder;
+	}
+	@Override
+	public int compare(IEffect eff1, IEffect eff2) {
+		if(!eff1.getKind().equals(advKind) || !eff2.getKind().equals(advKind)) {
+			throw new RuntimeException("The compared effects should be of kind " + advKind);
+		}
+		
+		String mech1 = AwesomeCore.getMechanismId(eff1.getDeclaringAspect());
+		String mech2 = AwesomeCore.getMechanismId(eff2.getDeclaringAspect());
+		
+		int index1 = mechanismOrder.indexOf(mech1);
+		int index2 = mechanismOrder.indexOf(mech2);
+		
+		if(index1 < index2)
+			return 1;
+		else
+			return -1;
+	}
+
+}

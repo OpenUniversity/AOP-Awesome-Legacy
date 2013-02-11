@@ -1,26 +1,52 @@
-<%@ jet package="awesome.ide.gen" imports="awesome.ide.model.manifests.* java.util.*" class="AdviceOrderConfigGen" %>
-<% List<Advice> advice = (List<Advice>)(((Object[])argument)[0]); %>
-<% List<String> mechanisms = (List<String>)(((Object[])argument)[1]); %>
+<%@ jet package="awesome.ide.gen" imports="awesome.ide.model.manifests.* awesome.ide.model.* java.util.*" class="AdviceOrderConfigGen" %>
+<% List<Advice> adviceOrder = (List<Advice>)argument; %>
+package <%=MultiMechanismProject.CONFIG_FOLDER%>;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import org.aspectj.weaver.AdviceKind;
+import org.aspectj.weaver.bcel.BcelShadow;
+
+import awesome.platform.IEffect;
+import awesome.platform.MultiMechanism;
+
 public aspect BeforeAdviceOrderConfig {
-	List around(MultiMechanism mm, List multiEffects, BcelShadow shadow):
-		execution(List MultiMechanism.multiOrderBefore(List, BcelShadow))
+	List<IEffect> around(MultiMechanism mm, List<List<IEffect>> multiEffects, BcelShadow shadow):
+		execution(List MultiMechanism.multiOrder(List, BcelShadow))
 			&& this(mm) && args(multiEffects, shadow) {
+					
+			List<IEffect> effects = proceed(mm, multiEffects, shadow);
 
-<%for(String mech : mechanisms) {%>
-			int <%=mech.toLowerCase()%>Pos = mm.getMechanismPos(<%=mech%>Mechanism.class);
-<%}%>
-			List<IEffect> result = new ArrayList<IEffect>();
+			// we remove the effects to be sorted from the list of effects,
+			// sort them separately, and then append to the list.
+			List<IEffect> removedEffects = removeEffects(effects, AdviceKind.Before);
+			Collections.sort(removedEffects, new EffectComparator(AdviceKind.Before, 
+					Arrays.asList(<%for(int i=0; i<adviceOrder.size(); i++){%>"<%=adviceOrder.get(i).getMechanism()%>"<%if(i!=adviceOrder.size()-1){%>, <%}}%>)));
+			
+			effects.addAll(removedEffects);
+			
+			return effects;
+	}
+	
+	/**
+	 * Removes all effects of the given kind from the list of effects, and returns
+	 * a list of the removed effects.
+	 * @param effects
+	 * @param kind
+	 * @return
+	 */
+	private List<IEffect> removeEffects(List<IEffect> effects, AdviceKind kind) {
+		List<IEffect> result = new ArrayList<IEffect>();
+		for(IEffect effect : effects)
+			if(effect.getKind().equals(kind))
+				result.add(effect);
 
-			// multiEffects is a List of List<IEffect>
-<% for(String mech : mechanisms) {%>
-			List<IEffect> <%=mech.toLowerCase()%>Effects = (List<IEffect>)multiEffects.get(<%=mech.toLowerCase()%>Pos);
-<%}%>
-
-			// setting the desired advice order
-<% for(Advice adv : advice) { %>
-			result.addAll(<%=adv.getMechanism().toLowerCase()%>Effects);
-<%}%>
-
-			return result;
+		for(IEffect effect : result)
+			effects.remove(effect);
+		
+		return result;
 	}
 }

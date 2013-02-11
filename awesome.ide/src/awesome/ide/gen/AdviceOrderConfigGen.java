@@ -1,6 +1,7 @@
 package awesome.ide.gen;
 
 import awesome.ide.model.manifests.*;
+import awesome.ide.model.*;
 import java.util.*;
 
 public class AdviceOrderConfigGen
@@ -15,47 +16,28 @@ public class AdviceOrderConfigGen
   }
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-  protected final String TEXT_1 = "public aspect BeforeAdviceOrderConfig {" + NL + "\tList around(MultiMechanism mm, List multiEffects, BcelShadow shadow):" + NL + "\t\texecution(List MultiMechanism.multiOrderBefore(List, BcelShadow))" + NL + "\t\t\t&& this(mm) && args(multiEffects, shadow) {" + NL;
-  protected final String TEXT_2 = NL + "\t\t\tint ";
-  protected final String TEXT_3 = "Pos = mm.getMechanismPos(";
-  protected final String TEXT_4 = "Mechanism.class);";
-  protected final String TEXT_5 = NL + "\t\t\tList<IEffect> result = new ArrayList<IEffect>();" + NL + "" + NL + "\t\t\t// multiEffects is a List of List<IEffect>";
-  protected final String TEXT_6 = NL + "\t\t\tList<IEffect> ";
-  protected final String TEXT_7 = "Effects = (List<IEffect>)multiEffects.get(";
-  protected final String TEXT_8 = "Pos);";
-  protected final String TEXT_9 = NL + NL + "\t\t\t// setting the desired advice order";
-  protected final String TEXT_10 = NL + "\t\t\tresult.addAll(";
-  protected final String TEXT_11 = "Effects);";
-  protected final String TEXT_12 = NL + NL + "\t\t\treturn result;" + NL + "\t}" + NL + "}";
+  protected final String TEXT_1 = "package ";
+  protected final String TEXT_2 = ";" + NL + "" + NL + "import java.util.ArrayList;" + NL + "import java.util.Arrays;" + NL + "import java.util.Collections;" + NL + "import java.util.List;" + NL + "" + NL + "import org.aspectj.weaver.AdviceKind;" + NL + "import org.aspectj.weaver.bcel.BcelShadow;" + NL + "" + NL + "import awesome.platform.IEffect;" + NL + "import awesome.platform.MultiMechanism;" + NL + "" + NL + "public aspect BeforeAdviceOrderConfig {" + NL + "\tList<IEffect> around(MultiMechanism mm, List<List<IEffect>> multiEffects, BcelShadow shadow):" + NL + "\t\texecution(List MultiMechanism.multiOrder(List, BcelShadow))" + NL + "\t\t\t&& this(mm) && args(multiEffects, shadow) {" + NL + "\t\t\t\t\t" + NL + "\t\t\tList<IEffect> effects = proceed(mm, multiEffects, shadow);" + NL + "" + NL + "\t\t\t// we remove the effects to be sorted from the list of effects," + NL + "\t\t\t// sort them separately, and then append to the list." + NL + "\t\t\tList<IEffect> removedEffects = removeEffects(effects, AdviceKind.Before);" + NL + "\t\t\tCollections.sort(removedEffects, new EffectComparator(AdviceKind.Before, " + NL + "\t\t\t\t\tArrays.asList(";
+  protected final String TEXT_3 = "\"";
+  protected final String TEXT_4 = "\"";
+  protected final String TEXT_5 = ", ";
+  protected final String TEXT_6 = ")));" + NL + "\t\t\t" + NL + "\t\t\teffects.addAll(removedEffects);" + NL + "\t\t\t" + NL + "\t\t\treturn effects;" + NL + "\t}" + NL + "\t" + NL + "\t/**" + NL + "\t * Removes all effects of the given kind from the list of effects, and returns" + NL + "\t * a list of the removed effects." + NL + "\t * @param effects" + NL + "\t * @param kind" + NL + "\t * @return" + NL + "\t */" + NL + "\tprivate List<IEffect> removeEffects(List<IEffect> effects, AdviceKind kind) {" + NL + "\t\tList<IEffect> result = new ArrayList<IEffect>();" + NL + "\t\tfor(IEffect effect : effects)" + NL + "\t\t\tif(effect.getKind().equals(kind))" + NL + "\t\t\t\tresult.add(effect);" + NL + "" + NL + "\t\tfor(IEffect effect : result)" + NL + "\t\t\teffects.remove(effect);" + NL + "\t\t" + NL + "\t\treturn result;" + NL + "\t}" + NL + "}";
 
   public String generate(Object argument)
   {
     final StringBuffer stringBuffer = new StringBuffer();
-     List<Advice> advice = (List<Advice>)(((Object[])argument)[0]); 
-     List<String> mechanisms = (List<String>)(((Object[])argument)[1]); 
+     List<Advice> adviceOrder = (List<Advice>)argument; 
     stringBuffer.append(TEXT_1);
-    for(String mech : mechanisms) {
+    stringBuffer.append(MultiMechanismProject.CONFIG_FOLDER);
     stringBuffer.append(TEXT_2);
-    stringBuffer.append(mech.toLowerCase());
+    for(int i=0; i<adviceOrder.size(); i++){
     stringBuffer.append(TEXT_3);
-    stringBuffer.append(mech);
+    stringBuffer.append(adviceOrder.get(i).getMechanism());
     stringBuffer.append(TEXT_4);
-    }
+    if(i!=adviceOrder.size()-1){
     stringBuffer.append(TEXT_5);
-     for(String mech : mechanisms) {
+    }}
     stringBuffer.append(TEXT_6);
-    stringBuffer.append(mech.toLowerCase());
-    stringBuffer.append(TEXT_7);
-    stringBuffer.append(mech.toLowerCase());
-    stringBuffer.append(TEXT_8);
-    }
-    stringBuffer.append(TEXT_9);
-     for(Advice adv : advice) { 
-    stringBuffer.append(TEXT_10);
-    stringBuffer.append(adv.getMechanism().toLowerCase());
-    stringBuffer.append(TEXT_11);
-    }
-    stringBuffer.append(TEXT_12);
     return stringBuffer.toString();
   }
 }

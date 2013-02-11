@@ -2,7 +2,6 @@ package awesome.ide.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.ajdt.ui.AspectJUIPlugin;
@@ -20,6 +19,7 @@ import org.eclipse.jdt.core.JavaCore;
 
 import awesome.ide.Activator;
 import awesome.ide.gen.AdviceOrderConfigGen;
+import awesome.ide.gen.EffectComparatorGen;
 import awesome.ide.model.manifests.Advice;
 import awesome.ide.model.manifests.CSManifest;
 
@@ -35,6 +35,7 @@ public class MultiMechanismProject extends MechanismProject {
 	private MechanismSrcFolder ajFolder;
 	private SrcDevFolder srcdev;
 	private IJavaProject javaProj;
+	private SrcFolder config;
 	private String name;
 	private String[] mechanismNames;
 	boolean includeAJ;
@@ -52,8 +53,8 @@ public class MultiMechanismProject extends MechanismProject {
 		} else {			
 			this.mechanismNames = mechanismNames;
 		}
-		//this.mechanismNames = mechanismNames;
-		
+
+		config = new SrcFolder(CONFIG_FOLDER, CONFIG_FOLDER);
 		ant = new AntFile();
 		if(includeAJ) ajFolder = new MechanismSrcFolder(AJ_FOLDER_NAME, ASPECTJ_ID);
 		srcdev = new SrcDevFolder(getProjectName());
@@ -88,6 +89,8 @@ public class MultiMechanismProject extends MechanismProject {
 		srcdev.commit(getJavaProject());
 		linkToSourceFoldersOfMechanisms(mechanismNames);
 		
+		config.commit(getJavaProject());
+		config.addCompilationUnit("EffectComparator.java", new EffectComparatorGen().generate(null));
 		lib.commit(getJavaProject());
 		ant.commit(getJavaProject());
 		
@@ -95,7 +98,6 @@ public class MultiMechanismProject extends MechanismProject {
 			monitor.worked(1);
 		
 		// one day, these two should be made classes...
-		createAspectConfigurationFolder();
 		createSpecFolder(mechanismNames);
 		
 		try {
@@ -144,14 +146,6 @@ public class MultiMechanismProject extends MechanismProject {
 	}
 
 	/**
-	 * A folder is generated for holding the generated configuration aspects. 
-	 * @throws Exception
-	 */
-	private void createAspectConfigurationFolder() {
-		Utils.createFolder(getJavaProject(), CONFIG_FOLDER);
-	}
-
-	/**
 	 * Creates a spec folder within the multi-mechanism project. The folder
 	 * contains the manifest of the composed mechanisms and a composition specification file.
 	 * @param javaProject
@@ -190,34 +184,30 @@ public class MultiMechanismProject extends MechanismProject {
 	}
 
 	/**
-	 * Currently we generate for the BEFORE_ADVICE_ORDER key
+	 * Currently we only generate for the BEFORE_ADVICE_ORDER key.
+	 * Note: this method is called from the action after retrieving the mm project.
+	 * However, the method getProject is very dangerous since the fields are not
+	 * initialized properly. I guess a major refactoring is needed to solve that.
+	 * Anyway, note the commented line below starting with // config.add...
+	 * e.g. this is not working because of the problem mentioned above..
+	 * also the method getMechanismNames() returns null and so on...
 	 * @throws Exception 
 	 */
-	public void generateConfigurationAspects() throws Exception {
-		AdviceOrderConfigGen gen = new AdviceOrderConfigGen();
-		
+	public void generateConfigurationAspects() throws Exception {		
 		// get the before advice order
 		List<Advice> advice = getCompositionSpecification().getAdviceOrder(CSManifest.AdviceType.Before);
 		
-		// generate the contents of the configuration aspect
-		List<String> mechanisms = getMechanismsCapitalized(advice);
-		Object[] argument = new Object[]{advice, mechanisms};
-		String contents = gen.generate(argument);
+		String contents = new AdviceOrderConfigGen().generate(advice);
+		
+		//config.addCompilationUnit("BeforeAdviceOrderConfig.aj", contents);
 		
 		// create the aspect in the config folder
 		IFolder folder = getConfigFolder();
-		IFile file = folder.getFile("BeforeAdviceOrderConfig.aj");
-		file.create(Utils.toInputStream(contents), true, null);
+		Utils.createFileInFolder(folder, "BeforeAdviceOrderConfig.aj", contents);
 	}
+	
 	public IFolder getConfigFolder() {
-		return ResourcesPlugin.getWorkspace().getRoot().getProject(name).getFolder(CONFIG_FOLDER);
-	}
-
-	private List<String> getMechanismsCapitalized(List<Advice> advice) {
-		List<String> result = new LinkedList<String>();
-		for(Advice adv : advice)
-			if(!result.contains(Utils.capitalize(adv.getMechanism()))) result.add(Utils.capitalize(adv.getMechanism()));
-		return result;
+		return ResourcesPlugin.getWorkspace().getRoot().getProject(name).getFolder(CONFIG_FOLDER + "/" + CONFIG_FOLDER);
 	}
 
 	@Override
