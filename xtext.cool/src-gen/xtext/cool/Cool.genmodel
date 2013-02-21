@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/xtext.cool/src-gen"
+    editDirectory="/xtext.cool.edit/src" editorDirectory="/xtext.cool.editor/src"
+    modelPluginID="xtext.cool" forceOverwrite="true" modelName="Cool" updateClasspath="false"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" complianceLevel="5.0"
+    copyrightFields="false" editPluginID="xtext.cool.edit" editorPluginID="xtext.cool.editor">
+  <genPackages prefix="Cool" basePackage="xtext.cool" disposableProviderFactory="true"
+      ecorePackage="Cool.ecore#/">
+    <genClasses ecoreClass="Cool.ecore#//CoordinatorDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cool.ecore#//CoordinatorDeclaration/granularity"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cool.ecore#//CoordinatorDeclaration/className"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cool.ecore#//CoordinatorDeclaration/body"/>
+    </genClasses>
+    <genClasses ecoreClass="Cool.ecore#//CoordinatorBody">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cool.ecore#//CoordinatorBody/condVars"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cool.ecore#//CoordinatorBody/ordVars"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cool.ecore#//CoordinatorBody/selfexMethods"/>
+    </genClasses>
+    <genClasses ecoreClass="Cool.ecore#//CondVar">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cool.ecore#//CondVar/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cool.ecore#//CondVar/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Cool.ecore#//OrdVar">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cool.ecore#//OrdVar/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cool.ecore#//OrdVar/value"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
