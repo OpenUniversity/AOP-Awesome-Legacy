@@ -52,7 +52,7 @@ public class AdviceOrderConfigGenTest {
 	@Test
 	public void testGenerate() throws Exception {
 		AdviceOrderConfigGen gen = new AdviceOrderConfigGen();
-		List<Advice> advice = new CSManifest(CS_CONTENT).getAdviceOrder(CSManifest.AdviceType.Before);
+		List<Advice> advice = new CSManifest(CS_CONTENT).getAdviceOrder(CSManifest.BEFORE_ADVICE);
 		List<String> mechanisms = getMechanismsCapitalized(advice);
 		Object[] argument = new Object[]{advice, mechanisms};
 		assertEquals(EXPECTED, gen.generate(argument));

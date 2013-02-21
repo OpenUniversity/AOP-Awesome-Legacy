@@ -13,7 +13,7 @@ import org.aspectj.weaver.bcel.BcelShadow;
 import awesome.platform.IEffect;
 import awesome.platform.MultiMechanism;
 
-public aspect BeforeAdviceOrderConfig {
+public aspect <%=Utils.capitalize(adviceOrder.get(0).getType())%>AdviceOrderConfig {
 	List<IEffect> around(MultiMechanism mm, List<List<IEffect>> multiEffects, BcelShadow shadow):
 		execution(List MultiMechanism.multiOrder(List, BcelShadow))
 			&& this(mm) && args(multiEffects, shadow) {
@@ -22,9 +22,9 @@ public aspect BeforeAdviceOrderConfig {
 
 			// we remove the effects to be sorted from the list of effects,
 			// sort them separately, and then append to the list.
-			List<IEffect> removedEffects = removeEffects(effects, AdviceKind.Before);
-			Collections.sort(removedEffects, new EffectComparator(AdviceKind.Before, 
-					Arrays.asList(<%for(int i=0; i<adviceOrder.size(); i++){%>"<%=adviceOrder.get(i).getMechanism()%>"<%if(i!=adviceOrder.size()-1){%>, <%}}%>)));
+			List<IEffect> removedEffects = removeEffects(effects, AdviceKind.<%=Utils.capitalize(adviceOrder.get(0).getType())%>);
+			Collections.sort(removedEffects, new EffectComparator(AdviceKind.<%=Utils.capitalize(adviceOrder.get(0).getType())%>, 
+					Arrays.asList(<%for(int i=0, j=adviceOrder.size()-1; i<adviceOrder.size(); i++, j--){%>"<%if(adviceOrder.get(0).getType().equals(CSManifest.AFTER_ADVICE)){%><%=adviceOrder.get(j).getMechanism()%><%}else{%><%=adviceOrder.get(i).getMechanism()%><%}%>"<%if(i!=adviceOrder.size()-1){%>, <%}}%>)));
 			
 			effects.addAll(removedEffects);
 			

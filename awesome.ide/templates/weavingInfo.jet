@@ -51,8 +51,8 @@ public class WeavingInfo implements Serializable {
 		matchedBeforeAdvice.put(method, beforeAdvice);
 		matchedAfterAdvice.put(method, afterAdvice);
 		
-		// want to save all before advice and then all after.
-		// originally, they are sorted by the mechanisms.
+		// we want to save all before advice and then all after.
+		// originally, they are sorted according to the mechanisms.
 		List<String> allAdvice = new ArrayList<String>();
 		allAdvice.addAll(beforeAdvice);
 		allAdvice.addAll(afterAdvice);

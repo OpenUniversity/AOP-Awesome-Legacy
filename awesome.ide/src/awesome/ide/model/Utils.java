@@ -161,7 +161,10 @@ public class Utils {
 		InputStream source = toInputStream(content);
 		try {
 			IFile file = folder.getFile(fileName);
-			file.create(source, false, null);
+			if(file.exists())
+				file.setContents(source, IFile.NONE, null);
+			else
+				file.create(source, false, null);
 			return file;
 		} catch (CoreException e) {
 			throw new RuntimeException(e);

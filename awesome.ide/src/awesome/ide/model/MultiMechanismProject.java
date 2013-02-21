@@ -193,17 +193,29 @@ public class MultiMechanismProject extends MechanismProject {
 	 * also the method getMechanismNames() returns null and so on...
 	 * @throws Exception 
 	 */
-	public void generateConfigurationAspects() throws Exception {		
-		// get the before advice order
-		List<Advice> advice = getCompositionSpecification().getAdviceOrder(CSManifest.AdviceType.Before);
-		
-		String contents = new AdviceOrderConfigGen().generate(advice);
-		
-		//config.addCompilationUnit("BeforeAdviceOrderConfig.aj", contents);
+	public void generateConfigurationAspects() throws Exception {
+		List<Advice> beforeAdviceOrder = getCompositionSpecification().getAdviceOrder(CSManifest.BEFORE_ADVICE);
+		List<Advice> afterAdviceOrder = getCompositionSpecification().getAdviceOrder(CSManifest.AFTER_ADVICE);
+		List<Advice> aroundAdviceOrder = getCompositionSpecification().getAdviceOrder(CSManifest.AROUND_ADVICE);
+
+		if(beforeAdviceOrder!=null) {
+			generateAdviceOrderAspect(beforeAdviceOrder);			
+		}
+		if(afterAdviceOrder!=null) {
+			generateAdviceOrderAspect(afterAdviceOrder);
+		}
+		if(aroundAdviceOrder!=null) {
+			generateAdviceOrderAspect(aroundAdviceOrder);
+		}
+	}
+
+	private void generateAdviceOrderAspect(List<Advice> adviceOrder) {
+		String contents = new AdviceOrderConfigGen().generate(adviceOrder);
+		//config.addCompilationUnit("BeforeAdviceOrderConfig.aj", contents); // do not try this option! see comment of calling method.
 		
 		// create the aspect in the config folder
 		IFolder folder = getConfigFolder();
-		Utils.createFileInFolder(folder, "BeforeAdviceOrderConfig.aj", contents);
+		Utils.createFileInFolder(folder, Utils.capitalize(adviceOrder.get(0).getType()) + "AdviceOrderConfig.aj", contents);
 	}
 	
 	public IFolder getConfigFolder() {

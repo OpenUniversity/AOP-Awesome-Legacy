@@ -42,7 +42,7 @@ public class TestGenerationOfAdviceOrderConfigAspects {
 		manifest.addEntry(CSManifest.BEFORE_ADVICE_ORDER_KEY, "validate.validate cool.lock aspectj.before");
 		
 		// check the added entry
-		assertEquals(3, manifest.getAdviceOrder(CSManifest.AdviceType.Before).size());
+		assertEquals(3, manifest.getAdviceOrder(CSManifest.BEFORE_ADVICE).size());
 		
 		mmProj.generateConfigurationAspects();
 		

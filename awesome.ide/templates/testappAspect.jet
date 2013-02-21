@@ -5,18 +5,27 @@
 package <%=packageName%>;
 
 import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.ProceedingJoinPoint;
 
 import awesome.platform.ReifyStrategy;
 import awesome.platform.annotations.AwAspectMechanism;
 import awesome.platform.annotations.AwReify;
 
 @Aspect
-<%if(!mechanismId.equals(MultiMechanismProject.ASPECTJ_ID)) {%>@AwAspectMechanism(id="<%=mechanismId%>")<%}%>
+<%if(!mechanismId.equals(MultiMechanismProject.ASPECTJ_ID)) {%>
+@AwAspectMechanism(id="<%=mechanismId%>")<%}%>
 @AwReify(ReifyStrategy.SUPPRESS_STATICINITIALIZATION)
 public class <%=aspectName%> {
 	
 	@AwReify(ReifyStrategy.SUPPRESS_ALL)
 	public <%=aspectName%>() {}
+	
+	@AwReify(ReifyStrategy.SUPPRESS_WITHIN)
+	@Around("execution(* <%=AspectMechanismTestProject.BASE_FOLDER%>.<%=AspectMechanismTestProject.TESTAPP_MAIN%>.main(..))")
+	public void <%=mechanismId%>Around(ProceedingJoinPoint pjp) {
+		System.out.println("Around main... (<%=aspectName%>)");
+		pjp.proceed();
+	}
 	
 	@AwReify(ReifyStrategy.SUPPRESS_WITHIN)
 	@Before("execution(* <%=AspectMechanismTestProject.BASE_FOLDER%>.<%=AspectMechanismTestProject.TESTAPP_MAIN%>.main(..))")
