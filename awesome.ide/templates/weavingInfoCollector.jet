@@ -64,10 +64,17 @@ public aspect WeavingInfoCollector {
 	private void serialize() {
 		ObjectOutputStream out;
 		try {
-			out = new ObjectOutputStream(
-					new FileOutputStream("<%=AspectMechanismTestProject.WEAVING_INFO_FOLDER%>/WeavingInfo.out"));
-			out.writeObject(winfo);
-			out.close(); // Also flushes output
+			// this check ensures that info is not collected if the directory does not exist.
+			// this is the case with the end-user project where we do not want the info to be
+			// collected but still the collecting code is includes in the build. a simple removal
+			// of the files from the build (using ant's fileset) does not work since other files 
+			//are getting woven hence an error is reported.
+			if(new File("<%=AspectMechanismTestProject.WEAVING_INFO_FOLDER%>").exists()) {
+				out = new ObjectOutputStream(
+						new FileOutputStream("<%=AspectMechanismTestProject.WEAVING_INFO_FOLDER%>/WeavingInfo.out"));
+				out.writeObject(winfo);
+				out.close(); // Also flushes output
+			}
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		} 
