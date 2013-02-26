@@ -1,4 +1,6 @@
 RULE_ID=4
+T__25=25
+T__24=24
 T__23=23
 T__22=22
 RULE_ANY_OTHER=10
@@ -22,12 +24,14 @@ RULE_WS=9
 '}'=15
 'condition'=16
 '{'=14
-'per_class'=23
+'per_class'=25
 'selfex'=20
 ';'=17
 'false'=12
-'='=21
+'='=23
 'int'=19
+'};'=22
+'mutex'=21
 'coordinator'=13
 ','=18
-'.'=22
+'.'=24

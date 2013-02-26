@@ -143,13 +143,50 @@ public interface CoolPackage extends EPackage
   int COORDINATOR_BODY__SELFEX_METHODS = 2;
 
   /**
+   * The feature id for the '<em><b>Mutex Sets</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COORDINATOR_BODY__MUTEX_SETS = 3;
+
+  /**
    * The number of structural features of the '<em>Coordinator Body</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int COORDINATOR_BODY_FEATURE_COUNT = 3;
+  int COORDINATOR_BODY_FEATURE_COUNT = 4;
+
+  /**
+   * The meta object id for the '{@link xtext.cool.cool.impl.MutexSetImpl <em>Mutex Set</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.cool.cool.impl.MutexSetImpl
+   * @see xtext.cool.cool.impl.CoolPackageImpl#getMutexSet()
+   * @generated
+   */
+  int MUTEX_SET = 2;
+
+  /**
+   * The feature id for the '<em><b>Methods</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MUTEX_SET__METHODS = 0;
+
+  /**
+   * The number of structural features of the '<em>Mutex Set</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MUTEX_SET_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link xtext.cool.cool.impl.CondVarImpl <em>Cond Var</em>}' class.
@@ -159,7 +196,7 @@ public interface CoolPackage extends EPackage
    * @see xtext.cool.cool.impl.CoolPackageImpl#getCondVar()
    * @generated
    */
-  int COND_VAR = 2;
+  int COND_VAR = 3;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -196,7 +233,7 @@ public interface CoolPackage extends EPackage
    * @see xtext.cool.cool.impl.CoolPackageImpl#getOrdVar()
    * @generated
    */
-  int ORD_VAR = 3;
+  int ORD_VAR = 4;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -311,6 +348,38 @@ public interface CoolPackage extends EPackage
    * @generated
    */
   EAttribute getCoordinatorBody_SelfexMethods();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link xtext.cool.cool.CoordinatorBody#getMutexSets <em>Mutex Sets</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Mutex Sets</em>'.
+   * @see xtext.cool.cool.CoordinatorBody#getMutexSets()
+   * @see #getCoordinatorBody()
+   * @generated
+   */
+  EReference getCoordinatorBody_MutexSets();
+
+  /**
+   * Returns the meta object for class '{@link xtext.cool.cool.MutexSet <em>Mutex Set</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Mutex Set</em>'.
+   * @see xtext.cool.cool.MutexSet
+   * @generated
+   */
+  EClass getMutexSet();
+
+  /**
+   * Returns the meta object for the attribute list '{@link xtext.cool.cool.MutexSet#getMethods <em>Methods</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Methods</em>'.
+   * @see xtext.cool.cool.MutexSet#getMethods()
+   * @see #getMutexSet()
+   * @generated
+   */
+  EAttribute getMutexSet_Methods();
 
   /**
    * Returns the meta object for class '{@link xtext.cool.cool.CondVar <em>Cond Var</em>}'.
@@ -466,6 +535,32 @@ public interface CoolPackage extends EPackage
      * @generated
      */
     EAttribute COORDINATOR_BODY__SELFEX_METHODS = eINSTANCE.getCoordinatorBody_SelfexMethods();
+
+    /**
+     * The meta object literal for the '<em><b>Mutex Sets</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference COORDINATOR_BODY__MUTEX_SETS = eINSTANCE.getCoordinatorBody_MutexSets();
+
+    /**
+     * The meta object literal for the '{@link xtext.cool.cool.impl.MutexSetImpl <em>Mutex Set</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.cool.cool.impl.MutexSetImpl
+     * @see xtext.cool.cool.impl.CoolPackageImpl#getMutexSet()
+     * @generated
+     */
+    EClass MUTEX_SET = eINSTANCE.getMutexSet();
+
+    /**
+     * The meta object literal for the '<em><b>Methods</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MUTEX_SET__METHODS = eINSTANCE.getMutexSet_Methods();
 
     /**
      * The meta object literal for the '{@link xtext.cool.cool.impl.CondVarImpl <em>Cond Var</em>}' class.

@@ -46,6 +46,8 @@ public class CoolParser extends AbstractContentAssistParser {
 					put(grammarAccess.getCoordinatorBodyAccess().getGroup_3_2(), "rule__CoordinatorBody__Group_3_2__0");
 					put(grammarAccess.getCoordinatorBodyAccess().getGroup_4(), "rule__CoordinatorBody__Group_4__0");
 					put(grammarAccess.getCoordinatorBodyAccess().getGroup_4_2(), "rule__CoordinatorBody__Group_4_2__0");
+					put(grammarAccess.getMutexSetAccess().getGroup(), "rule__MutexSet__Group__0");
+					put(grammarAccess.getMutexSetAccess().getGroup_3(), "rule__MutexSet__Group_3__0");
 					put(grammarAccess.getCondVarAccess().getGroup(), "rule__CondVar__Group__0");
 					put(grammarAccess.getOrdVarAccess().getGroup(), "rule__OrdVar__Group__0");
 					put(grammarAccess.getQualifiedNameAccess().getGroup(), "rule__QualifiedName__Group__0");
@@ -59,6 +61,9 @@ public class CoolParser extends AbstractContentAssistParser {
 					put(grammarAccess.getCoordinatorBodyAccess().getOrdVarsAssignment_3_2_1(), "rule__CoordinatorBody__OrdVarsAssignment_3_2_1");
 					put(grammarAccess.getCoordinatorBodyAccess().getSelfexMethodsAssignment_4_1(), "rule__CoordinatorBody__SelfexMethodsAssignment_4_1");
 					put(grammarAccess.getCoordinatorBodyAccess().getSelfexMethodsAssignment_4_2_1(), "rule__CoordinatorBody__SelfexMethodsAssignment_4_2_1");
+					put(grammarAccess.getCoordinatorBodyAccess().getMutexSetsAssignment_5(), "rule__CoordinatorBody__MutexSetsAssignment_5");
+					put(grammarAccess.getMutexSetAccess().getMethodsAssignment_2(), "rule__MutexSet__MethodsAssignment_2");
+					put(grammarAccess.getMutexSetAccess().getMethodsAssignment_3_1(), "rule__MutexSet__MethodsAssignment_3_1");
 					put(grammarAccess.getCondVarAccess().getNameAssignment_0(), "rule__CondVar__NameAssignment_0");
 					put(grammarAccess.getCondVarAccess().getValueAssignment_2(), "rule__CondVar__ValueAssignment_2");
 					put(grammarAccess.getOrdVarAccess().getNameAssignment_0(), "rule__OrdVar__NameAssignment_0");

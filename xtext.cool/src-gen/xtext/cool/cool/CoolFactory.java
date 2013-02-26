@@ -44,6 +44,15 @@ public interface CoolFactory extends EFactory
   CoordinatorBody createCoordinatorBody();
 
   /**
+   * Returns a new object of class '<em>Mutex Set</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Mutex Set</em>'.
+   * @generated
+   */
+  MutexSet createMutexSet();
+
+  /**
    * Returns a new object of class '<em>Cond Var</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

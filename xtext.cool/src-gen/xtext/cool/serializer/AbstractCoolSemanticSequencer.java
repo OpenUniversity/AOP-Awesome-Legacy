@@ -17,6 +17,7 @@ import xtext.cool.cool.CondVar;
 import xtext.cool.cool.CoolPackage;
 import xtext.cool.cool.CoordinatorBody;
 import xtext.cool.cool.CoordinatorDeclaration;
+import xtext.cool.cool.MutexSet;
 import xtext.cool.cool.OrdVar;
 import xtext.cool.services.CoolGrammarAccess;
 
@@ -66,6 +67,12 @@ public class AbstractCoolSemanticSequencer extends AbstractSemanticSequencer {
 					return; 
 				}
 				else break;
+			case CoolPackage.MUTEX_SET:
+				if(context == grammarAccess.getMutexSetRule()) {
+					sequence_MutexSet(context, (MutexSet) semanticObject); 
+					return; 
+				}
+				else break;
 			case CoolPackage.ORD_VAR:
 				if(context == grammarAccess.getOrdVarRule()) {
 					sequence_OrdVar(context, (OrdVar) semanticObject); 
@@ -97,7 +104,12 @@ public class AbstractCoolSemanticSequencer extends AbstractSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     ((condVars+=CondVar condVars+=CondVar*)* (ordVars+=OrdVar ordVars+=OrdVar*)* (selfexMethods+=QualifiedName selfexMethods+=QualifiedName*)*)
+	 *     (
+	 *         (condVars+=CondVar condVars+=CondVar*)* 
+	 *         (ordVars+=OrdVar ordVars+=OrdVar*)* 
+	 *         (selfexMethods+=QualifiedName selfexMethods+=QualifiedName*)? 
+	 *         mutexSets+=MutexSet*
+	 *     )
 	 */
 	protected void sequence_CoordinatorBody(EObject context, CoordinatorBody semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -109,6 +121,15 @@ public class AbstractCoolSemanticSequencer extends AbstractSemanticSequencer {
 	 *     (granularity='per_class'? className=QualifiedName body=CoordinatorBody?)
 	 */
 	protected void sequence_CoordinatorDeclaration(EObject context, CoordinatorDeclaration semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (methods+=QualifiedName methods+=QualifiedName+)
+	 */
+	protected void sequence_MutexSet(EObject context, MutexSet semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

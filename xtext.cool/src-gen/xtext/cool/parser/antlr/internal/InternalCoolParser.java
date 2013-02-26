@@ -21,9 +21,11 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalCoolParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'per_class'", "'coordinator'", "'{'", "'condition'", "','", "';'", "'int'", "'selfex'", "'}'", "'='", "'true'", "'false'", "'.'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'per_class'", "'coordinator'", "'{'", "'condition'", "','", "';'", "'int'", "'selfex'", "'}'", "'mutex'", "'};'", "'='", "'true'", "'false'", "'.'"
     };
     public static final int RULE_ID=4;
+    public static final int T__25=25;
+    public static final int T__24=24;
     public static final int T__23=23;
     public static final int T__22=22;
     public static final int RULE_ANY_OTHER=10;
@@ -307,7 +309,7 @@ public class InternalCoolParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleCoordinatorBody"
-    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:152:1: ruleCoordinatorBody returns [EObject current=null] : (otherlv_0= '{' () (otherlv_2= 'condition' ( (lv_condVars_3_0= ruleCondVar ) ) (otherlv_4= ',' ( (lv_condVars_5_0= ruleCondVar ) ) )* otherlv_6= ';' )* (otherlv_7= 'int' ( (lv_ordVars_8_0= ruleOrdVar ) ) (otherlv_9= ',' ( (lv_ordVars_10_0= ruleOrdVar ) ) )* otherlv_11= ';' )* (otherlv_12= 'selfex' ( (lv_selfexMethods_13_0= ruleQualifiedName ) ) (otherlv_14= ',' ( (lv_selfexMethods_15_0= ruleQualifiedName ) ) )* otherlv_16= ';' )* otherlv_17= '}' ) ;
+    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:152:1: ruleCoordinatorBody returns [EObject current=null] : (otherlv_0= '{' () (otherlv_2= 'condition' ( (lv_condVars_3_0= ruleCondVar ) ) (otherlv_4= ',' ( (lv_condVars_5_0= ruleCondVar ) ) )* otherlv_6= ';' )* (otherlv_7= 'int' ( (lv_ordVars_8_0= ruleOrdVar ) ) (otherlv_9= ',' ( (lv_ordVars_10_0= ruleOrdVar ) ) )* otherlv_11= ';' )* (otherlv_12= 'selfex' ( (lv_selfexMethods_13_0= ruleQualifiedName ) ) (otherlv_14= ',' ( (lv_selfexMethods_15_0= ruleQualifiedName ) ) )* otherlv_16= ';' )? ( (lv_mutexSets_17_0= ruleMutexSet ) )* otherlv_18= '}' ) ;
     public final EObject ruleCoordinatorBody() throws RecognitionException {
         EObject current = null;
 
@@ -321,7 +323,7 @@ public class InternalCoolParser extends AbstractInternalAntlrParser {
         Token otherlv_12=null;
         Token otherlv_14=null;
         Token otherlv_16=null;
-        Token otherlv_17=null;
+        Token otherlv_18=null;
         EObject lv_condVars_3_0 = null;
 
         EObject lv_condVars_5_0 = null;
@@ -334,15 +336,17 @@ public class InternalCoolParser extends AbstractInternalAntlrParser {
 
         AntlrDatatypeRuleToken lv_selfexMethods_15_0 = null;
 
+        EObject lv_mutexSets_17_0 = null;
+
 
          enterRule(); 
             
         try {
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:155:28: ( (otherlv_0= '{' () (otherlv_2= 'condition' ( (lv_condVars_3_0= ruleCondVar ) ) (otherlv_4= ',' ( (lv_condVars_5_0= ruleCondVar ) ) )* otherlv_6= ';' )* (otherlv_7= 'int' ( (lv_ordVars_8_0= ruleOrdVar ) ) (otherlv_9= ',' ( (lv_ordVars_10_0= ruleOrdVar ) ) )* otherlv_11= ';' )* (otherlv_12= 'selfex' ( (lv_selfexMethods_13_0= ruleQualifiedName ) ) (otherlv_14= ',' ( (lv_selfexMethods_15_0= ruleQualifiedName ) ) )* otherlv_16= ';' )* otherlv_17= '}' ) )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:156:1: (otherlv_0= '{' () (otherlv_2= 'condition' ( (lv_condVars_3_0= ruleCondVar ) ) (otherlv_4= ',' ( (lv_condVars_5_0= ruleCondVar ) ) )* otherlv_6= ';' )* (otherlv_7= 'int' ( (lv_ordVars_8_0= ruleOrdVar ) ) (otherlv_9= ',' ( (lv_ordVars_10_0= ruleOrdVar ) ) )* otherlv_11= ';' )* (otherlv_12= 'selfex' ( (lv_selfexMethods_13_0= ruleQualifiedName ) ) (otherlv_14= ',' ( (lv_selfexMethods_15_0= ruleQualifiedName ) ) )* otherlv_16= ';' )* otherlv_17= '}' )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:155:28: ( (otherlv_0= '{' () (otherlv_2= 'condition' ( (lv_condVars_3_0= ruleCondVar ) ) (otherlv_4= ',' ( (lv_condVars_5_0= ruleCondVar ) ) )* otherlv_6= ';' )* (otherlv_7= 'int' ( (lv_ordVars_8_0= ruleOrdVar ) ) (otherlv_9= ',' ( (lv_ordVars_10_0= ruleOrdVar ) ) )* otherlv_11= ';' )* (otherlv_12= 'selfex' ( (lv_selfexMethods_13_0= ruleQualifiedName ) ) (otherlv_14= ',' ( (lv_selfexMethods_15_0= ruleQualifiedName ) ) )* otherlv_16= ';' )? ( (lv_mutexSets_17_0= ruleMutexSet ) )* otherlv_18= '}' ) )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:156:1: (otherlv_0= '{' () (otherlv_2= 'condition' ( (lv_condVars_3_0= ruleCondVar ) ) (otherlv_4= ',' ( (lv_condVars_5_0= ruleCondVar ) ) )* otherlv_6= ';' )* (otherlv_7= 'int' ( (lv_ordVars_8_0= ruleOrdVar ) ) (otherlv_9= ',' ( (lv_ordVars_10_0= ruleOrdVar ) ) )* otherlv_11= ';' )* (otherlv_12= 'selfex' ( (lv_selfexMethods_13_0= ruleQualifiedName ) ) (otherlv_14= ',' ( (lv_selfexMethods_15_0= ruleQualifiedName ) ) )* otherlv_16= ';' )? ( (lv_mutexSets_17_0= ruleMutexSet ) )* otherlv_18= '}' )
             {
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:156:1: (otherlv_0= '{' () (otherlv_2= 'condition' ( (lv_condVars_3_0= ruleCondVar ) ) (otherlv_4= ',' ( (lv_condVars_5_0= ruleCondVar ) ) )* otherlv_6= ';' )* (otherlv_7= 'int' ( (lv_ordVars_8_0= ruleOrdVar ) ) (otherlv_9= ',' ( (lv_ordVars_10_0= ruleOrdVar ) ) )* otherlv_11= ';' )* (otherlv_12= 'selfex' ( (lv_selfexMethods_13_0= ruleQualifiedName ) ) (otherlv_14= ',' ( (lv_selfexMethods_15_0= ruleQualifiedName ) ) )* otherlv_16= ';' )* otherlv_17= '}' )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:156:3: otherlv_0= '{' () (otherlv_2= 'condition' ( (lv_condVars_3_0= ruleCondVar ) ) (otherlv_4= ',' ( (lv_condVars_5_0= ruleCondVar ) ) )* otherlv_6= ';' )* (otherlv_7= 'int' ( (lv_ordVars_8_0= ruleOrdVar ) ) (otherlv_9= ',' ( (lv_ordVars_10_0= ruleOrdVar ) ) )* otherlv_11= ';' )* (otherlv_12= 'selfex' ( (lv_selfexMethods_13_0= ruleQualifiedName ) ) (otherlv_14= ',' ( (lv_selfexMethods_15_0= ruleQualifiedName ) ) )* otherlv_16= ';' )* otherlv_17= '}'
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:156:1: (otherlv_0= '{' () (otherlv_2= 'condition' ( (lv_condVars_3_0= ruleCondVar ) ) (otherlv_4= ',' ( (lv_condVars_5_0= ruleCondVar ) ) )* otherlv_6= ';' )* (otherlv_7= 'int' ( (lv_ordVars_8_0= ruleOrdVar ) ) (otherlv_9= ',' ( (lv_ordVars_10_0= ruleOrdVar ) ) )* otherlv_11= ';' )* (otherlv_12= 'selfex' ( (lv_selfexMethods_13_0= ruleQualifiedName ) ) (otherlv_14= ',' ( (lv_selfexMethods_15_0= ruleQualifiedName ) ) )* otherlv_16= ';' )? ( (lv_mutexSets_17_0= ruleMutexSet ) )* otherlv_18= '}' )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:156:3: otherlv_0= '{' () (otherlv_2= 'condition' ( (lv_condVars_3_0= ruleCondVar ) ) (otherlv_4= ',' ( (lv_condVars_5_0= ruleCondVar ) ) )* otherlv_6= ';' )* (otherlv_7= 'int' ( (lv_ordVars_8_0= ruleOrdVar ) ) (otherlv_9= ',' ( (lv_ordVars_10_0= ruleOrdVar ) ) )* otherlv_11= ';' )* (otherlv_12= 'selfex' ( (lv_selfexMethods_13_0= ruleQualifiedName ) ) (otherlv_14= ',' ( (lv_selfexMethods_15_0= ruleQualifiedName ) ) )* otherlv_16= ';' )? ( (lv_mutexSets_17_0= ruleMutexSet ) )* otherlv_18= '}'
             {
             otherlv_0=(Token)match(input,13,FOLLOW_13_in_ruleCoordinatorBody280); 
 
@@ -603,36 +607,144 @@ public class InternalCoolParser extends AbstractInternalAntlrParser {
                 }
             } while (true);
 
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:262:3: (otherlv_12= 'selfex' ( (lv_selfexMethods_13_0= ruleQualifiedName ) ) (otherlv_14= ',' ( (lv_selfexMethods_15_0= ruleQualifiedName ) ) )* otherlv_16= ';' )*
-            loop8:
-            do {
-                int alt8=2;
-                int LA8_0 = input.LA(1);
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:262:3: (otherlv_12= 'selfex' ( (lv_selfexMethods_13_0= ruleQualifiedName ) ) (otherlv_14= ',' ( (lv_selfexMethods_15_0= ruleQualifiedName ) ) )* otherlv_16= ';' )?
+            int alt8=2;
+            int LA8_0 = input.LA(1);
 
-                if ( (LA8_0==18) ) {
-                    alt8=1;
+            if ( (LA8_0==18) ) {
+                alt8=1;
+            }
+            switch (alt8) {
+                case 1 :
+                    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:262:5: otherlv_12= 'selfex' ( (lv_selfexMethods_13_0= ruleQualifiedName ) ) (otherlv_14= ',' ( (lv_selfexMethods_15_0= ruleQualifiedName ) ) )* otherlv_16= ';'
+                    {
+                    otherlv_12=(Token)match(input,18,FOLLOW_18_in_ruleCoordinatorBody470); 
+
+                        	newLeafNode(otherlv_12, grammarAccess.getCoordinatorBodyAccess().getSelfexKeyword_4_0());
+                        
+                    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:266:1: ( (lv_selfexMethods_13_0= ruleQualifiedName ) )
+                    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:267:1: (lv_selfexMethods_13_0= ruleQualifiedName )
+                    {
+                    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:267:1: (lv_selfexMethods_13_0= ruleQualifiedName )
+                    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:268:3: lv_selfexMethods_13_0= ruleQualifiedName
+                    {
+                     
+                    	        newCompositeNode(grammarAccess.getCoordinatorBodyAccess().getSelfexMethodsQualifiedNameParserRuleCall_4_1_0()); 
+                    	    
+                    pushFollow(FOLLOW_ruleQualifiedName_in_ruleCoordinatorBody491);
+                    lv_selfexMethods_13_0=ruleQualifiedName();
+
+                    state._fsp--;
+
+
+                    	        if (current==null) {
+                    	            current = createModelElementForParent(grammarAccess.getCoordinatorBodyRule());
+                    	        }
+                           		add(
+                           			current, 
+                           			"selfexMethods",
+                            		lv_selfexMethods_13_0, 
+                            		"QualifiedName");
+                    	        afterParserOrEnumRuleCall();
+                    	    
+
+                    }
+
+
+                    }
+
+                    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:284:2: (otherlv_14= ',' ( (lv_selfexMethods_15_0= ruleQualifiedName ) ) )*
+                    loop7:
+                    do {
+                        int alt7=2;
+                        int LA7_0 = input.LA(1);
+
+                        if ( (LA7_0==15) ) {
+                            alt7=1;
+                        }
+
+
+                        switch (alt7) {
+                    	case 1 :
+                    	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:284:4: otherlv_14= ',' ( (lv_selfexMethods_15_0= ruleQualifiedName ) )
+                    	    {
+                    	    otherlv_14=(Token)match(input,15,FOLLOW_15_in_ruleCoordinatorBody504); 
+
+                    	        	newLeafNode(otherlv_14, grammarAccess.getCoordinatorBodyAccess().getCommaKeyword_4_2_0());
+                    	        
+                    	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:288:1: ( (lv_selfexMethods_15_0= ruleQualifiedName ) )
+                    	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:289:1: (lv_selfexMethods_15_0= ruleQualifiedName )
+                    	    {
+                    	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:289:1: (lv_selfexMethods_15_0= ruleQualifiedName )
+                    	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:290:3: lv_selfexMethods_15_0= ruleQualifiedName
+                    	    {
+                    	     
+                    	    	        newCompositeNode(grammarAccess.getCoordinatorBodyAccess().getSelfexMethodsQualifiedNameParserRuleCall_4_2_1_0()); 
+                    	    	    
+                    	    pushFollow(FOLLOW_ruleQualifiedName_in_ruleCoordinatorBody525);
+                    	    lv_selfexMethods_15_0=ruleQualifiedName();
+
+                    	    state._fsp--;
+
+
+                    	    	        if (current==null) {
+                    	    	            current = createModelElementForParent(grammarAccess.getCoordinatorBodyRule());
+                    	    	        }
+                    	           		add(
+                    	           			current, 
+                    	           			"selfexMethods",
+                    	            		lv_selfexMethods_15_0, 
+                    	            		"QualifiedName");
+                    	    	        afterParserOrEnumRuleCall();
+                    	    	    
+
+                    	    }
+
+
+                    	    }
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop7;
+                        }
+                    } while (true);
+
+                    otherlv_16=(Token)match(input,16,FOLLOW_16_in_ruleCoordinatorBody539); 
+
+                        	newLeafNode(otherlv_16, grammarAccess.getCoordinatorBodyAccess().getSemicolonKeyword_4_3());
+                        
+
+                    }
+                    break;
+
+            }
+
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:310:3: ( (lv_mutexSets_17_0= ruleMutexSet ) )*
+            loop9:
+            do {
+                int alt9=2;
+                int LA9_0 = input.LA(1);
+
+                if ( (LA9_0==20) ) {
+                    alt9=1;
                 }
 
 
-                switch (alt8) {
+                switch (alt9) {
             	case 1 :
-            	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:262:5: otherlv_12= 'selfex' ( (lv_selfexMethods_13_0= ruleQualifiedName ) ) (otherlv_14= ',' ( (lv_selfexMethods_15_0= ruleQualifiedName ) ) )* otherlv_16= ';'
+            	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:311:1: (lv_mutexSets_17_0= ruleMutexSet )
             	    {
-            	    otherlv_12=(Token)match(input,18,FOLLOW_18_in_ruleCoordinatorBody470); 
-
-            	        	newLeafNode(otherlv_12, grammarAccess.getCoordinatorBodyAccess().getSelfexKeyword_4_0());
-            	        
-            	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:266:1: ( (lv_selfexMethods_13_0= ruleQualifiedName ) )
-            	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:267:1: (lv_selfexMethods_13_0= ruleQualifiedName )
-            	    {
-            	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:267:1: (lv_selfexMethods_13_0= ruleQualifiedName )
-            	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:268:3: lv_selfexMethods_13_0= ruleQualifiedName
+            	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:311:1: (lv_mutexSets_17_0= ruleMutexSet )
+            	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:312:3: lv_mutexSets_17_0= ruleMutexSet
             	    {
             	     
-            	    	        newCompositeNode(grammarAccess.getCoordinatorBodyAccess().getSelfexMethodsQualifiedNameParserRuleCall_4_1_0()); 
+            	    	        newCompositeNode(grammarAccess.getCoordinatorBodyAccess().getMutexSetsMutexSetParserRuleCall_5_0()); 
             	    	    
-            	    pushFollow(FOLLOW_ruleQualifiedName_in_ruleCoordinatorBody491);
-            	    lv_selfexMethods_13_0=ruleQualifiedName();
+            	    pushFollow(FOLLOW_ruleMutexSet_in_ruleCoordinatorBody562);
+            	    lv_mutexSets_17_0=ruleMutexSet();
 
             	    state._fsp--;
 
@@ -642,9 +754,9 @@ public class InternalCoolParser extends AbstractInternalAntlrParser {
             	    	        }
             	           		add(
             	           			current, 
-            	           			"selfexMethods",
-            	            		lv_selfexMethods_13_0, 
-            	            		"QualifiedName");
+            	           			"mutexSets",
+            	            		lv_mutexSets_17_0, 
+            	            		"MutexSet");
             	    	        afterParserOrEnumRuleCall();
             	    	    
 
@@ -652,82 +764,16 @@ public class InternalCoolParser extends AbstractInternalAntlrParser {
 
 
             	    }
-
-            	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:284:2: (otherlv_14= ',' ( (lv_selfexMethods_15_0= ruleQualifiedName ) ) )*
-            	    loop7:
-            	    do {
-            	        int alt7=2;
-            	        int LA7_0 = input.LA(1);
-
-            	        if ( (LA7_0==15) ) {
-            	            alt7=1;
-            	        }
-
-
-            	        switch (alt7) {
-            	    	case 1 :
-            	    	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:284:4: otherlv_14= ',' ( (lv_selfexMethods_15_0= ruleQualifiedName ) )
-            	    	    {
-            	    	    otherlv_14=(Token)match(input,15,FOLLOW_15_in_ruleCoordinatorBody504); 
-
-            	    	        	newLeafNode(otherlv_14, grammarAccess.getCoordinatorBodyAccess().getCommaKeyword_4_2_0());
-            	    	        
-            	    	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:288:1: ( (lv_selfexMethods_15_0= ruleQualifiedName ) )
-            	    	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:289:1: (lv_selfexMethods_15_0= ruleQualifiedName )
-            	    	    {
-            	    	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:289:1: (lv_selfexMethods_15_0= ruleQualifiedName )
-            	    	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:290:3: lv_selfexMethods_15_0= ruleQualifiedName
-            	    	    {
-            	    	     
-            	    	    	        newCompositeNode(grammarAccess.getCoordinatorBodyAccess().getSelfexMethodsQualifiedNameParserRuleCall_4_2_1_0()); 
-            	    	    	    
-            	    	    pushFollow(FOLLOW_ruleQualifiedName_in_ruleCoordinatorBody525);
-            	    	    lv_selfexMethods_15_0=ruleQualifiedName();
-
-            	    	    state._fsp--;
-
-
-            	    	    	        if (current==null) {
-            	    	    	            current = createModelElementForParent(grammarAccess.getCoordinatorBodyRule());
-            	    	    	        }
-            	    	           		add(
-            	    	           			current, 
-            	    	           			"selfexMethods",
-            	    	            		lv_selfexMethods_15_0, 
-            	    	            		"QualifiedName");
-            	    	    	        afterParserOrEnumRuleCall();
-            	    	    	    
-
-            	    	    }
-
-
-            	    	    }
-
-
-            	    	    }
-            	    	    break;
-
-            	    	default :
-            	    	    break loop7;
-            	        }
-            	    } while (true);
-
-            	    otherlv_16=(Token)match(input,16,FOLLOW_16_in_ruleCoordinatorBody539); 
-
-            	        	newLeafNode(otherlv_16, grammarAccess.getCoordinatorBodyAccess().getSemicolonKeyword_4_3());
-            	        
-
-            	    }
             	    break;
 
             	default :
-            	    break loop8;
+            	    break loop9;
                 }
             } while (true);
 
-            otherlv_17=(Token)match(input,19,FOLLOW_19_in_ruleCoordinatorBody553); 
+            otherlv_18=(Token)match(input,19,FOLLOW_19_in_ruleCoordinatorBody575); 
 
-                	newLeafNode(otherlv_17, grammarAccess.getCoordinatorBodyAccess().getRightCurlyBracketKeyword_5());
+                	newLeafNode(otherlv_18, grammarAccess.getCoordinatorBodyAccess().getRightCurlyBracketKeyword_6());
                 
 
             }
@@ -749,8 +795,194 @@ public class InternalCoolParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleCoordinatorBody"
 
 
+    // $ANTLR start "entryRuleMutexSet"
+    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:340:1: entryRuleMutexSet returns [EObject current=null] : iv_ruleMutexSet= ruleMutexSet EOF ;
+    public final EObject entryRuleMutexSet() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleMutexSet = null;
+
+
+        try {
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:341:2: (iv_ruleMutexSet= ruleMutexSet EOF )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:342:2: iv_ruleMutexSet= ruleMutexSet EOF
+            {
+             newCompositeNode(grammarAccess.getMutexSetRule()); 
+            pushFollow(FOLLOW_ruleMutexSet_in_entryRuleMutexSet611);
+            iv_ruleMutexSet=ruleMutexSet();
+
+            state._fsp--;
+
+             current =iv_ruleMutexSet; 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleMutexSet621); 
+
+            }
+
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleMutexSet"
+
+
+    // $ANTLR start "ruleMutexSet"
+    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:349:1: ruleMutexSet returns [EObject current=null] : (otherlv_0= 'mutex' otherlv_1= '{' ( (lv_methods_2_0= ruleQualifiedName ) ) (otherlv_3= ',' ( (lv_methods_4_0= ruleQualifiedName ) ) )+ otherlv_5= '};' ) ;
+    public final EObject ruleMutexSet() throws RecognitionException {
+        EObject current = null;
+
+        Token otherlv_0=null;
+        Token otherlv_1=null;
+        Token otherlv_3=null;
+        Token otherlv_5=null;
+        AntlrDatatypeRuleToken lv_methods_2_0 = null;
+
+        AntlrDatatypeRuleToken lv_methods_4_0 = null;
+
+
+         enterRule(); 
+            
+        try {
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:352:28: ( (otherlv_0= 'mutex' otherlv_1= '{' ( (lv_methods_2_0= ruleQualifiedName ) ) (otherlv_3= ',' ( (lv_methods_4_0= ruleQualifiedName ) ) )+ otherlv_5= '};' ) )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:353:1: (otherlv_0= 'mutex' otherlv_1= '{' ( (lv_methods_2_0= ruleQualifiedName ) ) (otherlv_3= ',' ( (lv_methods_4_0= ruleQualifiedName ) ) )+ otherlv_5= '};' )
+            {
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:353:1: (otherlv_0= 'mutex' otherlv_1= '{' ( (lv_methods_2_0= ruleQualifiedName ) ) (otherlv_3= ',' ( (lv_methods_4_0= ruleQualifiedName ) ) )+ otherlv_5= '};' )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:353:3: otherlv_0= 'mutex' otherlv_1= '{' ( (lv_methods_2_0= ruleQualifiedName ) ) (otherlv_3= ',' ( (lv_methods_4_0= ruleQualifiedName ) ) )+ otherlv_5= '};'
+            {
+            otherlv_0=(Token)match(input,20,FOLLOW_20_in_ruleMutexSet658); 
+
+                	newLeafNode(otherlv_0, grammarAccess.getMutexSetAccess().getMutexKeyword_0());
+                
+            otherlv_1=(Token)match(input,13,FOLLOW_13_in_ruleMutexSet670); 
+
+                	newLeafNode(otherlv_1, grammarAccess.getMutexSetAccess().getLeftCurlyBracketKeyword_1());
+                
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:361:1: ( (lv_methods_2_0= ruleQualifiedName ) )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:362:1: (lv_methods_2_0= ruleQualifiedName )
+            {
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:362:1: (lv_methods_2_0= ruleQualifiedName )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:363:3: lv_methods_2_0= ruleQualifiedName
+            {
+             
+            	        newCompositeNode(grammarAccess.getMutexSetAccess().getMethodsQualifiedNameParserRuleCall_2_0()); 
+            	    
+            pushFollow(FOLLOW_ruleQualifiedName_in_ruleMutexSet691);
+            lv_methods_2_0=ruleQualifiedName();
+
+            state._fsp--;
+
+
+            	        if (current==null) {
+            	            current = createModelElementForParent(grammarAccess.getMutexSetRule());
+            	        }
+                   		add(
+                   			current, 
+                   			"methods",
+                    		lv_methods_2_0, 
+                    		"QualifiedName");
+            	        afterParserOrEnumRuleCall();
+            	    
+
+            }
+
+
+            }
+
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:379:2: (otherlv_3= ',' ( (lv_methods_4_0= ruleQualifiedName ) ) )+
+            int cnt10=0;
+            loop10:
+            do {
+                int alt10=2;
+                int LA10_0 = input.LA(1);
+
+                if ( (LA10_0==15) ) {
+                    alt10=1;
+                }
+
+
+                switch (alt10) {
+            	case 1 :
+            	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:379:4: otherlv_3= ',' ( (lv_methods_4_0= ruleQualifiedName ) )
+            	    {
+            	    otherlv_3=(Token)match(input,15,FOLLOW_15_in_ruleMutexSet704); 
+
+            	        	newLeafNode(otherlv_3, grammarAccess.getMutexSetAccess().getCommaKeyword_3_0());
+            	        
+            	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:383:1: ( (lv_methods_4_0= ruleQualifiedName ) )
+            	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:384:1: (lv_methods_4_0= ruleQualifiedName )
+            	    {
+            	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:384:1: (lv_methods_4_0= ruleQualifiedName )
+            	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:385:3: lv_methods_4_0= ruleQualifiedName
+            	    {
+            	     
+            	    	        newCompositeNode(grammarAccess.getMutexSetAccess().getMethodsQualifiedNameParserRuleCall_3_1_0()); 
+            	    	    
+            	    pushFollow(FOLLOW_ruleQualifiedName_in_ruleMutexSet725);
+            	    lv_methods_4_0=ruleQualifiedName();
+
+            	    state._fsp--;
+
+
+            	    	        if (current==null) {
+            	    	            current = createModelElementForParent(grammarAccess.getMutexSetRule());
+            	    	        }
+            	           		add(
+            	           			current, 
+            	           			"methods",
+            	            		lv_methods_4_0, 
+            	            		"QualifiedName");
+            	    	        afterParserOrEnumRuleCall();
+            	    	    
+
+            	    }
+
+
+            	    }
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    if ( cnt10 >= 1 ) break loop10;
+                        EarlyExitException eee =
+                            new EarlyExitException(10, input);
+                        throw eee;
+                }
+                cnt10++;
+            } while (true);
+
+            otherlv_5=(Token)match(input,21,FOLLOW_21_in_ruleMutexSet739); 
+
+                	newLeafNode(otherlv_5, grammarAccess.getMutexSetAccess().getRightCurlyBracketSemicolonKeyword_4());
+                
+
+            }
+
+
+            }
+
+             leaveRule(); 
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleMutexSet"
+
+
     // $ANTLR start "entryRuleCondVar"
-    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:322:1: entryRuleCondVar returns [EObject current=null] : iv_ruleCondVar= ruleCondVar EOF ;
+    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:413:1: entryRuleCondVar returns [EObject current=null] : iv_ruleCondVar= ruleCondVar EOF ;
     public final EObject entryRuleCondVar() throws RecognitionException {
         EObject current = null;
 
@@ -758,17 +990,17 @@ public class InternalCoolParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:323:2: (iv_ruleCondVar= ruleCondVar EOF )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:324:2: iv_ruleCondVar= ruleCondVar EOF
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:414:2: (iv_ruleCondVar= ruleCondVar EOF )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:415:2: iv_ruleCondVar= ruleCondVar EOF
             {
              newCompositeNode(grammarAccess.getCondVarRule()); 
-            pushFollow(FOLLOW_ruleCondVar_in_entryRuleCondVar589);
+            pushFollow(FOLLOW_ruleCondVar_in_entryRuleCondVar775);
             iv_ruleCondVar=ruleCondVar();
 
             state._fsp--;
 
              current =iv_ruleCondVar; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleCondVar599); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleCondVar785); 
 
             }
 
@@ -786,7 +1018,7 @@ public class InternalCoolParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleCondVar"
-    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:331:1: ruleCondVar returns [EObject current=null] : ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= '=' ( (lv_value_2_0= ruleBooleanVal ) ) ) ;
+    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:422:1: ruleCondVar returns [EObject current=null] : ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= '=' ( (lv_value_2_0= ruleBooleanVal ) ) ) ;
     public final EObject ruleCondVar() throws RecognitionException {
         EObject current = null;
 
@@ -798,19 +1030,19 @@ public class InternalCoolParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:334:28: ( ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= '=' ( (lv_value_2_0= ruleBooleanVal ) ) ) )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:335:1: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= '=' ( (lv_value_2_0= ruleBooleanVal ) ) )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:425:28: ( ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= '=' ( (lv_value_2_0= ruleBooleanVal ) ) ) )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:426:1: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= '=' ( (lv_value_2_0= ruleBooleanVal ) ) )
             {
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:335:1: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= '=' ( (lv_value_2_0= ruleBooleanVal ) ) )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:335:2: ( (lv_name_0_0= RULE_ID ) ) otherlv_1= '=' ( (lv_value_2_0= ruleBooleanVal ) )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:426:1: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= '=' ( (lv_value_2_0= ruleBooleanVal ) ) )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:426:2: ( (lv_name_0_0= RULE_ID ) ) otherlv_1= '=' ( (lv_value_2_0= ruleBooleanVal ) )
             {
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:335:2: ( (lv_name_0_0= RULE_ID ) )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:336:1: (lv_name_0_0= RULE_ID )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:426:2: ( (lv_name_0_0= RULE_ID ) )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:427:1: (lv_name_0_0= RULE_ID )
             {
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:336:1: (lv_name_0_0= RULE_ID )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:337:3: lv_name_0_0= RULE_ID
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:427:1: (lv_name_0_0= RULE_ID )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:428:3: lv_name_0_0= RULE_ID
             {
-            lv_name_0_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleCondVar641); 
+            lv_name_0_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleCondVar827); 
 
             			newLeafNode(lv_name_0_0, grammarAccess.getCondVarAccess().getNameIDTerminalRuleCall_0_0()); 
             		
@@ -830,20 +1062,20 @@ public class InternalCoolParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,20,FOLLOW_20_in_ruleCondVar658); 
+            otherlv_1=(Token)match(input,22,FOLLOW_22_in_ruleCondVar844); 
 
                 	newLeafNode(otherlv_1, grammarAccess.getCondVarAccess().getEqualsSignKeyword_1());
                 
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:357:1: ( (lv_value_2_0= ruleBooleanVal ) )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:358:1: (lv_value_2_0= ruleBooleanVal )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:448:1: ( (lv_value_2_0= ruleBooleanVal ) )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:449:1: (lv_value_2_0= ruleBooleanVal )
             {
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:358:1: (lv_value_2_0= ruleBooleanVal )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:359:3: lv_value_2_0= ruleBooleanVal
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:449:1: (lv_value_2_0= ruleBooleanVal )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:450:3: lv_value_2_0= ruleBooleanVal
             {
              
             	        newCompositeNode(grammarAccess.getCondVarAccess().getValueBooleanValParserRuleCall_2_0()); 
             	    
-            pushFollow(FOLLOW_ruleBooleanVal_in_ruleCondVar679);
+            pushFollow(FOLLOW_ruleBooleanVal_in_ruleCondVar865);
             lv_value_2_0=ruleBooleanVal();
 
             state._fsp--;
@@ -886,7 +1118,7 @@ public class InternalCoolParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleOrdVar"
-    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:383:1: entryRuleOrdVar returns [EObject current=null] : iv_ruleOrdVar= ruleOrdVar EOF ;
+    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:474:1: entryRuleOrdVar returns [EObject current=null] : iv_ruleOrdVar= ruleOrdVar EOF ;
     public final EObject entryRuleOrdVar() throws RecognitionException {
         EObject current = null;
 
@@ -894,17 +1126,17 @@ public class InternalCoolParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:384:2: (iv_ruleOrdVar= ruleOrdVar EOF )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:385:2: iv_ruleOrdVar= ruleOrdVar EOF
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:475:2: (iv_ruleOrdVar= ruleOrdVar EOF )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:476:2: iv_ruleOrdVar= ruleOrdVar EOF
             {
              newCompositeNode(grammarAccess.getOrdVarRule()); 
-            pushFollow(FOLLOW_ruleOrdVar_in_entryRuleOrdVar715);
+            pushFollow(FOLLOW_ruleOrdVar_in_entryRuleOrdVar901);
             iv_ruleOrdVar=ruleOrdVar();
 
             state._fsp--;
 
              current =iv_ruleOrdVar; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleOrdVar725); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleOrdVar911); 
 
             }
 
@@ -922,7 +1154,7 @@ public class InternalCoolParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleOrdVar"
-    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:392:1: ruleOrdVar returns [EObject current=null] : ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= '=' ( (lv_value_2_0= RULE_INT ) ) ) ;
+    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:483:1: ruleOrdVar returns [EObject current=null] : ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= '=' ( (lv_value_2_0= RULE_INT ) ) ) ;
     public final EObject ruleOrdVar() throws RecognitionException {
         EObject current = null;
 
@@ -933,19 +1165,19 @@ public class InternalCoolParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:395:28: ( ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= '=' ( (lv_value_2_0= RULE_INT ) ) ) )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:396:1: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= '=' ( (lv_value_2_0= RULE_INT ) ) )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:486:28: ( ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= '=' ( (lv_value_2_0= RULE_INT ) ) ) )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:487:1: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= '=' ( (lv_value_2_0= RULE_INT ) ) )
             {
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:396:1: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= '=' ( (lv_value_2_0= RULE_INT ) ) )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:396:2: ( (lv_name_0_0= RULE_ID ) ) otherlv_1= '=' ( (lv_value_2_0= RULE_INT ) )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:487:1: ( ( (lv_name_0_0= RULE_ID ) ) otherlv_1= '=' ( (lv_value_2_0= RULE_INT ) ) )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:487:2: ( (lv_name_0_0= RULE_ID ) ) otherlv_1= '=' ( (lv_value_2_0= RULE_INT ) )
             {
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:396:2: ( (lv_name_0_0= RULE_ID ) )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:397:1: (lv_name_0_0= RULE_ID )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:487:2: ( (lv_name_0_0= RULE_ID ) )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:488:1: (lv_name_0_0= RULE_ID )
             {
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:397:1: (lv_name_0_0= RULE_ID )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:398:3: lv_name_0_0= RULE_ID
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:488:1: (lv_name_0_0= RULE_ID )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:489:3: lv_name_0_0= RULE_ID
             {
-            lv_name_0_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleOrdVar767); 
+            lv_name_0_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleOrdVar953); 
 
             			newLeafNode(lv_name_0_0, grammarAccess.getOrdVarAccess().getNameIDTerminalRuleCall_0_0()); 
             		
@@ -965,17 +1197,17 @@ public class InternalCoolParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,20,FOLLOW_20_in_ruleOrdVar784); 
+            otherlv_1=(Token)match(input,22,FOLLOW_22_in_ruleOrdVar970); 
 
                 	newLeafNode(otherlv_1, grammarAccess.getOrdVarAccess().getEqualsSignKeyword_1());
                 
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:418:1: ( (lv_value_2_0= RULE_INT ) )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:419:1: (lv_value_2_0= RULE_INT )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:509:1: ( (lv_value_2_0= RULE_INT ) )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:510:1: (lv_value_2_0= RULE_INT )
             {
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:419:1: (lv_value_2_0= RULE_INT )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:420:3: lv_value_2_0= RULE_INT
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:510:1: (lv_value_2_0= RULE_INT )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:511:3: lv_value_2_0= RULE_INT
             {
-            lv_value_2_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleOrdVar801); 
+            lv_value_2_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleOrdVar987); 
 
             			newLeafNode(lv_value_2_0, grammarAccess.getOrdVarAccess().getValueINTTerminalRuleCall_2_0()); 
             		
@@ -1016,7 +1248,7 @@ public class InternalCoolParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleBooleanVal"
-    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:444:1: entryRuleBooleanVal returns [String current=null] : iv_ruleBooleanVal= ruleBooleanVal EOF ;
+    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:535:1: entryRuleBooleanVal returns [String current=null] : iv_ruleBooleanVal= ruleBooleanVal EOF ;
     public final String entryRuleBooleanVal() throws RecognitionException {
         String current = null;
 
@@ -1024,17 +1256,17 @@ public class InternalCoolParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:445:2: (iv_ruleBooleanVal= ruleBooleanVal EOF )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:446:2: iv_ruleBooleanVal= ruleBooleanVal EOF
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:536:2: (iv_ruleBooleanVal= ruleBooleanVal EOF )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:537:2: iv_ruleBooleanVal= ruleBooleanVal EOF
             {
              newCompositeNode(grammarAccess.getBooleanValRule()); 
-            pushFollow(FOLLOW_ruleBooleanVal_in_entryRuleBooleanVal843);
+            pushFollow(FOLLOW_ruleBooleanVal_in_entryRuleBooleanVal1029);
             iv_ruleBooleanVal=ruleBooleanVal();
 
             state._fsp--;
 
              current =iv_ruleBooleanVal.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleBooleanVal854); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleBooleanVal1040); 
 
             }
 
@@ -1052,7 +1284,7 @@ public class InternalCoolParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBooleanVal"
-    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:453:1: ruleBooleanVal returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'true' | kw= 'false' ) ;
+    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:544:1: ruleBooleanVal returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'true' | kw= 'false' ) ;
     public final AntlrDatatypeRuleToken ruleBooleanVal() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -1061,30 +1293,30 @@ public class InternalCoolParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:456:28: ( (kw= 'true' | kw= 'false' ) )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:457:1: (kw= 'true' | kw= 'false' )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:547:28: ( (kw= 'true' | kw= 'false' ) )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:548:1: (kw= 'true' | kw= 'false' )
             {
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:457:1: (kw= 'true' | kw= 'false' )
-            int alt9=2;
-            int LA9_0 = input.LA(1);
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:548:1: (kw= 'true' | kw= 'false' )
+            int alt11=2;
+            int LA11_0 = input.LA(1);
 
-            if ( (LA9_0==21) ) {
-                alt9=1;
+            if ( (LA11_0==23) ) {
+                alt11=1;
             }
-            else if ( (LA9_0==22) ) {
-                alt9=2;
+            else if ( (LA11_0==24) ) {
+                alt11=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 9, 0, input);
+                    new NoViableAltException("", 11, 0, input);
 
                 throw nvae;
             }
-            switch (alt9) {
+            switch (alt11) {
                 case 1 :
-                    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:458:2: kw= 'true'
+                    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:549:2: kw= 'true'
                     {
-                    kw=(Token)match(input,21,FOLLOW_21_in_ruleBooleanVal892); 
+                    kw=(Token)match(input,23,FOLLOW_23_in_ruleBooleanVal1078); 
 
                             current.merge(kw);
                             newLeafNode(kw, grammarAccess.getBooleanValAccess().getTrueKeyword_0()); 
@@ -1093,9 +1325,9 @@ public class InternalCoolParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:465:2: kw= 'false'
+                    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:556:2: kw= 'false'
                     {
-                    kw=(Token)match(input,22,FOLLOW_22_in_ruleBooleanVal911); 
+                    kw=(Token)match(input,24,FOLLOW_24_in_ruleBooleanVal1097); 
 
                             current.merge(kw);
                             newLeafNode(kw, grammarAccess.getBooleanValAccess().getFalseKeyword_1()); 
@@ -1124,7 +1356,7 @@ public class InternalCoolParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleQualifiedName"
-    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:478:1: entryRuleQualifiedName returns [String current=null] : iv_ruleQualifiedName= ruleQualifiedName EOF ;
+    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:569:1: entryRuleQualifiedName returns [String current=null] : iv_ruleQualifiedName= ruleQualifiedName EOF ;
     public final String entryRuleQualifiedName() throws RecognitionException {
         String current = null;
 
@@ -1132,17 +1364,17 @@ public class InternalCoolParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:479:2: (iv_ruleQualifiedName= ruleQualifiedName EOF )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:480:2: iv_ruleQualifiedName= ruleQualifiedName EOF
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:570:2: (iv_ruleQualifiedName= ruleQualifiedName EOF )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:571:2: iv_ruleQualifiedName= ruleQualifiedName EOF
             {
              newCompositeNode(grammarAccess.getQualifiedNameRule()); 
-            pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName952);
+            pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName1138);
             iv_ruleQualifiedName=ruleQualifiedName();
 
             state._fsp--;
 
              current =iv_ruleQualifiedName.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedName963); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedName1149); 
 
             }
 
@@ -1160,7 +1392,7 @@ public class InternalCoolParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleQualifiedName"
-    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:487:1: ruleQualifiedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* ) ;
+    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:578:1: ruleQualifiedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* ) ;
     public final AntlrDatatypeRuleToken ruleQualifiedName() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -1171,40 +1403,40 @@ public class InternalCoolParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:490:28: ( (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* ) )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:491:1: (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:581:28: ( (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* ) )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:582:1: (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* )
             {
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:491:1: (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:491:6: this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )*
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:582:1: (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:582:6: this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )*
             {
-            this_ID_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleQualifiedName1003); 
+            this_ID_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleQualifiedName1189); 
 
             		current.merge(this_ID_0);
                 
              
                 newLeafNode(this_ID_0, grammarAccess.getQualifiedNameAccess().getIDTerminalRuleCall_0()); 
                 
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:498:1: (kw= '.' this_ID_2= RULE_ID )*
-            loop10:
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:589:1: (kw= '.' this_ID_2= RULE_ID )*
+            loop12:
             do {
-                int alt10=2;
-                int LA10_0 = input.LA(1);
+                int alt12=2;
+                int LA12_0 = input.LA(1);
 
-                if ( (LA10_0==23) ) {
-                    alt10=1;
+                if ( (LA12_0==25) ) {
+                    alt12=1;
                 }
 
 
-                switch (alt10) {
+                switch (alt12) {
             	case 1 :
-            	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:499:2: kw= '.' this_ID_2= RULE_ID
+            	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:590:2: kw= '.' this_ID_2= RULE_ID
             	    {
-            	    kw=(Token)match(input,23,FOLLOW_23_in_ruleQualifiedName1022); 
+            	    kw=(Token)match(input,25,FOLLOW_25_in_ruleQualifiedName1208); 
 
             	            current.merge(kw);
             	            newLeafNode(kw, grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0()); 
             	        
-            	    this_ID_2=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleQualifiedName1037); 
+            	    this_ID_2=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleQualifiedName1223); 
 
             	    		current.merge(this_ID_2);
             	        
@@ -1216,7 +1448,7 @@ public class InternalCoolParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop10;
+            	    break loop12;
                 }
             } while (true);
 
@@ -1252,41 +1484,50 @@ public class InternalCoolParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleCoordinatorBody_in_ruleCoordinatorDeclaration196 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleCoordinatorBody_in_entryRuleCoordinatorBody233 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleCoordinatorBody243 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_ruleCoordinatorBody280 = new BitSet(new long[]{0x00000000000E4000L});
+    public static final BitSet FOLLOW_13_in_ruleCoordinatorBody280 = new BitSet(new long[]{0x00000000001E4000L});
     public static final BitSet FOLLOW_14_in_ruleCoordinatorBody302 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_ruleCondVar_in_ruleCoordinatorBody323 = new BitSet(new long[]{0x0000000000018000L});
     public static final BitSet FOLLOW_15_in_ruleCoordinatorBody336 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_ruleCondVar_in_ruleCoordinatorBody357 = new BitSet(new long[]{0x0000000000018000L});
-    public static final BitSet FOLLOW_16_in_ruleCoordinatorBody371 = new BitSet(new long[]{0x00000000000E4000L});
+    public static final BitSet FOLLOW_16_in_ruleCoordinatorBody371 = new BitSet(new long[]{0x00000000001E4000L});
     public static final BitSet FOLLOW_17_in_ruleCoordinatorBody386 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_ruleOrdVar_in_ruleCoordinatorBody407 = new BitSet(new long[]{0x0000000000018000L});
     public static final BitSet FOLLOW_15_in_ruleCoordinatorBody420 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_ruleOrdVar_in_ruleCoordinatorBody441 = new BitSet(new long[]{0x0000000000018000L});
-    public static final BitSet FOLLOW_16_in_ruleCoordinatorBody455 = new BitSet(new long[]{0x00000000000E0000L});
+    public static final BitSet FOLLOW_16_in_ruleCoordinatorBody455 = new BitSet(new long[]{0x00000000001E0000L});
     public static final BitSet FOLLOW_18_in_ruleCoordinatorBody470 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_ruleCoordinatorBody491 = new BitSet(new long[]{0x0000000000018000L});
     public static final BitSet FOLLOW_15_in_ruleCoordinatorBody504 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_ruleCoordinatorBody525 = new BitSet(new long[]{0x0000000000018000L});
-    public static final BitSet FOLLOW_16_in_ruleCoordinatorBody539 = new BitSet(new long[]{0x00000000000C0000L});
-    public static final BitSet FOLLOW_19_in_ruleCoordinatorBody553 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCondVar_in_entryRuleCondVar589 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleCondVar599 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleCondVar641 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_20_in_ruleCondVar658 = new BitSet(new long[]{0x0000000000600000L});
-    public static final BitSet FOLLOW_ruleBooleanVal_in_ruleCondVar679 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOrdVar_in_entryRuleOrdVar715 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleOrdVar725 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleOrdVar767 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_20_in_ruleOrdVar784 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleOrdVar801 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleBooleanVal_in_entryRuleBooleanVal843 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleBooleanVal854 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_21_in_ruleBooleanVal892 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_22_in_ruleBooleanVal911 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName952 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName963 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName1003 = new BitSet(new long[]{0x0000000000800002L});
-    public static final BitSet FOLLOW_23_in_ruleQualifiedName1022 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName1037 = new BitSet(new long[]{0x0000000000800002L});
+    public static final BitSet FOLLOW_16_in_ruleCoordinatorBody539 = new BitSet(new long[]{0x0000000000180000L});
+    public static final BitSet FOLLOW_ruleMutexSet_in_ruleCoordinatorBody562 = new BitSet(new long[]{0x0000000000180000L});
+    public static final BitSet FOLLOW_19_in_ruleCoordinatorBody575 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMutexSet_in_entryRuleMutexSet611 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleMutexSet621 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_20_in_ruleMutexSet658 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_13_in_ruleMutexSet670 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleMutexSet691 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_15_in_ruleMutexSet704 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleMutexSet725 = new BitSet(new long[]{0x0000000000208000L});
+    public static final BitSet FOLLOW_21_in_ruleMutexSet739 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCondVar_in_entryRuleCondVar775 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleCondVar785 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleCondVar827 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_22_in_ruleCondVar844 = new BitSet(new long[]{0x0000000001800000L});
+    public static final BitSet FOLLOW_ruleBooleanVal_in_ruleCondVar865 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOrdVar_in_entryRuleOrdVar901 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleOrdVar911 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleOrdVar953 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_22_in_ruleOrdVar970 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleOrdVar987 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBooleanVal_in_entryRuleBooleanVal1029 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleBooleanVal1040 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_23_in_ruleBooleanVal1078 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_ruleBooleanVal1097 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName1138 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName1149 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName1189 = new BitSet(new long[]{0x0000000002000002L});
+    public static final BitSet FOLLOW_25_in_ruleQualifiedName1208 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName1223 = new BitSet(new long[]{0x0000000002000002L});
 
 }

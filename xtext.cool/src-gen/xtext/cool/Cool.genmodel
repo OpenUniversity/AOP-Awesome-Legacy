@@ -17,6 +17,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cool.ecore#//CoordinatorBody/condVars"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cool.ecore#//CoordinatorBody/ordVars"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cool.ecore#//CoordinatorBody/selfexMethods"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cool.ecore#//CoordinatorBody/mutexSets"/>
+    </genClasses>
+    <genClasses ecoreClass="Cool.ecore#//MutexSet">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cool.ecore#//MutexSet/methods"/>
     </genClasses>
     <genClasses ecoreClass="Cool.ecore#//CondVar">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cool.ecore#//CondVar/name"/>

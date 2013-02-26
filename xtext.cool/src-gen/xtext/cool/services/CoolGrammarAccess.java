@@ -93,21 +93,23 @@ public class CoolGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cSelfexMethodsAssignment_4_2_1 = (Assignment)cGroup_4_2.eContents().get(1);
 		private final RuleCall cSelfexMethodsQualifiedNameParserRuleCall_4_2_1_0 = (RuleCall)cSelfexMethodsAssignment_4_2_1.eContents().get(0);
 		private final Keyword cSemicolonKeyword_4_3 = (Keyword)cGroup_4.eContents().get(3);
-		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cMutexSetsAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cMutexSetsMutexSetParserRuleCall_5_0 = (RuleCall)cMutexSetsAssignment_5.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//CoordinatorBody:
 		//	"{" // don't understand this addition, but otherwise get a warning that results in a runtime exception when the coordinator is empty.
 		//	{CoordinatorBody} ("condition" condVars+=CondVar ("," condVars+=CondVar)* ";")* // should support array initialization...
 		//	("int" ordVars+=OrdVar ("," ordVars+=OrdVar)* ";")* // should support more primitive types...
-		//	("selfex" selfexMethods+=QualifiedName ("," selfexMethods+=QualifiedName)* ";")* // selfex has no curely braces probably because the methods are not connected to each other.
-		//	"}";
+		//	("selfex" selfexMethods+=QualifiedName ("," selfexMethods+=QualifiedName)* ";")? // selfex has no curely braces probably because the methods are not connected to each other.
+		//	mutexSets+=MutexSet* "}";
 		public ParserRule getRule() { return rule; }
 
 		//"{" // don't understand this addition, but otherwise get a warning that results in a runtime exception when the coordinator is empty.
 		//{CoordinatorBody} ("condition" condVars+=CondVar ("," condVars+=CondVar)* ";")* // should support array initialization...
 		//("int" ordVars+=OrdVar ("," ordVars+=OrdVar)* ";")* // should support more primitive types...
-		//("selfex" selfexMethods+=QualifiedName ("," selfexMethods+=QualifiedName)* ";")* // selfex has no curely braces probably because the methods are not connected to each other.
-		//"}"
+		//("selfex" selfexMethods+=QualifiedName ("," selfexMethods+=QualifiedName)* ";")? // selfex has no curely braces probably because the methods are not connected to each other.
+		//mutexSets+=MutexSet* "}"
 		public Group getGroup() { return cGroup; }
 
 		//"{"
@@ -171,7 +173,7 @@ public class CoolGrammarAccess extends AbstractGrammarElementFinder {
 		//";"
 		public Keyword getSemicolonKeyword_3_3() { return cSemicolonKeyword_3_3; }
 
-		//("selfex" selfexMethods+=QualifiedName ("," selfexMethods+=QualifiedName)* ";")*
+		//("selfex" selfexMethods+=QualifiedName ("," selfexMethods+=QualifiedName)* ";")?
 		public Group getGroup_4() { return cGroup_4; }
 
 		//"selfex"
@@ -198,8 +200,62 @@ public class CoolGrammarAccess extends AbstractGrammarElementFinder {
 		//";"
 		public Keyword getSemicolonKeyword_4_3() { return cSemicolonKeyword_4_3; }
 
+		//mutexSets+=MutexSet*
+		public Assignment getMutexSetsAssignment_5() { return cMutexSetsAssignment_5; }
+
+		//MutexSet
+		public RuleCall getMutexSetsMutexSetParserRuleCall_5_0() { return cMutexSetsMutexSetParserRuleCall_5_0; }
+
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
+	}
+
+	public class MutexSetElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MutexSet");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cMutexKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cMethodsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cMethodsQualifiedNameParserRuleCall_2_0 = (RuleCall)cMethodsAssignment_2.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cCommaKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cMethodsAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cMethodsQualifiedNameParserRuleCall_3_1_0 = (RuleCall)cMethodsAssignment_3_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//MutexSet:
+		//	"mutex" "{" methods+=QualifiedName ("," methods+=QualifiedName)+ "};";
+		public ParserRule getRule() { return rule; }
+
+		//"mutex" "{" methods+=QualifiedName ("," methods+=QualifiedName)+ "};"
+		public Group getGroup() { return cGroup; }
+
+		//"mutex"
+		public Keyword getMutexKeyword_0() { return cMutexKeyword_0; }
+
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
+
+		//methods+=QualifiedName
+		public Assignment getMethodsAssignment_2() { return cMethodsAssignment_2; }
+
+		//QualifiedName
+		public RuleCall getMethodsQualifiedNameParserRuleCall_2_0() { return cMethodsQualifiedNameParserRuleCall_2_0; }
+
+		//("," methods+=QualifiedName)+
+		public Group getGroup_3() { return cGroup_3; }
+
+		//","
+		public Keyword getCommaKeyword_3_0() { return cCommaKeyword_3_0; }
+
+		//methods+=QualifiedName
+		public Assignment getMethodsAssignment_3_1() { return cMethodsAssignment_3_1; }
+
+		//QualifiedName
+		public RuleCall getMethodsQualifiedNameParserRuleCall_3_1_0() { return cMethodsQualifiedNameParserRuleCall_3_1_0; }
+
+		//"};"
+		public Keyword getRightCurlyBracketSemicolonKeyword_4() { return cRightCurlyBracketSemicolonKeyword_4; }
 	}
 
 	public class CondVarElements extends AbstractParserRuleElementFinder {
@@ -325,6 +381,7 @@ public class CoolGrammarAccess extends AbstractGrammarElementFinder {
 	
 	private CoordinatorDeclarationElements pCoordinatorDeclaration;
 	private CoordinatorBodyElements pCoordinatorBody;
+	private MutexSetElements pMutexSet;
 	private CondVarElements pCondVar;
 	private OrdVarElements pOrdVar;
 	private BooleanValElements pBooleanVal;
@@ -366,14 +423,24 @@ public class CoolGrammarAccess extends AbstractGrammarElementFinder {
 	//	"{" // don't understand this addition, but otherwise get a warning that results in a runtime exception when the coordinator is empty.
 	//	{CoordinatorBody} ("condition" condVars+=CondVar ("," condVars+=CondVar)* ";")* // should support array initialization...
 	//	("int" ordVars+=OrdVar ("," ordVars+=OrdVar)* ";")* // should support more primitive types...
-	//	("selfex" selfexMethods+=QualifiedName ("," selfexMethods+=QualifiedName)* ";")* // selfex has no curely braces probably because the methods are not connected to each other.
-	//	"}";
+	//	("selfex" selfexMethods+=QualifiedName ("," selfexMethods+=QualifiedName)* ";")? // selfex has no curely braces probably because the methods are not connected to each other.
+	//	mutexSets+=MutexSet* "}";
 	public CoordinatorBodyElements getCoordinatorBodyAccess() {
 		return (pCoordinatorBody != null) ? pCoordinatorBody : (pCoordinatorBody = new CoordinatorBodyElements());
 	}
 	
 	public ParserRule getCoordinatorBodyRule() {
 		return getCoordinatorBodyAccess().getRule();
+	}
+
+	//MutexSet:
+	//	"mutex" "{" methods+=QualifiedName ("," methods+=QualifiedName)+ "};";
+	public MutexSetElements getMutexSetAccess() {
+		return (pMutexSet != null) ? pMutexSet : (pMutexSet = new MutexSetElements());
+	}
+	
+	public ParserRule getMutexSetRule() {
+		return getMutexSetAccess().getRule();
 	}
 
 	//CondVar:

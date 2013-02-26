@@ -17,6 +17,7 @@ import xtext.cool.cool.CoolFactory;
 import xtext.cool.cool.CoolPackage;
 import xtext.cool.cool.CoordinatorBody;
 import xtext.cool.cool.CoordinatorDeclaration;
+import xtext.cool.cool.MutexSet;
 import xtext.cool.cool.OrdVar;
 
 /**
@@ -40,6 +41,13 @@ public class CoolPackageImpl extends EPackageImpl implements CoolPackage
    * @generated
    */
   private EClass coordinatorBodyEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass mutexSetEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -203,6 +211,36 @@ public class CoolPackageImpl extends EPackageImpl implements CoolPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getCoordinatorBody_MutexSets()
+  {
+    return (EReference)coordinatorBodyEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getMutexSet()
+  {
+    return mutexSetEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getMutexSet_Methods()
+  {
+    return (EAttribute)mutexSetEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getCondVar()
   {
     return condVarEClass;
@@ -297,6 +335,10 @@ public class CoolPackageImpl extends EPackageImpl implements CoolPackage
     createEReference(coordinatorBodyEClass, COORDINATOR_BODY__COND_VARS);
     createEReference(coordinatorBodyEClass, COORDINATOR_BODY__ORD_VARS);
     createEAttribute(coordinatorBodyEClass, COORDINATOR_BODY__SELFEX_METHODS);
+    createEReference(coordinatorBodyEClass, COORDINATOR_BODY__MUTEX_SETS);
+
+    mutexSetEClass = createEClass(MUTEX_SET);
+    createEAttribute(mutexSetEClass, MUTEX_SET__METHODS);
 
     condVarEClass = createEClass(COND_VAR);
     createEAttribute(condVarEClass, COND_VAR__NAME);
@@ -347,6 +389,10 @@ public class CoolPackageImpl extends EPackageImpl implements CoolPackage
     initEReference(getCoordinatorBody_CondVars(), this.getCondVar(), null, "condVars", null, 0, -1, CoordinatorBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getCoordinatorBody_OrdVars(), this.getOrdVar(), null, "ordVars", null, 0, -1, CoordinatorBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getCoordinatorBody_SelfexMethods(), ecorePackage.getEString(), "selfexMethods", null, 0, -1, CoordinatorBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCoordinatorBody_MutexSets(), this.getMutexSet(), null, "mutexSets", null, 0, -1, CoordinatorBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(mutexSetEClass, MutexSet.class, "MutexSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getMutexSet_Methods(), ecorePackage.getEString(), "methods", null, 0, -1, MutexSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(condVarEClass, CondVar.class, "CondVar", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getCondVar_Name(), ecorePackage.getEString(), "name", null, 0, 1, CondVar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

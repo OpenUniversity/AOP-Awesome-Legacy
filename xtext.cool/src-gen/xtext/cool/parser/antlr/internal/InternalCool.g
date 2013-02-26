@@ -307,9 +307,100 @@ ruleCoordinatorBody returns [EObject current=null]
     {
     	newLeafNode(otherlv_16, grammarAccess.getCoordinatorBodyAccess().getSemicolonKeyword_4_3());
     }
-)*	otherlv_17='}' 
+)?(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getCoordinatorBodyAccess().getMutexSetsMutexSetParserRuleCall_5_0()); 
+	    }
+		lv_mutexSets_17_0=ruleMutexSet		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getCoordinatorBodyRule());
+	        }
+       		add(
+       			$current, 
+       			"mutexSets",
+        		lv_mutexSets_17_0, 
+        		"MutexSet");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)*	otherlv_18='}' 
     {
-    	newLeafNode(otherlv_17, grammarAccess.getCoordinatorBodyAccess().getRightCurlyBracketKeyword_5());
+    	newLeafNode(otherlv_18, grammarAccess.getCoordinatorBodyAccess().getRightCurlyBracketKeyword_6());
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleMutexSet
+entryRuleMutexSet returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getMutexSetRule()); }
+	 iv_ruleMutexSet=ruleMutexSet 
+	 { $current=$iv_ruleMutexSet.current; } 
+	 EOF 
+;
+
+// Rule MutexSet
+ruleMutexSet returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='mutex' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getMutexSetAccess().getMutexKeyword_0());
+    }
+	otherlv_1='{' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getMutexSetAccess().getLeftCurlyBracketKeyword_1());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getMutexSetAccess().getMethodsQualifiedNameParserRuleCall_2_0()); 
+	    }
+		lv_methods_2_0=ruleQualifiedName		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getMutexSetRule());
+	        }
+       		add(
+       			$current, 
+       			"methods",
+        		lv_methods_2_0, 
+        		"QualifiedName");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(	otherlv_3=',' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getMutexSetAccess().getCommaKeyword_3_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getMutexSetAccess().getMethodsQualifiedNameParserRuleCall_3_1_0()); 
+	    }
+		lv_methods_4_0=ruleQualifiedName		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getMutexSetRule());
+	        }
+       		add(
+       			$current, 
+       			"methods",
+        		lv_methods_4_0, 
+        		"QualifiedName");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))+	otherlv_5='};' 
+    {
+    	newLeafNode(otherlv_5, grammarAccess.getMutexSetAccess().getRightCurlyBracketSemicolonKeyword_4());
     }
 )
 ;

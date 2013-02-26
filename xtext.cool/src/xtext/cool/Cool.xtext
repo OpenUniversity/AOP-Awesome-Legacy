@@ -1,0 +1,46 @@
+grammar xtext.cool.Cool with org.eclipse.xtext.common.Terminals
+
+generate cool "http://www.cool.xtext/Cool"
+
+CoordinatorDeclaration:
+	granularity='per_class'? 'coordinator' className=QualifiedName	// TODO should support multiple class names separated with commas...
+	body = CoordinatorBody?
+;
+
+CoordinatorBody:
+	'{'
+		{CoordinatorBody}	// don't understand this addition, but otherwise get a warning that results in a runtime exception when the coordinator is empty.
+		( 'condition' condVars += CondVar (',' condVars += CondVar)* ';' )*	// should support array initialization...
+		( 'int' ordVars += OrdVar (',' ordVars += OrdVar)* ';' )* // should support more primitive types...
+		('selfex' selfexMethods +=  QualifiedName (',' selfexMethods += QualifiedName)* ';')?	// selfex has no curely braces probably because the methods are not connected to each other.
+		mutexSets += MutexSet*
+	'}'
+;
+
+MutexSet:
+	'mutex' '{' methods += QualifiedName (',' methods += QualifiedName)+ '};'
+;
+
+CondVar:
+	name=ID '=' value=BooleanVal
+;
+
+OrdVar:
+	name=ID '=' value=INT
+;
+
+BooleanVal:
+	'true' | 'false'
+;
+ 
+QualifiedName:
+	ID ('.' ID)*
+;
+//Coordinator:
+//	Granularity? 'coordinator' name=QualifiedName '{'
+//		selfex = Selfex?
+//	'}'
+//;
+//Selfex:
+//	'selfex' '{' methods+=ID+'};'
+//;

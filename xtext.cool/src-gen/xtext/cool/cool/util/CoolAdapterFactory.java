@@ -88,6 +88,11 @@ public class CoolAdapterFactory extends AdapterFactoryImpl
         return createCoordinatorBodyAdapter();
       }
       @Override
+      public Adapter caseMutexSet(MutexSet object)
+      {
+        return createMutexSetAdapter();
+      }
+      @Override
       public Adapter caseCondVar(CondVar object)
       {
         return createCondVarAdapter();
@@ -145,6 +150,21 @@ public class CoolAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createCoordinatorBodyAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.cool.cool.MutexSet <em>Mutex Set</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.cool.cool.MutexSet
+   * @generated
+   */
+  public Adapter createMutexSetAdapter()
   {
     return null;
   }

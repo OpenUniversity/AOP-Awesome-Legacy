@@ -69,6 +69,7 @@ public class CoolFactoryImpl extends EFactoryImpl implements CoolFactory
     {
       case CoolPackage.COORDINATOR_DECLARATION: return createCoordinatorDeclaration();
       case CoolPackage.COORDINATOR_BODY: return createCoordinatorBody();
+      case CoolPackage.MUTEX_SET: return createMutexSet();
       case CoolPackage.COND_VAR: return createCondVar();
       case CoolPackage.ORD_VAR: return createOrdVar();
       default:
@@ -96,6 +97,17 @@ public class CoolFactoryImpl extends EFactoryImpl implements CoolFactory
   {
     CoordinatorBodyImpl coordinatorBody = new CoordinatorBodyImpl();
     return coordinatorBody;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MutexSet createMutexSet()
+  {
+    MutexSetImpl mutexSet = new MutexSetImpl();
+    return mutexSet;
   }
 
   /**

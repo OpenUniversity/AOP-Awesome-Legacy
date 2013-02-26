@@ -16,6 +16,12 @@
         eType="#//OrdVar" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="selfexMethods" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mutexSets" upperBound="-1"
+        eType="#//MutexSet" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MutexSet">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="methods" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CondVar">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

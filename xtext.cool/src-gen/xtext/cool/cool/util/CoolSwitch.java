@@ -89,6 +89,13 @@ public class CoolSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case CoolPackage.MUTEX_SET:
+      {
+        MutexSet mutexSet = (MutexSet)theEObject;
+        T result = caseMutexSet(mutexSet);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case CoolPackage.COND_VAR:
       {
         CondVar condVar = (CondVar)theEObject;
@@ -135,6 +142,22 @@ public class CoolSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseCoordinatorBody(CoordinatorBody object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Mutex Set</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Mutex Set</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMutexSet(MutexSet object)
   {
     return null;
   }
