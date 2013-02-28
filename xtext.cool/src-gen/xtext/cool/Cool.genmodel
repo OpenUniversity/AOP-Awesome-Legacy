@@ -18,6 +18,24 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cool.ecore#//CoordinatorBody/ordVars"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cool.ecore#//CoordinatorBody/selfexMethods"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cool.ecore#//CoordinatorBody/mutexSets"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cool.ecore#//CoordinatorBody/guards"/>
+    </genClasses>
+    <genClasses ecoreClass="Cool.ecore#//Guard">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cool.ecore#//Guard/methods"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cool.ecore#//Guard/requires"/>
+    </genClasses>
+    <genClasses ecoreClass="Cool.ecore#//Requires">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cool.ecore#//Requires/andExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="Cool.ecore#//AndExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cool.ecore#//AndExpression/orExpressions"/>
+    </genClasses>
+    <genClasses ecoreClass="Cool.ecore#//OrExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cool.ecore#//OrExpression/basicExpressions"/>
+    </genClasses>
+    <genClasses ecoreClass="Cool.ecore#//BasicExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cool.ecore#//BasicExpression/negated"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Cool.ecore#//BasicExpression/expr"/>
     </genClasses>
     <genClasses ecoreClass="Cool.ecore#//MutexSet">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cool.ecore#//MutexSet/methods"/>

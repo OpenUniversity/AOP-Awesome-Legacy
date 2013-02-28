@@ -44,6 +44,51 @@ public interface CoolFactory extends EFactory
   CoordinatorBody createCoordinatorBody();
 
   /**
+   * Returns a new object of class '<em>Guard</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Guard</em>'.
+   * @generated
+   */
+  Guard createGuard();
+
+  /**
+   * Returns a new object of class '<em>Requires</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Requires</em>'.
+   * @generated
+   */
+  Requires createRequires();
+
+  /**
+   * Returns a new object of class '<em>And Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>And Expression</em>'.
+   * @generated
+   */
+  AndExpression createAndExpression();
+
+  /**
+   * Returns a new object of class '<em>Or Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Or Expression</em>'.
+   * @generated
+   */
+  OrExpression createOrExpression();
+
+  /**
+   * Returns a new object of class '<em>Basic Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Basic Expression</em>'.
+   * @generated
+   */
+  BasicExpression createBasicExpression();
+
+  /**
    * Returns a new object of class '<em>Mutex Set</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

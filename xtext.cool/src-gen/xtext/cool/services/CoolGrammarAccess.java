@@ -95,21 +95,23 @@ public class CoolGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_4_3 = (Keyword)cGroup_4.eContents().get(3);
 		private final Assignment cMutexSetsAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cMutexSetsMutexSetParserRuleCall_5_0 = (RuleCall)cMutexSetsAssignment_5.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cGuardsAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cGuardsGuardParserRuleCall_6_0 = (RuleCall)cGuardsAssignment_6.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//CoordinatorBody:
 		//	"{" // don't understand this addition, but otherwise get a warning that results in a runtime exception when the coordinator is empty.
 		//	{CoordinatorBody} ("condition" condVars+=CondVar ("," condVars+=CondVar)* ";")* // should support array initialization...
 		//	("int" ordVars+=OrdVar ("," ordVars+=OrdVar)* ";")* // should support more primitive types...
 		//	("selfex" selfexMethods+=QualifiedName ("," selfexMethods+=QualifiedName)* ";")? // selfex has no curely braces probably because the methods are not connected to each other.
-		//	mutexSets+=MutexSet* "}";
+		//	mutexSets+=MutexSet* guards+=Guard* "}";
 		public ParserRule getRule() { return rule; }
 
 		//"{" // don't understand this addition, but otherwise get a warning that results in a runtime exception when the coordinator is empty.
 		//{CoordinatorBody} ("condition" condVars+=CondVar ("," condVars+=CondVar)* ";")* // should support array initialization...
 		//("int" ordVars+=OrdVar ("," ordVars+=OrdVar)* ";")* // should support more primitive types...
 		//("selfex" selfexMethods+=QualifiedName ("," selfexMethods+=QualifiedName)* ";")? // selfex has no curely braces probably because the methods are not connected to each other.
-		//mutexSets+=MutexSet* "}"
+		//mutexSets+=MutexSet* guards+=Guard* "}"
 		public Group getGroup() { return cGroup; }
 
 		//"{"
@@ -206,8 +208,199 @@ public class CoolGrammarAccess extends AbstractGrammarElementFinder {
 		//MutexSet
 		public RuleCall getMutexSetsMutexSetParserRuleCall_5_0() { return cMutexSetsMutexSetParserRuleCall_5_0; }
 
+		//guards+=Guard*
+		public Assignment getGuardsAssignment_6() { return cGuardsAssignment_6; }
+
+		//Guard
+		public RuleCall getGuardsGuardParserRuleCall_6_0() { return cGuardsGuardParserRuleCall_6_0; }
+
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
+		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
+	}
+
+	public class GuardElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Guard");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cGuardKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cMethodsAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cMethodsIDTerminalRuleCall_1_0 = (RuleCall)cMethodsAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cMethodsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cMethodsIDTerminalRuleCall_2_1_0 = (RuleCall)cMethodsAssignment_2_1.eContents().get(0);
+		private final Keyword cColonKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cRequiresAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cRequiresRequiresParserRuleCall_4_0 = (RuleCall)cRequiresAssignment_4.eContents().get(0);
+		
+		//Guard:
+		//	"guard"? methods+=ID ("," methods+=ID)* ":" requires=Requires?;
+		public ParserRule getRule() { return rule; }
+
+		//"guard"? methods+=ID ("," methods+=ID)* ":" requires=Requires?
+		public Group getGroup() { return cGroup; }
+
+		//"guard"?
+		public Keyword getGuardKeyword_0() { return cGuardKeyword_0; }
+
+		//methods+=ID
+		public Assignment getMethodsAssignment_1() { return cMethodsAssignment_1; }
+
+		//ID
+		public RuleCall getMethodsIDTerminalRuleCall_1_0() { return cMethodsIDTerminalRuleCall_1_0; }
+
+		//("," methods+=ID)*
+		public Group getGroup_2() { return cGroup_2; }
+
+		//","
+		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
+
+		//methods+=ID
+		public Assignment getMethodsAssignment_2_1() { return cMethodsAssignment_2_1; }
+
+		//ID
+		public RuleCall getMethodsIDTerminalRuleCall_2_1_0() { return cMethodsIDTerminalRuleCall_2_1_0; }
+
+		//":"
+		public Keyword getColonKeyword_3() { return cColonKeyword_3; }
+
+		//requires=Requires?
+		public Assignment getRequiresAssignment_4() { return cRequiresAssignment_4; }
+
+		//Requires
+		public RuleCall getRequiresRequiresParserRuleCall_4_0() { return cRequiresRequiresParserRuleCall_4_0; }
+	}
+
+	public class RequiresElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Requires");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cRequiresKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cAndExpressionAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cAndExpressionAndExpressionParserRuleCall_1_0 = (RuleCall)cAndExpressionAssignment_1.eContents().get(0);
+		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		
+		//Requires:
+		//	"requires" andExpression=AndExpression ";";
+		public ParserRule getRule() { return rule; }
+
+		//"requires" andExpression=AndExpression ";"
+		public Group getGroup() { return cGroup; }
+
+		//"requires"
+		public Keyword getRequiresKeyword_0() { return cRequiresKeyword_0; }
+
+		//andExpression=AndExpression
+		public Assignment getAndExpressionAssignment_1() { return cAndExpressionAssignment_1; }
+
+		//AndExpression
+		public RuleCall getAndExpressionAndExpressionParserRuleCall_1_0() { return cAndExpressionAndExpressionParserRuleCall_1_0; }
+
+		//";"
+		public Keyword getSemicolonKeyword_2() { return cSemicolonKeyword_2; }
+	}
+
+	public class AndExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AndExpression");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cOrExpressionsAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cOrExpressionsOrExpressionParserRuleCall_0_0 = (RuleCall)cOrExpressionsAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cAmpersandAmpersandKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cOrExpressionsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cOrExpressionsOrExpressionParserRuleCall_1_1_0 = (RuleCall)cOrExpressionsAssignment_1_1.eContents().get(0);
+		
+		//// not complete. should support parenthesis.
+		//AndExpression:
+		//	orExpressions+=OrExpression ("&&" orExpressions+=OrExpression)*;
+		public ParserRule getRule() { return rule; }
+
+		//orExpressions+=OrExpression ("&&" orExpressions+=OrExpression)*
+		public Group getGroup() { return cGroup; }
+
+		//orExpressions+=OrExpression
+		public Assignment getOrExpressionsAssignment_0() { return cOrExpressionsAssignment_0; }
+
+		//OrExpression
+		public RuleCall getOrExpressionsOrExpressionParserRuleCall_0_0() { return cOrExpressionsOrExpressionParserRuleCall_0_0; }
+
+		//("&&" orExpressions+=OrExpression)*
+		public Group getGroup_1() { return cGroup_1; }
+
+		//"&&"
+		public Keyword getAmpersandAmpersandKeyword_1_0() { return cAmpersandAmpersandKeyword_1_0; }
+
+		//orExpressions+=OrExpression
+		public Assignment getOrExpressionsAssignment_1_1() { return cOrExpressionsAssignment_1_1; }
+
+		//OrExpression
+		public RuleCall getOrExpressionsOrExpressionParserRuleCall_1_1_0() { return cOrExpressionsOrExpressionParserRuleCall_1_1_0; }
+	}
+
+	public class OrExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "OrExpression");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cBasicExpressionsAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cBasicExpressionsBasicExpressionParserRuleCall_0_0 = (RuleCall)cBasicExpressionsAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cVerticalLineVerticalLineKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cBasicExpressionsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cBasicExpressionsBasicExpressionParserRuleCall_1_1_0 = (RuleCall)cBasicExpressionsAssignment_1_1.eContents().get(0);
+		
+		//OrExpression:
+		//	basicExpressions+=BasicExpression ("||" basicExpressions+=BasicExpression)*;
+		public ParserRule getRule() { return rule; }
+
+		//basicExpressions+=BasicExpression ("||" basicExpressions+=BasicExpression)*
+		public Group getGroup() { return cGroup; }
+
+		//basicExpressions+=BasicExpression
+		public Assignment getBasicExpressionsAssignment_0() { return cBasicExpressionsAssignment_0; }
+
+		//BasicExpression
+		public RuleCall getBasicExpressionsBasicExpressionParserRuleCall_0_0() { return cBasicExpressionsBasicExpressionParserRuleCall_0_0; }
+
+		//("||" basicExpressions+=BasicExpression)*
+		public Group getGroup_1() { return cGroup_1; }
+
+		//"||"
+		public Keyword getVerticalLineVerticalLineKeyword_1_0() { return cVerticalLineVerticalLineKeyword_1_0; }
+
+		//basicExpressions+=BasicExpression
+		public Assignment getBasicExpressionsAssignment_1_1() { return cBasicExpressionsAssignment_1_1; }
+
+		//BasicExpression
+		public RuleCall getBasicExpressionsBasicExpressionParserRuleCall_1_1_0() { return cBasicExpressionsBasicExpressionParserRuleCall_1_1_0; }
+	}
+
+	public class BasicExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BasicExpression");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNegatedAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cNegatedExclamationMarkKeyword_0_0 = (Keyword)cNegatedAssignment_0.eContents().get(0);
+		private final Assignment cExprAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cExprCondVarCrossReference_1_0 = (CrossReference)cExprAssignment_1.eContents().get(0);
+		private final RuleCall cExprCondVarIDTerminalRuleCall_1_0_1 = (RuleCall)cExprCondVarCrossReference_1_0.eContents().get(1);
+		
+		//BasicExpression:
+		//	negated?="!"? expr=[CondVar];
+		public ParserRule getRule() { return rule; }
+
+		//negated?="!"? expr=[CondVar]
+		public Group getGroup() { return cGroup; }
+
+		//negated?="!"?
+		public Assignment getNegatedAssignment_0() { return cNegatedAssignment_0; }
+
+		//"!"
+		public Keyword getNegatedExclamationMarkKeyword_0_0() { return cNegatedExclamationMarkKeyword_0_0; }
+
+		//expr=[CondVar]
+		public Assignment getExprAssignment_1() { return cExprAssignment_1; }
+
+		//[CondVar]
+		public CrossReference getExprCondVarCrossReference_1_0() { return cExprCondVarCrossReference_1_0; }
+
+		//ID
+		public RuleCall getExprCondVarIDTerminalRuleCall_1_0_1() { return cExprCondVarIDTerminalRuleCall_1_0_1; }
 	}
 
 	public class MutexSetElements extends AbstractParserRuleElementFinder {
@@ -216,18 +409,18 @@ public class CoolGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cMutexKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cMethodsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cMethodsQualifiedNameParserRuleCall_2_0 = (RuleCall)cMethodsAssignment_2.eContents().get(0);
+		private final RuleCall cMethodsIDTerminalRuleCall_2_0 = (RuleCall)cMethodsAssignment_2.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Keyword cCommaKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
 		private final Assignment cMethodsAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cMethodsQualifiedNameParserRuleCall_3_1_0 = (RuleCall)cMethodsAssignment_3_1.eContents().get(0);
+		private final RuleCall cMethodsIDTerminalRuleCall_3_1_0 = (RuleCall)cMethodsAssignment_3_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//MutexSet:
-		//	"mutex" "{" methods+=QualifiedName ("," methods+=QualifiedName)+ "};";
+		//	"mutex" "{" methods+=ID ("," methods+=ID)+ "};";
 		public ParserRule getRule() { return rule; }
 
-		//"mutex" "{" methods+=QualifiedName ("," methods+=QualifiedName)+ "};"
+		//"mutex" "{" methods+=ID ("," methods+=ID)+ "};"
 		public Group getGroup() { return cGroup; }
 
 		//"mutex"
@@ -236,23 +429,23 @@ public class CoolGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 
-		//methods+=QualifiedName
+		//methods+=ID
 		public Assignment getMethodsAssignment_2() { return cMethodsAssignment_2; }
 
-		//QualifiedName
-		public RuleCall getMethodsQualifiedNameParserRuleCall_2_0() { return cMethodsQualifiedNameParserRuleCall_2_0; }
+		//ID
+		public RuleCall getMethodsIDTerminalRuleCall_2_0() { return cMethodsIDTerminalRuleCall_2_0; }
 
-		//("," methods+=QualifiedName)+
+		//("," methods+=ID)+
 		public Group getGroup_3() { return cGroup_3; }
 
 		//","
 		public Keyword getCommaKeyword_3_0() { return cCommaKeyword_3_0; }
 
-		//methods+=QualifiedName
+		//methods+=ID
 		public Assignment getMethodsAssignment_3_1() { return cMethodsAssignment_3_1; }
 
-		//QualifiedName
-		public RuleCall getMethodsQualifiedNameParserRuleCall_3_1_0() { return cMethodsQualifiedNameParserRuleCall_3_1_0; }
+		//ID
+		public RuleCall getMethodsIDTerminalRuleCall_3_1_0() { return cMethodsIDTerminalRuleCall_3_1_0; }
 
 		//"};"
 		public Keyword getRightCurlyBracketSemicolonKeyword_4() { return cRightCurlyBracketSemicolonKeyword_4; }
@@ -350,14 +543,6 @@ public class CoolGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final RuleCall cIDTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
 		
-		////Coordinator:
-		////	Granularity? 'coordinator' name=QualifiedName '{'
-		////		selfex = Selfex?
-		////	'}'
-		////;
-		////Selfex:
-		////	'selfex' '{' methods+=ID+'};'
-		////;
 		//QualifiedName:
 		//	ID ("." ID)*;
 		public ParserRule getRule() { return rule; }
@@ -381,6 +566,11 @@ public class CoolGrammarAccess extends AbstractGrammarElementFinder {
 	
 	private CoordinatorDeclarationElements pCoordinatorDeclaration;
 	private CoordinatorBodyElements pCoordinatorBody;
+	private GuardElements pGuard;
+	private RequiresElements pRequires;
+	private AndExpressionElements pAndExpression;
+	private OrExpressionElements pOrExpression;
+	private BasicExpressionElements pBasicExpression;
 	private MutexSetElements pMutexSet;
 	private CondVarElements pCondVar;
 	private OrdVarElements pOrdVar;
@@ -424,7 +614,7 @@ public class CoolGrammarAccess extends AbstractGrammarElementFinder {
 	//	{CoordinatorBody} ("condition" condVars+=CondVar ("," condVars+=CondVar)* ";")* // should support array initialization...
 	//	("int" ordVars+=OrdVar ("," ordVars+=OrdVar)* ";")* // should support more primitive types...
 	//	("selfex" selfexMethods+=QualifiedName ("," selfexMethods+=QualifiedName)* ";")? // selfex has no curely braces probably because the methods are not connected to each other.
-	//	mutexSets+=MutexSet* "}";
+	//	mutexSets+=MutexSet* guards+=Guard* "}";
 	public CoordinatorBodyElements getCoordinatorBodyAccess() {
 		return (pCoordinatorBody != null) ? pCoordinatorBody : (pCoordinatorBody = new CoordinatorBodyElements());
 	}
@@ -433,8 +623,59 @@ public class CoolGrammarAccess extends AbstractGrammarElementFinder {
 		return getCoordinatorBodyAccess().getRule();
 	}
 
+	//Guard:
+	//	"guard"? methods+=ID ("," methods+=ID)* ":" requires=Requires?;
+	public GuardElements getGuardAccess() {
+		return (pGuard != null) ? pGuard : (pGuard = new GuardElements());
+	}
+	
+	public ParserRule getGuardRule() {
+		return getGuardAccess().getRule();
+	}
+
+	//Requires:
+	//	"requires" andExpression=AndExpression ";";
+	public RequiresElements getRequiresAccess() {
+		return (pRequires != null) ? pRequires : (pRequires = new RequiresElements());
+	}
+	
+	public ParserRule getRequiresRule() {
+		return getRequiresAccess().getRule();
+	}
+
+	//// not complete. should support parenthesis.
+	//AndExpression:
+	//	orExpressions+=OrExpression ("&&" orExpressions+=OrExpression)*;
+	public AndExpressionElements getAndExpressionAccess() {
+		return (pAndExpression != null) ? pAndExpression : (pAndExpression = new AndExpressionElements());
+	}
+	
+	public ParserRule getAndExpressionRule() {
+		return getAndExpressionAccess().getRule();
+	}
+
+	//OrExpression:
+	//	basicExpressions+=BasicExpression ("||" basicExpressions+=BasicExpression)*;
+	public OrExpressionElements getOrExpressionAccess() {
+		return (pOrExpression != null) ? pOrExpression : (pOrExpression = new OrExpressionElements());
+	}
+	
+	public ParserRule getOrExpressionRule() {
+		return getOrExpressionAccess().getRule();
+	}
+
+	//BasicExpression:
+	//	negated?="!"? expr=[CondVar];
+	public BasicExpressionElements getBasicExpressionAccess() {
+		return (pBasicExpression != null) ? pBasicExpression : (pBasicExpression = new BasicExpressionElements());
+	}
+	
+	public ParserRule getBasicExpressionRule() {
+		return getBasicExpressionAccess().getRule();
+	}
+
 	//MutexSet:
-	//	"mutex" "{" methods+=QualifiedName ("," methods+=QualifiedName)+ "};";
+	//	"mutex" "{" methods+=ID ("," methods+=ID)+ "};";
 	public MutexSetElements getMutexSetAccess() {
 		return (pMutexSet != null) ? pMutexSet : (pMutexSet = new MutexSetElements());
 	}
@@ -473,14 +714,6 @@ public class CoolGrammarAccess extends AbstractGrammarElementFinder {
 		return getBooleanValAccess().getRule();
 	}
 
-	////Coordinator:
-	////	Granularity? 'coordinator' name=QualifiedName '{'
-	////		selfex = Selfex?
-	////	'}'
-	////;
-	////Selfex:
-	////	'selfex' '{' methods+=ID+'};'
-	////;
 	//QualifiedName:
 	//	ID ("." ID)*;
 	public QualifiedNameElements getQualifiedNameAccess() {

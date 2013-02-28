@@ -14,14 +14,36 @@ CoordinatorBody:
 		( 'int' ordVars += OrdVar (',' ordVars += OrdVar)* ';' )* // should support more primitive types...
 		('selfex' selfexMethods +=  QualifiedName (',' selfexMethods += QualifiedName)* ';')?	// selfex has no curely braces probably because the methods are not connected to each other.
 		mutexSets += MutexSet*
+		guards += Guard*
 	'}'
 ;
 
-MutexSet:
-	'mutex' '{' methods += QualifiedName (',' methods += QualifiedName)+ '};'
+Guard:
+	'guard'? methods += ID (',' methods += ID)* ':'
+	requires = Requires?
 ;
 
-CondVar:
+Requires:
+	'requires' andExpression = AndExpression ';'
+;
+
+AndExpression: // not complete. should support parenthesis.
+	orExpressions += OrExpression ('&&' orExpressions += OrExpression)*
+;
+
+OrExpression:
+	basicExpressions += BasicExpression ('||' basicExpressions += BasicExpression)*
+;
+
+BasicExpression:
+	negated ?= '!'? expr = [CondVar]
+;
+
+MutexSet:
+	'mutex' '{' methods += ID (',' methods += ID)+ '};'
+;
+
+CondVar returns CondVar:
 	name=ID '=' value=BooleanVal
 ;
 
@@ -36,11 +58,3 @@ BooleanVal:
 QualifiedName:
 	ID ('.' ID)*
 ;
-//Coordinator:
-//	Granularity? 'coordinator' name=QualifiedName '{'
-//		selfex = Selfex?
-//	'}'
-//;
-//Selfex:
-//	'selfex' '{' methods+=ID+'};'
-//;

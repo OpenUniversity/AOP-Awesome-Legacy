@@ -152,13 +152,180 @@ public interface CoolPackage extends EPackage
   int COORDINATOR_BODY__MUTEX_SETS = 3;
 
   /**
+   * The feature id for the '<em><b>Guards</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COORDINATOR_BODY__GUARDS = 4;
+
+  /**
    * The number of structural features of the '<em>Coordinator Body</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int COORDINATOR_BODY_FEATURE_COUNT = 4;
+  int COORDINATOR_BODY_FEATURE_COUNT = 5;
+
+  /**
+   * The meta object id for the '{@link xtext.cool.cool.impl.GuardImpl <em>Guard</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.cool.cool.impl.GuardImpl
+   * @see xtext.cool.cool.impl.CoolPackageImpl#getGuard()
+   * @generated
+   */
+  int GUARD = 2;
+
+  /**
+   * The feature id for the '<em><b>Methods</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GUARD__METHODS = 0;
+
+  /**
+   * The feature id for the '<em><b>Requires</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GUARD__REQUIRES = 1;
+
+  /**
+   * The number of structural features of the '<em>Guard</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GUARD_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link xtext.cool.cool.impl.RequiresImpl <em>Requires</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.cool.cool.impl.RequiresImpl
+   * @see xtext.cool.cool.impl.CoolPackageImpl#getRequires()
+   * @generated
+   */
+  int REQUIRES = 3;
+
+  /**
+   * The feature id for the '<em><b>And Expression</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REQUIRES__AND_EXPRESSION = 0;
+
+  /**
+   * The number of structural features of the '<em>Requires</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REQUIRES_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link xtext.cool.cool.impl.AndExpressionImpl <em>And Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.cool.cool.impl.AndExpressionImpl
+   * @see xtext.cool.cool.impl.CoolPackageImpl#getAndExpression()
+   * @generated
+   */
+  int AND_EXPRESSION = 4;
+
+  /**
+   * The feature id for the '<em><b>Or Expressions</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AND_EXPRESSION__OR_EXPRESSIONS = 0;
+
+  /**
+   * The number of structural features of the '<em>And Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AND_EXPRESSION_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link xtext.cool.cool.impl.OrExpressionImpl <em>Or Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.cool.cool.impl.OrExpressionImpl
+   * @see xtext.cool.cool.impl.CoolPackageImpl#getOrExpression()
+   * @generated
+   */
+  int OR_EXPRESSION = 5;
+
+  /**
+   * The feature id for the '<em><b>Basic Expressions</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OR_EXPRESSION__BASIC_EXPRESSIONS = 0;
+
+  /**
+   * The number of structural features of the '<em>Or Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OR_EXPRESSION_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link xtext.cool.cool.impl.BasicExpressionImpl <em>Basic Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.cool.cool.impl.BasicExpressionImpl
+   * @see xtext.cool.cool.impl.CoolPackageImpl#getBasicExpression()
+   * @generated
+   */
+  int BASIC_EXPRESSION = 6;
+
+  /**
+   * The feature id for the '<em><b>Negated</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BASIC_EXPRESSION__NEGATED = 0;
+
+  /**
+   * The feature id for the '<em><b>Expr</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BASIC_EXPRESSION__EXPR = 1;
+
+  /**
+   * The number of structural features of the '<em>Basic Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BASIC_EXPRESSION_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link xtext.cool.cool.impl.MutexSetImpl <em>Mutex Set</em>}' class.
@@ -168,7 +335,7 @@ public interface CoolPackage extends EPackage
    * @see xtext.cool.cool.impl.CoolPackageImpl#getMutexSet()
    * @generated
    */
-  int MUTEX_SET = 2;
+  int MUTEX_SET = 7;
 
   /**
    * The feature id for the '<em><b>Methods</b></em>' attribute list.
@@ -196,7 +363,7 @@ public interface CoolPackage extends EPackage
    * @see xtext.cool.cool.impl.CoolPackageImpl#getCondVar()
    * @generated
    */
-  int COND_VAR = 3;
+  int COND_VAR = 8;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -233,7 +400,7 @@ public interface CoolPackage extends EPackage
    * @see xtext.cool.cool.impl.CoolPackageImpl#getOrdVar()
    * @generated
    */
-  int ORD_VAR = 4;
+  int ORD_VAR = 9;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -359,6 +526,144 @@ public interface CoolPackage extends EPackage
    * @generated
    */
   EReference getCoordinatorBody_MutexSets();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link xtext.cool.cool.CoordinatorBody#getGuards <em>Guards</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Guards</em>'.
+   * @see xtext.cool.cool.CoordinatorBody#getGuards()
+   * @see #getCoordinatorBody()
+   * @generated
+   */
+  EReference getCoordinatorBody_Guards();
+
+  /**
+   * Returns the meta object for class '{@link xtext.cool.cool.Guard <em>Guard</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Guard</em>'.
+   * @see xtext.cool.cool.Guard
+   * @generated
+   */
+  EClass getGuard();
+
+  /**
+   * Returns the meta object for the attribute list '{@link xtext.cool.cool.Guard#getMethods <em>Methods</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Methods</em>'.
+   * @see xtext.cool.cool.Guard#getMethods()
+   * @see #getGuard()
+   * @generated
+   */
+  EAttribute getGuard_Methods();
+
+  /**
+   * Returns the meta object for the containment reference '{@link xtext.cool.cool.Guard#getRequires <em>Requires</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Requires</em>'.
+   * @see xtext.cool.cool.Guard#getRequires()
+   * @see #getGuard()
+   * @generated
+   */
+  EReference getGuard_Requires();
+
+  /**
+   * Returns the meta object for class '{@link xtext.cool.cool.Requires <em>Requires</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Requires</em>'.
+   * @see xtext.cool.cool.Requires
+   * @generated
+   */
+  EClass getRequires();
+
+  /**
+   * Returns the meta object for the containment reference '{@link xtext.cool.cool.Requires#getAndExpression <em>And Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>And Expression</em>'.
+   * @see xtext.cool.cool.Requires#getAndExpression()
+   * @see #getRequires()
+   * @generated
+   */
+  EReference getRequires_AndExpression();
+
+  /**
+   * Returns the meta object for class '{@link xtext.cool.cool.AndExpression <em>And Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>And Expression</em>'.
+   * @see xtext.cool.cool.AndExpression
+   * @generated
+   */
+  EClass getAndExpression();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link xtext.cool.cool.AndExpression#getOrExpressions <em>Or Expressions</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Or Expressions</em>'.
+   * @see xtext.cool.cool.AndExpression#getOrExpressions()
+   * @see #getAndExpression()
+   * @generated
+   */
+  EReference getAndExpression_OrExpressions();
+
+  /**
+   * Returns the meta object for class '{@link xtext.cool.cool.OrExpression <em>Or Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Or Expression</em>'.
+   * @see xtext.cool.cool.OrExpression
+   * @generated
+   */
+  EClass getOrExpression();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link xtext.cool.cool.OrExpression#getBasicExpressions <em>Basic Expressions</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Basic Expressions</em>'.
+   * @see xtext.cool.cool.OrExpression#getBasicExpressions()
+   * @see #getOrExpression()
+   * @generated
+   */
+  EReference getOrExpression_BasicExpressions();
+
+  /**
+   * Returns the meta object for class '{@link xtext.cool.cool.BasicExpression <em>Basic Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Basic Expression</em>'.
+   * @see xtext.cool.cool.BasicExpression
+   * @generated
+   */
+  EClass getBasicExpression();
+
+  /**
+   * Returns the meta object for the attribute '{@link xtext.cool.cool.BasicExpression#isNegated <em>Negated</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Negated</em>'.
+   * @see xtext.cool.cool.BasicExpression#isNegated()
+   * @see #getBasicExpression()
+   * @generated
+   */
+  EAttribute getBasicExpression_Negated();
+
+  /**
+   * Returns the meta object for the reference '{@link xtext.cool.cool.BasicExpression#getExpr <em>Expr</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Expr</em>'.
+   * @see xtext.cool.cool.BasicExpression#getExpr()
+   * @see #getBasicExpression()
+   * @generated
+   */
+  EReference getBasicExpression_Expr();
 
   /**
    * Returns the meta object for class '{@link xtext.cool.cool.MutexSet <em>Mutex Set</em>}'.
@@ -543,6 +848,120 @@ public interface CoolPackage extends EPackage
      * @generated
      */
     EReference COORDINATOR_BODY__MUTEX_SETS = eINSTANCE.getCoordinatorBody_MutexSets();
+
+    /**
+     * The meta object literal for the '<em><b>Guards</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference COORDINATOR_BODY__GUARDS = eINSTANCE.getCoordinatorBody_Guards();
+
+    /**
+     * The meta object literal for the '{@link xtext.cool.cool.impl.GuardImpl <em>Guard</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.cool.cool.impl.GuardImpl
+     * @see xtext.cool.cool.impl.CoolPackageImpl#getGuard()
+     * @generated
+     */
+    EClass GUARD = eINSTANCE.getGuard();
+
+    /**
+     * The meta object literal for the '<em><b>Methods</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute GUARD__METHODS = eINSTANCE.getGuard_Methods();
+
+    /**
+     * The meta object literal for the '<em><b>Requires</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference GUARD__REQUIRES = eINSTANCE.getGuard_Requires();
+
+    /**
+     * The meta object literal for the '{@link xtext.cool.cool.impl.RequiresImpl <em>Requires</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.cool.cool.impl.RequiresImpl
+     * @see xtext.cool.cool.impl.CoolPackageImpl#getRequires()
+     * @generated
+     */
+    EClass REQUIRES = eINSTANCE.getRequires();
+
+    /**
+     * The meta object literal for the '<em><b>And Expression</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference REQUIRES__AND_EXPRESSION = eINSTANCE.getRequires_AndExpression();
+
+    /**
+     * The meta object literal for the '{@link xtext.cool.cool.impl.AndExpressionImpl <em>And Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.cool.cool.impl.AndExpressionImpl
+     * @see xtext.cool.cool.impl.CoolPackageImpl#getAndExpression()
+     * @generated
+     */
+    EClass AND_EXPRESSION = eINSTANCE.getAndExpression();
+
+    /**
+     * The meta object literal for the '<em><b>Or Expressions</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference AND_EXPRESSION__OR_EXPRESSIONS = eINSTANCE.getAndExpression_OrExpressions();
+
+    /**
+     * The meta object literal for the '{@link xtext.cool.cool.impl.OrExpressionImpl <em>Or Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.cool.cool.impl.OrExpressionImpl
+     * @see xtext.cool.cool.impl.CoolPackageImpl#getOrExpression()
+     * @generated
+     */
+    EClass OR_EXPRESSION = eINSTANCE.getOrExpression();
+
+    /**
+     * The meta object literal for the '<em><b>Basic Expressions</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference OR_EXPRESSION__BASIC_EXPRESSIONS = eINSTANCE.getOrExpression_BasicExpressions();
+
+    /**
+     * The meta object literal for the '{@link xtext.cool.cool.impl.BasicExpressionImpl <em>Basic Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.cool.cool.impl.BasicExpressionImpl
+     * @see xtext.cool.cool.impl.CoolPackageImpl#getBasicExpression()
+     * @generated
+     */
+    EClass BASIC_EXPRESSION = eINSTANCE.getBasicExpression();
+
+    /**
+     * The meta object literal for the '<em><b>Negated</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BASIC_EXPRESSION__NEGATED = eINSTANCE.getBasicExpression_Negated();
+
+    /**
+     * The meta object literal for the '<em><b>Expr</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference BASIC_EXPRESSION__EXPR = eINSTANCE.getBasicExpression_Expr();
 
     /**
      * The meta object literal for the '{@link xtext.cool.cool.impl.MutexSetImpl <em>Mutex Set</em>}' class.

@@ -88,6 +88,31 @@ public class CoolAdapterFactory extends AdapterFactoryImpl
         return createCoordinatorBodyAdapter();
       }
       @Override
+      public Adapter caseGuard(Guard object)
+      {
+        return createGuardAdapter();
+      }
+      @Override
+      public Adapter caseRequires(Requires object)
+      {
+        return createRequiresAdapter();
+      }
+      @Override
+      public Adapter caseAndExpression(AndExpression object)
+      {
+        return createAndExpressionAdapter();
+      }
+      @Override
+      public Adapter caseOrExpression(OrExpression object)
+      {
+        return createOrExpressionAdapter();
+      }
+      @Override
+      public Adapter caseBasicExpression(BasicExpression object)
+      {
+        return createBasicExpressionAdapter();
+      }
+      @Override
       public Adapter caseMutexSet(MutexSet object)
       {
         return createMutexSetAdapter();
@@ -150,6 +175,81 @@ public class CoolAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createCoordinatorBodyAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.cool.cool.Guard <em>Guard</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.cool.cool.Guard
+   * @generated
+   */
+  public Adapter createGuardAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.cool.cool.Requires <em>Requires</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.cool.cool.Requires
+   * @generated
+   */
+  public Adapter createRequiresAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.cool.cool.AndExpression <em>And Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.cool.cool.AndExpression
+   * @generated
+   */
+  public Adapter createAndExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.cool.cool.OrExpression <em>Or Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.cool.cool.OrExpression
+   * @generated
+   */
+  public Adapter createOrExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.cool.cool.BasicExpression <em>Basic Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.cool.cool.BasicExpression
+   * @generated
+   */
+  public Adapter createBasicExpressionAdapter()
   {
     return null;
   }

@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import xtext.cool.cool.CondVar;
 import xtext.cool.cool.CoolPackage;
 import xtext.cool.cool.CoordinatorBody;
+import xtext.cool.cool.Guard;
 import xtext.cool.cool.MutexSet;
 import xtext.cool.cool.OrdVar;
 
@@ -37,6 +38,7 @@ import xtext.cool.cool.OrdVar;
  *   <li>{@link xtext.cool.cool.impl.CoordinatorBodyImpl#getOrdVars <em>Ord Vars</em>}</li>
  *   <li>{@link xtext.cool.cool.impl.CoordinatorBodyImpl#getSelfexMethods <em>Selfex Methods</em>}</li>
  *   <li>{@link xtext.cool.cool.impl.CoordinatorBodyImpl#getMutexSets <em>Mutex Sets</em>}</li>
+ *   <li>{@link xtext.cool.cool.impl.CoordinatorBodyImpl#getGuards <em>Guards</em>}</li>
  * </ul>
  * </p>
  *
@@ -83,6 +85,16 @@ public class CoordinatorBodyImpl extends MinimalEObjectImpl.Container implements
    * @ordered
    */
   protected EList<MutexSet> mutexSets;
+
+  /**
+   * The cached value of the '{@link #getGuards() <em>Guards</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getGuards()
+   * @generated
+   * @ordered
+   */
+  protected EList<Guard> guards;
 
   /**
    * <!-- begin-user-doc -->
@@ -166,6 +178,20 @@ public class CoordinatorBodyImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<Guard> getGuards()
+  {
+    if (guards == null)
+    {
+      guards = new EObjectContainmentEList<Guard>(Guard.class, this, CoolPackage.COORDINATOR_BODY__GUARDS);
+    }
+    return guards;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -177,6 +203,8 @@ public class CoordinatorBodyImpl extends MinimalEObjectImpl.Container implements
         return ((InternalEList<?>)getOrdVars()).basicRemove(otherEnd, msgs);
       case CoolPackage.COORDINATOR_BODY__MUTEX_SETS:
         return ((InternalEList<?>)getMutexSets()).basicRemove(otherEnd, msgs);
+      case CoolPackage.COORDINATOR_BODY__GUARDS:
+        return ((InternalEList<?>)getGuards()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -199,6 +227,8 @@ public class CoordinatorBodyImpl extends MinimalEObjectImpl.Container implements
         return getSelfexMethods();
       case CoolPackage.COORDINATOR_BODY__MUTEX_SETS:
         return getMutexSets();
+      case CoolPackage.COORDINATOR_BODY__GUARDS:
+        return getGuards();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -230,6 +260,10 @@ public class CoordinatorBodyImpl extends MinimalEObjectImpl.Container implements
         getMutexSets().clear();
         getMutexSets().addAll((Collection<? extends MutexSet>)newValue);
         return;
+      case CoolPackage.COORDINATOR_BODY__GUARDS:
+        getGuards().clear();
+        getGuards().addAll((Collection<? extends Guard>)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -256,6 +290,9 @@ public class CoordinatorBodyImpl extends MinimalEObjectImpl.Container implements
       case CoolPackage.COORDINATOR_BODY__MUTEX_SETS:
         getMutexSets().clear();
         return;
+      case CoolPackage.COORDINATOR_BODY__GUARDS:
+        getGuards().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -278,6 +315,8 @@ public class CoordinatorBodyImpl extends MinimalEObjectImpl.Container implements
         return selfexMethods != null && !selfexMethods.isEmpty();
       case CoolPackage.COORDINATOR_BODY__MUTEX_SETS:
         return mutexSets != null && !mutexSets.isEmpty();
+      case CoolPackage.COORDINATOR_BODY__GUARDS:
+        return guards != null && !guards.isEmpty();
     }
     return super.eIsSet(featureID);
   }

@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link xtext.cool.cool.CoordinatorBody#getOrdVars <em>Ord Vars</em>}</li>
  *   <li>{@link xtext.cool.cool.CoordinatorBody#getSelfexMethods <em>Selfex Methods</em>}</li>
  *   <li>{@link xtext.cool.cool.CoordinatorBody#getMutexSets <em>Mutex Sets</em>}</li>
+ *   <li>{@link xtext.cool.cool.CoordinatorBody#getGuards <em>Guards</em>}</li>
  * </ul>
  * </p>
  *
@@ -93,5 +94,21 @@ public interface CoordinatorBody extends EObject
    * @generated
    */
   EList<MutexSet> getMutexSets();
+
+  /**
+   * Returns the value of the '<em><b>Guards</b></em>' containment reference list.
+   * The list contents are of type {@link xtext.cool.cool.Guard}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Guards</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Guards</em>' containment reference list.
+   * @see xtext.cool.cool.CoolPackage#getCoordinatorBody_Guards()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Guard> getGuards();
 
 } // CoordinatorBody

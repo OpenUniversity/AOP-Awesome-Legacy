@@ -10,9 +10,11 @@ import xtext.cool.cool.CoordinatorDeclaration
 import static extension org.eclipse.xtext.xtend2.lib.ResourceExtensions.*
 import xtext.cool.cool.CondVar
 import xtext.cool.cool.OrdVar
-import java.util.List
 import java.util.Set
 import java.util.HashSet
+import xtext.cool.cool.OrExpression
+import xtext.cool.cool.AndExpression
+import xtext.cool.cool.Guard
 
 class CoolGenerator implements IGenerator {
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
@@ -43,8 +45,26 @@ class CoolGenerator implements IGenerator {
 		«FOR method : coord.getAllMethods»
 		«generateLockAndUnlockAdvice(method, coord)»
 		«ENDFOR»
+		
+		«FOR guard : coord.body.guards»
+		«FOR method : guard.methods»
+		«generateGuardMethod(guard, method)»
+		«ENDFOR»«ENDFOR»
 	}
 	'''
+	
+	def generateGuardMethod(Guard guard, String method)'''
+	private boolean requires_«method»() {
+		return («guard.requires.andExpression.print»);
+	}
+	'''
+	
+	def print(AndExpression exp)'''
+		«FOR orexp : exp.orExpressions»«orexp.print»«IF !orexp.equals(exp.orExpressions.get(exp.orExpressions.size-1))» && «ENDIF»«ENDFOR»'''
+	
+	def print(OrExpression exp)'''
+		«FOR basicexp : exp.basicExpressions»
+		«IF basicexp.negated»!«ENDIF»«basicexp.expr.name»«IF !basicexp.equals(exp.basicExpressions.get(exp.basicExpressions.size-1))» || «ENDIF»«ENDFOR»'''
 	
 	def generateLockAndUnlockAdvice(String method, CoordinatorDeclaration coord) '''
 	@Before("execution(* «coord.className».«method»(..))")
@@ -53,7 +73,7 @@ class CoolGenerator implements IGenerator {
 			«FOR partner : getMutexPartners(coord, method)»
 			lock_«partner».isBusyByOtherThread() ||
 			«ENDFOR»
-			false)
+			«IF(hasRequires(method, coord))»!requires_«method»()«ELSE»false«ENDIF»)
 				try { wait(); } catch (InterruptedException e) {}
 	
 		lock_«method».in();
@@ -64,6 +84,14 @@ class CoolGenerator implements IGenerator {
 	    notifyAll();
 	}
 	'''
+	
+	def boolean hasRequires(String method, CoordinatorDeclaration coord) {
+		for(guard : coord.body.guards) {
+			if(guard.methods.contains(method))
+				return true;
+		}
+		return false;
+	}
 	
 	// return all the methods that appear either in selfex or in mutex
 	def Set<String> getAllMethods(CoordinatorDeclaration coord) {
@@ -92,13 +120,6 @@ class CoolGenerator implements IGenerator {
 		result.remove(method)
 		return result
 	}
-//	def getAllMutexMethods(CoordinatorDeclaration coord) {
-//		val result = newHashSet()
-//		for(method : coord.body.mutexSets)
-//			result.add(method)
-//			
-//		return result
-//	}
 	
 	def compile(CondVar condvar) '''
 	private boolean «condvar.name» = «condvar.value»;

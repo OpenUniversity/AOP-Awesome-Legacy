@@ -12,13 +12,18 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import xtext.cool.cool.AndExpression;
+import xtext.cool.cool.BasicExpression;
 import xtext.cool.cool.CondVar;
 import xtext.cool.cool.CoolFactory;
 import xtext.cool.cool.CoolPackage;
 import xtext.cool.cool.CoordinatorBody;
 import xtext.cool.cool.CoordinatorDeclaration;
+import xtext.cool.cool.Guard;
 import xtext.cool.cool.MutexSet;
+import xtext.cool.cool.OrExpression;
 import xtext.cool.cool.OrdVar;
+import xtext.cool.cool.Requires;
 
 /**
  * <!-- begin-user-doc -->
@@ -41,6 +46,41 @@ public class CoolPackageImpl extends EPackageImpl implements CoolPackage
    * @generated
    */
   private EClass coordinatorBodyEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass guardEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass requiresEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass andExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass orExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass basicExpressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -221,6 +261,136 @@ public class CoolPackageImpl extends EPackageImpl implements CoolPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getCoordinatorBody_Guards()
+  {
+    return (EReference)coordinatorBodyEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getGuard()
+  {
+    return guardEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getGuard_Methods()
+  {
+    return (EAttribute)guardEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getGuard_Requires()
+  {
+    return (EReference)guardEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getRequires()
+  {
+    return requiresEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRequires_AndExpression()
+  {
+    return (EReference)requiresEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getAndExpression()
+  {
+    return andExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAndExpression_OrExpressions()
+  {
+    return (EReference)andExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getOrExpression()
+  {
+    return orExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getOrExpression_BasicExpressions()
+  {
+    return (EReference)orExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getBasicExpression()
+  {
+    return basicExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getBasicExpression_Negated()
+  {
+    return (EAttribute)basicExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getBasicExpression_Expr()
+  {
+    return (EReference)basicExpressionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getMutexSet()
   {
     return mutexSetEClass;
@@ -336,6 +506,24 @@ public class CoolPackageImpl extends EPackageImpl implements CoolPackage
     createEReference(coordinatorBodyEClass, COORDINATOR_BODY__ORD_VARS);
     createEAttribute(coordinatorBodyEClass, COORDINATOR_BODY__SELFEX_METHODS);
     createEReference(coordinatorBodyEClass, COORDINATOR_BODY__MUTEX_SETS);
+    createEReference(coordinatorBodyEClass, COORDINATOR_BODY__GUARDS);
+
+    guardEClass = createEClass(GUARD);
+    createEAttribute(guardEClass, GUARD__METHODS);
+    createEReference(guardEClass, GUARD__REQUIRES);
+
+    requiresEClass = createEClass(REQUIRES);
+    createEReference(requiresEClass, REQUIRES__AND_EXPRESSION);
+
+    andExpressionEClass = createEClass(AND_EXPRESSION);
+    createEReference(andExpressionEClass, AND_EXPRESSION__OR_EXPRESSIONS);
+
+    orExpressionEClass = createEClass(OR_EXPRESSION);
+    createEReference(orExpressionEClass, OR_EXPRESSION__BASIC_EXPRESSIONS);
+
+    basicExpressionEClass = createEClass(BASIC_EXPRESSION);
+    createEAttribute(basicExpressionEClass, BASIC_EXPRESSION__NEGATED);
+    createEReference(basicExpressionEClass, BASIC_EXPRESSION__EXPR);
 
     mutexSetEClass = createEClass(MUTEX_SET);
     createEAttribute(mutexSetEClass, MUTEX_SET__METHODS);
@@ -390,6 +578,24 @@ public class CoolPackageImpl extends EPackageImpl implements CoolPackage
     initEReference(getCoordinatorBody_OrdVars(), this.getOrdVar(), null, "ordVars", null, 0, -1, CoordinatorBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getCoordinatorBody_SelfexMethods(), ecorePackage.getEString(), "selfexMethods", null, 0, -1, CoordinatorBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getCoordinatorBody_MutexSets(), this.getMutexSet(), null, "mutexSets", null, 0, -1, CoordinatorBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCoordinatorBody_Guards(), this.getGuard(), null, "guards", null, 0, -1, CoordinatorBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(guardEClass, Guard.class, "Guard", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getGuard_Methods(), ecorePackage.getEString(), "methods", null, 0, -1, Guard.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getGuard_Requires(), this.getRequires(), null, "requires", null, 0, 1, Guard.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(requiresEClass, Requires.class, "Requires", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRequires_AndExpression(), this.getAndExpression(), null, "andExpression", null, 0, 1, Requires.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(andExpressionEClass, AndExpression.class, "AndExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAndExpression_OrExpressions(), this.getOrExpression(), null, "orExpressions", null, 0, -1, AndExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(orExpressionEClass, OrExpression.class, "OrExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getOrExpression_BasicExpressions(), this.getBasicExpression(), null, "basicExpressions", null, 0, -1, OrExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(basicExpressionEClass, BasicExpression.class, "BasicExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getBasicExpression_Negated(), ecorePackage.getEBoolean(), "negated", null, 0, 1, BasicExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getBasicExpression_Expr(), this.getCondVar(), null, "expr", null, 0, 1, BasicExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(mutexSetEClass, MutexSet.class, "MutexSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMutexSet_Methods(), ecorePackage.getEString(), "methods", null, 0, -1, MutexSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
