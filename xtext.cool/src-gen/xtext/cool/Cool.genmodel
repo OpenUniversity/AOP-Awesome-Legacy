@@ -23,6 +23,27 @@
     <genClasses ecoreClass="Cool.ecore#//Guard">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cool.ecore#//Guard/methods"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cool.ecore#//Guard/requires"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cool.ecore#//Guard/onEntryIfStatements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cool.ecore#//Guard/onEntryAssignStatements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cool.ecore#//Guard/onExitIfStatements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cool.ecore#//Guard/onExitAssignStatements"/>
+    </genClasses>
+    <genClasses ecoreClass="Cool.ecore#//IfStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cool.ecore#//IfStatement/expression"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cool.ecore#//IfStatement/statement"/>
+    </genClasses>
+    <genClasses ecoreClass="Cool.ecore#//IfExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cool.ecore#//IfExpression/var"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cool.ecore#//IfExpression/op"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cool.ecore#//IfExpression/assignment"/>
+    </genClasses>
+    <genClasses ecoreClass="Cool.ecore#//AssignedValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cool.ecore#//AssignedValue/intval"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cool.ecore#//AssignedValue/boolval"/>
+    </genClasses>
+    <genClasses ecoreClass="Cool.ecore#//AssignStatement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Cool.ecore#//AssignStatement/var"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Cool.ecore#//AssignStatement/value"/>
     </genClasses>
     <genClasses ecoreClass="Cool.ecore#//Requires">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Cool.ecore#//Requires/andExpression"/>

@@ -30,13 +30,20 @@ public class InternalCoolLexer extends Lexer {
     public static final int T__30=30;
     public static final int T__19=19;
     public static final int T__31=31;
+    public static final int T__32=32;
     public static final int RULE_STRING=6;
     public static final int T__16=16;
+    public static final int T__33=33;
     public static final int T__15=15;
+    public static final int T__34=34;
     public static final int T__18=18;
+    public static final int T__35=35;
     public static final int T__17=17;
+    public static final int T__36=36;
     public static final int T__12=12;
+    public static final int T__37=37;
     public static final int T__11=11;
+    public static final int T__38=38;
     public static final int T__14=14;
     public static final int T__13=13;
     public static final int RULE_INT=5;
@@ -286,10 +293,10 @@ public class InternalCoolLexer extends Lexer {
         try {
             int _type = T__22;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:22:7: ( 'requires' )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:22:9: 'requires'
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:22:7: ( 'on_entry' )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:22:9: 'on_entry'
             {
-            match("requires"); 
+            match("on_entry"); 
 
 
             }
@@ -307,10 +314,10 @@ public class InternalCoolLexer extends Lexer {
         try {
             int _type = T__23;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:23:7: ( '&&' )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:23:9: '&&'
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:23:7: ( 'on_exit' )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:23:9: 'on_exit'
             {
-            match("&&"); 
+            match("on_exit"); 
 
 
             }
@@ -328,10 +335,10 @@ public class InternalCoolLexer extends Lexer {
         try {
             int _type = T__24;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:24:7: ( '||' )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:24:9: '||'
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:24:7: ( 'if' )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:24:9: 'if'
             {
-            match("||"); 
+            match("if"); 
 
 
             }
@@ -349,10 +356,10 @@ public class InternalCoolLexer extends Lexer {
         try {
             int _type = T__25;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:25:7: ( '!' )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:25:9: '!'
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:25:7: ( '(' )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:25:9: '('
             {
-            match('!'); 
+            match('('); 
 
             }
 
@@ -369,11 +376,10 @@ public class InternalCoolLexer extends Lexer {
         try {
             int _type = T__26;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:26:7: ( 'mutex' )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:26:9: 'mutex'
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:26:7: ( ')' )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:26:9: ')'
             {
-            match("mutex"); 
-
+            match(')'); 
 
             }
 
@@ -390,10 +396,10 @@ public class InternalCoolLexer extends Lexer {
         try {
             int _type = T__27;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:27:7: ( '};' )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:27:9: '};'
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:27:7: ( '==' )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:27:9: '=='
             {
-            match("};"); 
+            match("=="); 
 
 
             }
@@ -411,10 +417,11 @@ public class InternalCoolLexer extends Lexer {
         try {
             int _type = T__28;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:28:7: ( '=' )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:28:9: '='
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:28:7: ( '!=' )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:28:9: '!='
             {
-            match('='); 
+            match("!="); 
+
 
             }
 
@@ -473,10 +480,10 @@ public class InternalCoolLexer extends Lexer {
         try {
             int _type = T__31;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:31:7: ( '.' )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:31:9: '.'
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:31:7: ( '=' )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:31:9: '='
             {
-            match('.'); 
+            match('='); 
 
             }
 
@@ -488,15 +495,160 @@ public class InternalCoolLexer extends Lexer {
     }
     // $ANTLR end "T__31"
 
+    // $ANTLR start "T__32"
+    public final void mT__32() throws RecognitionException {
+        try {
+            int _type = T__32;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:32:7: ( 'requires' )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:32:9: 'requires'
+            {
+            match("requires"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__32"
+
+    // $ANTLR start "T__33"
+    public final void mT__33() throws RecognitionException {
+        try {
+            int _type = T__33;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:33:7: ( '&&' )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:33:9: '&&'
+            {
+            match("&&"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__33"
+
+    // $ANTLR start "T__34"
+    public final void mT__34() throws RecognitionException {
+        try {
+            int _type = T__34;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:34:7: ( '||' )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:34:9: '||'
+            {
+            match("||"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__34"
+
+    // $ANTLR start "T__35"
+    public final void mT__35() throws RecognitionException {
+        try {
+            int _type = T__35;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:35:7: ( '!' )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:35:9: '!'
+            {
+            match('!'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__35"
+
+    // $ANTLR start "T__36"
+    public final void mT__36() throws RecognitionException {
+        try {
+            int _type = T__36;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:36:7: ( 'mutex' )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:36:9: 'mutex'
+            {
+            match("mutex"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__36"
+
+    // $ANTLR start "T__37"
+    public final void mT__37() throws RecognitionException {
+        try {
+            int _type = T__37;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:37:7: ( '};' )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:37:9: '};'
+            {
+            match("};"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__37"
+
+    // $ANTLR start "T__38"
+    public final void mT__38() throws RecognitionException {
+        try {
+            int _type = T__38;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:38:7: ( '.' )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:38:9: '.'
+            {
+            match('.'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__38"
+
     // $ANTLR start "RULE_ID"
     public final void mRULE_ID() throws RecognitionException {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:932:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:932:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1316:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1316:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:932:11: ( '^' )?
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1316:11: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -505,7 +657,7 @@ public class InternalCoolLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:932:11: '^'
+                    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1316:11: '^'
                     {
                     match('^'); 
 
@@ -523,7 +675,7 @@ public class InternalCoolLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:932:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1316:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -572,10 +724,10 @@ public class InternalCoolLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:934:10: ( ( '0' .. '9' )+ )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:934:12: ( '0' .. '9' )+
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1318:10: ( ( '0' .. '9' )+ )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1318:12: ( '0' .. '9' )+
             {
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:934:12: ( '0' .. '9' )+
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1318:12: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -589,7 +741,7 @@ public class InternalCoolLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:934:13: '0' .. '9'
+            	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1318:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -621,10 +773,10 @@ public class InternalCoolLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:936:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:936:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1320:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1320:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:936:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1320:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -642,10 +794,10 @@ public class InternalCoolLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:936:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1320:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:936:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1320:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -661,7 +813,7 @@ public class InternalCoolLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:936:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+                    	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1320:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
@@ -677,7 +829,7 @@ public class InternalCoolLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:936:66: ~ ( ( '\\\\' | '\"' ) )
+                    	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1320:66: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -702,10 +854,10 @@ public class InternalCoolLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:936:86: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1320:86: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:936:91: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1320:91: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop5:
                     do {
                         int alt5=3;
@@ -721,7 +873,7 @@ public class InternalCoolLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:936:92: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+                    	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1320:92: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
@@ -737,7 +889,7 @@ public class InternalCoolLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:936:137: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1320:137: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -780,12 +932,12 @@ public class InternalCoolLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:938:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:938:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1322:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1322:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:938:24: ( options {greedy=false; } : . )*
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1322:24: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -810,7 +962,7 @@ public class InternalCoolLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:938:52: .
+            	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1322:52: .
             	    {
             	    matchAny(); 
 
@@ -840,12 +992,12 @@ public class InternalCoolLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:940:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:940:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1324:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1324:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:940:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1324:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop8:
             do {
                 int alt8=2;
@@ -858,7 +1010,7 @@ public class InternalCoolLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:940:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1324:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -878,7 +1030,7 @@ public class InternalCoolLexer extends Lexer {
                 }
             } while (true);
 
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:940:40: ( ( '\\r' )? '\\n' )?
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1324:40: ( ( '\\r' )? '\\n' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -887,9 +1039,9 @@ public class InternalCoolLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:940:41: ( '\\r' )? '\\n'
+                    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1324:41: ( '\\r' )? '\\n'
                     {
-                    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:940:41: ( '\\r' )?
+                    // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1324:41: ( '\\r' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -898,7 +1050,7 @@ public class InternalCoolLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:940:41: '\\r'
+                            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1324:41: '\\r'
                             {
                             match('\r'); 
 
@@ -930,10 +1082,10 @@ public class InternalCoolLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:942:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:942:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1326:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1326:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:942:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1326:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt11=0;
             loop11:
             do {
@@ -987,8 +1139,8 @@ public class InternalCoolLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:944:16: ( . )
-            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:944:18: .
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1328:16: ( . )
+            // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1328:18: .
             {
             matchAny(); 
 
@@ -1003,8 +1155,8 @@ public class InternalCoolLexer extends Lexer {
     // $ANTLR end "RULE_ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1:8: ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt12=28;
+        // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1:8: ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        int alt12=35;
         alt12 = dfa12.predict(input);
         switch (alt12) {
             case 1 :
@@ -1155,49 +1307,98 @@ public class InternalCoolLexer extends Lexer {
                 }
                 break;
             case 22 :
-                // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1:136: RULE_ID
+                // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1:136: T__32
+                {
+                mT__32(); 
+
+                }
+                break;
+            case 23 :
+                // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1:142: T__33
+                {
+                mT__33(); 
+
+                }
+                break;
+            case 24 :
+                // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1:148: T__34
+                {
+                mT__34(); 
+
+                }
+                break;
+            case 25 :
+                // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1:154: T__35
+                {
+                mT__35(); 
+
+                }
+                break;
+            case 26 :
+                // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1:160: T__36
+                {
+                mT__36(); 
+
+                }
+                break;
+            case 27 :
+                // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1:166: T__37
+                {
+                mT__37(); 
+
+                }
+                break;
+            case 28 :
+                // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1:172: T__38
+                {
+                mT__38(); 
+
+                }
+                break;
+            case 29 :
+                // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1:178: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 23 :
-                // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1:144: RULE_INT
+            case 30 :
+                // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1:186: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
-            case 24 :
-                // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1:153: RULE_STRING
+            case 31 :
+                // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1:195: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
-            case 25 :
-                // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1:165: RULE_ML_COMMENT
+            case 32 :
+                // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1:207: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 26 :
-                // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1:181: RULE_SL_COMMENT
+            case 33 :
+                // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1:223: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 27 :
-                // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1:197: RULE_WS
+            case 34 :
+                // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1:239: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 28 :
-                // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1:205: RULE_ANY_OTHER
+            case 35 :
+                // ../xtext.cool/src-gen/xtext/cool/parser/antlr/internal/InternalCool.g:1:247: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -1211,155 +1412,183 @@ public class InternalCoolLexer extends Lexer {
 
     protected DFA12 dfa12 = new DFA12(this);
     static final String DFA12_eotS =
-        "\1\uffff\2\35\3\uffff\2\35\1\45\1\35\1\uffff\1\35\2\33\1\uffff\1"+
-        "\35\1\uffff\2\35\1\uffff\1\33\2\uffff\3\33\2\uffff\1\35\1\uffff"+
-        "\1\35\3\uffff\2\35\2\uffff\1\35\1\uffff\1\35\3\uffff\1\35\1\uffff"+
-        "\2\35\6\uffff\3\35\1\103\11\35\1\uffff\4\35\1\121\5\35\1\127\1\35"+
-        "\1\131\1\uffff\1\132\3\35\1\136\1\uffff\1\35\2\uffff\3\35\1\uffff"+
-        "\4\35\1\147\1\150\1\35\1\152\2\uffff\1\35\1\uffff\1\154\1\uffff";
+        "\1\uffff\2\40\3\uffff\2\40\1\51\1\40\1\uffff\1\40\2\uffff\1\60\1"+
+        "\62\3\40\2\36\1\40\1\uffff\1\36\2\uffff\3\36\2\uffff\1\40\1\uffff"+
+        "\1\40\3\uffff\1\40\1\103\1\40\2\uffff\1\40\1\uffff\1\40\6\uffff"+
+        "\3\40\2\uffff\1\40\6\uffff\3\40\1\116\1\uffff\12\40\1\uffff\3\40"+
+        "\1\135\7\40\1\145\2\40\1\uffff\1\150\1\40\1\152\3\40\1\156\1\uffff"+
+        "\2\40\1\uffff\1\40\1\uffff\3\40\1\uffff\1\40\1\166\4\40\1\173\1"+
+        "\uffff\1\174\1\175\1\40\1\177\3\uffff\1\40\1\uffff\1\u0081\1\uffff";
     static final String DFA12_eofS =
-        "\155\uffff";
+        "\u0082\uffff";
     static final String DFA12_minS =
-        "\1\0\1\145\1\157\3\uffff\1\156\1\145\1\73\1\165\1\uffff\1\145\1"+
-        "\46\1\174\1\uffff\1\165\1\uffff\1\162\1\141\1\uffff\1\101\2\uffff"+
-        "\2\0\1\52\2\uffff\1\162\1\uffff\1\156\3\uffff\1\164\1\154\2\uffff"+
-        "\1\141\1\uffff\1\161\3\uffff\1\164\1\uffff\1\165\1\154\6\uffff\1"+
-        "\137\1\162\1\144\1\60\1\146\1\162\1\165\2\145\1\163\1\143\1\144"+
-        "\1\151\1\uffff\1\145\1\144\1\151\1\170\1\60\1\145\1\154\1\151\1"+
-        "\164\1\170\1\60\1\162\1\60\1\uffff\1\60\1\141\1\156\1\151\1\60\1"+
-        "\uffff\1\145\2\uffff\1\163\1\141\1\157\1\uffff\2\163\1\164\1\156"+
-        "\2\60\1\157\1\60\2\uffff\1\162\1\uffff\1\60\1\uffff";
+        "\1\0\1\145\1\157\3\uffff\1\146\1\145\1\73\1\165\1\uffff\1\156\2"+
+        "\uffff\2\75\1\162\1\141\1\145\1\46\1\174\1\165\1\uffff\1\101\2\uffff"+
+        "\2\0\1\52\2\uffff\1\162\1\uffff\1\156\3\uffff\1\164\1\60\1\154\2"+
+        "\uffff\1\141\1\uffff\1\137\6\uffff\1\165\1\154\1\161\2\uffff\1\164"+
+        "\6\uffff\1\137\1\162\1\144\1\60\1\uffff\1\146\1\162\2\145\1\163"+
+        "\1\165\1\145\1\143\1\144\1\151\1\uffff\1\145\1\144\1\156\1\60\1"+
+        "\145\1\151\1\170\1\154\1\151\1\164\1\170\1\60\1\164\1\151\1\uffff"+
+        "\1\60\1\162\1\60\1\141\1\156\1\151\1\60\1\uffff\1\162\1\164\1\uffff"+
+        "\1\145\1\uffff\1\163\1\141\1\157\1\uffff\1\171\1\60\2\163\1\164"+
+        "\1\156\1\60\1\uffff\2\60\1\157\1\60\3\uffff\1\162\1\uffff\1\60\1"+
+        "\uffff";
     static final String DFA12_maxS =
-        "\1\uffff\1\145\1\157\3\uffff\1\156\1\145\1\73\1\165\1\uffff\1\145"+
-        "\1\46\1\174\1\uffff\1\165\1\uffff\1\162\1\141\1\uffff\1\172\2\uffff"+
-        "\2\uffff\1\57\2\uffff\1\162\1\uffff\1\157\3\uffff\1\164\1\154\2"+
-        "\uffff\1\141\1\uffff\1\161\3\uffff\1\164\1\uffff\1\165\1\154\6\uffff"+
-        "\1\137\1\162\1\144\1\172\1\146\1\162\1\165\2\145\1\163\1\143\1\144"+
-        "\1\151\1\uffff\1\145\1\144\1\151\1\170\1\172\1\145\1\154\1\151\1"+
-        "\164\1\170\1\172\1\162\1\172\1\uffff\1\172\1\141\1\156\1\151\1\172"+
-        "\1\uffff\1\145\2\uffff\1\163\1\141\1\157\1\uffff\2\163\1\164\1\156"+
-        "\2\172\1\157\1\172\2\uffff\1\162\1\uffff\1\172\1\uffff";
+        "\1\uffff\1\145\1\157\3\uffff\1\156\1\145\1\73\1\165\1\uffff\1\156"+
+        "\2\uffff\2\75\1\162\1\141\1\145\1\46\1\174\1\165\1\uffff\1\172\2"+
+        "\uffff\2\uffff\1\57\2\uffff\1\162\1\uffff\1\157\3\uffff\1\164\1"+
+        "\172\1\154\2\uffff\1\141\1\uffff\1\137\6\uffff\1\165\1\154\1\161"+
+        "\2\uffff\1\164\6\uffff\1\137\1\162\1\144\1\172\1\uffff\1\146\1\162"+
+        "\2\145\1\163\1\165\1\145\1\143\1\144\1\151\1\uffff\1\145\1\144\1"+
+        "\170\1\172\1\145\1\151\1\170\1\154\1\151\1\164\1\170\1\172\1\164"+
+        "\1\151\1\uffff\1\172\1\162\1\172\1\141\1\156\1\151\1\172\1\uffff"+
+        "\1\162\1\164\1\uffff\1\145\1\uffff\1\163\1\141\1\157\1\uffff\1\171"+
+        "\1\172\2\163\1\164\1\156\1\172\1\uffff\2\172\1\157\1\172\3\uffff"+
+        "\1\162\1\uffff\1\172\1\uffff";
     static final String DFA12_acceptS =
-        "\3\uffff\1\3\1\5\1\6\4\uffff\1\13\3\uffff\1\17\1\uffff\1\22\2\uffff"+
-        "\1\25\1\uffff\1\26\1\27\3\uffff\1\33\1\34\1\uffff\1\26\1\uffff\1"+
-        "\3\1\5\1\6\2\uffff\1\21\1\11\1\uffff\1\13\1\uffff\1\15\1\16\1\17"+
-        "\1\uffff\1\22\2\uffff\1\25\1\27\1\30\1\31\1\32\1\33\15\uffff\1\7"+
-        "\15\uffff\1\23\5\uffff\1\12\1\uffff\1\20\1\24\3\uffff\1\10\10\uffff"+
-        "\1\14\1\1\1\uffff\1\4\1\uffff\1\2";
+        "\3\uffff\1\3\1\5\1\6\4\uffff\1\13\1\uffff\1\17\1\20\10\uffff\1\34"+
+        "\1\uffff\1\35\1\36\3\uffff\1\42\1\43\1\uffff\1\35\1\uffff\1\3\1"+
+        "\5\1\6\3\uffff\1\33\1\11\1\uffff\1\13\1\uffff\1\17\1\20\1\21\1\25"+
+        "\1\22\1\31\3\uffff\1\27\1\30\1\uffff\1\34\1\36\1\37\1\40\1\41\1"+
+        "\42\4\uffff\1\16\12\uffff\1\7\16\uffff\1\23\7\uffff\1\12\2\uffff"+
+        "\1\24\1\uffff\1\32\3\uffff\1\10\7\uffff\1\15\4\uffff\1\14\1\26\1"+
+        "\1\1\uffff\1\4\1\uffff\1\2";
     static final String DFA12_specialS =
-        "\1\2\26\uffff\1\1\1\0\124\uffff}>";
+        "\1\1\31\uffff\1\0\1\2\146\uffff}>";
     static final String[] DFA12_transitionS = {
-            "\11\33\2\32\2\33\1\32\22\33\1\32\1\16\1\27\3\33\1\14\1\30\4"+
-            "\33\1\4\1\33\1\23\1\31\12\26\1\12\1\5\1\33\1\20\3\33\32\25\3"+
-            "\33\1\24\1\25\1\33\2\25\1\2\2\25\1\22\1\11\1\25\1\6\3\25\1\17"+
-            "\2\25\1\1\1\25\1\13\1\7\1\21\6\25\1\3\1\15\1\10\uff82\33",
-            "\1\34",
-            "\1\36",
+            "\11\36\2\35\2\36\1\35\22\36\1\35\1\17\1\32\3\36\1\23\1\33\1"+
+            "\14\1\15\2\36\1\4\1\36\1\26\1\34\12\31\1\12\1\5\1\36\1\16\3"+
+            "\36\32\30\3\36\1\27\1\30\1\36\2\30\1\2\2\30\1\21\1\11\1\30\1"+
+            "\6\3\30\1\25\1\30\1\13\1\1\1\30\1\22\1\7\1\20\6\30\1\3\1\24"+
+            "\1\10\uff82\36",
+            "\1\37",
+            "\1\41",
             "",
             "",
             "",
-            "\1\42",
-            "\1\43",
-            "\1\44",
-            "\1\46",
-            "",
+            "\1\46\7\uffff\1\45",
+            "\1\47",
             "\1\50",
-            "\1\51",
             "\1\52",
             "",
             "\1\54",
             "",
-            "\1\56",
+            "",
             "\1\57",
-            "",
-            "\32\35\4\uffff\1\35\1\uffff\32\35",
-            "",
-            "",
-            "\0\62",
-            "\0\62",
-            "\1\63\4\uffff\1\64",
-            "",
-            "",
+            "\1\61",
+            "\1\63",
+            "\1\64",
+            "\1\65",
             "\1\66",
+            "\1\67",
+            "\1\70",
             "",
-            "\1\70\1\67",
-            "",
-            "",
-            "",
-            "\1\71",
-            "\1\72",
+            "\32\40\4\uffff\1\40\1\uffff\32\40",
             "",
             "",
-            "\1\73",
+            "\0\73",
+            "\0\73",
+            "\1\74\4\uffff\1\75",
             "",
-            "\1\74",
             "",
-            "",
-            "",
-            "\1\75",
-            "",
-            "\1\76",
             "\1\77",
             "",
+            "\1\101\1\100",
             "",
             "",
             "",
-            "",
-            "",
-            "\1\100",
-            "\1\101",
             "\1\102",
-            "\12\35\7\uffff\32\35\4\uffff\1\35\1\uffff\32\35",
+            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
             "\1\104",
+            "",
+            "",
             "\1\105",
+            "",
             "\1\106",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "\1\107",
             "\1\110",
             "\1\111",
+            "",
+            "",
             "\1\112",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "\1\113",
             "\1\114",
-            "",
             "\1\115",
-            "\1\116",
+            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
+            "",
             "\1\117",
             "\1\120",
-            "\12\35\7\uffff\32\35\4\uffff\1\35\1\uffff\32\35",
+            "\1\121",
             "\1\122",
             "\1\123",
             "\1\124",
             "\1\125",
             "\1\126",
-            "\12\35\7\uffff\32\35\4\uffff\1\35\1\uffff\32\35",
+            "\1\127",
             "\1\130",
-            "\12\35\7\uffff\32\35\4\uffff\1\35\1\uffff\32\35",
             "",
-            "\12\35\7\uffff\32\35\4\uffff\1\35\1\uffff\32\35",
-            "\1\133",
-            "\1\134",
-            "\1\135",
-            "\12\35\7\uffff\32\35\4\uffff\1\35\1\uffff\32\35",
-            "",
+            "\1\131",
+            "\1\132",
+            "\1\133\11\uffff\1\134",
+            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
+            "\1\136",
             "\1\137",
-            "",
-            "",
             "\1\140",
             "\1\141",
             "\1\142",
-            "",
             "\1\143",
             "\1\144",
-            "\1\145",
+            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
             "\1\146",
-            "\12\35\7\uffff\32\35\4\uffff\1\35\1\uffff\32\35",
-            "\12\35\7\uffff\32\35\4\uffff\1\35\1\uffff\32\35",
+            "\1\147",
+            "",
+            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
             "\1\151",
-            "\12\35\7\uffff\32\35\4\uffff\1\35\1\uffff\32\35",
-            "",
-            "",
+            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
             "\1\153",
+            "\1\154",
+            "\1\155",
+            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
             "",
-            "\12\35\7\uffff\32\35\4\uffff\1\35\1\uffff\32\35",
+            "\1\157",
+            "\1\160",
+            "",
+            "\1\161",
+            "",
+            "\1\162",
+            "\1\163",
+            "\1\164",
+            "",
+            "\1\165",
+            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
+            "\1\167",
+            "\1\170",
+            "\1\171",
+            "\1\172",
+            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
+            "",
+            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
+            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
+            "\1\176",
+            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
+            "",
+            "",
+            "",
+            "\1\u0080",
+            "",
+            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
             ""
     };
 
@@ -1393,33 +1622,23 @@ public class InternalCoolLexer extends Lexer {
             this.transition = DFA12_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
+            return "1:1: Tokens : ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA12_24 = input.LA(1);
+                        int LA12_26 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA12_24>='\u0000' && LA12_24<='\uFFFF')) ) {s = 50;}
+                        if ( ((LA12_26>='\u0000' && LA12_26<='\uFFFF')) ) {s = 59;}
 
-                        else s = 27;
+                        else s = 30;
 
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA12_23 = input.LA(1);
-
-                        s = -1;
-                        if ( ((LA12_23>='\u0000' && LA12_23<='\uFFFF')) ) {s = 50;}
-
-                        else s = 27;
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
                         int LA12_0 = input.LA(1);
 
                         s = -1;
@@ -1443,39 +1662,55 @@ public class InternalCoolLexer extends Lexer {
 
                         else if ( (LA12_0==':') ) {s = 10;}
 
-                        else if ( (LA12_0=='r') ) {s = 11;}
+                        else if ( (LA12_0=='o') ) {s = 11;}
 
-                        else if ( (LA12_0=='&') ) {s = 12;}
+                        else if ( (LA12_0=='(') ) {s = 12;}
 
-                        else if ( (LA12_0=='|') ) {s = 13;}
+                        else if ( (LA12_0==')') ) {s = 13;}
 
-                        else if ( (LA12_0=='!') ) {s = 14;}
+                        else if ( (LA12_0=='=') ) {s = 14;}
 
-                        else if ( (LA12_0=='m') ) {s = 15;}
+                        else if ( (LA12_0=='!') ) {s = 15;}
 
-                        else if ( (LA12_0=='=') ) {s = 16;}
+                        else if ( (LA12_0=='t') ) {s = 16;}
 
-                        else if ( (LA12_0=='t') ) {s = 17;}
+                        else if ( (LA12_0=='f') ) {s = 17;}
 
-                        else if ( (LA12_0=='f') ) {s = 18;}
+                        else if ( (LA12_0=='r') ) {s = 18;}
 
-                        else if ( (LA12_0=='.') ) {s = 19;}
+                        else if ( (LA12_0=='&') ) {s = 19;}
 
-                        else if ( (LA12_0=='^') ) {s = 20;}
+                        else if ( (LA12_0=='|') ) {s = 20;}
 
-                        else if ( ((LA12_0>='A' && LA12_0<='Z')||LA12_0=='_'||(LA12_0>='a' && LA12_0<='b')||(LA12_0>='d' && LA12_0<='e')||LA12_0=='h'||(LA12_0>='j' && LA12_0<='l')||(LA12_0>='n' && LA12_0<='o')||LA12_0=='q'||(LA12_0>='u' && LA12_0<='z')) ) {s = 21;}
+                        else if ( (LA12_0=='m') ) {s = 21;}
 
-                        else if ( ((LA12_0>='0' && LA12_0<='9')) ) {s = 22;}
+                        else if ( (LA12_0=='.') ) {s = 22;}
 
-                        else if ( (LA12_0=='\"') ) {s = 23;}
+                        else if ( (LA12_0=='^') ) {s = 23;}
 
-                        else if ( (LA12_0=='\'') ) {s = 24;}
+                        else if ( ((LA12_0>='A' && LA12_0<='Z')||LA12_0=='_'||(LA12_0>='a' && LA12_0<='b')||(LA12_0>='d' && LA12_0<='e')||LA12_0=='h'||(LA12_0>='j' && LA12_0<='l')||LA12_0=='n'||LA12_0=='q'||(LA12_0>='u' && LA12_0<='z')) ) {s = 24;}
 
-                        else if ( (LA12_0=='/') ) {s = 25;}
+                        else if ( ((LA12_0>='0' && LA12_0<='9')) ) {s = 25;}
 
-                        else if ( ((LA12_0>='\t' && LA12_0<='\n')||LA12_0=='\r'||LA12_0==' ') ) {s = 26;}
+                        else if ( (LA12_0=='\"') ) {s = 26;}
 
-                        else if ( ((LA12_0>='\u0000' && LA12_0<='\b')||(LA12_0>='\u000B' && LA12_0<='\f')||(LA12_0>='\u000E' && LA12_0<='\u001F')||(LA12_0>='#' && LA12_0<='%')||(LA12_0>='(' && LA12_0<='+')||LA12_0=='-'||LA12_0=='<'||(LA12_0>='>' && LA12_0<='@')||(LA12_0>='[' && LA12_0<=']')||LA12_0=='`'||(LA12_0>='~' && LA12_0<='\uFFFF')) ) {s = 27;}
+                        else if ( (LA12_0=='\'') ) {s = 27;}
+
+                        else if ( (LA12_0=='/') ) {s = 28;}
+
+                        else if ( ((LA12_0>='\t' && LA12_0<='\n')||LA12_0=='\r'||LA12_0==' ') ) {s = 29;}
+
+                        else if ( ((LA12_0>='\u0000' && LA12_0<='\b')||(LA12_0>='\u000B' && LA12_0<='\f')||(LA12_0>='\u000E' && LA12_0<='\u001F')||(LA12_0>='#' && LA12_0<='%')||(LA12_0>='*' && LA12_0<='+')||LA12_0=='-'||LA12_0=='<'||(LA12_0>='>' && LA12_0<='@')||(LA12_0>='[' && LA12_0<=']')||LA12_0=='`'||(LA12_0>='~' && LA12_0<='\uFFFF')) ) {s = 30;}
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
+                        int LA12_27 = input.LA(1);
+
+                        s = -1;
+                        if ( ((LA12_27>='\u0000' && LA12_27<='\uFFFF')) ) {s = 59;}
+
+                        else s = 30;
 
                         if ( s>=0 ) return s;
                         break;

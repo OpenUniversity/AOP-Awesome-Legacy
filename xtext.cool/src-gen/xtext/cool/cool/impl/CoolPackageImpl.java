@@ -13,6 +13,8 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import xtext.cool.cool.AndExpression;
+import xtext.cool.cool.AssignStatement;
+import xtext.cool.cool.AssignedValue;
 import xtext.cool.cool.BasicExpression;
 import xtext.cool.cool.CondVar;
 import xtext.cool.cool.CoolFactory;
@@ -20,6 +22,8 @@ import xtext.cool.cool.CoolPackage;
 import xtext.cool.cool.CoordinatorBody;
 import xtext.cool.cool.CoordinatorDeclaration;
 import xtext.cool.cool.Guard;
+import xtext.cool.cool.IfExpression;
+import xtext.cool.cool.IfStatement;
 import xtext.cool.cool.MutexSet;
 import xtext.cool.cool.OrExpression;
 import xtext.cool.cool.OrdVar;
@@ -53,6 +57,34 @@ public class CoolPackageImpl extends EPackageImpl implements CoolPackage
    * @generated
    */
   private EClass guardEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass ifStatementEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass ifExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass assignedValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass assignStatementEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -301,6 +333,176 @@ public class CoolPackageImpl extends EPackageImpl implements CoolPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getGuard_OnEntryIfStatements()
+  {
+    return (EReference)guardEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getGuard_OnEntryAssignStatements()
+  {
+    return (EReference)guardEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getGuard_OnExitIfStatements()
+  {
+    return (EReference)guardEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getGuard_OnExitAssignStatements()
+  {
+    return (EReference)guardEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getIfStatement()
+  {
+    return ifStatementEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getIfStatement_Expression()
+  {
+    return (EReference)ifStatementEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getIfStatement_Statement()
+  {
+    return (EReference)ifStatementEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getIfExpression()
+  {
+    return ifExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getIfExpression_Var()
+  {
+    return (EAttribute)ifExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getIfExpression_Op()
+  {
+    return (EAttribute)ifExpressionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getIfExpression_Assignment()
+  {
+    return (EReference)ifExpressionEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getAssignedValue()
+  {
+    return assignedValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getAssignedValue_Intval()
+  {
+    return (EAttribute)assignedValueEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getAssignedValue_Boolval()
+  {
+    return (EAttribute)assignedValueEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getAssignStatement()
+  {
+    return assignStatementEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAssignStatement_Var()
+  {
+    return (EReference)assignStatementEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getAssignStatement_Value()
+  {
+    return (EAttribute)assignStatementEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getRequires()
   {
     return requiresEClass;
@@ -511,6 +713,27 @@ public class CoolPackageImpl extends EPackageImpl implements CoolPackage
     guardEClass = createEClass(GUARD);
     createEAttribute(guardEClass, GUARD__METHODS);
     createEReference(guardEClass, GUARD__REQUIRES);
+    createEReference(guardEClass, GUARD__ON_ENTRY_IF_STATEMENTS);
+    createEReference(guardEClass, GUARD__ON_ENTRY_ASSIGN_STATEMENTS);
+    createEReference(guardEClass, GUARD__ON_EXIT_IF_STATEMENTS);
+    createEReference(guardEClass, GUARD__ON_EXIT_ASSIGN_STATEMENTS);
+
+    ifStatementEClass = createEClass(IF_STATEMENT);
+    createEReference(ifStatementEClass, IF_STATEMENT__EXPRESSION);
+    createEReference(ifStatementEClass, IF_STATEMENT__STATEMENT);
+
+    ifExpressionEClass = createEClass(IF_EXPRESSION);
+    createEAttribute(ifExpressionEClass, IF_EXPRESSION__VAR);
+    createEAttribute(ifExpressionEClass, IF_EXPRESSION__OP);
+    createEReference(ifExpressionEClass, IF_EXPRESSION__ASSIGNMENT);
+
+    assignedValueEClass = createEClass(ASSIGNED_VALUE);
+    createEAttribute(assignedValueEClass, ASSIGNED_VALUE__INTVAL);
+    createEAttribute(assignedValueEClass, ASSIGNED_VALUE__BOOLVAL);
+
+    assignStatementEClass = createEClass(ASSIGN_STATEMENT);
+    createEReference(assignStatementEClass, ASSIGN_STATEMENT__VAR);
+    createEAttribute(assignStatementEClass, ASSIGN_STATEMENT__VALUE);
 
     requiresEClass = createEClass(REQUIRES);
     createEReference(requiresEClass, REQUIRES__AND_EXPRESSION);
@@ -583,6 +806,27 @@ public class CoolPackageImpl extends EPackageImpl implements CoolPackage
     initEClass(guardEClass, Guard.class, "Guard", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getGuard_Methods(), ecorePackage.getEString(), "methods", null, 0, -1, Guard.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getGuard_Requires(), this.getRequires(), null, "requires", null, 0, 1, Guard.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getGuard_OnEntryIfStatements(), this.getIfStatement(), null, "onEntryIfStatements", null, 0, -1, Guard.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getGuard_OnEntryAssignStatements(), this.getAssignStatement(), null, "onEntryAssignStatements", null, 0, -1, Guard.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getGuard_OnExitIfStatements(), this.getIfStatement(), null, "onExitIfStatements", null, 0, -1, Guard.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getGuard_OnExitAssignStatements(), this.getAssignStatement(), null, "onExitAssignStatements", null, 0, -1, Guard.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(ifStatementEClass, IfStatement.class, "IfStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getIfStatement_Expression(), this.getIfExpression(), null, "expression", null, 0, 1, IfStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getIfStatement_Statement(), this.getAssignStatement(), null, "statement", null, 0, 1, IfStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(ifExpressionEClass, IfExpression.class, "IfExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getIfExpression_Var(), ecorePackage.getEString(), "var", null, 0, 1, IfExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getIfExpression_Op(), ecorePackage.getEString(), "op", null, 0, 1, IfExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getIfExpression_Assignment(), this.getAssignedValue(), null, "assignment", null, 0, 1, IfExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(assignedValueEClass, AssignedValue.class, "AssignedValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getAssignedValue_Intval(), ecorePackage.getEInt(), "intval", null, 0, 1, AssignedValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAssignedValue_Boolval(), ecorePackage.getEString(), "boolval", null, 0, 1, AssignedValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(assignStatementEClass, AssignStatement.class, "AssignStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAssignStatement_Var(), this.getCondVar(), null, "var", null, 0, 1, AssignStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAssignStatement_Value(), ecorePackage.getEString(), "value", null, 0, 1, AssignStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(requiresEClass, Requires.class, "Requires", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRequires_AndExpression(), this.getAndExpression(), null, "andExpression", null, 0, 1, Requires.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

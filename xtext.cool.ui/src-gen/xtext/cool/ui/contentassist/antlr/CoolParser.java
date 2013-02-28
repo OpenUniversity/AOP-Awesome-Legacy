@@ -37,6 +37,11 @@ public class CoolParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
+					put(grammarAccess.getGuardAccess().getAlternatives_5_2(), "rule__Guard__Alternatives_5_2");
+					put(grammarAccess.getGuardAccess().getAlternatives_6_2(), "rule__Guard__Alternatives_6_2");
+					put(grammarAccess.getIfExpressionAccess().getOpAlternatives_1_0(), "rule__IfExpression__OpAlternatives_1_0");
+					put(grammarAccess.getAssignedValueAccess().getAlternatives(), "rule__AssignedValue__Alternatives");
+					put(grammarAccess.getAssignedValueAccess().getBoolvalAlternatives_1_0(), "rule__AssignedValue__BoolvalAlternatives_1_0");
 					put(grammarAccess.getBooleanValAccess().getAlternatives(), "rule__BooleanVal__Alternatives");
 					put(grammarAccess.getCoordinatorDeclarationAccess().getGroup(), "rule__CoordinatorDeclaration__Group__0");
 					put(grammarAccess.getCoordinatorBodyAccess().getGroup(), "rule__CoordinatorBody__Group__0");
@@ -48,6 +53,11 @@ public class CoolParser extends AbstractContentAssistParser {
 					put(grammarAccess.getCoordinatorBodyAccess().getGroup_4_2(), "rule__CoordinatorBody__Group_4_2__0");
 					put(grammarAccess.getGuardAccess().getGroup(), "rule__Guard__Group__0");
 					put(grammarAccess.getGuardAccess().getGroup_2(), "rule__Guard__Group_2__0");
+					put(grammarAccess.getGuardAccess().getGroup_5(), "rule__Guard__Group_5__0");
+					put(grammarAccess.getGuardAccess().getGroup_6(), "rule__Guard__Group_6__0");
+					put(grammarAccess.getIfStatementAccess().getGroup(), "rule__IfStatement__Group__0");
+					put(grammarAccess.getIfExpressionAccess().getGroup(), "rule__IfExpression__Group__0");
+					put(grammarAccess.getAssignStatementAccess().getGroup(), "rule__AssignStatement__Group__0");
 					put(grammarAccess.getRequiresAccess().getGroup(), "rule__Requires__Group__0");
 					put(grammarAccess.getAndExpressionAccess().getGroup(), "rule__AndExpression__Group__0");
 					put(grammarAccess.getAndExpressionAccess().getGroup_1(), "rule__AndExpression__Group_1__0");
@@ -74,6 +84,19 @@ public class CoolParser extends AbstractContentAssistParser {
 					put(grammarAccess.getGuardAccess().getMethodsAssignment_1(), "rule__Guard__MethodsAssignment_1");
 					put(grammarAccess.getGuardAccess().getMethodsAssignment_2_1(), "rule__Guard__MethodsAssignment_2_1");
 					put(grammarAccess.getGuardAccess().getRequiresAssignment_4(), "rule__Guard__RequiresAssignment_4");
+					put(grammarAccess.getGuardAccess().getOnEntryIfStatementsAssignment_5_2_0(), "rule__Guard__OnEntryIfStatementsAssignment_5_2_0");
+					put(grammarAccess.getGuardAccess().getOnEntryAssignStatementsAssignment_5_2_1(), "rule__Guard__OnEntryAssignStatementsAssignment_5_2_1");
+					put(grammarAccess.getGuardAccess().getOnExitIfStatementsAssignment_6_2_0(), "rule__Guard__OnExitIfStatementsAssignment_6_2_0");
+					put(grammarAccess.getGuardAccess().getOnExitAssignStatementsAssignment_6_2_1(), "rule__Guard__OnExitAssignStatementsAssignment_6_2_1");
+					put(grammarAccess.getIfStatementAccess().getExpressionAssignment_2(), "rule__IfStatement__ExpressionAssignment_2");
+					put(grammarAccess.getIfStatementAccess().getStatementAssignment_4(), "rule__IfStatement__StatementAssignment_4");
+					put(grammarAccess.getIfExpressionAccess().getVarAssignment_0(), "rule__IfExpression__VarAssignment_0");
+					put(grammarAccess.getIfExpressionAccess().getOpAssignment_1(), "rule__IfExpression__OpAssignment_1");
+					put(grammarAccess.getIfExpressionAccess().getAssignmentAssignment_2(), "rule__IfExpression__AssignmentAssignment_2");
+					put(grammarAccess.getAssignedValueAccess().getIntvalAssignment_0(), "rule__AssignedValue__IntvalAssignment_0");
+					put(grammarAccess.getAssignedValueAccess().getBoolvalAssignment_1(), "rule__AssignedValue__BoolvalAssignment_1");
+					put(grammarAccess.getAssignStatementAccess().getVarAssignment_0(), "rule__AssignStatement__VarAssignment_0");
+					put(grammarAccess.getAssignStatementAccess().getValueAssignment_2(), "rule__AssignStatement__ValueAssignment_2");
 					put(grammarAccess.getRequiresAccess().getAndExpressionAssignment_1(), "rule__Requires__AndExpressionAssignment_1");
 					put(grammarAccess.getAndExpressionAccess().getOrExpressionsAssignment_0(), "rule__AndExpression__OrExpressionsAssignment_0");
 					put(grammarAccess.getAndExpressionAccess().getOrExpressionsAssignment_1_1(), "rule__AndExpression__OrExpressionsAssignment_1_1");

@@ -198,13 +198,206 @@ public interface CoolPackage extends EPackage
   int GUARD__REQUIRES = 1;
 
   /**
+   * The feature id for the '<em><b>On Entry If Statements</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GUARD__ON_ENTRY_IF_STATEMENTS = 2;
+
+  /**
+   * The feature id for the '<em><b>On Entry Assign Statements</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GUARD__ON_ENTRY_ASSIGN_STATEMENTS = 3;
+
+  /**
+   * The feature id for the '<em><b>On Exit If Statements</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GUARD__ON_EXIT_IF_STATEMENTS = 4;
+
+  /**
+   * The feature id for the '<em><b>On Exit Assign Statements</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int GUARD__ON_EXIT_ASSIGN_STATEMENTS = 5;
+
+  /**
    * The number of structural features of the '<em>Guard</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int GUARD_FEATURE_COUNT = 2;
+  int GUARD_FEATURE_COUNT = 6;
+
+  /**
+   * The meta object id for the '{@link xtext.cool.cool.impl.IfStatementImpl <em>If Statement</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.cool.cool.impl.IfStatementImpl
+   * @see xtext.cool.cool.impl.CoolPackageImpl#getIfStatement()
+   * @generated
+   */
+  int IF_STATEMENT = 3;
+
+  /**
+   * The feature id for the '<em><b>Expression</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IF_STATEMENT__EXPRESSION = 0;
+
+  /**
+   * The feature id for the '<em><b>Statement</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IF_STATEMENT__STATEMENT = 1;
+
+  /**
+   * The number of structural features of the '<em>If Statement</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IF_STATEMENT_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link xtext.cool.cool.impl.IfExpressionImpl <em>If Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.cool.cool.impl.IfExpressionImpl
+   * @see xtext.cool.cool.impl.CoolPackageImpl#getIfExpression()
+   * @generated
+   */
+  int IF_EXPRESSION = 4;
+
+  /**
+   * The feature id for the '<em><b>Var</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IF_EXPRESSION__VAR = 0;
+
+  /**
+   * The feature id for the '<em><b>Op</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IF_EXPRESSION__OP = 1;
+
+  /**
+   * The feature id for the '<em><b>Assignment</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IF_EXPRESSION__ASSIGNMENT = 2;
+
+  /**
+   * The number of structural features of the '<em>If Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IF_EXPRESSION_FEATURE_COUNT = 3;
+
+  /**
+   * The meta object id for the '{@link xtext.cool.cool.impl.AssignedValueImpl <em>Assigned Value</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.cool.cool.impl.AssignedValueImpl
+   * @see xtext.cool.cool.impl.CoolPackageImpl#getAssignedValue()
+   * @generated
+   */
+  int ASSIGNED_VALUE = 5;
+
+  /**
+   * The feature id for the '<em><b>Intval</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSIGNED_VALUE__INTVAL = 0;
+
+  /**
+   * The feature id for the '<em><b>Boolval</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSIGNED_VALUE__BOOLVAL = 1;
+
+  /**
+   * The number of structural features of the '<em>Assigned Value</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSIGNED_VALUE_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link xtext.cool.cool.impl.AssignStatementImpl <em>Assign Statement</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see xtext.cool.cool.impl.AssignStatementImpl
+   * @see xtext.cool.cool.impl.CoolPackageImpl#getAssignStatement()
+   * @generated
+   */
+  int ASSIGN_STATEMENT = 6;
+
+  /**
+   * The feature id for the '<em><b>Var</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSIGN_STATEMENT__VAR = 0;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSIGN_STATEMENT__VALUE = 1;
+
+  /**
+   * The number of structural features of the '<em>Assign Statement</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSIGN_STATEMENT_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link xtext.cool.cool.impl.RequiresImpl <em>Requires</em>}' class.
@@ -214,7 +407,7 @@ public interface CoolPackage extends EPackage
    * @see xtext.cool.cool.impl.CoolPackageImpl#getRequires()
    * @generated
    */
-  int REQUIRES = 3;
+  int REQUIRES = 7;
 
   /**
    * The feature id for the '<em><b>And Expression</b></em>' containment reference.
@@ -242,7 +435,7 @@ public interface CoolPackage extends EPackage
    * @see xtext.cool.cool.impl.CoolPackageImpl#getAndExpression()
    * @generated
    */
-  int AND_EXPRESSION = 4;
+  int AND_EXPRESSION = 8;
 
   /**
    * The feature id for the '<em><b>Or Expressions</b></em>' containment reference list.
@@ -270,7 +463,7 @@ public interface CoolPackage extends EPackage
    * @see xtext.cool.cool.impl.CoolPackageImpl#getOrExpression()
    * @generated
    */
-  int OR_EXPRESSION = 5;
+  int OR_EXPRESSION = 9;
 
   /**
    * The feature id for the '<em><b>Basic Expressions</b></em>' containment reference list.
@@ -298,7 +491,7 @@ public interface CoolPackage extends EPackage
    * @see xtext.cool.cool.impl.CoolPackageImpl#getBasicExpression()
    * @generated
    */
-  int BASIC_EXPRESSION = 6;
+  int BASIC_EXPRESSION = 10;
 
   /**
    * The feature id for the '<em><b>Negated</b></em>' attribute.
@@ -335,7 +528,7 @@ public interface CoolPackage extends EPackage
    * @see xtext.cool.cool.impl.CoolPackageImpl#getMutexSet()
    * @generated
    */
-  int MUTEX_SET = 7;
+  int MUTEX_SET = 11;
 
   /**
    * The feature id for the '<em><b>Methods</b></em>' attribute list.
@@ -363,7 +556,7 @@ public interface CoolPackage extends EPackage
    * @see xtext.cool.cool.impl.CoolPackageImpl#getCondVar()
    * @generated
    */
-  int COND_VAR = 8;
+  int COND_VAR = 12;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -400,7 +593,7 @@ public interface CoolPackage extends EPackage
    * @see xtext.cool.cool.impl.CoolPackageImpl#getOrdVar()
    * @generated
    */
-  int ORD_VAR = 9;
+  int ORD_VAR = 13;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -569,6 +762,189 @@ public interface CoolPackage extends EPackage
    * @generated
    */
   EReference getGuard_Requires();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link xtext.cool.cool.Guard#getOnEntryIfStatements <em>On Entry If Statements</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>On Entry If Statements</em>'.
+   * @see xtext.cool.cool.Guard#getOnEntryIfStatements()
+   * @see #getGuard()
+   * @generated
+   */
+  EReference getGuard_OnEntryIfStatements();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link xtext.cool.cool.Guard#getOnEntryAssignStatements <em>On Entry Assign Statements</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>On Entry Assign Statements</em>'.
+   * @see xtext.cool.cool.Guard#getOnEntryAssignStatements()
+   * @see #getGuard()
+   * @generated
+   */
+  EReference getGuard_OnEntryAssignStatements();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link xtext.cool.cool.Guard#getOnExitIfStatements <em>On Exit If Statements</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>On Exit If Statements</em>'.
+   * @see xtext.cool.cool.Guard#getOnExitIfStatements()
+   * @see #getGuard()
+   * @generated
+   */
+  EReference getGuard_OnExitIfStatements();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link xtext.cool.cool.Guard#getOnExitAssignStatements <em>On Exit Assign Statements</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>On Exit Assign Statements</em>'.
+   * @see xtext.cool.cool.Guard#getOnExitAssignStatements()
+   * @see #getGuard()
+   * @generated
+   */
+  EReference getGuard_OnExitAssignStatements();
+
+  /**
+   * Returns the meta object for class '{@link xtext.cool.cool.IfStatement <em>If Statement</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>If Statement</em>'.
+   * @see xtext.cool.cool.IfStatement
+   * @generated
+   */
+  EClass getIfStatement();
+
+  /**
+   * Returns the meta object for the containment reference '{@link xtext.cool.cool.IfStatement#getExpression <em>Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expression</em>'.
+   * @see xtext.cool.cool.IfStatement#getExpression()
+   * @see #getIfStatement()
+   * @generated
+   */
+  EReference getIfStatement_Expression();
+
+  /**
+   * Returns the meta object for the containment reference '{@link xtext.cool.cool.IfStatement#getStatement <em>Statement</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Statement</em>'.
+   * @see xtext.cool.cool.IfStatement#getStatement()
+   * @see #getIfStatement()
+   * @generated
+   */
+  EReference getIfStatement_Statement();
+
+  /**
+   * Returns the meta object for class '{@link xtext.cool.cool.IfExpression <em>If Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>If Expression</em>'.
+   * @see xtext.cool.cool.IfExpression
+   * @generated
+   */
+  EClass getIfExpression();
+
+  /**
+   * Returns the meta object for the attribute '{@link xtext.cool.cool.IfExpression#getVar <em>Var</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Var</em>'.
+   * @see xtext.cool.cool.IfExpression#getVar()
+   * @see #getIfExpression()
+   * @generated
+   */
+  EAttribute getIfExpression_Var();
+
+  /**
+   * Returns the meta object for the attribute '{@link xtext.cool.cool.IfExpression#getOp <em>Op</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Op</em>'.
+   * @see xtext.cool.cool.IfExpression#getOp()
+   * @see #getIfExpression()
+   * @generated
+   */
+  EAttribute getIfExpression_Op();
+
+  /**
+   * Returns the meta object for the containment reference '{@link xtext.cool.cool.IfExpression#getAssignment <em>Assignment</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Assignment</em>'.
+   * @see xtext.cool.cool.IfExpression#getAssignment()
+   * @see #getIfExpression()
+   * @generated
+   */
+  EReference getIfExpression_Assignment();
+
+  /**
+   * Returns the meta object for class '{@link xtext.cool.cool.AssignedValue <em>Assigned Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Assigned Value</em>'.
+   * @see xtext.cool.cool.AssignedValue
+   * @generated
+   */
+  EClass getAssignedValue();
+
+  /**
+   * Returns the meta object for the attribute '{@link xtext.cool.cool.AssignedValue#getIntval <em>Intval</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Intval</em>'.
+   * @see xtext.cool.cool.AssignedValue#getIntval()
+   * @see #getAssignedValue()
+   * @generated
+   */
+  EAttribute getAssignedValue_Intval();
+
+  /**
+   * Returns the meta object for the attribute '{@link xtext.cool.cool.AssignedValue#getBoolval <em>Boolval</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Boolval</em>'.
+   * @see xtext.cool.cool.AssignedValue#getBoolval()
+   * @see #getAssignedValue()
+   * @generated
+   */
+  EAttribute getAssignedValue_Boolval();
+
+  /**
+   * Returns the meta object for class '{@link xtext.cool.cool.AssignStatement <em>Assign Statement</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Assign Statement</em>'.
+   * @see xtext.cool.cool.AssignStatement
+   * @generated
+   */
+  EClass getAssignStatement();
+
+  /**
+   * Returns the meta object for the reference '{@link xtext.cool.cool.AssignStatement#getVar <em>Var</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Var</em>'.
+   * @see xtext.cool.cool.AssignStatement#getVar()
+   * @see #getAssignStatement()
+   * @generated
+   */
+  EReference getAssignStatement_Var();
+
+  /**
+   * Returns the meta object for the attribute '{@link xtext.cool.cool.AssignStatement#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see xtext.cool.cool.AssignStatement#getValue()
+   * @see #getAssignStatement()
+   * @generated
+   */
+  EAttribute getAssignStatement_Value();
 
   /**
    * Returns the meta object for class '{@link xtext.cool.cool.Requires <em>Requires</em>}'.
@@ -882,6 +1258,150 @@ public interface CoolPackage extends EPackage
      * @generated
      */
     EReference GUARD__REQUIRES = eINSTANCE.getGuard_Requires();
+
+    /**
+     * The meta object literal for the '<em><b>On Entry If Statements</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference GUARD__ON_ENTRY_IF_STATEMENTS = eINSTANCE.getGuard_OnEntryIfStatements();
+
+    /**
+     * The meta object literal for the '<em><b>On Entry Assign Statements</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference GUARD__ON_ENTRY_ASSIGN_STATEMENTS = eINSTANCE.getGuard_OnEntryAssignStatements();
+
+    /**
+     * The meta object literal for the '<em><b>On Exit If Statements</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference GUARD__ON_EXIT_IF_STATEMENTS = eINSTANCE.getGuard_OnExitIfStatements();
+
+    /**
+     * The meta object literal for the '<em><b>On Exit Assign Statements</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference GUARD__ON_EXIT_ASSIGN_STATEMENTS = eINSTANCE.getGuard_OnExitAssignStatements();
+
+    /**
+     * The meta object literal for the '{@link xtext.cool.cool.impl.IfStatementImpl <em>If Statement</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.cool.cool.impl.IfStatementImpl
+     * @see xtext.cool.cool.impl.CoolPackageImpl#getIfStatement()
+     * @generated
+     */
+    EClass IF_STATEMENT = eINSTANCE.getIfStatement();
+
+    /**
+     * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IF_STATEMENT__EXPRESSION = eINSTANCE.getIfStatement_Expression();
+
+    /**
+     * The meta object literal for the '<em><b>Statement</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IF_STATEMENT__STATEMENT = eINSTANCE.getIfStatement_Statement();
+
+    /**
+     * The meta object literal for the '{@link xtext.cool.cool.impl.IfExpressionImpl <em>If Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.cool.cool.impl.IfExpressionImpl
+     * @see xtext.cool.cool.impl.CoolPackageImpl#getIfExpression()
+     * @generated
+     */
+    EClass IF_EXPRESSION = eINSTANCE.getIfExpression();
+
+    /**
+     * The meta object literal for the '<em><b>Var</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute IF_EXPRESSION__VAR = eINSTANCE.getIfExpression_Var();
+
+    /**
+     * The meta object literal for the '<em><b>Op</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute IF_EXPRESSION__OP = eINSTANCE.getIfExpression_Op();
+
+    /**
+     * The meta object literal for the '<em><b>Assignment</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IF_EXPRESSION__ASSIGNMENT = eINSTANCE.getIfExpression_Assignment();
+
+    /**
+     * The meta object literal for the '{@link xtext.cool.cool.impl.AssignedValueImpl <em>Assigned Value</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.cool.cool.impl.AssignedValueImpl
+     * @see xtext.cool.cool.impl.CoolPackageImpl#getAssignedValue()
+     * @generated
+     */
+    EClass ASSIGNED_VALUE = eINSTANCE.getAssignedValue();
+
+    /**
+     * The meta object literal for the '<em><b>Intval</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ASSIGNED_VALUE__INTVAL = eINSTANCE.getAssignedValue_Intval();
+
+    /**
+     * The meta object literal for the '<em><b>Boolval</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ASSIGNED_VALUE__BOOLVAL = eINSTANCE.getAssignedValue_Boolval();
+
+    /**
+     * The meta object literal for the '{@link xtext.cool.cool.impl.AssignStatementImpl <em>Assign Statement</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see xtext.cool.cool.impl.AssignStatementImpl
+     * @see xtext.cool.cool.impl.CoolPackageImpl#getAssignStatement()
+     * @generated
+     */
+    EClass ASSIGN_STATEMENT = eINSTANCE.getAssignStatement();
+
+    /**
+     * The meta object literal for the '<em><b>Var</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ASSIGN_STATEMENT__VAR = eINSTANCE.getAssignStatement_Var();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ASSIGN_STATEMENT__VALUE = eINSTANCE.getAssignStatement_Value();
 
     /**
      * The meta object literal for the '{@link xtext.cool.cool.impl.RequiresImpl <em>Requires</em>}' class.

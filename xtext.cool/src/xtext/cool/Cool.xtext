@@ -21,6 +21,24 @@ CoordinatorBody:
 Guard:
 	'guard'? methods += ID (',' methods += ID)* ':'
 	requires = Requires?
+	('on_entry' '{' (onEntryIfStatements += IfStatement | onEntryAssignStatements += AssignStatement)+ '}')?
+	('on_exit' '{' (onExitIfStatements += IfStatement | onExitAssignStatements += AssignStatement)+ '}')?
+;
+
+IfStatement:
+	'if' '(' expression = IfExpression ')' statement = AssignStatement // should support else...
+;
+
+IfExpression:
+	var = ID op = ('==' | '!=') assignment = AssignedValue
+;
+
+AssignedValue:
+	intval = INT | boolval = ('true' | 'false')
+;
+
+AssignStatement:
+	var = [CondVar] '=' value = BooleanVal ';'// also [OrdVar] should be supported. however according to spec only boolean value is allowed here. this prevents the usage of ordvar here since we only allow int... note also that var = ([CondVar] | [OrdVar]) causes an exception
 ;
 
 Requires:
@@ -47,7 +65,7 @@ CondVar returns CondVar:
 	name=ID '=' value=BooleanVal
 ;
 
-OrdVar:
+OrdVar returns OrdVar:
 	name=ID '=' value=INT
 ;
 

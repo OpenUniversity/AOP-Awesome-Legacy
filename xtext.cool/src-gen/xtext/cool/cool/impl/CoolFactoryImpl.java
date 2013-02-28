@@ -70,6 +70,10 @@ public class CoolFactoryImpl extends EFactoryImpl implements CoolFactory
       case CoolPackage.COORDINATOR_DECLARATION: return createCoordinatorDeclaration();
       case CoolPackage.COORDINATOR_BODY: return createCoordinatorBody();
       case CoolPackage.GUARD: return createGuard();
+      case CoolPackage.IF_STATEMENT: return createIfStatement();
+      case CoolPackage.IF_EXPRESSION: return createIfExpression();
+      case CoolPackage.ASSIGNED_VALUE: return createAssignedValue();
+      case CoolPackage.ASSIGN_STATEMENT: return createAssignStatement();
       case CoolPackage.REQUIRES: return createRequires();
       case CoolPackage.AND_EXPRESSION: return createAndExpression();
       case CoolPackage.OR_EXPRESSION: return createOrExpression();
@@ -113,6 +117,50 @@ public class CoolFactoryImpl extends EFactoryImpl implements CoolFactory
   {
     GuardImpl guard = new GuardImpl();
     return guard;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public IfStatement createIfStatement()
+  {
+    IfStatementImpl ifStatement = new IfStatementImpl();
+    return ifStatement;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public IfExpression createIfExpression()
+  {
+    IfExpressionImpl ifExpression = new IfExpressionImpl();
+    return ifExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AssignedValue createAssignedValue()
+  {
+    AssignedValueImpl assignedValue = new AssignedValueImpl();
+    return assignedValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AssignStatement createAssignStatement()
+  {
+    AssignStatementImpl assignStatement = new AssignStatementImpl();
+    return assignStatement;
   }
 
   /**

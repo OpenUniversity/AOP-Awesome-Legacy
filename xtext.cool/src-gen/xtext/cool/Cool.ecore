@@ -26,6 +26,34 @@
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="requires" eType="#//Requires"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="onEntryIfStatements" upperBound="-1"
+        eType="#//IfStatement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="onEntryAssignStatements"
+        upperBound="-1" eType="#//AssignStatement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="onExitIfStatements" upperBound="-1"
+        eType="#//IfStatement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="onExitAssignStatements"
+        upperBound="-1" eType="#//AssignStatement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IfStatement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//IfExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statement" eType="#//AssignStatement"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IfExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="var" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assignment" eType="#//AssignedValue"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AssignedValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="intval" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="boolval" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AssignStatement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="var" eType="#//CondVar"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Requires">
     <eStructuralFeatures xsi:type="ecore:EReference" name="andExpression" eType="#//AndExpression"

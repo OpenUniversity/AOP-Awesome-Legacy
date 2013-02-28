@@ -93,6 +93,26 @@ public class CoolAdapterFactory extends AdapterFactoryImpl
         return createGuardAdapter();
       }
       @Override
+      public Adapter caseIfStatement(IfStatement object)
+      {
+        return createIfStatementAdapter();
+      }
+      @Override
+      public Adapter caseIfExpression(IfExpression object)
+      {
+        return createIfExpressionAdapter();
+      }
+      @Override
+      public Adapter caseAssignedValue(AssignedValue object)
+      {
+        return createAssignedValueAdapter();
+      }
+      @Override
+      public Adapter caseAssignStatement(AssignStatement object)
+      {
+        return createAssignStatementAdapter();
+      }
+      @Override
       public Adapter caseRequires(Requires object)
       {
         return createRequiresAdapter();
@@ -190,6 +210,66 @@ public class CoolAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createGuardAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.cool.cool.IfStatement <em>If Statement</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.cool.cool.IfStatement
+   * @generated
+   */
+  public Adapter createIfStatementAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.cool.cool.IfExpression <em>If Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.cool.cool.IfExpression
+   * @generated
+   */
+  public Adapter createIfExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.cool.cool.AssignedValue <em>Assigned Value</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.cool.cool.AssignedValue
+   * @generated
+   */
+  public Adapter createAssignedValueAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link xtext.cool.cool.AssignStatement <em>Assign Statement</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see xtext.cool.cool.AssignStatement
+   * @generated
+   */
+  public Adapter createAssignStatementAdapter()
   {
     return null;
   }

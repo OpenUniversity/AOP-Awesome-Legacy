@@ -53,6 +53,42 @@ public interface CoolFactory extends EFactory
   Guard createGuard();
 
   /**
+   * Returns a new object of class '<em>If Statement</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>If Statement</em>'.
+   * @generated
+   */
+  IfStatement createIfStatement();
+
+  /**
+   * Returns a new object of class '<em>If Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>If Expression</em>'.
+   * @generated
+   */
+  IfExpression createIfExpression();
+
+  /**
+   * Returns a new object of class '<em>Assigned Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Assigned Value</em>'.
+   * @generated
+   */
+  AssignedValue createAssignedValue();
+
+  /**
+   * Returns a new object of class '<em>Assign Statement</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Assign Statement</em>'.
+   * @generated
+   */
+  AssignStatement createAssignStatement();
+
+  /**
    * Returns a new object of class '<em>Requires</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

@@ -14,12 +14,16 @@ import org.eclipse.xtext.serializer.sequencer.ISemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import xtext.cool.cool.AndExpression;
+import xtext.cool.cool.AssignStatement;
+import xtext.cool.cool.AssignedValue;
 import xtext.cool.cool.BasicExpression;
 import xtext.cool.cool.CondVar;
 import xtext.cool.cool.CoolPackage;
 import xtext.cool.cool.CoordinatorBody;
 import xtext.cool.cool.CoordinatorDeclaration;
 import xtext.cool.cool.Guard;
+import xtext.cool.cool.IfExpression;
+import xtext.cool.cool.IfStatement;
 import xtext.cool.cool.MutexSet;
 import xtext.cool.cool.OrExpression;
 import xtext.cool.cool.OrdVar;
@@ -60,6 +64,18 @@ public class AbstractCoolSemanticSequencer extends AbstractSemanticSequencer {
 					return; 
 				}
 				else break;
+			case CoolPackage.ASSIGN_STATEMENT:
+				if(context == grammarAccess.getAssignStatementRule()) {
+					sequence_AssignStatement(context, (AssignStatement) semanticObject); 
+					return; 
+				}
+				else break;
+			case CoolPackage.ASSIGNED_VALUE:
+				if(context == grammarAccess.getAssignedValueRule()) {
+					sequence_AssignedValue(context, (AssignedValue) semanticObject); 
+					return; 
+				}
+				else break;
 			case CoolPackage.BASIC_EXPRESSION:
 				if(context == grammarAccess.getBasicExpressionRule()) {
 					sequence_BasicExpression(context, (BasicExpression) semanticObject); 
@@ -87,6 +103,18 @@ public class AbstractCoolSemanticSequencer extends AbstractSemanticSequencer {
 			case CoolPackage.GUARD:
 				if(context == grammarAccess.getGuardRule()) {
 					sequence_Guard(context, (Guard) semanticObject); 
+					return; 
+				}
+				else break;
+			case CoolPackage.IF_EXPRESSION:
+				if(context == grammarAccess.getIfExpressionRule()) {
+					sequence_IfExpression(context, (IfExpression) semanticObject); 
+					return; 
+				}
+				else break;
+			case CoolPackage.IF_STATEMENT:
+				if(context == grammarAccess.getIfStatementRule()) {
+					sequence_IfStatement(context, (IfStatement) semanticObject); 
 					return; 
 				}
 				else break;
@@ -123,6 +151,34 @@ public class AbstractCoolSemanticSequencer extends AbstractSemanticSequencer {
 	 *     (orExpressions+=OrExpression orExpressions+=OrExpression*)
 	 */
 	protected void sequence_AndExpression(EObject context, AndExpression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (var=[CondVar|ID] value=BooleanVal)
+	 */
+	protected void sequence_AssignStatement(EObject context, AssignStatement semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, CoolPackage.Literals.ASSIGN_STATEMENT__VAR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, CoolPackage.Literals.ASSIGN_STATEMENT__VAR));
+			if(transientValues.isValueTransient(semanticObject, CoolPackage.Literals.ASSIGN_STATEMENT__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, CoolPackage.Literals.ASSIGN_STATEMENT__VALUE));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getAssignStatementAccess().getVarCondVarIDTerminalRuleCall_0_0_1(), semanticObject.getVar());
+		feeder.accept(grammarAccess.getAssignStatementAccess().getValueBooleanValParserRuleCall_2_0(), semanticObject.getValue());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (intval=INT | boolval='true' | boolval='false')
+	 */
+	protected void sequence_AssignedValue(EObject context, AssignedValue semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -181,10 +237,44 @@ public class AbstractCoolSemanticSequencer extends AbstractSemanticSequencer {
 	
 	/**
 	 * Constraint:
-	 *     (methods+=ID methods+=ID* requires=Requires?)
+	 *     (
+	 *         methods+=ID 
+	 *         methods+=ID* 
+	 *         requires=Requires? 
+	 *         (onEntryIfStatements+=IfStatement | onEntryAssignStatements+=AssignStatement)* 
+	 *         (onExitIfStatements+=IfStatement | onExitAssignStatements+=AssignStatement)*
+	 *     )
 	 */
 	protected void sequence_Guard(EObject context, Guard semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (var=ID (op='==' | op='!=') assignment=AssignedValue)
+	 */
+	protected void sequence_IfExpression(EObject context, IfExpression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (expression=IfExpression statement=AssignStatement)
+	 */
+	protected void sequence_IfStatement(EObject context, IfStatement semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, CoolPackage.Literals.IF_STATEMENT__EXPRESSION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, CoolPackage.Literals.IF_STATEMENT__EXPRESSION));
+			if(transientValues.isValueTransient(semanticObject, CoolPackage.Literals.IF_STATEMENT__STATEMENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, CoolPackage.Literals.IF_STATEMENT__STATEMENT));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getIfStatementAccess().getExpressionIfExpressionParserRuleCall_2_0(), semanticObject.getExpression());
+		feeder.accept(grammarAccess.getIfStatementAccess().getStatementAssignStatementParserRuleCall_4_0(), semanticObject.getStatement());
+		feeder.finish();
 	}
 	
 	
