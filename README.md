@@ -10,6 +10,7 @@ We are working on the creation of a fully functioning environment for Awesome wi
 
 ## Awesome Links
 * Awesome is in active development under a separate GitHub repository [[link](https://github.com/OpenUniversity/AOP-Awesome)]
+* Awesome Wiki [[link](https://github.com/OpenUniversity/AOP-Awesome-Legacy/wiki)]
 * The main Awesome paper, appeared in OOPSLA'07 [[pdf](https://github.com/OpenUniversity/AOP-Awesome-Legacy/blob/master/resources/oopsla07.pdf)]
 * A paper about adding debugging facilities to Awesome, appeared in AOSD'12 [[pdf](https://github.com/OpenUniversity/AOP-Awesome-Legacy/blob/master/resources/aosd12.pdf)]
 * Another (shorter) paper about Awesome debugging, appeared in DSAL'11 [[pdf](https://github.com/OpenUniversity/AOP-Awesome-Legacy/blob/master/resources/dsal11.pdf)]
