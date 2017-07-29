@@ -9,8 +9,8 @@ We are working on the creation of a fully functioning environment for Awesome wi
 2. **Awesome Tracer** In this project, a module called awesome.tracer will be implemented. The module will consist of AspectJ aspects that trace the Awesome weaving process. The traced data will be logged to the file system and in addition a convenient API will be provided to access the data. The awesome.tracer module is essential for facilitating testing support for an aspect mechanism and for a multi-mechanism weaver.
 
 ## Awesome Links
-* Awesome is in active development under the Trac system [[link]()]
-* The main Awesome paper, appeared in OOPSLA'07 [[pdf](http://aop.cslab.openu.ac.il/research/awesome/papers/oopsla07.pdf)]
-* A paper about adding debugging facilities to Awesome, appeared in AOSD'12 [[pdf](http://aop.cslab.openu.ac.il/research/awesome/papers/aosd12.pdf)]
-* Another (shorter) paper about Awesome debugging, appeared in DSAL'11 [[pdf](http://aop.cslab.openu.ac.il/research/awesome/papers/dsal11.pdf)]
-* A paper about the SpecTackle tool - a component of Awesome, appeared in DSAL'12 [[pdf](http://aop.cslab.openu.ac.il/research/awesome/papers/dsal12.pdf)]
+* Awesome is in active development under a separate GitHub repository [[link](https://github.com/OpenUniversity/AOP-Awesome)]
+* The main Awesome paper, appeared in OOPSLA'07 [[pdf](https://github.com/OpenUniversity/AOP-Awesome-Legacy/blob/master/resources/oopsla07.pdf)]
+* A paper about adding debugging facilities to Awesome, appeared in AOSD'12 [[pdf](https://github.com/OpenUniversity/AOP-Awesome-Legacy/blob/master/resources/aosd12.pdf)]
+* Another (shorter) paper about Awesome debugging, appeared in DSAL'11 [[pdf](https://github.com/OpenUniversity/AOP-Awesome-Legacy/blob/master/resources/dsal11.pdf)]
+* A paper about the SpecTackle tool - a component of Awesome, appeared in DSAL'12 [[pdf](https://github.com/OpenUniversity/AOP-Awesome-Legacy/blob/master/resources/dsal12.pdf)]
